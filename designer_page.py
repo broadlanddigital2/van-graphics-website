@@ -77,7 +77,7 @@ def designer_page(button, media, faq, phone, tel, email, leads):
     <p class="eyebrow accent">Free online van designer</p><h1>Design your van<span>in 60 seconds.</span></h1>
     <p class="lede">See your van graphics or full wrap on your own make and model, with your logo, colours and contact details. Free to use, with no obligation.</p>
     <div class="actions">{button('Start designing', '#designer')}{button(f'Call {phone}', tel, 'outline')}</div></div>
-    {media('transit-custom-msrt-printed-wrap', 'Ford Transit Custom with a full printed wrap', 'Concept design / Printed wrap')}</div></section>'''
+    {media('transit-custom-msrt-printed-wrap', 'Ford Transit Custom with a full printed wrap')}</div></section>'''
     how = f'''<section class="section" id="how-it-works"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">How it works</p><h2>Four steps to your design.</h2></div>
     <p>Create a free account in 20 seconds. Your designs save automatically and you can come back on any device.</p></div><div class="process nvg-steps">{steps}</div></div></section>'''
     app = f'''<section class="section core-section tint" id="designer"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">The Van Designer</p><h2>Build your design.</h2></div>
