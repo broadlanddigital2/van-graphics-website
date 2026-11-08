@@ -409,3 +409,15 @@ html{scroll-padding-top:96px}
 .work-grid{grid-template-columns:repeat(5,1fr)}
 @media(max-width:1000px){.work-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+.reviews-block{grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.reviews-block__summary{position:static}
+.review-cards{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.review-card{background:#fff;border-radius:18px;padding:24px;box-shadow:0 14px 34px #111b3114;display:flex;flex-direction:column;gap:14px}
+.review-card__stars{color:#f5a623;font-size:18px;letter-spacing:3px}
+.review-card blockquote{margin:0;font-size:16px;line-height:1.55;color:var(--ink);flex:1}
+.review-card footer{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.review-card__avatar{width:40px;height:40px;border-radius:50%;background:var(--cobalt);color:#fff;display:grid;place-items:center;font-weight:900}
+.review-card footer span:last-child{display:grid}.review-card small{font-size:12px;color:var(--muted)}
+@media(max-width:1000px){.reviews-block{grid-template-columns:1fr}.review-cards{grid-column:auto}}
+@media(max-width:600px){.review-cards{grid-template-columns:1fr}}
+.support-hero h1+p{margin-top:16px}.support-hero .actions{margin-top:22px}

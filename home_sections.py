@@ -88,7 +88,7 @@ def comparison_table():
             + f'<p class="core-note">All options use quality cast vinyl that lasts several years with good care. Read the guide: <a href="/guides/partial-vs-full-wrap/">partial wrap vs full wrap {ARROW}</a></p>')
 
 
-def home_gallery(limit=18):
+def home_gallery(limit=18, work=True):
     group_label = {g: label for g, label, _ in GROUPS}
     by_group = {g: [] for g, _, _ in GROUPS}
     for sec in SECTOR_LIST:
@@ -108,9 +108,9 @@ def home_gallery(limit=18):
     figures = ''.join(f'<figure data-model="{escape(group)}"><img src="{asset(img)}" alt="{escape(cap)}" loading="lazy" width="840" height="473">'
                       f'<figcaption><strong>{escape(cap)}</strong><small>{escape(group)}</small></figcaption></figure>' for img, cap, group in picks)
     from work_gallery import work_gallery
-    return work_gallery() + (f'<div class="gallery-toolbar"><label>Filter by sector <select id="gallery-model"><option value="">All sectors</option>{options}</select></label>'
+    return (work_gallery() if work else '') + (f'<div class="gallery-toolbar"><label>Filter by sector <select id="gallery-model"><option value="">All sectors</option>{options}</select></label>'
             f'<span id="gallery-count" aria-live="polite"></span></div><div class="core-gallery">{figures}</div>'
-            f'<p class="core-note"><a class="text-link" href="/sectors/">Browse all {len(SECTOR_LIST)} sectors {ARROW}</a></p>')
+            + ('' if limit > 20 else f'<p class="core-note"><a class="text-link" href="/gallery/">View the full gallery {ARROW}</a></p>'))
 
 
 def process_steps():

@@ -94,8 +94,8 @@ def header():
            + mega('Sectors', '/sectors/', sector_cols, (f'{len(SECTOR_LIST)} sectors', 'Design ideas, a recommended package and a price guide for your line of work.', 'All sectors', '/sectors/'))
            + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on Vulcan Road North. Distances are driving miles.', 'All areas', '/norfolk/'))
            + mega('Guides', '/#guides', guide_cols, ('Guides', 'Costs, coverage, artwork and aftercare explained before you order.', 'Ask a question', '/contact/'))
-           + '<a class="nav-top" href="/#gallery">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
-    mobile = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/#gallery">Gallery</a><a href="/contact/">Contact</a>'
+           + '<a class="nav-top" href="/gallery/">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
+    mobile = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/gallery/">Gallery</a><a href="/contact/">Contact</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
@@ -277,7 +277,7 @@ page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
      + numbered(4, 'services', 'Our services', 'Find the right finish.', H.service_cards())
      + H.stats_strip()
      + numbered(6, 'compare', 'Compare your options', 'Signwriting, partial or full wrap?', H.comparison_table(), 'tint')
-     + numbered(7, 'gallery', 'Design gallery', 'Graphics for every kind of business.', H.home_gallery(), 'dark-section')
+     + numbered(7, 'gallery', 'Gallery', 'Recent work and design ideas.', __import__('work_gallery').work_gallery(limit=5) + H.home_gallery(limit=8, work=False), 'dark-section')
      + numbered(8, 'process', 'How it works', 'From first call to fitted.', H.process_steps())
      + numbered(9, 'sectors', 'Sectors', 'Graphics for your line of work.', H.sectors_grid(), 'tint')
      + numbered(10, 'vehicles', 'Vehicles we wrap', 'Choose by brand and model.', vehicle_picker())
@@ -400,6 +400,15 @@ page('/sectors/','Van Graphics by Sector | Norwich Vehicle Graphics',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Sectors</span></nav><p class="eyebrow accent">Vehicle graphics by sector</p><h1>Van graphics for your line of work.</h1>'
      + f'<p class="lede">{len(SECTOR_LIST)} sectors, each with design ideas, a recommended package and a price guide.</p></div></section>'
      + sectors_hub(), hero_image='sectors/sectors-hub-hero')
+
+page('/gallery/', 'Van Graphics Gallery | Norwich Vehicle Graphics',
+     'Van signwriting, vehicle wraps and fleet graphics fitted at our Norwich workshop, plus design ideas for every kind of business in Norfolk.',
+     '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Gallery</span></nav><p class="eyebrow accent">Van graphics gallery</p><h1>Our van graphics work.</h1>'
+     + '<p>Real vans fitted at our Norwich workshop, and design ideas by sector. Tap a photo to enlarge.</p><div class="actions">' + button('Get a free quote','#quote') + button('Try the Van Designer','/design-your-van/','outline') + '</div></div></section>'
+     + '<section class="section core-section dark-section" id="work"><div class="shell">' + __import__('work_gallery').work_gallery() + '</div></section>'
+     + '<section class="section core-section" id="ideas"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Design ideas</p><h2>Ideas by sector.</h2></div></div>' + H.home_gallery(limit=200, work=False) + '</div></section>',
+     quote_block=enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context='Gallery'), hero_image='pages/gallery-hero')
+support_urls.append('/gallery/')
 
 page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',

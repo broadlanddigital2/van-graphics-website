@@ -138,12 +138,22 @@ def case_study(data):
 REVIEWS_WIDGET = 'https://www.local-marketing-reports.com/external/showcase-reviews/widgets/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef'
 REVIEWS_EMBED = 'https://www.local-marketing-reports.com/external/showcase-reviews/embed/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef?id=18987'
 
+GOOGLE_REVIEWS = [  # Broadland Digital's Google reviews (vehicle graphics jobs)
+    ('Daniel Ellert', 'September 2025', 'Helpful and professional. Now have a great new livery on my van. Reasonable price, and good quality, even overcame a small issue with my van on the day!'),
+    ('Andy', 'August 2025', 'From first contact, taking vehicle to the guys to choose what type of wrap and get their suggestions to the fitment the whole process was friendly and professional and at a reasonable price. Would definitely use again. Thank you.'),
+    ('Simon Bainbridge', 'July 2025', 'Friendly staff, quick installation of van graphics and they look awesome. I highly recommend Race Car Graphics and their sister company Broadland Digital to everyone!'),
+    ('Iwan Utting', 'November 2025', 'Brilliant service, quickly and very good quality! Also very welcoming!'),
+]
+GOOGLE_URL = 'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'
+
 def reviews(data=None):
-    """Live Google reviews for Broadland Digital (our parent company), via the same widget its site uses."""
+    """Summary panel plus four Google review cards for Broadland Digital, our parent company."""
+    cards = ''.join(f'''<article class="review-card"><p class="review-card__stars" aria-label="5 out of 5">★★★★★</p><blockquote>{escape(text)}</blockquote>
+    <footer><span class="review-card__avatar" aria-hidden="true">{escape(name[0])}</span><span><b>{escape(name)}</b><small>Google review · {when}</small></span></footer></article>''' for name, when, text in GOOGLE_REVIEWS)
     return (f'''<div class="reviews-block"><div class="reviews-block__summary"><p class="reviews-stars" aria-label="Rated 5 out of 5">★★★★★</p>
-    <p class="reviews-score"><b>5.0</b> on Google</p><p>Reviews for Broadland Digital, the Norwich workshop that designs, prints and fits our vehicle graphics.</p>
-    <a class="text-link" href="https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/" target="_blank" rel="noopener">Read all reviews on Google {ARROW}</a></div>
-    <div class="reviews-block__widget"><iframe src="{REVIEWS_WIDGET}" title="Broadland Digital customer reviews" loading="lazy"></iframe></div></div>''')
+    <p class="reviews-score"><b>5.0</b> on Google</p><p>From 23 reviews of Broadland Digital, the Norwich workshop that designs, prints and fits our vehicle graphics.</p>
+    <a class="text-link" href="{GOOGLE_URL}" target="_blank" rel="noopener">Read all reviews on Google {ARROW}</a></div>
+    <div class="review-cards">{cards}</div></div>''')
 
 def enquiry(service, services, phone, tel, email, quote_url, *, context='', contact=False):
     options = '' if service else '<option>General enquiry</option>'
