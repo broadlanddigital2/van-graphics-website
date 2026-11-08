@@ -352,3 +352,5 @@ html{scroll-padding-top:96px}
 .footer-brand-grid a:hover img{opacity:1}
 @media(max-width:850px){.footer-contact{grid-template-columns:1fr}.footer-brand-grid{gap:16px 28px}.footer-brand-grid img{height:44px}}
 .quote-contacts{grid-template-columns:.75fr 1.25fr;max-width:560px}.quote-contacts b{font-size:15px;overflow-wrap:normal;word-break:normal}
+.price-badge{position:static;align-self:flex-start;max-width:100%;margin:-6px 0 2px;line-height:1.3;white-space:normal}
+.price-badge{border-radius:8px}
