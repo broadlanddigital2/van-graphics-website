@@ -120,7 +120,7 @@ def town_page(key, phone, tel, email):
         f'<article id="{k}"><h3>{label}</h3><p>{copy}</p><a class="text-link" href="{href}">{label} for {name} {ARROW}</a></article>'
         for k, label, copy, href in tiles) + '</div>'
 
-    prices = pricing(CONTENT['van-signwriting-norwich']) + '<p class="core-note"><a href="/vehicle-wraps-norwich/#pricing">Wrap price guide</a> · <a href="/fleet-graphics-norwich/#pricing">Fleet price guide</a></p>'
+    prices = price_cards(None) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
 
     designs = []
     for sector in focus:
@@ -214,7 +214,7 @@ def recommended_package(title):
     return min(hits)[1] if hits else 'sign'
 
 def price_cards(s):
-    rec = recommended_package(s['package'][0])
+    rec = recommended_package(s['package'][0]) if s else None
     cards = (
         ('sign', 'is-orange', 'Signwriting', 'from', '£149', 'small van', 'Logos, a service line and contact details in cut vinyl.',
          '<ul class="price-sizes"><li><span>Small van</span><b>£149</b></li><li><span>Medium van</span><b>£210</b></li><li><span>Large van</span><b>£285</b></li></ul>'),
