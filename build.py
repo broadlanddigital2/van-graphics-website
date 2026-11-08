@@ -4,8 +4,9 @@ from pathlib import Path
 
 from core_content import CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
-from local_content import SECTOR_DETAILS, TOWN_DETAILS
-from local_pages import sector_sections, town_questions, town_sections, workshop_map
+from areas import TOWN_LIST, TOWNS_BY_KEY
+from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
+from local_pages import sector_page, sectors_hub, town_page, town_questions, workshop_map
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
 
 OUT = Path('dist')
@@ -54,7 +55,7 @@ SERVICES = [
          options=[('Mixed vehicles','Carry the same colours, typography and message from compact vans to cars and larger vehicles.'),('Phased fitting','Share which vehicles need to stay on the road and we can discuss how to schedule the work.'),('New additions and replacements','Use the approved design as a reference for future vehicles or panels that need replacing.')],
          questions=[('What do you need to quote a fleet?','Send the vehicle count, makes and models, photos if available and any brand guidelines. Tell us which vehicles need graphics first.'),('Can you match our existing fleet graphics?','Share photos and any artwork you have. We can review how closely the layout and colours can be matched before you approve a design.')]),
 ]
-AREAS = ['Norwich', 'Wymondham', 'Dereham', 'Aylsham', 'North Walsham', 'Attleborough', 'Great Yarmouth', 'Across Norfolk']
+AREAS = ['Norwich', 'Wymondham', 'Dereham', 'Great Yarmouth', 'King’s Lynn', 'Aylsham', 'North Walsham', 'Cromer', 'Thetford', 'Across Norfolk']
 
 def button(label, url, cls=''):
     return f'<a class="btn {cls}" href="{url}">{label}{ARROW}</a>'
@@ -236,49 +237,51 @@ page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
      + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>')
 
-def location_schema(path, heading, description, parent, questions, town=None):
+def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):
     parent_path, parent_name = parent
+    area = {'@type':'City','name':town,'containedInPlace':{'@type':'AdministrativeArea','name':county}} if town else {'@type':'AdministrativeArea','name':'Norfolk'}
     graph = [
-        {'@type':'Service','name':heading,'url':ORIGIN+path,'description':description,
-         'provider':{'@id':ORIGIN+'/#business'},'areaServed':town or 'Norfolk'},
+        {'@type':'WebPage','@id':ORIGIN+path,'url':ORIGIN+path,'name':heading,'description':description,'about':{'@id':ORIGIN+path+'#service'}},
+        {'@type':'Service','@id':ORIGIN+path+'#service','name':heading,'url':ORIGIN+path,'description':description,'serviceType':'Vehicle graphics and wraps',
+         'provider':{'@id':ORIGIN+'/#business'},'areaServed':area},
         {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in questions]},
         {'@type':'BreadcrumbList','itemListElement':[
             {'@type':'ListItem','position':position,'name':label,'item':ORIGIN+url}
-            for position,(url,label) in enumerate((('/', 'Home'), (parent_path,parent_name), (path,heading)), 1)
+            for position,(url,label) in enumerate((('/', 'Home'), (parent_path,parent_name), (path,town or heading)), 1)
         ]},
+        {k:v for k,v in business.items() if k!='@context'},
     ]
     return {'@context':'https://schema.org','@graph':graph}
 
 
 sector_parent = ('/sectors/', 'Sectors')
 area_parent = ('/norfolk/', 'Areas we cover')
-for key,(name,_) in SECTORS.items():
+for sector in SECTOR_LIST:
+    key, name = sector['key'], sector['name']
     path = f'/sectors/{key}/'
     support_urls.append(path)
-    heading = f'Van wraps for {name.lower()}'
-    description = f'Van wraps, signwriting and fleet graphics for {name.lower()} businesses across Norwich and Norfolk.'
-    questions = SECTOR_DETAILS[key][-2]
-    image, alt, _ = SECTOR_CARDS[key]
-    image = f'concept-{image}' if isinstance(image, int) else image
-    page(path,heading+' in Norwich | Norwich Vehicle Graphics',description,
-         hero(f'Van wraps for<span>{escape(name.lower())}.</span>',description,image,alt,'Vehicle graphics by sector',parent=sector_parent,call=True)
-         + sector_sections(key) + faq(questions), image,
-         location_schema(path,heading,description,sector_parent,questions),
-         enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context=name))
+    heading = f'Van graphics for {name.lower()}'
+    description = f'Van signwriting, wraps and fleet graphics for {name.lower()} across Norwich and Norfolk. {sector["card"]}'
+    questions = sector['faqs']
+    image = f'concept-{sector["image"]}' if isinstance(sector['image'], int) else sector['image']
+    page(path, f'{name} Van Graphics & Wraps Norfolk | Norwich Vehicle Graphics', description,
+         hero(f'Van graphics for<span>{escape(name.lower())}.</span>', escape(sector['card'] + ' Designed, printed and fitted in Norwich.'), image, sector['alt'], 'Vehicle graphics by sector', parent=sector_parent, call=True)
+         + sector_page(key) + faq(questions), image,
+         location_schema(path, heading, description, sector_parent, questions),
+         enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=name))
 
-for key,(name,_) in TOWNS.items():
+for town in TOWN_LIST:
+    key, name = town['key'], town['name']
     path = f'/norfolk/{key}/'
     support_urls.append(path)
-    heading = f'Vehicle graphics for {name}'
-    description = f'Van signwriting, partial and full wraps and fleet graphics for {TOWN_DETAILS[key][0]}, designed and fitted in Norwich.'
-    questions = town_questions(name)
-    image, alt, _ = SECTOR_CARDS[TOWN_DETAILS[key][3][0]]
+    heading = f'Van graphics and wraps in {name}'
+    questions = town_questions(town)
+    image = SECTORS_BY_KEY[town['focus'][0]]['image']
     image = f'concept-{image}' if isinstance(image, int) else image
-    page(path,heading+' | Norwich Vehicle Graphics',description,
-         hero(f'Vehicle graphics<span>for {escape(name)}.</span>',description,image,alt,'Areas covered · Fitting in Norwich',parent=area_parent,call=True)
-         + town_sections(key,SERVICES,PHONE,TEL,EMAIL) + faq(questions), image,
-         location_schema(path,heading,description,area_parent,questions,name),
-         enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context=name))
+    page(path, f'Van Graphics & Wraps {name} | Norwich Vehicle Graphics', town['description'],
+         town_page(key, PHONE, TEL, EMAIL) + faq(questions), image,
+         location_schema(path, heading, town['description'], area_parent, questions, name, town['county']),
+         enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=name))
 
 for key,(name,summary,detail) in GUIDES.items():
     path = f'/guides/{key}/'
@@ -287,16 +290,17 @@ for key,(name,summary,detail) in GUIDES.items():
     page(path,name+' | Norwich Vehicle Graphics',summary,
          support_page('Vehicle graphics guide',name,[summary,detail],related))
 
-places = ''.join(f'<li><a href="/norfolk/{slug}/">{place}</a></li>' for slug,(place,_) in TOWNS.items())
-coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>Bring your vehicle to Norwich for fitting. If you’re arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Broadland+Digital+Vulcan+Road+North+NR6+6AQ">Directions to the Norwich workshop {ARROW}</a></div><ul class="places">{places}</ul></div></section>'''
+places = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])} <small>{t["miles"]} mi · {t["time"]}</small></a></li>' for t in TOWN_LIST)
+coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>We design remotely and fit at our Norwich workshop on Vulcan Road North. Distances below are driving routes to the workshop. If you are arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Broadland+Digital+Vulcan+Road+North+NR6+6AQ">Directions to the Norwich workshop {ARROW}</a></div><ul class="places places-wide">{places}</ul></div></section>'''
 page('/norfolk/','Vehicle Graphics Across Norfolk | Norwich Vehicle Graphics',
-     'Vehicle graphics for Norwich and Norfolk businesses. Explore local van signwriting, full and partial wraps and fleet branding fitted in Norwich.',
-     hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk. Bring us one work van or talk to us about graphics for a fleet.','fleet','Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),'fleet')
+     'Van graphics, wraps and fleet livery for businesses across Norfolk and Waveney: Norwich, King’s Lynn, Great Yarmouth, Lowestoft, Thetford, Dereham, Cromer and more.',
+     hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk and the Waveney valley. Bring us one work van or talk to us about graphics for a fleet.','fleet','Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),'fleet')
 
-page('/sectors/','Van Wraps by Sector | Norwich Vehicle Graphics',
-     'Explore van wraps, signwriting and fleet graphics for Norfolk trades, delivery, construction, food, events, automotive and retail.',
-     '<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Vehicle graphics by sector</p><h1>Van wraps for your line of work.</h1></div></section>'
-     + '<section class="section"><div class="shell">' + sector_cards() + '</div></section>')
+page('/sectors/','Van Graphics by Sector | Norwich Vehicle Graphics',
+     f'Van wraps, signwriting and fleet graphics for {len(SECTOR_LIST)} sectors, from plumbers and electricians to removals, care teams, farms and boatyards across Norfolk.',
+     '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Sectors</span></nav><p class="eyebrow accent">Vehicle graphics by sector</p><h1>Van graphics for your line of work.</h1>'
+     + f'<p class="lede">{len(SECTOR_LIST)} sectors, each with design ideas, a recommended package and a price guide.</p></div></section>'
+     + sectors_hub())
 
 page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',

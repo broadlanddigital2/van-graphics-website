@@ -1,31 +1,38 @@
-"""Page sections for sector, location and contact routes."""
+"""Page sections for sector, location and contact routes.
+
+town_page()   -> 18-section location template (see scope doc, Locations).
+sector_page() -> sector template (challenge, must-haves, gallery, package,
+                 prices, tips, featured design, designer strip, related).
+sectors_hub() -> grouped /sectors/ index.
+"""
 
 from html import escape
 from urllib.parse import urlencode
 
-from core_content import CONTENT, SECTOR_CARDS, SECTORS, TOWNS
-from core_pages import ARROW, asset, case_study, info_cards, link_tiles, pricing, section, sector_cards, table
-from local_content import SECTOR_DETAILS, TOWN_DETAILS
+from areas import TOWN_LIST, TOWNS_BY_KEY
+from core_content import CONTENT, SECTOR_CARDS, SECTORS
+from core_pages import ARROW, asset, case_study, info_cards, link_tiles, pricing, reviews, section, sector_cards, table
+from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
 
 ADDRESS = 'Vulcan House, Vulcan Road North, Norwich NR6 6AQ'
 MAP_QUERY = f'Broadland Digital, {ADDRESS}'
 
 
-def directions(town=None):
+def directions(town=None, county='Norfolk'):
     if town:
         return 'https://www.google.com/maps/dir/?' + urlencode(
-            {'api': 1, 'origin': f'{town}, Norfolk, UK', 'destination': MAP_QUERY, 'travelmode': 'driving'})
+            {'api': 1, 'origin': f'{town}, {county}, UK', 'destination': MAP_QUERY, 'travelmode': 'driving'})
     return 'https://www.google.com/maps/search/?' + urlencode({'api': 1, 'query': MAP_QUERY})
 
 
-def workshop_map(phone, tel, email, town=None):
+def workshop_map(phone, tel, email, town=None, county='Norfolk'):
     source = 'https://maps.google.com/maps?' + urlencode({'q': MAP_QUERY, 'output': 'embed'})
     return f'''<div class="workshop-map"><div class="workshop-details">
     <p class="eyebrow blue">Norwich workshop</p><h3>Norwich Vehicle Graphics</h3>
     <address>Vulcan House<br>Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</address>
     <p><a href="{tel}">{phone}</a><br><a href="mailto:{email}">{email}</a></p>
     <p>Call ahead to confirm your fitting appointment and drop-off arrangements.</p>
-    <a class="btn dark" href="{escape(directions(town))}">{f'Directions from {escape(town)}' if town else 'Get directions'} {ARROW}</a>
+    <a class="btn dark" href="{escape(directions(town, county))}">{f'Directions from {escape(town)}' if town else 'Get directions'} {ARROW}</a>
     </div><iframe title="Map of the Norwich vehicle graphics workshop" src="{escape(source)}"
     width="640" height="360" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'''
 
@@ -37,67 +44,167 @@ def page_jumps(links):
 
 
 def design_examples(entries):
-    return '<p class="core-note example-note">Illustrative vehicle graphics concepts.</p><div class="core-gallery">' + ''.join(
+    grid = 'core-gallery four' if len(entries) == 4 else 'core-gallery'
+    return f'<p class="core-note example-note">Illustrative vehicle graphics concepts.</p><div class="{grid}">' + ''.join(
         f'<figure><img src="{asset(image)}" alt="{escape(caption)}" loading="lazy" width="840" height="473">'
         f'<figcaption><strong>{escape(caption)}</strong></figcaption></figure>'
         for image, caption in entries
     ) + '</div>'
 
 
-def sector_sections(key):
-    name, _ = SECTORS[key]
-    intro, examples, package, package_copy, tips, project, brief, outcome, _, related = SECTOR_DETAILS[key]
+def designer_strip(context):
+    return f'''<section class="designer-strip"><div class="shell"><div><p class="eyebrow accent">Free Van Designer</p>
+    <h2>See it on your van before you {escape(context)}.</h2><p>Pick your van and colour, add your logo and details, and get three designs in about a minute. Spin it in 360° or picture it on the road.</p></div>
+    <a class="btn" href="/design-your-van/#designer">Start designing, free {ARROW}</a></div></section>'''
+
+
+def process_steps(last):
+    return info_cards([
+        ('01', 'Send photos or use the Van Designer', 'Share both sides and the rear, your logo and what you want the van to say. Or start with the free Van Designer.'),
+        ('02', 'Approve your proof', 'We send a visual of the layout on your vehicle. Changes are made before anything is printed.'),
+        ('03', 'Production', 'Graphics are printed, laminated and cut in-house in Norwich.'),
+        ('04', last, 'Drop the vehicle at Vulcan Road North on the agreed date and collect it branded and ready to work.'),
+    ]).replace('class="info-cards"', 'class="info-cards four"', 1)
+
+
+# ---------------------------------------------------------------- locations
+
+def town_questions(t):
+    name = t['name']
+    return t['questions'] + [
+        (f'How far is the workshop from {name}?', f'Our workshop at {ADDRESS} is about {t["miles"]} miles from {name}, roughly {t["time"]} by car outside peak times.'),
+        (f'Can I start my quote from {name}?', 'Yes. Send photos, the make and model, the coverage you want and your artwork if you have it, or use the free Van Designer. We agree the design before you bring the vehicle in.'),
+        ('How much downtime should I plan?', 'Lettering is often done in a day. Partial and full wraps usually take longer, depending on vehicle size and whether old graphics need removing. We confirm timings with your quote.'),
+        ('Do you offer fitting at my premises?', 'Standard fitting is at the Norwich workshop, where temperature and lighting are controlled. If you need on-site fitting, tell us your postcode and requirements and we will discuss what is possible.'),
+    ]
+
+
+def town_hero(t, image, alt, phone, tel):
+    name = escape(t['name'])
+    crumb = f'<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/norfolk/">Areas we cover</a><span aria-hidden="true">/</span><span>{name}</span></nav>'
+    facts = (f'<ul class="hero-facts"><li><b>{t["miles"]} mi</b>to our workshop</li><li><b>{t["time"]}</b>typical drive</li>'
+             f'<li><b>{escape(t["roads"][0])}</b>main route</li></ul>')
+    return f'''<section class="hero subhero town-hero"><div class="shell"><div class="hero-copy">{crumb}
+    <p class="eyebrow accent">Vehicle graphics · {name}, {escape(t["county"])}</p><h1>Van graphics &amp; wraps<span>in {name}.</span></h1>
+    <p class="lede">{escape(t["lede"])}</p><div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>{facts}</div>
+    <div class="hero-media"><img src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high"><span class="marker" aria-hidden="true"><i></i><i></i><i></i></span><div class="hero-caption"><b>↗</b>Illustrative design</div></div></div></section>'''
+
+
+def town_page(key, phone, tel, email):
+    t = TOWNS_BY_KEY[key]
+    name = escape(t['name'])
+    focus = t['focus']
+    image, alt, _ = SECTOR_CARDS[focus[0]]
+
+    facts = (f'<dl class="fact-list"><div><dt>Distance</dt><dd>{t["miles"]} miles to Vulcan Road North</dd></div>'
+             f'<div><dt>Typical drive</dt><dd>About {t["time"]} outside peak hours</dd></div>'
+             f'<div><dt>Main roads</dt><dd>{escape(", ".join(t["roads"]))}</dd></div></dl>')
+    intro = f'''<div class="intro-grid"><div class="core-prose"><p>{escape(t["intro"])}</p><p>Everything is designed, printed and fitted by our own team in Norwich. You can start with the free <a href="/design-your-van/">Van Designer</a>, send us photos for a quote, or call {phone}.</p></div>{facts}</div>'''
+
+    tiles = [
+        ('signwriting', 'Van signwriting', 'Cut vinyl lettering, logos and contact details. The fastest, most affordable way to brand a work van.', '/van-signwriting-norwich/'),
+        ('wraps', 'Partial wraps', 'Printed panels or colour across selected areas, using your van’s paint as part of the design.', '/vehicle-wraps-norwich/#comparison'),
+        ('full-wrap', 'Full wraps', 'Printed imagery or a complete colour change across the main exterior panels.', '/vehicle-wraps-norwich/'),
+        ('fleet', 'Fleet graphics', 'One design adapted to every make and model, fitted in batches around your schedule.', '/fleet-graphics-norwich/'),
+    ]
+    services = '<div class="info-cards support-links service-grid">' + ''.join(
+        f'<article id="{k}"><h3>{label}</h3><p>{copy}</p><a class="text-link" href="{href}">{label} for {name} {ARROW}</a></article>'
+        for k, label, copy, href in tiles) + '</div>'
+
+    prices = pricing(CONTENT['van-signwriting-norwich']) + '<p class="core-note"><a href="/vehicle-wraps-norwich/#pricing">Wrap price guide</a> · <a href="/fleet-graphics-norwich/#pricing">Fleet price guide</a></p>'
+
+    designs = []
+    for sector in focus:
+        designs.extend(SECTORS_BY_KEY[sector]['gallery'][:1])
+    gallery = design_examples(designs[:4])
+
+    focus_links = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS[k][0])}</a></li>' for k in focus)
+    nearby_links = ''.join(f'<li><a href="/norfolk/{k}/">{escape(TOWNS_BY_KEY[k]["name"])}</a></li>' for k in t['nearby'])
+    profile = f'''<div class="profile-grid">
+    <article><h3>{name} at a glance</h3><p>{escape(t["profile"])}</p></article>
+    <article><h3>Getting here</h3><p>{t["miles"]} miles, about {t["time"]} via the {escape(t["roads"][0])}. Fitting is at our Norwich workshop, so design and approval happen before you travel.</p></article>
+    <article><h3>What we do most</h3><ul>{focus_links}</ul></article>
+    <article><h3>Areas nearby</h3><ul>{nearby_links}</ul></article></div>'''
+
+    getting_here = workshop_map(phone, tel, email, None if key == 'norwich' else t['name'], t['county']) + f'''
+    <div class="route-notes"><article><h3>Directions from {name}</h3><p>{escape(t["directions"])}</p></article>
+    <article><h3>Arrival &amp; drop-off</h3><p>{escape(t["arrival"])}</p></article></div>'''
+
+    business = f'<p class="core-prose">{escape(t["business"])} Here are the sectors we design for most in and around {name}.</p>' + sector_cards(focus[:3])
+
+    head, copy = t['spotlight']
+    spotlight = f'<div class="spotlight"><h3>{escape(head)}</h3><p>{escape(copy)}</p></div>'
+
+    nearby = link_tiles([(k, (TOWNS_BY_KEY[k]['name'], f'{TOWNS_BY_KEY[k]["miles"]} miles · {TOWNS_BY_KEY[k]["time"]}')) for k in t['nearby']], lambda k: f'/norfolk/{k}/').replace('class="tile-grid"', 'class="tile-grid four"', 1)
+
+    parts = [
+        ('intro', 'Overview', f'Vehicle graphics for {escape(t["area"])}.', intro, ''),
+        ('services', 'Services', f'What we do for {name} businesses.', services, 'tint'),
+        ('pricing', 'Starting prices', 'Budget by vehicle size.', prices, ''),
+        ('gallery', 'Design ideas', 'Graphics for the work you do.', gallery, 'dark-section'),
+        ('local', 'Local profile', f'Working in and around {name}.', profile, 'tint'),
+        ('getting-here', 'Map &amp; directions', f'From {name} to our workshop.', getting_here, ''),
+        ('businesses', 'Business vehicles', f'Vans that work in {name}.', business, 'tint'),
+        ('spotlight', 'Local spotlight', f'Why it matters in {name}.', spotlight, ''),
+    ]
+    if t.get('work'):  # only real, approved local jobs
+        parts.append(('local-work', 'Local work', f'Recent jobs from {name}.', design_examples(t['work']), 'dark-section'))
+    jumps = [('services', 'Services'), ('pricing', 'Prices'), ('gallery', 'Designs'), ('getting-here', 'Directions'), ('businesses', 'Businesses'), ('faq', 'FAQs'), ('quote', 'Get a quote')]
+    html = page_jumps(jumps)
+    for n, (k, label, title, body, style) in enumerate(parts, 1):
+        html += section(n, k, label, title, body, style)
+    html += designer_strip('drive over')
+    n = len(parts)
+    html += section(n + 1, 'process', 'How it works', 'From brief to fitted.', process_steps(f'Fitting in Norwich'), 'tint')
+    html += section(n + 2, 'nearby', 'Nearby towns', f'Also serving towns near {name}.', nearby)
+    html += section(n + 3, 'reviews', 'Customer reviews', 'Published customer feedback.', reviews(CONTENT['van-signwriting-norwich']), 'tint')
+    return town_hero(t, image, alt, phone, tel) + html
+
+
+# ---------------------------------------------------------------- sectors
+
+def sector_page(key):
+    s = SECTORS_BY_KEY[key]
+    name = s['name']
+    pains = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['pains'], 1)])
+    challenge = f'<p class="core-prose">{escape(s["intro"])}</p>' + pains
+    must = '<ul class="must-list">' + ''.join(f'<li>{escape(item)}</li>' for item in s['must']) + '</ul>' + \
+        '<p class="core-note">Not sure what to include? Our guide to <a href="/guides/van-signwriting-brief/">what to put on a work van</a> walks you through it.</p>'
+    note = '<p class="core-note">Concept images are illustrative. Sector-specific examples will be added as projects complete.</p>' if s['stand_in'] else ''
+    package_title, package_copy = s['package']
+    package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
     packages = (
         ('Signwriting', 'Published signwriting packages from £149', 'Logos, a service line and contact details.'),
         ('Partial wrap', 'Quoted per vehicle', 'Printed panels or colour across selected areas.'),
         ('Full wrap', 'Quoted per vehicle', 'Printed imagery or brand colours across most exterior panels.'),
         ('Fleet graphics', 'Quoted per fleet', 'A shared layout adapted for each make and model.'),
     )
-    proof = f'<p class="core-prose">{escape(intro)} See our <a href="/vehicle-wraps-norwich/">van wraps in Norwich</a> for partial and full coverage options.</p>'
-    budget = table(f'Price guide for {name}', ('Package', 'Price guide', 'Typical scope'), packages)
+    budget = table(f'Price guide for {escape(name.lower())}', ('Package', 'Price guide', 'Typical scope'), packages)
     budget += '<p class="core-note">The signwriting benchmark comes from <a href="/van-signwriting-norwich/#pricing">Broadland Digital’s published packages</a>. Ask for a fitted quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
-    return ''.join([
-        page_jumps((('brief','Your brief'),('gallery','Designs'),('packages','Packages'),('pricing','Prices'),('case-study','Featured design'),('faq','FAQs'),('quote','Enquire'))),
-        section(1,'brief','Your brief','What your vehicles need to say.',proof),
-        section(2,'gallery','Sector gallery','See how the graphics could work.',design_examples(examples),'dark-section'),
-        section(3,'packages','Recommended package',escape(package),f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'),
-        section(4,'pricing','Price guide','Budget for the coverage you need.',budget,'tint'),
-        section(5,'design-tips','Design tips','Build the layout around the job.',info_cards([(f'{i:02}', title, detail) for i,(title,detail) in enumerate(tips,1)])),
-        section(6,'case-study','Featured design','See the brief and the layout.',case_study({'case':(project,brief,outcome,[examples[1 if key == 'automotive' else 0][0]])}),'dark-section'),
-        section(7,'related-sectors','Related sectors','More ideas for working vehicles.',sector_cards(related),'tint'),
+    tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
+    title, brief, outcome, picture = s['case']
+    html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('case-study', 'Featured design'), ('faq', 'FAQs'), ('quote', 'Enquire')))
+    html += ''.join([
+        section(1, 'challenge', 'The challenge', f'The challenge for {escape(name.lower())}.', challenge),
+        section(2, 'must-haves', 'What to include', 'What your van must say.', must, 'tint'),
+        section(3, 'gallery', 'Sector gallery', 'See how the graphics could work.', design_examples(s['gallery']) + note, 'dark-section'),
+        section(4, 'package', 'Recommended package', escape(package_title) + '.', package),
+        section(5, 'pricing', 'Price guide', 'Budget for the coverage you need.', budget, 'tint'),
+        section(6, 'design-tips', 'Design tips', 'Build the layout around the job.', tips),
+        section(7, 'case-study', 'Featured design', 'See the brief and the layout.', case_study({'case': (escape(title), escape(brief), escape(outcome), [picture])}), 'dark-section'),
     ])
+    html += designer_strip('order')
+    html += section(8, 'areas', 'Where we work', 'Fitted in Norwich, serving all of Norfolk.',
+                    link_tiles([(t['key'], (t['name'], f'{t["miles"]} miles')) for t in TOWN_LIST[:9]], lambda k: f'/norfolk/{k}/')
+                    + '<p class="core-note"><a class="text-link" href="/norfolk/">All areas we cover ' + ARROW + '</a></p>', 'tint')
+    html += section(9, 'related-sectors', 'Related sectors', 'More ideas for working vehicles.', sector_cards(s['related']))
+    return html
 
 
-def town_questions(town):
-    destination = 'in Norwich' if town == 'Norwich' else f'for businesses in {town}'
-    return [
-        (f'Where are vehicle graphics fitted {destination}?', f'We arrange fitting at {ADDRESS}. Call ahead to agree the appointment and drop-off.'),
-        (f'Can I start my quote from {town}?', 'Yes. Send photos, the make and model, the coverage you want and your artwork if you have it. We can discuss the design before you bring the vehicle in.'),
-        ('How much downtime should I plan?', 'Timing depends on the graphics, vehicle size and whether old film needs removing. We agree the fitting and collection arrangements before you book.'),
-        ('Can you work around a fleet schedule?', 'Send us a list of the vehicles and their availability. We can discuss fitting in batches so you can keep the rest of your fleet working.'),
-        ('Do you offer collection or fitting at my premises?', 'Standard fitting is arranged at the Norwich workshop. If you need collection or on-site fitting, tell us your postcode and requirements so we can discuss what is possible for the job.'),
-    ]
-
-
-def town_sections(key, services, phone, tel, email):
-    town, _ = TOWNS[key]
-    area, audience, tip, sectors, nearby = TOWN_DETAILS[key]
-    intro = f'<div class="core-prose"><p>We design and fit <a href="/vehicle-wraps-norwich/">van wraps</a>, <a href="/van-signwriting-norwich/">van signwriting</a> and <a href="/fleet-graphics-norwich/">fleet graphics</a> for {escape(area)}. {escape(tip)}</p></div>'
-    service_tiles = ''.join(f'<article id="{CONTENT[s["slug"]]["key"]}"><h3>{s["label"]}</h3><p>{s["short"]}</p><a class="text-link" href="/{s["slug"]}/">{s["label"]} in Norwich {ARROW}</a></article>' for s in services)
-    design = [(SECTOR_CARDS[sector][0], SECTOR_CARDS[sector][1]) for sector in sectors[:3]]
-    steps = info_cards([
-        ('01','Send photos and vehicle details','Include photos of both sides and the rear. Share your logo, any existing graphics and your preferred timing.'),
-        ('02','Review your proof','Approve the layout, coverage and fitting details before production.'),
-        ('03','Bring the vehicle to Norwich','Check the directions and confirm drop-off and collection with the team before travelling.'),
-    ])
-    return ''.join([
-        page_jumps((('services','Services'),('pricing','Prices'),('gallery','Designs'),('getting-here','Getting here'),('businesses','Local businesses'),('faq','FAQs'),('quote','Enquire'))),
-        section(1,'intro','Area served',escape(area)+'.',intro),
-        section(2,'services','Services','Choose graphics for your vehicle.',f'<div class="info-cards support-links">{service_tiles}</div>'),
-        section(3,'pricing','Starting prices','What affects your quote?',pricing(CONTENT['van-signwriting-norwich'])+'<p class="core-note"><a href="/vehicle-wraps-norwich/#pricing">Wrap price guide</a> · <a href="/fleet-graphics-norwich/#pricing">Fleet quote guide</a></p>','tint'),
-        section(4,'gallery','Design examples','Ideas for vans and fleets.',design_examples(design),'dark-section'),
-        section(5,'getting-here','Travel &amp; fitting','Plan your workshop visit.',workshop_map(phone,tel,email,None if key == 'norwich' else town)),
-        section(6,'fitting','From brief to fitting','Arrange the design before you travel.',steps,'tint'),
-        section(7,'businesses','Local businesses',escape(audience)+'.',sector_cards(sectors)),
-        section(8,'nearby','Nearby areas','Also serving these Norfolk towns.',link_tiles([(slug,(TOWNS[slug][0],)) for slug in nearby],lambda slug:f'/norfolk/{slug}/'),'tint'),
-    ])
+def sectors_hub():
+    jumps = page_jumps([(g, label) for g, label, _ in GROUPS] + [('quote', 'Get a quote')])
+    body = ''
+    for n, (g, label, blurb) in enumerate(GROUPS, 1):
+        keys = [s['key'] for s in SECTOR_LIST if s['group'] == g]
+        body += section(n, g, f'{len(keys)} sectors', escape(label) + '.', f'<p class="core-prose">{escape(blurb)}</p>' + sector_cards(keys), 'tint' if n % 2 == 0 else '')
+    return jumps + body

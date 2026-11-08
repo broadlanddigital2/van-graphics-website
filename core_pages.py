@@ -3,7 +3,7 @@
 from html import escape
 from urllib.parse import urlencode
 
-from core_content import BRANDS, CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS, VAN_BRANDS, brand_logo
+from core_content import BRANDS, CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS, VAN_BRANDS, brand_logo
 
 ARROW = '<span class="arr" aria-hidden="true">↗</span>'
 PRICE_SOURCE = 'https://broadlanddigital.co.uk/product/pro-large-van-graphics/'
@@ -239,7 +239,7 @@ def core_sections(service, faq):
         section(8,'materials','Vinyl &amp; materials','Choose the right film.',materials(data)),
         section(9,'timeline','Fitting timeline','Plan the work around your vehicle.',timeline(data),'tint'),
         section(10,'vehicles','Vehicles we work on','Choose by brand and model.',vehicle_picker()),
-        section(11,'sectors','Sectors','Graphics for your line of work.',sector_cards(),'tint'),
+        section(11,'sectors','Sectors','Graphics for your line of work.',sector_cards(FEATURED_SECTORS)+f'<p class="core-note"><a class="text-link" href="/sectors/">See all {len(SECTORS)} sectors {ARROW}</a></p>','tint'),
         section(12,'case-study','Featured design','A closer look at the layout.',case_study(data),'dark-section'),
         section(13,'reviews','Customer reviews','Published customer feedback.',reviews(data)),
         section(14,'areas','Norwich &amp; Norfolk','Serving businesses across Norfolk.',link_tiles(towns,lambda slug:f'/norfolk/{slug}/#{data["key"]}'),'local'),

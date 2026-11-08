@@ -56,35 +56,14 @@ def brand_logo(key):
     return None
 
 
-SECTORS = {
-    'trades': ('Trades & home services', 'Use the side to say what you do and the rear for your number. A single service line is usually easier to read than a list of everything you offer. Flag ladder racks and existing accreditation marks.'),
-    'delivery': ('Delivery & logistics', 'Make the brand recognisable from the back at a loading bay, and place fleet IDs where depot teams can find them. Tell us about doors, shutters and vehicle availability before we plan fitting.'),
-    'construction': ('Construction & property', 'Crew vans, pickups and tippers need a layout that works across different body shapes. Share site visibility requirements and any existing safety markings when asking for a quote.'),
-    'food-drink': ('Food & drink', 'Work the design around serving hatches, tail lifts and doors. Check that the name stays visible with the hatch open and leave prices or menus on a surface you can update separately.'),
-    'events': ('Events & leisure', 'Put the campaign message where people will see it when the van or trailer is parked. Identify which artwork is seasonal and which elements need to stay on the vehicle.'),
-    'automotive': ('Automotive & detailing', 'Use concise graphics on courtesy cars and service vans, with a separate treatment for the demonstrator. Let us know if a vehicle has a coating or existing film that could affect adhesion.'),
-    'retail': ('Retail & local services', 'Carry the shopfront colours onto local delivery vehicles and keep one clear route to contact or order. Product photography can work well as a printed panel where there is enough space to read it.'),
-}
+from areas import TOWN_LIST
+from sector_data import SECTOR_LIST
 
-SECTOR_CARDS = {
-    'trades': ('service-copperline', 'Copperline Electrical work van', 'Legible signwriting for vans that work from one address to the next.'),
-    'delivery': ('service-swiftloom', 'Matching Swiftloom courier vans', 'Consistent graphics for courier vans, delivery fleets and haulage vehicles.'),
-    'construction': (8, 'Ridgeway construction vans and pickup', 'Branding that carries across site vans, pickups and crew vehicles.'),
-    'food-drink': ('service-emberpeak', 'Emberpeak Coffee Luton with a printed coffee wrap', 'Printed wraps for food trucks, catering vans and drinks deliveries.'),
-    'events': (37, 'EventWorks van and branded trailer', 'Standout graphics for promotional vehicles, trailers and mobile events.'),
-    'automotive': ('hero', 'Orange and blue wrapped van on a circuit', 'Vehicle graphics for courtesy cars, service vans and demonstrators.'),
-    'retail': ('service-petalmill', 'Petalmill florist van with a floral partial wrap', 'Carry shopfront branding onto delivery vans and mobile services.'),
-}
-
-TOWNS = {
-    'norwich': ('Norwich', 'Our Norwich workshop is on Vulcan Road North at NR6 6AQ. If the vehicle does city-centre deliveries, leave a clear contact detail on the rear doors where customers can read it while the van is parked.'),
-    'wymondham': ('Wymondham', 'If your vehicle runs between Wymondham and Norwich, tell us which days it is already off the road so the fitting appointment can work around your route.'),
-    'dereham': ('Dereham', 'For a van used around Dereham and the surrounding villages, give us a short description of what customers should remember when they only see the vehicle briefly.'),
-    'aylsham': ('Aylsham', 'If your work takes you between Aylsham and rural North Norfolk, send photos showing any racks, toolboxes or rear steps that may interrupt the layout.'),
-    'north-walsham': ('North Walsham', 'If your vans cover North Walsham and the coast, tell us about their mileage and cleaning routine so we can discuss the appropriate film and care.'),
-    'attleborough': ('Attleborough', 'If your vans run between Attleborough and Norwich, share vehicle availability in advance. We can discuss fitting around a changeover or planned downtime.'),
-    'great-yarmouth': ('Great Yarmouth', 'For vehicles working around Great Yarmouth, tell us about coastal exposure, pressure washing and daily mileage when we discuss film and aftercare.'),
-}
+# Derived from sector_data.py and areas.py so every page uses the same records.
+SECTORS = {s['key']: (s['name'], s['intro']) for s in SECTOR_LIST}
+SECTOR_CARDS = {s['key']: (s['image'], s['alt'], s['card']) for s in SECTOR_LIST}
+FEATURED_SECTORS = ('trades', 'plumbers-heating', 'electricians', 'delivery', 'construction', 'food-drink', 'dog-groomers', 'removals', 'retail')
+TOWNS = {t['key']: (t['name'], t['lede']) for t in TOWN_LIST}
 
 GUIDES = {
     'van-signwriting-brief': ('What to put on a work van', 'Start with who you are, what you do and how to contact you. A short trade line, a clear number or web address and strong contrast are the essentials.', 'Walk around the van in normal parking position and decide which sides get seen. Send photos with doors shut and with any ladders or racks fitted.'),
