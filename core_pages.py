@@ -134,6 +134,7 @@ def case_study(data):
     images = ''.join(f'<img src="{asset(pic)}" alt="Vehicle graphics concept used to illustrate this brief" loading="lazy" width="840" height="473">' for pic in pictures)
     return f'''<div class="study"><div><h3>{title}</h3><p><strong>The brief</strong><br>{brief}</p><p><strong>The design outcome</strong><br>{outcome}</p></div><div class="study-images">{images}</div></div>'''
 
+REVIEWS_WIDGET = 'https://www.local-marketing-reports.com/external/showcase-reviews/widgets/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef'
 REVIEWS_EMBED = 'https://www.local-marketing-reports.com/external/showcase-reviews/embed/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef?id=18987'
 
 def reviews(data=None):
@@ -141,7 +142,7 @@ def reviews(data=None):
     return (f'''<div class="reviews-block"><div class="reviews-block__summary"><p class="reviews-stars" aria-label="Rated 5 out of 5">★★★★★</p>
     <p class="reviews-score"><b>5.0</b> on Google</p><p>Reviews for Broadland Digital, the Norwich workshop that designs, prints and fits our vehicle graphics.</p>
     <a class="text-link" href="https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/" target="_blank" rel="noopener">Read all reviews on Google {ARROW}</a></div>
-    <div class="reviews-block__widget"><div data-embed-placeholder="18987"><script src="{REVIEWS_EMBED}" defer></script></div></div></div>''')
+    <div class="reviews-block__widget"><iframe src="{REVIEWS_WIDGET}" title="Broadland Digital customer reviews" loading="lazy"></iframe></div></div>''')
 
 def enquiry(service, services, phone, tel, email, quote_url, *, context='', contact=False):
     options = '' if service else '<option>General enquiry</option>'
