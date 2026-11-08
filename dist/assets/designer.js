@@ -52,7 +52,7 @@ const DEFAULT = {
 };
 let S = Object.assign({}, DEFAULT, LS.get('nvg_state',{}));
 S.show = Object.assign({}, DEFAULT.show, S.show||{});
-let session = LS.get('nvg_session', null);
+let session = null; let AUTH = LS.get('nvg_auth', null); let DESIGNS = []; let CUR_ID = LS.get('nvg_design_id', null);
 
 /* ---------- colour utils ---------- */
 function hex2rgb(h){ h=h.replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join(''); const n=parseInt(h,16); return [n>>16&255,n>>8&255,n&255]; }
@@ -377,7 +377,7 @@ function fillScenes(){
   el.innerHTML='<span class="lbl">Scene</span>'+SCENES.map(([k,n])=>`<button type="button" class="chip${S.scene===k?' on':''}" data-scene="${k}">${n}</button>`).join('')+'<span class="scene-note">Illustrated preview. On the live site this becomes a photo-real image of your van in the scene.</span>';
   el.querySelectorAll('[data-scene]').forEach(b=>b.addEventListener('click',()=>{ S.scene=b.dataset.scene; saveState(); renderPreview(); }));
 }
-document.querySelectorAll('.viewtoggle button').forEach(b=>b.addEventListener('click',()=>{ S.view=b.dataset.view; saveState(); renderPreview(); if(session) track({event:'view_'+S.view}); }));
+document.querySelectorAll('.viewtoggle button').forEach(b=>b.addEventListener('click',()=>{ S.view=b.dataset.view; saveState(); renderPreview(); if(session) track({event:'view_'+S.view}); if(S.view==='360') apiEvent('view_360'); if(S.view==='lifestyle') apiEvent('lifestyle_view'); }));
 
 
 /* ---------- home demo animation ---------- */
@@ -642,7 +642,7 @@ function v3Loop(){
 window.v3Debug=()=>V3;
 
 /* ---------- designer inputs ---------- */
-function saveState(){ const c=Object.assign({},S); if(c.logo && c.logo.length>1500000) c.logo=null; LS.set('nvg_state',c); }
+function saveState(){ const c=Object.assign({},S); if(c.logo && c.logo.length>1500000) c.logo=null; LS.set('nvg_state',c); if(typeof scheduleSave==='function') scheduleSave(); }
 function fillMakes(){
   $('#make').innerHTML=Object.keys(VANS).map(m=>`<option${m===S.make?' selected':''}>${esc(m)}</option>`).join('');
   fillModels();
@@ -661,8 +661,22 @@ $('#findReg').addEventListener('click',()=>{
   const n=$('#regNotice'); n.classList.remove('hidden');
   if(!/^[A-Z0-9]{2,7}$/.test(v)){ n.textContent='That doesn\'t look like a UK registration. Check it, or choose your make and model below.'; return; }
   S.reg=v.length===7? v.slice(0,4)+' '+v.slice(4) : v; $('#reg').value=S.reg;
-  n.innerHTML='<b>Reg saved: '+esc(S.reg)+'.</b> In this prototype the DVLA lookup isn\'t connected yet, so please choose your make, model and colour below. On the live site your make and colour fill in automatically.';
+  n.innerHTML='<b>Reg saved: '+esc(S.reg)+'.</b> Checking the DVLA record…';
   changed();
+  regLookup(v).then(r=>{
+    if(r && r.available && r.found && r.vehicle){
+      const mk=Object.keys(VANS).find(m=>m.toLowerCase().replace(/[^a-z]/g,'')===String(r.vehicle.make||'').toLowerCase().replace(/[^a-z]/g,''));
+      if(mk && mk!==S.make){ S.make=mk; const first=VANS[mk][0].split('|'); S.model=first[0]; S.size=first[1]; }
+      const col=String(r.vehicle.colour||'').toLowerCase(); const hit=COLOURS.find(([nm])=>nm.toLowerCase()===col);
+      if(hit){ S.body=hit[1]; S.bodyName=hit[0]; }
+      n.innerHTML='<b>Found: '+esc(r.vehicle.colour||'')+' '+esc(r.vehicle.make||'')+(r.vehicle.yearOfManufacture?' ('+r.vehicle.yearOfManufacture+')':'')+'.</b> Now pick your exact model and wheelbase below.';
+      changed();
+    } else if(r && r.available && !r.found){
+      n.innerHTML='<b>We couldn\'t find '+esc(S.reg)+'.</b> Check the reg, or choose your make, model and colour below.';
+    } else {
+      n.innerHTML='<b>Reg saved: '+esc(S.reg)+'.</b> Please choose your make, model and colour below. We\'ll check the exact vehicle before quoting.';
+    }
+  });
 });
 $('#reg').addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); $('#findReg').click(); } });
 function fillSwatches(){
@@ -691,7 +705,7 @@ function readLogo(f){
       c.width=Math.max(1,Math.round(w*k)); c.height=Math.max(1,Math.round(h*k));
       const cx=c.getContext('2d'); cx.drawImage(img,0,0,c.width,c.height);
       if(f.type!=='image/svg+xml'){ try{ url=c.toDataURL('image/png'); }catch(e){} }
-      S.logo=url; S.logoAR=w/h||1;
+      S.logo=url; S.logoAR=w/h||1; apiEvent('logo_uploaded');
       const cols=extractColours(cx,c.width,c.height);
       if(cols){ S.P=cols[0]; S.S=cols[1]; $('#colHint').textContent='Brand colours picked from your logo. Change them any time.'; }
       else $('#colHint').textContent='Logo added. Pick your brand colours above.';
@@ -790,7 +804,7 @@ $('#designBtn').addEventListener('click',()=>{
   setTimeout(()=>{
     S.designed=true; S.layout=0; saveState(); renderPreview();
     $('#designing').classList.remove('on');
-    session.designs=(session.designs||0)+1; LS.set('nvg_session',session);
+    apiEvent('designs_generated',{vehicle:S.make+' '+S.model,style:S.mode}); scheduleSave(true);
     track({event:'design'});
     if(window.innerWidth<980) $('.preview').scrollIntoView({behavior:'smooth'});
   },900);
@@ -798,9 +812,9 @@ $('#designBtn').addEventListener('click',()=>{
 $('#shuffleBtn').addEventListener('click',()=>{ const t=S.P; S.P=S.S; S.S=t; S.layout=(S.layout+1)%3; changed(); });
 
 
-/* ---------- lead capture (CRM enquiry endpoint, optional) ---------- */
+/* ---------- accounts, saved designs and quotes (van-designer CRM function) ---------- */
 const ROOT=document.getElementById('nvg-designer');
-const CFG=ROOT?{endpoint:ROOT.dataset.endpoint||'',key:ROOT.dataset.key||'',secret:ROOT.dataset.secret||'',email:ROOT.dataset.email||''}:{};
+const CFG=ROOT?{api:ROOT.dataset.api||'',endpoint:ROOT.dataset.endpoint||'',key:ROOT.dataset.key||'',secret:ROOT.dataset.secret||'',email:ROOT.dataset.email||''}:{};
 (function captureSource(){
   try{
     const q=new URLSearchParams(location.search), keep={};
@@ -809,79 +823,196 @@ const CFG=ROOT?{endpoint:ROOT.dataset.endpoint||'',key:ROOT.dataset.key||'',secr
   }catch(e){}
 })();
 function dl(event,extra){ try{ (window.dataLayer=window.dataLayer||[]).push(Object.assign({event},extra||{})); }catch(e){} }
+function layoutName(){ return (LAYOUTS[S.mode][S.layout]||{}).name||''; }
 function designSummary(){
-  const L=(LAYOUTS[S.mode][S.layout]||{}).name||'';
   return [
     'Vehicle: '+S.make+' '+S.model+' '+(S.lwb?'LWB':'SWB')+(S.reg?' ('+S.reg+')':''),
     'Body colour: '+S.bodyName,
-    'Style: '+(S.mode==='wrap'?'Full wrap':'Graphics')+(S.designed?' · layout '+L:''),
-    'Company on van: '+(S.company||'-'),
-    'Tagline: '+(S.tagline||'-'),
-    'Phone on van: '+(S.phone||'-'),
-    'Website: '+(S.web||'-'),
-    'Services: '+((S.services||[]).join(', ')||'-'),
-    'Logo uploaded: '+(S.logo?'yes':'no'),
+    'Style: '+(S.mode==='wrap'?'Full wrap':'Graphics')+(S.designed?' · layout '+layoutName():''),
+    'Company on van: '+(S.company||'-'), 'Tagline: '+(S.tagline||'-'), 'Phone on van: '+(S.phone||'-'),
+    'Website: '+(S.web||'-'), 'Services: '+((S.services||[]).join(', ')||'-'), 'Logo uploaded: '+(S.logo?'yes':'no'),
     'Brand colours: '+S.P+' / '+S.S
   ].join('\n');
 }
-async function postLead(kind,message){
-  if(!CFG.endpoint||!CFG.key||!CFG.secret||!session) return false;
-  const src=LS.get('nvg_source',{});
-  const body={name:session.name,email:session.email,phone:session.phone||'',company:session.company||'',
-    subject:'Van Designer – '+kind,message,source_url:location.href,
-    utm_source:src.utm_source||'',utm_medium:src.utm_medium||'',utm_campaign:src.utm_campaign||'',gclid:src.gclid||'',
-    marketing_consent:!!session.consent,designer:{kind,make:S.make,model:S.model,size:S.size,lwb:S.lwb,reg:S.reg,colour:S.bodyName,mode:S.mode,layout:S.layout,designs:session.designs||0}};
-  try{
-    const r=await fetch(CFG.endpoint,{method:'POST',headers:{'content-type':'application/json','x-rcg-channel-key':CFG.key,'x-rcg-channel-secret':CFG.secret},body:JSON.stringify(body)});
-    return r.ok;
-  }catch(e){ return false; }
-}
 function track(extra){ if(session) dl('designer_'+((extra&&extra.event)||'event'),{vehicle:S.make+' '+S.model,style:S.mode}); }
 
-/* ---------- gate / session ---------- */
-function showApp(){ const on=!!session; $('#nvg-gate').classList.toggle('hidden',on); $('#nvg-app').classList.toggle('hidden',!on); if(on){ $('#whoName').textContent=session.name; renderAll(); } }
+async function api(action,data){
+  if(!CFG.api) throw Object.assign(new Error('offline'),{status:0});
+  const r=await fetch(CFG.api,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({action},data||{}))});
+  let j={}; try{ j=await r.json(); }catch(e){}
+  if(!r.ok) throw Object.assign(new Error(j.error||'Something went wrong. Please try again.'),{status:r.status});
+  return j;
+}
+const authed=()=>!!(AUTH&&AUTH.token&&session);
+function apiEvent(type,data){ if(authed()) api('event',{token:AUTH.token,type,data:data||null}).catch(()=>{}); }
+async function regLookup(reg){ if(!authed()) return null; try{ return await api('reg',{token:AUTH.token,reg}); }catch(e){ return null; } }
+
+function applyAccount(r){
+  if(r.token){ AUTH={token:r.token}; LS.set('nvg_auth',AUTH); }
+  session=Object.assign({},r.user||{});
+  DESIGNS=r.designs||[];
+  if(CUR_ID && !DESIGNS.some(d=>d.id===CUR_ID)){ CUR_ID=null; LS.del('nvg_design_id'); }
+  if(!S.company && session.company) S.company=session.company;
+  if(!S.phone && session.phone) S.phone=session.phone.replace(/^\+44/,'0');
+  if(!S.email && session.email) S.email=session.email;
+}
+function signOutLocal(){ session=null; AUTH=null; DESIGNS=[]; CUR_ID=null; LS.del('nvg_auth'); LS.del('nvg_design_id'); LS.del('nvg_session'); }
+
+/* saving */
+let saveT=null, saving=false, saveAgain=false;
+function setSaveState(t,cls){ const el=$('#saveState'); if(el){ el.textContent=t; el.className='save-state '+(cls||''); } }
+function designPayload(){
+  const st=Object.assign({},S,{layoutName:layoutName()});
+  let svg=''; try{ svg=renderVan(S,{design:true,layout:S.layout,noFloor:true}); }catch(e){}
+  return {id:CUR_ID||undefined, name:(S.company||'My design')+' – '+S.make+' '+S.model,
+    vehicle:{make:S.make,model:S.model,size:S.size,lwb:!!S.lwb,reg:S.reg||'',colour:S.bodyName,body:S.body},
+    state:st, preview_svg:svg.length<380000?svg:''};
+}
+function scheduleSave(now){
+  if(!authed()||!S.designed) return;
+  clearTimeout(saveT); setSaveState('Unsaved changes','');
+  saveT=setTimeout(saveNow, now?50:2500);
+}
+async function saveNow(){
+  if(!authed()||!S.designed) return null;
+  if(saving){ saveAgain=true; return CUR_ID; }
+  saving=true; setSaveState('Saving…','');
+  try{
+    const r=await api('save_design',{token:AUTH.token,design:designPayload()});
+    if(r.id && r.id!==CUR_ID){ CUR_ID=r.id; LS.set('nvg_design_id',CUR_ID); }
+    if(r.created){ dl('designer_design_saved'); refreshDesigns(); }
+    setSaveState('Saved to your account','ok');
+  }catch(e){
+    if(e.status===401){ signOutLocal(); showApp(); gateNotice('Your session has ended. Sign in again to keep saving designs.'); }
+    else setSaveState('Not saved – will retry','warn');
+  }
+  saving=false;
+  if(saveAgain){ saveAgain=false; return saveNow(); }
+  return CUR_ID;
+}
+async function refreshDesigns(){ if(!authed()) return; try{ const r=await api('me',{token:AUTH.token}); DESIGNS=r.designs||[]; updateWho(); }catch(e){} }
+
+/* gate, login link, account bar */
+function gateNotice(t,ok){ const n=$('#gNotice'); if(!n) return; n.textContent=t||''; n.classList.toggle('hidden',!t); n.classList.toggle('ok',!!ok); }
+function updateWho(){
+  if(!session) return;
+  $('#whoName').textContent=session.name||session.email||'';
+  const b=$('#myDesigns'); if(b) b.textContent='My designs ('+DESIGNS.length+')';
+}
+function showApp(){
+  const on=!!session;
+  $('#nvg-gate').classList.toggle('hidden',on); $('#nvg-app').classList.toggle('hidden',!on);
+  document.querySelectorAll('[data-nvg-guest]').forEach(el=>el.classList.toggle('hidden',on));
+  if(on){ updateWho(); renderAll(); }
+}
 $('#gateForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const name=$('#gName').value.trim(), email=$('#gEmail').value.trim();
   if(!name){ $('#gErr').textContent='Please enter your name.'; return; }
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ $('#gErr').textContent='Please enter a valid email address.'; return; }
   $('#gErr').textContent='';
-  session={name,email,phone:$('#gPhone').value.trim(),company:$('#gCompany').value.trim(),consent:$('#gConsent').checked,createdAt:new Date().toISOString(),designs:0};
-  LS.set('nvg_session',session);
-  if(!S.company && session.company) S.company=session.company;
-  if(!S.phone && session.phone) S.phone=session.phone;
-  if(!S.email) S.email=session.email;
-  saveState(); dl('designer_signup'); showApp();
-  postLead('sign-up','Signed up to use the Van Designer.'+(session.consent?' Marketing consent: yes.':' Marketing consent: no.'));
+  const btn=$('#gateForm button[type=submit]'); btn.disabled=true; btn.textContent='Creating your account…';
+  const payload={name,email,phone:$('#gPhone').value.trim(),company:$('#gCompany').value.trim(),consent:$('#gConsent').checked,source:LS.get('nvg_source',{}),page:location.href};
+  try{
+    const r=await api('signup',payload);
+    applyAccount(r); saveState(); dl('designer_signup',{returning:!!r.returning}); showApp();
+    if(r.returning && DESIGNS.length) setSaveState('Welcome back – your saved designs are under My designs','ok');
+  }catch(err){
+    if(err.status>=400 && err.status<500){ $('#gErr').textContent=err.message; }
+    else {
+      // Back end unreachable: let them design now, and send the sign-up to the CRM inbox as a fallback.
+      session={name,email,phone:payload.phone,company:payload.company,consent:payload.consent,offline:true};
+      postLead('sign-up','Signed up to use the Van Designer (account service unavailable).'+(payload.consent?' Marketing consent: yes.':' Marketing consent: no.'));
+      dl('designer_signup',{offline:true}); showApp(); setSaveState('Designs are kept on this device for now','warn');
+    }
+  }
+  btn.disabled=false; btn.textContent='Start designing';
   $('#nvg-app').scrollIntoView({behavior:'smooth',block:'start'});
 });
-$('#logout').addEventListener('click',()=>{ session=null; LS.del('nvg_session'); showApp(); });
+$('#gLoginToggle').addEventListener('click',()=>{ $('#loginForm').classList.toggle('hidden'); $('#lEmail').focus(); });
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('#lEmail').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ $('#lMsg').textContent='Please enter a valid email address.'; return; }
+  $('#lMsg').textContent='Sending…';
+  try{ await api('request_link',{email}); $('#lMsg').textContent='If that email has an account, a login link is on its way. It works once and lasts 48 hours.'; }
+  catch(err){ $('#lMsg').textContent=err.message; }
+});
+$('#logout').addEventListener('click',async()=>{
+  if(authed()) api('logout',{token:AUTH.token}).catch(()=>{});
+  signOutLocal(); showApp(); gateNotice('You have signed out. Your designs are saved to your account.',true);
+});
 
-/* ---------- quote modal ---------- */
+/* my designs */
+function fmtDate(s){ try{ return new Date(s).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+function openDesigns(){
+  const card=$('#quoteCard');
+  const items=DESIGNS.map(d=>`<article class="my-design${d.id===CUR_ID?' current':''}"><div class="my-design__svg">${d.preview_svg||''}</div>
+    <div class="my-design__meta"><b>${esc(d.name||'Untitled design')}</b><span>${esc((d.vehicle&&d.vehicle.make)||'')} ${esc((d.vehicle&&d.vehicle.model)||'')} · ${fmtDate(d.updated_at)}</span>
+    ${d.status==='quote_requested'?'<em class="tag-q">Quote requested</em>':''}${d.id===CUR_ID?'<em class="tag-c">Open now</em>':''}</div>
+    <div class="my-design__act"><button class="btn btn-dark" data-open="${d.id}" type="button">Open</button><button class="btn btn-ghost" data-del="${d.id}" type="button" aria-label="Delete design">Delete</button></div></article>`).join('');
+  card.innerHTML=`<h3>My designs</h3><p class="muted">Every design is saved to your account, so you can pick it up on any device.</p>
+    <div class="my-designs">${items||'<p class="muted">No saved designs yet. Press <b>Design my van</b> and your first design saves automatically.</p>'}</div>
+    <div class="actions"><button class="btn btn-ghost" id="mdClose" type="button">Close</button><button class="btn btn-hv" id="mdNew" type="button">Start a new design</button></div>`;
+  $('#quoteModal').classList.add('on');
+  $('#mdClose').onclick=()=>$('#quoteModal').classList.remove('on');
+  $('#mdNew').onclick=()=>{ CUR_ID=null; LS.del('nvg_design_id'); S=Object.assign({},DEFAULT,{show:Object.assign({},DEFAULT.show),company:session.company||'',phone:(session.phone||'').replace(/^\+44/,'0'),email:session.email||''}); saveState(); renderAll(); $('#quoteModal').classList.remove('on'); setSaveState('New design – press Design my van to save it',''); };
+  card.querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{
+    b.disabled=true; b.textContent='Opening…';
+    try{ const r=await api('get_design',{token:AUTH.token,id:b.dataset.open}); const st=r.design.state||{};
+      S=Object.assign({},DEFAULT,st); S.show=Object.assign({},DEFAULT.show,st.show||{}); CUR_ID=r.design.id; LS.set('nvg_design_id',CUR_ID);
+      LS.set('nvg_state',S); renderAll(); apiEvent('design_opened',{design_id:CUR_ID}); $('#quoteModal').classList.remove('on'); setSaveState('Saved to your account','ok');
+    }catch(e){ b.textContent='Try again'; b.disabled=false; }
+  });
+  card.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Delete this design?')) return;
+    try{ const r=await api('delete_design',{token:AUTH.token,id:b.dataset.del}); DESIGNS=r.designs||[]; if(b.dataset.del===CUR_ID){ CUR_ID=null; LS.del('nvg_design_id'); } updateWho(); openDesigns(); }catch(e){}
+  });
+}
+$('#myDesigns').addEventListener('click',openDesigns);
+
+/* fallback lead post (used only if the account service is down) */
+async function postLead(kind,message){
+  if(!CFG.endpoint||!CFG.key||!CFG.secret||!session) return false;
+  const src=LS.get('nvg_source',{});
+  try{
+    const r=await fetch(CFG.endpoint,{method:'POST',headers:{'content-type':'application/json','x-rcg-channel-key':CFG.key,'x-rcg-channel-secret':CFG.secret},body:JSON.stringify({
+      name:session.name,email:session.email,phone:session.phone||'',company:session.company||'',subject:'Van Designer – '+kind,message,source_url:location.href,
+      utm_source:src.utm_source||'',utm_medium:src.utm_medium||'',utm_campaign:src.utm_campaign||'',gclid:src.gclid||''})});
+    return r.ok;
+  }catch(e){ return false; }
+}
+
+/* quote */
 $('#quoteBtn').addEventListener('click',()=>{
   const card=$('#quoteCard');
   card.innerHTML=`<h3>Request a quote for this design</h3>${renderVan(S,{design:true,layout:S.layout,noFloor:true})}
    <label class="f">Anything we should know?<textarea id="qNotes" rows="3" placeholder="e.g. 2 vans, fitting needed by March, rear doors too"></textarea></label>
    <div class="row2"><label class="f">Best way to contact you<select id="qPref"><option>Phone</option><option>Email</option><option>WhatsApp</option></select></label>
-   <label class="f">Phone<input id="qPhone" type="tel" value="${esc(session.phone||S.phone||'')}"></label></div>
+   <label class="f">Phone<input id="qPhone" type="tel" value="${esc((session.phone||S.phone||'').replace(/^\+44/,'0'))}"></label></div>
+   <div class="err" id="qErr"></div>
    <div class="actions"><button class="btn btn-ghost" id="qCancel" type="button">Cancel</button><button class="btn btn-hv" id="qSend" type="button">Send to the Norwich team</button></div>`;
   $('#quoteModal').classList.add('on');
   $('#qCancel').onclick=()=>$('#quoteModal').classList.remove('on');
   $('#qSend').onclick=async()=>{
     const btn=$('#qSend'); btn.disabled=true; btn.textContent='Sending…';
-    if($('#qPhone').value.trim()){ session.phone=$('#qPhone').value.trim(); LS.set('nvg_session',session); }
-    const notes=$('#qNotes').value.trim(), pref=$('#qPref').value;
-    const message=designSummary()+'\n\nContact preference: '+pref+(notes?'\nNotes: '+notes:'');
+    const notes=$('#qNotes').value.trim(), pref=$('#qPref').value, phone=$('#qPhone').value.trim();
+    if(phone) session.phone=phone;
+    const first=esc((session.name||'').split(' ')[0]||'there');
+    let sent=false;
+    if(authed()){
+      try{ const id=await saveNow(); const r=await api('quote',{token:AUTH.token,design_id:id,notes,pref,phone,page:location.href}); DESIGNS=r.designs||DESIGNS; updateWho(); sent=true; }
+      catch(e){ $('#qErr').textContent=e.status===404?'Press Design my van first so we can save your design.':''; if(e.status===404){ btn.disabled=false; btn.textContent='Send to the Norwich team'; return; } }
+    }
+    if(!sent) sent=await postLead('quote request',designSummary()+'\n\nContact preference: '+pref+(phone?'\nPhone: '+phone:'')+(notes?'\nNotes: '+notes:''));
     dl('designer_quote',{vehicle:S.make+' '+S.model,style:S.mode});
-    const sent=await postLead('quote request',message);
-    const first=esc(session.name.split(' ')[0]);
     if(sent){
-      card.innerHTML=`<div class="done"><div class="tick">✓</div><h3>Thanks, ${first} – your design is with the team.</h3><p class="muted">We'll be in touch by ${esc(pref.toLowerCase())} with a quote. Keep this page open if you'd like to try other layouts.</p><button class="btn btn-dark" id="qClose" type="button">Back to my design</button></div>`;
+      card.innerHTML=`<div class="done"><div class="tick">✓</div><h3>Thanks, ${first} – your design is with the team.</h3><p class="muted">We'll be in touch by ${esc(pref.toLowerCase())} with a quote, and we've emailed you a confirmation. Your design is saved under My designs.</p><button class="btn btn-dark" id="qClose" type="button">Back to my design</button></div>`;
     } else {
       const to=CFG.email||'';
       const subject='Van Designer quote request – '+S.make+' '+S.model;
-      const body='Name: '+session.name+'\nEmail: '+session.email+'\nPhone: '+(session.phone||'-')+'\nCompany: '+(session.company||'-')+'\n\n'+message;
-      card.innerHTML=`<div class="done"><div class="tick">✓</div><h3>Nearly there, ${first}.</h3><p class="muted">Your email app should open with your design details ready to send to ${esc(to)}. If it doesn't, call us or email ${esc(to)} and mention your ${esc(S.make)} ${esc(S.model)} design.</p><button class="btn btn-dark" id="qClose" type="button">Back to my design</button></div>`;
+      const body='Name: '+session.name+'\nEmail: '+session.email+'\nPhone: '+(phone||'-')+'\n\n'+designSummary()+(notes?'\n\nNotes: '+notes:'');
+      card.innerHTML=`<div class="done"><div class="tick">✓</div><h3>Nearly there, ${first}.</h3><p class="muted">Your email app should open with your design details ready to send to ${esc(to)}. If it doesn't, call us and mention your ${esc(S.make)} ${esc(S.model)} design.</p><button class="btn btn-dark" id="qClose" type="button">Back to my design</button></div>`;
       try{ window.location.href='mailto:'+to+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body); }catch(e){}
     }
     $('#qClose').onclick=()=>$('#quoteModal').classList.remove('on');
@@ -890,5 +1021,20 @@ $('#quoteBtn').addEventListener('click',()=>{
 $('#quoteModal').addEventListener('click',e=>{ if(e.target.id==='quoteModal') $('#quoteModal').classList.remove('on'); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#quoteModal').classList.remove('on'); });
 
-gateArt(); showApp();
+/* boot: login link → stored session → gate */
+async function boot(){
+  gateArt();
+  const q=new URLSearchParams(location.search), link=q.get('login');
+  if(link){
+    q.delete('login'); history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:'')+location.hash);
+    try{ applyAccount(await api('redeem',{link})); dl('designer_login'); }
+    catch(e){ gateNotice(e.message); $('#loginForm').classList.remove('hidden'); }
+  } else if(AUTH && AUTH.token){
+    try{ applyAccount(await api('me',{token:AUTH.token})); }
+    catch(e){ if(e.status===401){ signOutLocal(); gateNotice('Please sign in again to see your saved designs.'); $('#loginForm').classList.remove('hidden'); } }
+  }
+  showApp();
+  if(session && link) setSaveState('Signed in – your saved designs are under My designs','ok');
+}
+boot();
 })();

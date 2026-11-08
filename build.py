@@ -30,7 +30,7 @@ CRM = dict(
     secret='cd2d92e600d85573dce390f2b18faf57d7c2a27f45505d3b',
     feed='https://dipjypzrfigkzuarlsov.supabase.co/functions/v1/seo-feed?key=21aed0c2-5381-44a9-8e6b-42f99b684c59',
 )
-DESIGNER_LEADS = CRM
+DESIGNER_LEADS = dict(CRM, api='https://dipjypzrfigkzuarlsov.supabase.co/functions/v1/van-designer')
 SERVICES = [
     dict(slug='van-signwriting-norwich', label='Van signwriting', title='Van signwriting in Norwich',
          intro='Make it easy to spot your van and remember who to call. We design, produce and fit vinyl lettering and printed graphics for vans across Norwich and Norfolk.',

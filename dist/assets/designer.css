@@ -152,3 +152,31 @@
 .nvg-demo p{margin:0 0 6px;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#c1d1f5}
 .nvg-demo p span{color:#ffb36d}
 @media(max-width:850px){.nvg-promo-grid{grid-template-columns:1fr;gap:28px}}
+/* accounts */
+.nvg .gate-forms{display:flex;flex-direction:column}
+.nvg .gate-forms>.notice{margin:24px 34px 0}
+.nvg .notice.ok{background:#e8f6ec;border-color:#a7d9b5;color:#14532d}
+.nvg .gate-login{padding:0 34px 30px;font-size:14px;color:var(--muted)}
+.nvg .linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:700;text-decoration:underline;cursor:pointer;font-size:14px}
+.nvg .login-form{display:grid;gap:10px;margin-top:12px;padding:16px;background:var(--bg);border:1px solid var(--line)}
+.nvg .login-form .btn{justify-self:start}
+.nvg .who-act{display:flex;gap:16px;align-items:center}
+.nvg .who .who-btn{background:var(--ink);color:#fff;text-decoration:none;padding:7px 12px;border-radius:var(--r)}
+.nvg .save-state{display:inline-block;margin-left:10px;font-size:12px;color:var(--muted);padding:2px 8px;border-radius:99px;background:var(--bg)}
+.nvg .save-state.ok{color:var(--ok);background:#e8f6ec}
+.nvg .save-state.ok:before{content:"✓ "}
+.nvg .save-state.warn{color:#8a5a00;background:#fff4d6}
+.nvg #quoteModal .modal-card{max-width:720px}
+.nvg .my-designs{display:grid;gap:10px}
+.nvg .my-design{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;border:1px solid var(--line);padding:10px;border-radius:10px}
+.nvg .my-design.current{border-color:var(--accent);box-shadow:0 0 0 2px #364bc222}
+.nvg .my-design__svg{background:var(--bg);border-radius:6px;overflow:hidden;aspect-ratio:2.3/1}
+.nvg .my-design__svg svg{width:100%;height:100%;display:block}
+.nvg .my-design__meta{display:grid;gap:3px;min-width:0}
+.nvg .my-design__meta b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nvg .my-design__meta span{font-size:13px;color:var(--muted)}
+.nvg .my-design__meta em{font-style:normal;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;justify-self:start;padding:2px 7px;border-radius:99px}
+.nvg .tag-q{background:#ffe7d1;color:#8a3c00}.nvg .tag-c{background:#e3e8ff;color:var(--accent)}
+.nvg .my-design__act{display:flex;gap:6px}
+.nvg .err:empty{display:none}
+@media(max-width:620px){.nvg .my-design{grid-template-columns:96px 1fr}.nvg .my-design__act{grid-column:1/-1}.nvg .save-state{display:block;margin:4px 0 0}}
