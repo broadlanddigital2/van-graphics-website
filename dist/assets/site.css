@@ -287,3 +287,7 @@ html{scroll-padding-top:96px}
 @media(min-width:851px){.designer-hero .sector-hero__copy{max-width:min(560px,40vw)}.designer-hero .lede{max-width:min(470px,36vw)}}
 @media(min-width:851px) and (max-width:1300px){.designer-hero .lede{max-width:min(470px,32vw)}.designer-hero .sector-hero__chips{display:none}}
 .service-hero .sector-hero__img{object-position:80% 55%}
+.service-hero.is-dedicated .sector-hero__img{object-position:65% 70%}
+.service-hero.is-dedicated:before{background:linear-gradient(90deg,#0b1428f0 0%,#0b1428cc 28%,#0b142840 44%,#0b142800 54%),linear-gradient(0deg,#0b1428b3 0%,#0b142800 22%)}
+.service-hero.is-dedicated .sector-hero__copy{max-width:min(560px,40vw)}
+@media(max-width:850px){.service-hero.is-dedicated .sector-hero__copy{max-width:none}}
