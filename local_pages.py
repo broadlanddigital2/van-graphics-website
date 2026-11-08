@@ -201,10 +201,10 @@ def sector_hero(key, phone, tel):
 def sector_gallery(s):
     """Use the sector's own concept images once added (assets/sectors/gallery/{key}-{n}.webp)."""
     from pathlib import Path
-    from gallery_brief import G
+    from gallery_brief import G, filename
     out = []
     for n, (fallback, entry) in enumerate(zip(s['gallery'], G[s['key']]), 1):
-        own = f'sectors/gallery/{s["key"]}-{n}'
+        own = f'sectors/gallery/{filename(entry[6])}'
         out.append((own, entry[6]) if Path(f'dist/assets/{own}.webp').exists() else fallback)
     return out
 

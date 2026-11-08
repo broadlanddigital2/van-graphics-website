@@ -1,6 +1,11 @@
 """Sector "ideas" gallery: three concepts per sector.
 Each entry: (vehicle, coverage, fictional brand, colours, design notes, setting, caption).
-Images go in dist/assets/sectors/gallery/{sector-key}-{n}.webp and swap in automatically."""
+Images go in dist/assets/sectors/gallery/{filename(caption)}.webp and swap in automatically."""
+import re
+
+def filename(caption):
+    return "norwich-vehicle-graphics-" + re.sub(r"[^a-z0-9]+", "-", caption.lower().replace("&", "and")).strip("-")
+
 
 G = {
 'trades': [
@@ -96,7 +101,7 @@ G = {
 'removals': [
     ('Luton box van, white', 'Full wrap', 'Homeward Removals', 'Teal and white', 'Photographic packed boxes and sofa scene across the box, "Local & national moves".', 'Terraced street during a move', 'Luton removals van full wrap'),
     ('Mercedes Sprinter, white', 'Signwriting', 'Two Hands Man & Van', 'White, orange and charcoal', 'Name, "Man & van · House clearances", phone huge on rear.', 'Student flat entrance', 'Man-and-van signwriting'),
-    ('Box van fleet of two, white', 'Fleet graphics', 'SafeStore Norfolk Storage', 'Navy and yellow', 'Matching box sides with stacked-box icon, storage unit address.', 'Self-storage site', 'Storage company box van fleet'),
+    ('Box van fleet of two, white', 'Fleet graphics', 'Stowaway Norfolk Storage', 'Navy and yellow', 'Matching box sides with stacked-box icon, storage unit address.', 'Self-storage site', 'Storage company box van fleet'),
 ],
 'fleets-corporate': [
     ('Fleet of four Ford Transit Customs, white', 'Fleet graphics', 'Anglian Utilities Services', 'White with green and navy', 'Consistent layout, fleet numbers, rear high-vis chevrons.', 'Depot yard, aerial three-quarter view', 'Corporate van fleet livery'),
