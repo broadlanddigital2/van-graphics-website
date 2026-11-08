@@ -496,3 +496,4 @@ html{scroll-padding-top:96px}
 .guide-mistake .fix{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);color:var(--ink)}.guide-mistake .fix b{color:#0f7a45}
 .guide-article{max-width:860px}
 @media(max-width:800px){.guide-steps,.zone-cards,.guide-mistakes,.guide-compare{grid-template-columns:1fr}.zone-van .pin{width:26px;height:26px;font-size:12px}}
+.guide-hero h1{max-width:12ch;text-wrap:balance}
