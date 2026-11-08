@@ -66,19 +66,34 @@ def brand():
     return '<a class="brand" href="/" aria-label="Norwich Vehicle Graphics home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 29 17 10h5l-4 9h5l4-9h5l-9 19h-5l3-6h-5l-3 6z" fill="currentColor"/></svg></span><span class="brand-name">NORWICH<br><small>VEHICLE GRAPHICS</small></span></a>'
 
 
-def mega(label, href, columns, wide=False):
-    cols = ''.join(f'<div><p>{escape(title)}</p><ul>' + ''.join(f'<li><a href="{u}">{escape(n)}</a></li>' for n, u in items) + '</ul></div>' for title, items in columns)
-    return f'<div class="nav-item{" is-wide" if wide else ""}"><a href="{href}" class="nav-top">{label}</a><div class="mega"><div class="mega-inner">{cols}</div></div></div>'
+def mega(label, href, columns, intro):
+    """Full-width dropdown: an intro panel and link columns. columns = [(heading or '', [(name, url, note?)])]."""
+    title, blurb, cta, cta_href = intro
+    cols = ''
+    for heading, items in columns:
+        links = ''.join(f'<li><a href="{it[1]}">{escape(it[0])}' + (f'<small>{escape(it[2])}</small>' if len(it) > 2 else '') + '</a></li>' for it in items)
+        cols += f'<div>{f"<p>{escape(heading)}</p>" if heading else ""}<ul>{links}</ul></div>'
+    return (f'<div class="nav-item"><a href="{href}" class="nav-top" aria-haspopup="true">{label}</a><div class="mega"><div class="mega-inner">'
+            f'<div class="mega-intro"><strong>{escape(title)}</strong><span>{escape(blurb)}</span><a href="{cta_href}">{escape(cta)} →</a></div>'
+            f'<div class="mega-cols" style="--cols:{len(columns)}">{cols}</div></div></div></div>')
+
+SHORT_GROUPS = {'trades': 'Trades & home', 'mobile': 'Mobile services', 'transport': 'Transport & fleets', 'land': 'Land & water', 'leisure': 'Retail & leisure'}
 
 def header():
-    services = [('Services', [(s['label'], f'/{s["slug"]}/') for s in SERVICES] + [('Van Designer', '/design-your-van/'), ('Van manufacturers', '/vehicles/')])]
-    sector_cols = [(label, [(s['name'], f'/sectors/{s["key"]}/') for s in SECTOR_LIST if s['group'] == g]) for g, label, _ in GROUPS]
-    towns = [t['name'] for t in TOWN_LIST]
-    half = (len(TOWN_LIST) + 1) // 2
-    area_cols = [('Norfolk & Waveney', [(t['name'], f'/norfolk/{t["key"]}/') for t in TOWN_LIST[:half]]), ('', [(t['name'], f'/norfolk/{t["key"]}/') for t in TOWN_LIST[half:]] + [('All areas', '/norfolk/')])]
-    guide_cols = [('Guides', [(v[0], f'/guides/{k}/') for k, v in GUIDES.items()])]
-    nav = (mega('Services', '/#services', services) + '<a class="nav-top" href="/design-your-van/">Design your van</a>'
-           + mega('Sectors', '/sectors/', sector_cols, wide=True) + mega('Areas', '/norfolk/', area_cols) + mega('Guides', '/guides/' if False else '/#guides', guide_cols)
+    services = [('Services', [(s['label'], f'/{s["slug"]}/') for s in SERVICES]),
+                ('Plan your project', [('Van Designer', '/design-your-van/', 'Design your van online, free'), ('Van manufacturers', '/vehicles/', '29 makes covered'), ('Contact & directions', '/contact/')])]
+    sector_cols = [(SHORT_GROUPS[g], [(s['name'], f'/sectors/{s["key"]}/') for s in SECTOR_LIST if s['group'] == g]) for g, _, _ in GROUPS]
+    third = (len(TOWN_LIST) + 2) // 3
+    by_name = sorted(TOWN_LIST, key=lambda t: t['name'])
+    area_cols = [('Norfolk & Waveney' if i == 0 else '\u00a0', [(t['name'], f'/norfolk/{t["key"]}/', f'{t["miles"]} miles') for t in by_name[i*third:(i+1)*third]]) for i in range(3)]
+    keys = list(GUIDES)
+    half = (len(keys) + 1) // 2
+    guide_cols = [('Before you order', [(GUIDES[k][0], f'/guides/{k}/') for k in keys[:half]]), ('Wraps & fleets', [(GUIDES[k][0], f'/guides/{k}/') for k in keys[half:]])]
+    nav = (mega('Services', '/#services', services, ('Vehicle graphics', 'Signwriting, wraps and fleet livery, designed and fitted in Norwich.', 'Get a free quote', '/contact/#quote'))
+           + '<a class="nav-top" href="/design-your-van/">Design your van</a>'
+           + mega('Sectors', '/sectors/', sector_cols, (f'{len(SECTOR_LIST)} sectors', 'Design ideas, a recommended package and a price guide for your line of work.', 'All sectors', '/sectors/'))
+           + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on Vulcan Road North. Distances are driving miles.', 'All areas', '/norfolk/'))
+           + mega('Guides', '/#guides', guide_cols, ('Guides', 'Costs, coverage, artwork and aftercare explained before you order.', 'Ask a question', '/contact/'))
            + '<a class="nav-top" href="/#gallery">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
     mobile = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/#gallery">Gallery</a><a href="/contact/">Contact</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
