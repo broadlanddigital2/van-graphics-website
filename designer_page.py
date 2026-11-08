@@ -52,7 +52,21 @@ def designer_page(button, media, faq, phone, tel, email, leads):
     ), 1))
     attrs = ' '.join(f'data-{k}="{escape(str(v), quote=True)}"' for k, v in (
         ('api', leads.get('api', '')), ('endpoint', leads.get('endpoint', '')), ('key', leads.get('key', '')), ('secret', leads.get('secret', '')), ('email', email)))
-    hero = f'''<section class="hero subhero"><div class="shell"><div class="hero-copy">
+    from pathlib import Path
+    if Path('dist/assets/pages/van-designer-hero.webp').exists():
+        chips = ''.join(f'<li>{c}</li>' for c in ('Free account', 'Your logo and colours', '360° and lifestyle views'))
+        steps_bar = ''.join(f'<li>{t}</li>' for t in ('Pick your van', 'Graphics or wrap', 'Add your brand', 'Get three designs'))
+        hero = f'''<section class="sector-hero designer-hero is-dedicated">
+    <img class="sector-hero__img" src="/assets/pages/van-designer-hero.webp" alt="A business owner designing van graphics on a phone beside the finished wrapped van" fetchpriority="high" width="2400" height="1100">
+    <div class="shell sector-hero__inner"><div class="sector-hero__copy">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Design your van</span></nav>
+    <p class="eyebrow accent">Free online van designer</p><h1>Design your van<span>in 60 seconds.</span></h1>
+    <p class="lede">See your van graphics or full wrap on your own make and model, with your logo, colours and contact details. Free to use, with no obligation.</p>
+    <div class="actions">{button('Start designing', '#designer')}{button(f'Call {phone}', tel, 'outline')}</div>
+    <ul class="sector-hero__chips">{chips}</ul></div></div>
+    <div class="sector-hero__bar"><div class="shell"><p>Four steps</p><ul>{steps_bar}</ul></div></div></section>'''
+    else:
+        hero = f'''<section class="hero subhero"><div class="shell"><div class="hero-copy">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Design your van</span></nav>
     <p class="eyebrow accent">Free online van designer</p><h1>Design your van<span>in 60 seconds.</span></h1>
     <p class="lede">See your van graphics or full wrap on your own make and model, with your logo, colours and contact details. Free to use, with no obligation.</p>
