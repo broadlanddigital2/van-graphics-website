@@ -45,3 +45,14 @@ The site is managed in the Race Car Graphics CRM (Supabase project `dipjypzrfigk
 Config lives in the `CRM` dict at the top of `build.py`. The build fetches the feed (15 s timeout) and keeps the last good copy in `crm_feed_cache.json`, so builds without internet keep working. If the build machine can reach the CRM, schedule `python3 build.py` (for example hourly, as Race Car Graphics does) and redeploy `dist/` so CRM-published pages go live automatically.
 
 When the live domain is chosen, update `ORIGIN` in `build.py` and the business unit, channel and SEO site addresses in the CRM, then connect Search Console (`gsc_property`).
+
+## Van Designer accounts
+
+The designer at `/design-your-van/` sits behind a free, passwordless account.
+
+- **Back end:** `supabase/functions/van-designer` (deployed to the shared CRM project), with tables `van_designer_sessions` and `van_designer_designs`.
+- **Sign-up** creates (or matches) the CRM customer, a "Van Designer sign-up" lead with UTM/gclid, the marketing consent row when ticked, and logs the visitor straight in. A welcome email carries a one-time login link (48 hours) for other devices; "Email me a login link" on the gate sends a new one.
+- **Designs** autosave to the account and appear under *My designs* (open, delete, start new). Activity (designs generated, 360°, lifestyle, logo upload, reg entered) is logged as lead events.
+- **Quote request** creates a separate "Van Designer quote" lead carrying the sign-up's ad tracking, emails the team (`NVG_TEAM_EMAIL` secret, default production@broadlanddigital.co.uk) and confirms to the customer.
+- **Reg lookup** uses the DVLA Vehicle Enquiry Service once a `DVLA_VES_API_KEY` secret is added; until then customers pick make and model.
+- **Emails** send through the CRM's SendGrid account from the business unit's `outbound_from_email` (currently falls back to noreply@racecargraphics.uk). Login links use the business unit's `website_url`, so update it at launch.
