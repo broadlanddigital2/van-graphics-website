@@ -219,3 +219,16 @@ if (roadViews) {
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
+;(function(){
+  var tiles=[].slice.call(document.querySelectorAll('.work-tile')); if(!tiles.length) return;
+  var box=document.createElement('div'); box.className='lightbox'; box.hidden=true; box.setAttribute('role','dialog'); box.setAttribute('aria-modal','true');
+  box.innerHTML='<img alt=""><p></p><button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><button class="lb-next" aria-label="Next">›</button>';
+  document.body.appendChild(box);
+  var img=box.querySelector('img'), cap=box.querySelector('p'), group=[], i=0;
+  function show(n){ i=(n+group.length)%group.length; var t=group[i]; img.src=t.href; img.alt=t.querySelector('img').alt; cap.textContent=t.dataset.caption||''; }
+  function close(){ box.hidden=true; document.body.style.overflow=''; }
+  tiles.forEach(function(t){ t.addEventListener('click',function(e){ e.preventDefault(); group=[].slice.call(t.closest('.work-grid').querySelectorAll('.work-tile')); show(group.indexOf(t)); box.hidden=false; document.body.style.overflow='hidden'; box.querySelector('.lb-close').focus(); }); });
+  box.querySelector('.lb-close').onclick=close; box.querySelector('.lb-prev').onclick=function(){show(i-1)}; box.querySelector('.lb-next').onclick=function(){show(i+1)};
+  box.addEventListener('click',function(e){ if(e.target===box) close(); });
+  document.addEventListener('keydown',function(e){ if(box.hidden) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') show(i-1); if(e.key==='ArrowRight') show(i+1); });
+})();

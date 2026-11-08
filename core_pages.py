@@ -44,7 +44,8 @@ def gallery(data):
     options = ''.join(f'<option>{escape(model)}</option>' for model in models)
     figures = ''.join(f'''<figure data-model="{escape(model)}"><img src="{asset(image)}" alt="{escape(caption)}" loading="lazy" width="840" height="473"><figcaption><strong>{escape(caption)}</strong><small>{escape(model)}</small></figcaption></figure>'''
                       for image,model,caption in data['gallery'])
-    return f'''<div class="gallery-toolbar"><p>Illustrative concepts. Some images show body types where an exact model is unspecified.</p><label>Filter by vehicle model <select id="gallery-model"><option value="">All vehicles</option>{options}</select></label><span id="gallery-count" role="status">{len(data['gallery'])} designs</span></div>
+    from work_gallery import work_gallery
+    return work_gallery() + f'''<div class="gallery-toolbar"><p>Design concepts. Some images show body types where an exact model is unspecified.</p><label>Filter by vehicle model <select id="gallery-model"><option value="">All vehicles</option>{options}</select></label><span id="gallery-count" role="status">{len(data['gallery'])} designs</span></div>
     <div class="core-gallery">{figures}</div>'''
 
 def table(caption, headings, rows):

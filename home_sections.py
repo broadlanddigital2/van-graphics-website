@@ -107,7 +107,8 @@ def home_gallery(limit=18):
     options = ''.join(f'<option>{escape(label)}</option>' for _, label, _ in GROUPS)
     figures = ''.join(f'<figure data-model="{escape(group)}"><img src="{asset(img)}" alt="{escape(cap)}" loading="lazy" width="840" height="473">'
                       f'<figcaption><strong>{escape(cap)}</strong><small>{escape(group)}</small></figcaption></figure>' for img, cap, group in picks)
-    return (f'<div class="gallery-toolbar"><label>Filter by sector <select id="gallery-model"><option value="">All sectors</option>{options}</select></label>'
+    from work_gallery import work_gallery
+    return work_gallery() + (f'<div class="gallery-toolbar"><label>Filter by sector <select id="gallery-model"><option value="">All sectors</option>{options}</select></label>'
             f'<span id="gallery-count" aria-live="polite"></span></div><div class="core-gallery">{figures}</div>'
             f'<p class="core-note"><a class="text-link" href="/sectors/">Browse all {len(SECTOR_LIST)} sectors {ARROW}</a></p>')
 
