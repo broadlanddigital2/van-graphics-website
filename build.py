@@ -172,7 +172,7 @@ def cards(exclude=None):
 
 def faq(questions, core=False):
     items = ''.join(f'<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q, a in questions)
-    return f'<section class="section faq" id="faq"><div class="shell faq-grid"><div><p class="eyebrow blue">{'16 / FAQ' if core else 'Before you book'}</p><h2>Good to know.</h2></div><div>{items}</div></div></section>'
+    return f'<section class="section faq" id="faq"><div class="shell faq-grid"><div><p class="eyebrow blue">{'15 / FAQ' if core else 'Before you book'}</p><h2>Good to know.</h2></div><div>{items}</div></div></section>'
 
 def local():
     places = ''.join(f'<li>{place}</li>' for place in AREAS)
@@ -285,9 +285,8 @@ page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
      + numbered(11, 'areas', 'Areas we cover', 'From Norwich across Norfolk.', H.areas_map(), 'local')
      + numbered(12, 'why-us', 'Why choose us', 'Done properly, start to finish.', H.why_us())
      + numbered(13, 'reviews', 'Reviews', 'What customers say.', H.home_reviews(), 'tint')
-     + numbered(14, 'case-study', 'Featured project', 'A closer look at a fleet livery.', H.home_case_study(), 'dark-section')
      + H.motorsport_strip()
-     + numbered(15, 'guides', 'Guides', 'Get ready for your project.', H.guides_teaser())
+     + numbered(14, 'guides', 'Guides', 'Get ready for your project.', H.guides_teaser())
      + faq(H.HOME_FAQ),
      schema=home_schema, quote_block=enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context='Homepage'))
 

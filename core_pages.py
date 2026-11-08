@@ -143,7 +143,7 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     options = '' if service else '<option>General enquiry</option>'
     options += ''.join(f'<option{" selected" if item == service else ""}>{item["label"]}</option>' for item in services)
     heading = 'How can we help?' if contact else 'Tell us about the vehicle.'
-    eyebrow = 'Contact the team' if contact else '17 / Get a free quote' if service else 'Get a free quote'
+    eyebrow = 'Contact the team' if contact else '16 / Get a free quote' if service else 'Get a free quote'
     vehicle_required = ' required' if service else ''
     return f'''<section class="quote" id="quote"><div class="shell quote-grid core-quote">
     <div><p class="eyebrow">{eyebrow}</p><h2>{heading}</h2>
@@ -244,10 +244,9 @@ def core_sections(service, faq):
         section(9,'timeline','Fitting timeline','Plan the work around your vehicle.',timeline(data),'tint'),
         section(10,'vehicles','Vehicles we work on','Choose by brand and model.',vehicle_picker()),
         section(11,'sectors','Sectors','Graphics for your line of work.',sector_cards(FEATURED_SECTORS)+f'<p class="core-note"><a class="text-link" href="/sectors/">See all {len(SECTORS)} sectors {ARROW}</a></p>','tint'),
-        section(12,'case-study','Featured design','A closer look at the layout.',case_study(data),'dark-section'),
-        section(13,'reviews','Customer reviews','Published customer feedback.',reviews(data)),
-        section(14,'areas','Norwich &amp; Norfolk','Serving businesses across Norfolk.',link_tiles(towns,lambda slug:f'/norfolk/{slug}/#{data["key"]}'),'local'),
-        section(15,'guides','Related guides','Get ready for your project.',link_tiles(guides,lambda slug:f'/guides/{slug}/')),
+        section(12,'reviews','Customer reviews','Published customer feedback.',reviews(data)),
+        section(13,'areas','Norwich &amp; Norfolk','Serving businesses across Norfolk.',link_tiles(towns,lambda slug:f'/norfolk/{slug}/#{data["key"]}'),'local'),
+        section(14,'guides','Related guides','Get ready for your project.',link_tiles(guides,lambda slug:f'/guides/{slug}/')),
         faq(service['questions']+data['faq']),
     ])
 

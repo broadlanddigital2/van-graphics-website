@@ -236,8 +236,7 @@ def sector_page(key):
     package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
     budget = price_cards(s) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
     tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
-    title, brief, outcome, picture = s['case']
-    html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('case-study', 'Featured design'), ('faq', 'FAQs'), ('quote', 'Enquire')))
+    html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('faq', 'FAQs'), ('quote', 'Enquire')))
     html += ''.join([
         section(1, 'challenge', 'The challenge', 'What the job asks of your van.', challenge),
         section(2, 'must-haves', 'What to include', 'What your van must say.', must, 'tint'),
@@ -245,13 +244,12 @@ def sector_page(key):
         section(4, 'package', 'Recommended package', escape(package_title) + '.', package),
         section(5, 'pricing', 'Price guide', f'What {escape(s["primary"])} cost.', budget, 'tint'),
         section(6, 'design-tips', 'Design tips', 'Build the layout around the job.', tips),
-        section(7, 'case-study', 'Featured design', 'See the brief and the layout.', case_study({'case': (escape(title), escape(brief), escape(outcome), [picture])}), 'dark-section'),
     ])
     html += designer_strip('order')
-    html += section(8, 'areas', 'Where we work', 'Fitted in Norwich, serving all of Norfolk.',
+    html += section(7, 'areas', 'Where we work', 'Fitted in Norwich, serving all of Norfolk.',
                     link_tiles([(t['key'], (t['name'], f'{t["miles"]} miles')) for t in TOWN_LIST[:9]], lambda k: f'/norfolk/{k}/')
                     + '<p class="core-note"><a class="text-link" href="/norfolk/">All areas we cover ' + ARROW + '</a></p>', 'tint')
-    html += section(9, 'related-sectors', 'Related sectors', 'More ideas for working vehicles.', sector_cards(s['related']))
+    html += section(8, 'related-sectors', 'Related sectors', 'More ideas for working vehicles.', sector_cards(s['related']))
     return html
 
 
