@@ -300,7 +300,7 @@ function renderVan(st,opts){
     <linearGradient id="${id}sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
     <radialGradient id="${id}gr" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>`);
   if(!opts.noFloor) s.push(`<rect x="0" y="${GROUND}" width="${VW}" height="${VH-GROUND}" fill="${opts.floor||'rgba(0,0,0,.05)'}"/>`);
-  if(!opts.bare) s.push(`<ellipse cx="${VW/2}" cy="${GROUND+4}" rx="${g.len*.56}" ry="16" fill="url(#${id}gr)"/>`);
+  if(!opts.bare && !opts.noShadow) s.push(`<ellipse cx="${VW/2}" cy="${GROUND+4}" rx="${g.len*.56}" ry="16" fill="url(#${id}gr)"/>`);
   s.push(`<g clip-path="url(#${id}c)"><rect x="0" y="0" width="${VW}" height="${VH}" fill="${bodyCol}"/>`);
   s.push(design.back);
   // panel lines + arches
@@ -814,7 +814,7 @@ $('#shuffleBtn').addEventListener('click',()=>{ const t=S.P; S.P=S.S; S.S=t; S.l
 
 /* ---------- accounts, saved designs and quotes (van-designer CRM function) ---------- */
 const ROOT=document.getElementById('nvg-designer');
-const CFG=ROOT?{api:ROOT.dataset.api||'',endpoint:ROOT.dataset.endpoint||'',key:ROOT.dataset.key||'',secret:ROOT.dataset.secret||'',email:ROOT.dataset.email||''}:{};
+const CFG=ROOT?{render:ROOT.dataset.render||'',api:ROOT.dataset.api||'',endpoint:ROOT.dataset.endpoint||'',key:ROOT.dataset.key||'',secret:ROOT.dataset.secret||'',email:ROOT.dataset.email||''}:{};
 (function captureSource(){
   try{
     const q=new URLSearchParams(location.search), keep={};
@@ -1020,6 +1020,77 @@ $('#quoteBtn').addEventListener('click',()=>{
 });
 $('#quoteModal').addEventListener('click',e=>{ if(e.target.id==='quoteModal') $('#quoteModal').classList.remove('on'); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') $('#quoteModal').classList.remove('on'); });
+
+/* ---------- photo-real renders (van-designer-render, OpenAI) ---------- */
+const RENDER_SCENES=[['motorway','Motorway'],['city','City street'],['site','On the job'],['driveway','Driveway'],['country','Country lane'],['coast','Coast'],['night','Night'],['studio','Studio']];
+let rScene='motorway';
+async function renderApi(action,data){
+  const r=await fetch(CFG.render,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({action,token:AUTH&&AUTH.token},data||{}))});
+  let j={}; try{ j=await r.json(); }catch(e){}
+  if(!r.ok) throw Object.assign(new Error(j.error||'Something went wrong. Please try again.'),{status:r.status});
+  return j;
+}
+function vanPng(){
+  return new Promise((res,rej)=>{
+    const svg=renderVan(S,{design:true,layout:S.layout,noFloor:true,noShadow:true}).replace('<svg ','<svg width="1100" height="480" ');
+    const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+    const img=new Image();
+    img.onload=()=>{ const c=document.createElement('canvas'); c.width=1536; c.height=1024; const x=c.getContext('2d');
+      const w=1300, h=w*480/1100; x.drawImage(img,(1536-w)/2,(1024-h)/2+40,w,h); URL.revokeObjectURL(url); res(c.toDataURL('image/png')); };
+    img.onerror=e=>{ URL.revokeObjectURL(url); rej(e); };
+    img.src=url;
+  });
+}
+function watermark(src){
+  return new Promise(res=>{ const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight; const x=c.getContext('2d');
+    x.drawImage(img,0,0); const t='Designed with Norwich Vehicle Graphics'; x.font='600 '+Math.round(c.width/64)+'px Arial'; const m=x.measureText(t).width, pad=Math.round(c.width/80);
+    x.fillStyle='rgba(11,20,40,.62)'; x.fillRect(c.width-m-pad*3,c.height-pad*3.2,m+pad*2,pad*2.2); x.fillStyle='#fff'; x.textBaseline='middle'; x.fillText(t,c.width-m-pad*2,c.height-pad*2.1);
+    res(c.toDataURL('image/jpeg',.88)); }; img.src=src; });
+}
+async function openRender(){
+  if(!authed()){ showApp(); return; }
+  if(!S.designed){ setSaveState('Press Design my van first, then make a photo-real render','warn'); return; }
+  const card=$('#quoteCard');
+  card.innerHTML=`<h3>Photo-real render</h3><p class="muted">Pick a scene and we'll turn your design into a realistic photo. It takes about 30–60 seconds.</p>
+    <div class="render-scenes">${RENDER_SCENES.map(([k,n])=>`<button type="button" class="render-scene${k===rScene?' on':''}" data-rs="${k}">${n}</button>`).join('')}</div>
+    <div class="render-stage" id="renderStage"><div class="render-empty">Your render will appear here.</div></div>
+    <p class="muted render-meta" id="renderMeta"></p>
+    <div class="actions"><button class="btn btn-ghost" id="rClose" type="button">Close</button><button class="btn btn-hv" id="rGo" type="button">Create render</button></div>
+    <p class="render-note">AI renders are a guide to the look. Before anything is printed our team checks your exact vehicle and sends a proof.</p>
+    <div class="render-history" id="renderHistory"></div>`;
+  $('#quoteModal').classList.add('on');
+  $('#rClose').onclick=()=>$('#quoteModal').classList.remove('on');
+  card.querySelectorAll('[data-rs]').forEach(b=>b.onclick=()=>{ rScene=b.dataset.rs; card.querySelectorAll('[data-rs]').forEach(x=>x.classList.toggle('on',x===b)); });
+  let id=null;
+  try{ id=await saveNow(); const st=await renderApi('status'); const h=await renderApi('list',{design_id:id});
+    if(!st.available){ $('#renderMeta').textContent='Photo-real renders are coming soon.'; $('#rGo').disabled=true; }
+    else $('#renderMeta').textContent=st.remaining+' render'+(st.remaining===1?'':'s')+' left today.';
+    showHistory(h.renders||[]);
+  }catch(e){ $('#renderMeta').textContent=e.message; }
+  $('#rGo').onclick=async()=>{
+    const go=$('#rGo'); go.disabled=true; go.textContent='Rendering…';
+    $('#renderStage').innerHTML='<div class="render-empty"><div class="spin"></div>Creating your photo-real render… about 30–60 seconds</div>';
+    try{
+      if(!id) id=await saveNow();
+      const png=await vanPng();
+      const r=await renderApi('generate',{design_id:id,scene:rScene,image:png});
+      const finalImg=await watermark(r.image);
+      $('#renderStage').innerHTML=`<img src="${finalImg}" alt="Photo-real render of your van design">`;
+      $('#renderMeta').textContent=r.remaining+' render'+(r.remaining===1?'':'s')+' left today. Saving to your design…';
+      apiEvent('lifestyle_view',{photo:true,scene:rScene});
+      dl('designer_render',{scene:rScene});
+      try{ const sv=await renderApi('save',{design_id:id,scene:rScene,image:finalImg}); showHistory(sv.renders||[]);
+        $('#renderMeta').innerHTML=r.remaining+' render'+(r.remaining===1?'':'s')+' left today · Saved to your design · <a href="'+esc(sv.url)+'" download target="_blank" rel="noopener">Download</a>';
+      }catch(e){ $('#renderMeta').textContent='Render ready, but it could not be saved. Right-click to save it.'; }
+    }catch(e){ $('#renderStage').innerHTML='<div class="render-empty">'+esc(e.message)+'</div>'; }
+    go.disabled=false; go.textContent='Create another';
+  };
+}
+function showHistory(list){
+  const el=$('#renderHistory'); if(!el) return;
+  el.innerHTML=list.length?'<b>Your renders</b><div>'+list.slice(0,8).map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener"><img src="${esc(r.url)}" alt="${esc(r.scene)} render" loading="lazy"></a>`).join('')+'</div>':'';
+}
+if($('#renderBtn')) $('#renderBtn').addEventListener('click',openRender);
 
 /* boot: login link → stored session → gate */
 async function boot(){

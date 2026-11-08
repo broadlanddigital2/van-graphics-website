@@ -203,3 +203,15 @@
 .nvg .gate-side ul{gap:14px;color:#fff}
 .nvg .gate-side li{font-weight:800;font-size:18px;line-height:1.35}
 .nvg .gate-side li:before{font-size:18px}
+/* photo-real renders */
+.nvg .render-scenes{display:flex;flex-wrap:wrap;gap:6px}
+.nvg .render-scene{border:1px solid var(--line);background:#fff;padding:7px 11px;border-radius:99px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink)}
+.nvg .render-scene.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.nvg .render-stage{aspect-ratio:3/2;background:var(--bg);border-radius:10px;overflow:hidden;display:grid;place-items:center}
+.nvg .render-stage img{width:100%;height:100%;object-fit:cover;display:block}
+.nvg .render-empty{color:var(--muted);text-align:center;padding:20px;display:grid;gap:10px;justify-items:center;font-size:14px}
+.nvg .render-meta a{color:var(--accent);font-weight:700}
+.nvg .render-note{font-size:12px;color:var(--muted);margin:0}
+.nvg .render-history b{display:block;font-size:13px;margin-bottom:6px}
+.nvg .render-history div{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.nvg .render-history img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:6px;display:block}
