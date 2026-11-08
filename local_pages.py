@@ -80,14 +80,24 @@ def town_questions(t):
 
 
 def town_hero(t, image, alt, phone, tel):
+    """Full-bleed hero, same pattern as the sector pages. Uses assets/towns/{key}-hero.webp when added."""
+    from pathlib import Path
+    dedicated = Path(f'dist/assets/towns/{t["key"]}-hero.webp').exists()
+    if dedicated:
+        image, alt = f'towns/{t["key"]}-hero', f'Branded work van in {t["name"]}'
     name = escape(t['name'])
-    crumb = f'<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/norfolk/">Areas we cover</a><span aria-hidden="true">/</span><span>{name}</span></nav>'
-    facts = (f'<ul class="hero-facts"><li><b>{t["miles"]} mi</b>to our workshop</li><li><b>{t["time"]}</b>typical drive</li>'
-             f'<li><b>{escape(t["roads"][0])}</b>main route</li></ul>')
-    return f'''<section class="hero subhero town-hero"><div class="shell"><div class="hero-copy">{crumb}
+    chips = ''.join(f'<li>{c}</li>' for c in (f'{t["miles"]} miles to our workshop', f'About {t["time"]} drive', f'Via the {escape(t["roads"][0])}'))
+    focus = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS[k][0])}</a></li>' for k in t['focus'])
+    return f'''<section class="sector-hero town-hero{' is-dedicated' if dedicated else ''}">
+    <img class="sector-hero__img" src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high" width="2400" height="1100">
+    <div class="shell sector-hero__inner"><div class="sector-hero__copy">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/norfolk/">Areas we cover</a><span aria-hidden="true">/</span><span>{name}</span></nav>
     <p class="eyebrow accent">Vehicle graphics · {name}, {escape(t["county"])}</p><h1>Van graphics &amp; wraps<span>in {name}.</span></h1>
-    <p class="lede">{escape(t["lede"])}</p><div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>{facts}</div>
-    <div class="hero-media"><img src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high"><span class="marker" aria-hidden="true"><i></i><i></i><i></i></span><div class="hero-caption"><b>↗</b>Illustrative design</div></div></div></section>'''
+    <p class="lede">{escape(t["lede"])}</p>
+    <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>
+    <ul class="sector-hero__chips">{chips}</ul></div></div>
+    <div class="sector-hero__bar"><div class="shell"><p>Popular in {name}</p><ul>{focus}</ul></div></div>
+    <span class="sector-hero__caption">{'Illustrative design' }</span></section>'''
 
 
 def town_page(key, phone, tel, email):
@@ -162,6 +172,34 @@ def town_page(key, phone, tel, email):
 
 
 # ---------------------------------------------------------------- sectors
+
+def sector_hero_image(key):
+    """Dedicated hero if generated (dist/assets/sectors/{key}-hero.webp), else the card image."""
+    from pathlib import Path
+    if Path(f'dist/assets/sectors/{key}-hero.webp').exists():
+        return f'sectors/{key}-hero', True
+    image = SECTORS_BY_KEY[key]['image']
+    return (f'concept-{image}' if isinstance(image, int) else image), False
+
+
+def sector_hero(key, phone, tel):
+    s = SECTORS_BY_KEY[key]
+    image, dedicated = sector_hero_image(key)
+    group = next(label for g, label, _ in GROUPS if g == s['group'])
+    name = escape(s['name'].lower().replace('chapter 8', 'Chapter 8'))
+    chips = ''.join(f'<li>{escape(c)}</li>' for c in (s['package'][0], 'Signwriting from £149', 'Designed & fitted in Norwich'))
+    must = ''.join(f'<li>{escape(m)}</li>' for m in s['must'])
+    return f'''<section class="sector-hero{' is-dedicated' if dedicated else ''}{' is-long' if len(s['name']) > 22 else ''}">
+    <img class="sector-hero__img" src="{asset(image)}" alt="{escape(s['alt'])}" fetchpriority="high" width="2400" height="1100">
+    <div class="shell sector-hero__inner"><div class="sector-hero__copy">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/sectors/">Sectors</a><span aria-hidden="true">/</span><span>{escape(s['name'])}</span></nav>
+    <p class="eyebrow accent">{escape(group)}</p><h1>Van graphics for<span>{name}.</span></h1>
+    <p class="lede">{escape(s['card'])} Designed, printed and fitted in Norwich.</p>
+    <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Try the Van Designer{ARROW}</a></div>
+    <ul class="sector-hero__chips">{chips}</ul></div></div>
+    <div class="sector-hero__bar"><div class="shell"><p>Your van should say</p><ul>{must}</ul></div></div>
+    <span class="sector-hero__caption">Illustrative design</span></section>'''
+
 
 def sector_page(key):
     s = SECTORS_BY_KEY[key]

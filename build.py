@@ -1,4 +1,5 @@
 from html import escape
+import re
 import json
 from pathlib import Path
 
@@ -6,7 +7,7 @@ from core_content import CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
 from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
-from local_pages import sector_page, sectors_hub, town_page, town_questions, workshop_map
+from local_pages import sector_hero, sector_hero_image, sector_page, sectors_hub, town_page, town_questions, workshop_map
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
 
 OUT = Path('dist')
@@ -166,8 +167,19 @@ def showcase():
       <a class="text-link" href="/vehicle-wraps-norwich/">Explore vehicle wraps {ARROW}</a></div>
     </div></div></section>'''
 
-def page(path, title, desc, content, image='hero', schema=None, quote_block=None):
+def generated(name):
+    """Path stem of a generated hero (see the Hero images brief) if the file has been added."""
+    return name if (OUT / 'assets' / f'{name}.webp').exists() else None
+
+def page(path, title, desc, content, image='hero', schema=None, quote_block=None, hero_image=None):
     url = ORIGIN + path
+    hero_image = generated(hero_image) if hero_image else None
+    if hero_image and '<section class="support-hero' in content:
+        content = content.replace('<section class="support-hero', f'<section class="has-image support-hero', 1)
+        content = re.sub(r'(<section class="has-image support-hero[^"]*">)', rf'\1<img class="support-hero__img" src="/assets/{hero_image}.webp" alt="" fetchpriority="high" width="2400" height="1100">', content, count=1)
+        image = hero_image
+    if image == 'hero' and generated('pages/social-share'):
+        image = 'pages/social-share'
     structured = f'<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>' if schema else ''
     html = f'''<!doctype html>
     <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -235,7 +247,7 @@ support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
-     + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>')
+     + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>', hero_image='pages/vehicles-hub-hero')
 
 def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):
     parent_path, parent_name = parent
@@ -263,9 +275,9 @@ for sector in SECTOR_LIST:
     heading = f'Van graphics for {name.lower()}'
     description = f'Van signwriting, wraps and fleet graphics for {name.lower()} across Norwich and Norfolk. {sector["card"]}'
     questions = sector['faqs']
-    image = f'concept-{sector["image"]}' if isinstance(sector['image'], int) else sector['image']
+    image, _ = sector_hero_image(key)
     page(path, f'{name} Van Graphics & Wraps Norfolk | Norwich Vehicle Graphics', description,
-         hero(f'Van graphics for<span>{escape(name.lower())}.</span>', escape(sector['card'] + ' Designed, printed and fitted in Norwich.'), image, sector['alt'], 'Vehicle graphics by sector', parent=sector_parent, call=True)
+         sector_hero(key, PHONE, TEL)
          + sector_page(key) + faq(questions), image,
          location_schema(path, heading, description, sector_parent, questions),
          enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=name))
@@ -288,19 +300,19 @@ for key,(name,summary,detail) in GUIDES.items():
     support_urls.append(path)
     related = [s for s in SERVICES if key in CONTENT[s['slug']]['guides']]
     page(path,name+' | Norwich Vehicle Graphics',summary,
-         support_page('Vehicle graphics guide',name,[summary,detail],related))
+         support_page('Vehicle graphics guide',name,[summary,detail],related), hero_image=f'pages/guide-{key}-hero')
 
 places = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])} <small>{t["miles"]} mi · {t["time"]}</small></a></li>' for t in TOWN_LIST)
 coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>We design remotely and fit at our Norwich workshop on Vulcan Road North. Distances below are driving routes to the workshop. If you are arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Broadland+Digital+Vulcan+Road+North+NR6+6AQ">Directions to the Norwich workshop {ARROW}</a></div><ul class="places places-wide">{places}</ul></div></section>'''
 page('/norfolk/','Vehicle Graphics Across Norfolk | Norwich Vehicle Graphics',
      'Van graphics, wraps and fleet livery for businesses across Norfolk and Waveney: Norwich, King’s Lynn, Great Yarmouth, Lowestoft, Thetford, Dereham, Cromer and more.',
-     hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk and the Waveney valley. Bring us one work van or talk to us about graphics for a fleet.','fleet','Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),'fleet')
+     hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk and the Waveney valley. Bring us one work van or talk to us about graphics for a fleet.',generated('pages/norfolk-hub-hero') or 'fleet','Three branded vans on a Norfolk country road' if generated('pages/norfolk-hub-hero') else 'Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),generated('pages/norfolk-hub-hero') or 'fleet')
 
 page('/sectors/','Van Graphics by Sector | Norwich Vehicle Graphics',
      f'Van wraps, signwriting and fleet graphics for {len(SECTOR_LIST)} sectors, from plumbers and electricians to removals, care teams, farms and boatyards across Norfolk.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Sectors</span></nav><p class="eyebrow accent">Vehicle graphics by sector</p><h1>Van graphics for your line of work.</h1>'
      + f'<p class="lede">{len(SECTOR_LIST)} sectors, each with design ideas, a recommended package and a price guide.</p></div></section>'
-     + sectors_hub())
+     + sectors_hub(), hero_image='sectors/sectors-hub-hero')
 
 page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
@@ -310,7 +322,7 @@ page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      + enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,contact=True)
      + '<section class="section core-section" id="workshop"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Find us</p><h2>Visit the Norwich workshop.</h2></div></div>'
      + workshop_map(PHONE,TEL,EMAIL) + '</div></section>',
-     schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Norwich Vehicle Graphics','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='')
+     schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Norwich Vehicle Graphics','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='', hero_image='pages/contact-hero')
 
 def crm_feed():
     """Pages published in the CRM's SEO section. Falls back to the last good copy."""
