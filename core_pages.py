@@ -160,23 +160,45 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     <noscript><p><a href="{quote_url}">Use the web enquiry form</a>.</p></noscript>
     </form></div></section>'''
 
+LUTON_ICON = ('<svg viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 6h34v24H4z" fill="#d4dbea"/><path d="M38 14h12l8 9v7H38z" fill="#c4cfe9"/>'
+              '<path d="M41 17h8l5 6H41z" fill="#273b4b"/><circle cx="14" cy="32" r="5" fill="#22303c"/><circle cx="48" cy="32" r="5" fill="#22303c"/>'
+              '<circle cx="14" cy="32" r="2" fill="#acb7b9"/><circle cx="48" cy="32" r="2" fill="#acb7b9"/></svg>')
+OTHER_ICON = ('<svg viewBox="0 0 64 40" aria-hidden="true" focusable="false"><circle cx="32" cy="20" r="15" fill="none" stroke="#273b4b" stroke-width="3"/>'
+              '<path d="M27 16a5 5 0 1 1 7 4.6c-1.4.6-2 1.4-2 2.9V25" fill="none" stroke="#273b4b" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="30" r="1.9" fill="#273b4b"/></svg>')
+
+
+def brand_card(href, logo, name, action):
+    return (f'<a class="brand-card" href="{href}"><span class="brand-card__logo">{logo}</span>'
+            f'<span class="brand-card__copy"><strong>{escape(name)}</strong><b>{action} <span aria-hidden="true">→</span></b></span></a>')
+
+
 def vehicle_picker():
-    brands = []
-    for key, (label, slugs) in BRANDS.items():
-        models = ''.join(
-            f'<a class="vehicle-model" href="/vehicles/{slug}/">'
-            f'<strong>{escape(MODELS[slug][0])}</strong><small>{escape(MODELS[slug][1])}</small>{ARROW}</a>'
-            for slug in slugs
-        )
-        brands.append(f'''<details class="vehicle-brand" name="vehicle-brands">
-        <summary aria-label="{escape(label)}"><img class="vehicle-brand-icon" src="/assets/brands/{key}.svg"
-          alt="" width="88" height="88" loading="lazy"></summary>
-        <div class="vehicle-models">{models}</div></details>''')
+    """Manufacturer grid in the Race Car Graphics style: square logo tiles, 4 across, each opening a brand page."""
+    cards = ''.join(brand_card(f'/vehicles/{key}/', f'<img src="/assets/brands/{key}.svg" alt="{escape(label)} logo" width="88" height="88" loading="lazy">', label, 'Explore graphics')
+                    for key, (label, _) in BRANDS.items())
+    cards += brand_card('/vehicles/luton/', LUTON_ICON, 'Luton & box vans', 'Explore graphics')
+    cards += brand_card('#quote', OTHER_ICON, 'Other makes', 'Tell us what you drive')
     return f'''<div class="vehicle-picker">
-    <p>Select a brand logo to see its vehicle models.</p>
-    <div class="vehicle-brands" role="group" aria-label="Vehicle brands">{''.join(brands)}</div>
-    <p class="vehicle-picker-help"><a class="text-link" href="/vehicles/luton/">Browse Luton box vans {ARROW}</a>
-    <a class="text-link" href="#quote">Tell us what you drive {ARROW}</a></p></div>'''
+    <p>Choose your van manufacturer to see its models, then pick your model for layout advice.</p>
+    <div class="brand-grid" role="list" aria-label="Van manufacturers">{cards}</div></div>'''
+
+
+def brand_page(key):
+    """A manufacturer page: its models as cards, plus routes to the Van Designer and a quote."""
+    label, slugs = BRANDS[key]
+    models = ''.join(
+        f'<a class="model-card" href="/vehicles/{slug}/"><small>{escape(MODELS[slug][1])}</small><h3>{escape(MODELS[slug][0])}</h3>'
+        f'<p>{escape(MODELS[slug][2].split(". ")[0])}.</p><b>View graphics {ARROW}</b></a>'
+        for slug in slugs)
+    return f'''<section class="support-hero brand-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/vehicles/">Van manufacturers</a><span aria-hidden="true">/</span><span>{escape(label)}</span></nav>
+    <div class="brand-hero__grid"><div><p class="eyebrow accent">Van graphics by manufacturer</p><h1>{escape(label)} van graphics.</h1>
+    <p class="brand-hero__lede">Signwriting, partial and full wraps and fleet graphics designed around your {escape(label)} van, then produced and fitted at our Norwich workshop.</p>
+    <div class="actions"><a class="btn" href="#models">Choose your model {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
+    <span class="brand-hero__logo"><img src="/assets/brands/{key}.svg" alt="{escape(label)} logo" width="160" height="160"></span></div></div></section>
+    <section class="section core-section" id="models"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Choose your model</p><h2>{escape(label)} models.</h2></div>
+    <p>Pick your model for layout advice, then send the year, wheelbase and photos for a fitted quote.</p></div><div class="model-grid">{models}</div>
+    <p class="core-note">Model not listed? <a href="#quote">Tell us what you drive</a> and we will plan the layout for it.</p></div></section>
+    <section class="section core-section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Other manufacturers</p><h2>Browse another brand.</h2></div></div>{vehicle_picker()}</div></section>'''
 
 
 def sector_cards(keys=SECTOR_CARDS):

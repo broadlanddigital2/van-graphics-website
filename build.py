@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 
 from core_content import CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
-from core_pages import core_sections, enquiry, sector_cards, support_page, vehicle_picker
+from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from local_content import SECTOR_DETAILS, TOWN_DETAILS
 from local_pages import sector_sections, town_questions, town_sections, workshop_map
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
@@ -102,7 +102,7 @@ def hero(title, description, image, alt, eyebrow, home=False, core=False, parent
 def cards(exclude=None):
     items = ''.join(f'''<a class="card" href="/{s["slug"]}/"><div class="card-image"><img src="/assets/{s["image"]}.webp" width="1150" height="647" loading="lazy" alt="{s["alt"]}"><span class="tag">{s["tag"]}</span></div>
     <div class="card-copy"><h3>{s["label"]}</h3><p>{s["short"]}</p><strong>Explore {s["label"].lower()} {ARROW}</strong></div></a>''' for s in SERVICES if s['slug'] != exclude)
-    return f'''<section class="section" id="services"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Our services</p><h2>{'More ways to brand your vehicle.' if exclude else 'Find the right finish.'}</h2></div><p>From straightforward lettering to a full wrap, choose the coverage that suits your vehicle and what you want it to say.</p></div><div class="cards">{items}</div><div id="vehicles" class="service-vehicle-picker"><h3>Choose by brand and model.</h3>{vehicle_picker()}</div></div></section>'''
+    return f'''<section class="section" id="services"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Our services</p><h2>{'More ways to brand your vehicle.' if exclude else 'Find the right finish.'}</h2></div><p>From straightforward lettering to a full wrap, choose the coverage that suits your vehicle and what you want it to say.</p></div><div class="cards">{items}</div><div id="vehicles" class="service-vehicle-picker"><p class="eyebrow blue">Van manufacturers</p><h3>Choose by brand and model.</h3>{vehicle_picker()}</div></div></section>'''
 
 def faq(questions, core=False):
     items = ''.join(f'<details><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for q, a in questions)
@@ -222,6 +222,19 @@ for key,(name,category,description) in MODELS.items():
     heading = f'{name} graphics and wraps'
     page(path,heading+' | Norwich Vehicle Graphics',description,
          support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES))
+
+from core_content import BRANDS
+for key,(label,_) in BRANDS.items():
+    path = f'/vehicles/{key}/'
+    support_urls.append(path)
+    page(path, f'{label} Van Graphics & Wraps Norwich | Norwich Vehicle Graphics',
+         f'{label} van signwriting, wraps and fleet graphics designed around your model and fitted in Norwich. Choose your {label} model to get started.',
+         brand_page(key))
+support_urls.append('/vehicles/')
+page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
+     'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz and Luton box vans, fitted in Norwich.',
+     '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
+     + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>')
 
 def location_schema(path, heading, description, parent, questions, town=None):
     parent_path, parent_name = parent
