@@ -96,6 +96,7 @@ Deno.serve(async (req) => {
         if (!r.ok) {
           last = j?.error?.message || "OpenAI error " + r.status;
           console.error(model, last);
+          if (/credit|quota|billing/i.test(last)) return json({ error: "Photo-real renders are temporarily unavailable. Please try again later, or request a quote and we'll render it for you." }, 503);
           if (r.status === 404 || /model|input_fidelity|quality|parameter/i.test(last)) continue;
           return json({ error: "The render service is busy. Please try again in a minute." }, 502);
         }
