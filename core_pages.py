@@ -3,7 +3,7 @@
 from html import escape
 from urllib.parse import urlencode
 
-from core_content import BRANDS, CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
+from core_content import BRAND_PHOTOS, BRANDS, CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS, VAN_BRANDS, brand_image
 
 ARROW = '<span class="arr" aria-hidden="true">↗</span>'
 PRICE_SOURCE = 'https://broadlanddigital.co.uk/product/pro-large-van-graphics/'
@@ -160,23 +160,23 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     <noscript><p><a href="{quote_url}">Use the web enquiry form</a>.</p></noscript>
     </form></div></section>'''
 
-LUTON_ICON = ('<svg viewBox="0 0 64 40" aria-hidden="true" focusable="false"><path d="M4 6h34v24H4z" fill="#d4dbea"/><path d="M38 14h12l8 9v7H38z" fill="#c4cfe9"/>'
-              '<path d="M41 17h8l5 6H41z" fill="#273b4b"/><circle cx="14" cy="32" r="5" fill="#22303c"/><circle cx="48" cy="32" r="5" fill="#22303c"/>'
-              '<circle cx="14" cy="32" r="2" fill="#acb7b9"/><circle cx="48" cy="32" r="2" fill="#acb7b9"/></svg>')
 OTHER_ICON = ('<svg viewBox="0 0 64 40" aria-hidden="true" focusable="false"><circle cx="32" cy="20" r="15" fill="none" stroke="#273b4b" stroke-width="3"/>'
               '<path d="M27 16a5 5 0 1 1 7 4.6c-1.4.6-2 1.4-2 2.9V25" fill="none" stroke="#273b4b" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="30" r="1.9" fill="#273b4b"/></svg>')
 
 
-def brand_card(href, logo, name, action):
-    return (f'<a class="brand-card" href="{href}"><span class="brand-card__logo">{logo}</span>'
+def brand_card(href, logo, name, action, photo=False):
+    return (f'<a class="brand-card{" brand-card--photo" if photo else ""}" href="{href}" role="listitem"><span class="brand-card__logo">{logo}</span>'
             f'<span class="brand-card__copy"><strong>{escape(name)}</strong><b>{action} <span aria-hidden="true">→</span></b></span></a>')
+
+
+def brand_img(key, label, size=480):
+    alt = f'{label} van with vinyl graphics' if key in BRAND_PHOTOS else f'{label} logo'
+    return f'<img src="{brand_image(key)}" alt="{escape(alt)}" width="{size}" height="{size}" decoding="async">'
 
 
 def vehicle_picker():
     """Manufacturer grid in the Race Car Graphics style: square logo tiles, 4 across, each opening a brand page."""
-    cards = ''.join(brand_card(f'/vehicles/{key}/', f'<img src="/assets/brands/{key}.svg" alt="{escape(label)} logo" width="88" height="88" loading="lazy">', label, 'Explore graphics')
-                    for key, (label, _) in BRANDS.items())
-    cards += brand_card('/vehicles/luton/', LUTON_ICON, 'Luton & box vans', 'Explore graphics')
+    cards = ''.join(brand_card(f'/vehicles/{key}/', brand_img(key, label), label, 'Explore graphics', key in BRAND_PHOTOS) for key, label in VAN_BRANDS)
     cards += brand_card('#quote', OTHER_ICON, 'Other makes', 'Tell us what you drive')
     return f'''<div class="vehicle-picker">
     <p>Choose your van manufacturer to see its models, then pick your model for layout advice.</p>
@@ -184,20 +184,30 @@ def vehicle_picker():
 
 
 def brand_page(key):
-    """A manufacturer page: its models as cards, plus routes to the Van Designer and a quote."""
-    label, slugs = BRANDS[key]
-    models = ''.join(
-        f'<a class="model-card" href="/vehicles/{slug}/"><small>{escape(MODELS[slug][1])}</small><h3>{escape(MODELS[slug][0])}</h3>'
-        f'<p>{escape(MODELS[slug][2].split(". ")[0])}.</p><b>View graphics {ARROW}</b></a>'
-        for slug in slugs)
+    """A manufacturer page: its models as cards (where we have model pages), plus routes to the Van Designer and a quote."""
+    label = dict(VAN_BRANDS)[key]
+    slugs = BRANDS.get(key, (label, ()))[1]
+    if slugs:
+        models = ''.join(
+            f'<a class="model-card" href="/vehicles/{slug}/"><small>{escape(MODELS[slug][1])}</small><h3>{escape(MODELS[slug][0])}</h3>'
+            f'<p>{escape(MODELS[slug][2].split(". ")[0])}.</p><b>View graphics {ARROW}</b></a>'
+            for slug in slugs)
+        models_block = f'''<div class="section-head"><div><p class="eyebrow blue">Choose your model</p><h2>{escape(label)} models.</h2></div>
+    <p>Pick your model for layout advice, then send the year, wheelbase and photos for a fitted quote.</p></div><div class="model-grid">{models}</div>
+    <p class="core-note">Model not listed? <a href="#quote">Tell us what you drive</a> and we will plan the layout for it.</p>'''
+    else:
+        models_block = f'''<div class="section-head"><div><p class="eyebrow blue">Your {escape(label)} van</p><h2>Graphics planned for your model.</h2></div>
+    <p>We lay out every design around the exact model, year, wheelbase and body style.</p></div>
+    <div class="info-cards"><article><b class="core-index">01</b><h3>Tell us the model</h3><p>Send the model, year, wheelbase or body length and photos of both sides and the rear.</p></article>
+    <article><b class="core-index">02</b><h3>Try a look online</h3><p>Use the free <a href="/design-your-van/">Van Designer</a> to compare graphics and a full wrap before you brief us.</p></article>
+    <article><b class="core-index">03</b><h3>Approve your proof</h3><p>We send a proof for your {escape(label)} and fit the graphics at our Norwich workshop.</p></article></div>'''
+    photo = ' brand-hero__logo--photo' if key in BRAND_PHOTOS else ''
     return f'''<section class="support-hero brand-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/vehicles/">Van manufacturers</a><span aria-hidden="true">/</span><span>{escape(label)}</span></nav>
     <div class="brand-hero__grid"><div><p class="eyebrow accent">Van graphics by manufacturer</p><h1>{escape(label)} van graphics.</h1>
     <p class="brand-hero__lede">Signwriting, partial and full wraps and fleet graphics designed around your {escape(label)} van, then produced and fitted at our Norwich workshop.</p>
-    <div class="actions"><a class="btn" href="#models">Choose your model {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
-    <span class="brand-hero__logo"><img src="/assets/brands/{key}.svg" alt="{escape(label)} logo" width="160" height="160"></span></div></div></section>
-    <section class="section core-section" id="models"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Choose your model</p><h2>{escape(label)} models.</h2></div>
-    <p>Pick your model for layout advice, then send the year, wheelbase and photos for a fitted quote.</p></div><div class="model-grid">{models}</div>
-    <p class="core-note">Model not listed? <a href="#quote">Tell us what you drive</a> and we will plan the layout for it.</p></div></section>
+    <div class="actions"><a class="btn" href="#models">{'Choose your model' if slugs else 'Plan your graphics'} {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
+    <span class="brand-hero__logo{photo}">{brand_img(key, label)}</span></div></div></section>
+    <section class="section core-section" id="models"><div class="shell">{models_block}</div></section>
     <section class="section core-section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Other manufacturers</p><h2>Browse another brand.</h2></div></div>{vehicle_picker()}</div></section>'''
 
 

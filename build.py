@@ -223,8 +223,8 @@ for key,(name,category,description) in MODELS.items():
     page(path,heading+' | Norwich Vehicle Graphics',description,
          support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES))
 
-from core_content import BRANDS
-for key,(label,_) in BRANDS.items():
+from core_content import VAN_BRANDS
+for key,label in VAN_BRANDS:
     path = f'/vehicles/{key}/'
     support_urls.append(path)
     page(path, f'{label} Van Graphics & Wraps Norwich | Norwich Vehicle Graphics',
@@ -232,7 +232,7 @@ for key,(label,_) in BRANDS.items():
          brand_page(key))
 support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
-     'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz and Luton box vans, fitted in Norwich.',
+     'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
      + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>')
 

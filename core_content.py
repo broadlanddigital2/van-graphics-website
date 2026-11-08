@@ -34,6 +34,25 @@ BRANDS = {
     'mercedes': ('Mercedes-Benz', ('sprinter', 'mercedes-vito', 'mercedes-citan')),
 }
 
+# Every van manufacturer shown in the brand grid (same list as Race Car Graphics). Images: logo tiles
+# from the RCG brand set, or a van photo where no logo tile exists. BRANDS above holds model pages.
+ISUZU_IMG = 'https://s3-eu-west-1.amazonaws.com/pitchprint.io/previews/5b1407e9a9b8172db628a8e529ca92ba_1.jpg'
+LDV_IMG = 'https://s3-eu-west-1.amazonaws.com/pitchprint.io/previews/c46429a14f0629a2a633da4f630f4df1_1.jpg'
+VAN_BRANDS = [
+    ('aixam', 'Aixam'), ('citroen', 'Citroën'), ('dacia', 'Dacia'), ('daihatsu', 'Daihatsu'), ('dodge', 'Dodge'),
+    ('fiat', 'Fiat'), ('ford', 'Ford'), ('holden', 'Holden'), ('hyundai', 'Hyundai'), ('isuzu', 'Isuzu'),
+    ('iveco', 'Iveco'), ('kgm', 'KGM'), ('land-rover', 'Land Rover'), ('ldv', 'LDV'), ('levc', 'LEVC'),
+    ('man', 'MAN'), ('maxus', 'Maxus'), ('mazda', 'Mazda'), ('mercedes', 'Mercedes-Benz'), ('mini', 'Mini'),
+    ('mitsubishi', 'Mitsubishi'), ('modec', 'Modec'), ('nissan', 'Nissan'), ('peugeot', 'Peugeot'), ('renault', 'Renault'),
+    ('ssangyong', 'SsangYong'), ('toyota', 'Toyota'), ('vauxhall', 'Vauxhall'), ('volkswagen', 'Volkswagen'),
+]
+BRAND_PHOTOS = {'aixam', 'holden', 'isuzu', 'iveco', 'kgm', 'land-rover', 'ldv', 'levc', 'man', 'maxus', 'modec'}
+
+
+def brand_image(key):
+    return {'isuzu': ISUZU_IMG, 'ldv': LDV_IMG}.get(key, f'/assets/brands/{key}.webp')
+
+
 SECTORS = {
     'trades': ('Trades & home services', 'Use the side to say what you do and the rear for your number. A single service line is usually easier to read than a list of everything you offer. Flag ladder racks and existing accreditation marks.'),
     'delivery': ('Delivery & logistics', 'Make the brand recognisable from the back at a loading bay, and place fleet IDs where depot teams can find them. Tell us about doors, shutters and vehicle availability before we plan fitting.'),
