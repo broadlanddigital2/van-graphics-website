@@ -92,12 +92,12 @@ def header():
     half = (len(keys) + 1) // 2
     guide_cols = [('Before you order', [(GUIDES[k][0], f'/guides/{k}/') for k in keys[:half]]), ('Wraps & fleets', [(GUIDES[k][0], f'/guides/{k}/') for k in keys[half:]])]
     nav = (mega('Services', '/#services', services, ('Vehicle graphics', 'Signwriting, wraps and fleet livery, designed and fitted in Norwich.', 'Get a free quote', '/contact/#quote'))
-           + '<a class="nav-top" href="/design-your-van/">Design your van</a>'
+           + ''
            + mega('Sectors', '/sectors/', sector_cols, (f'{len(SECTOR_LIST)} sectors', 'Design ideas, a recommended package and a price guide for your line of work.', 'All sectors', '/sectors/'))
            + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on Vulcan Road North. Distances are driving miles.', 'All areas', '/norfolk/'))
            + mega('Guides', '/#guides', guide_cols, ('Guides', 'Costs, coverage, artwork and aftercare explained before you order.', 'Ask a question', '/contact/'))
            + '<a class="nav-top" href="/gallery/">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
-    mobile = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/gallery/">Gallery</a><a href="/contact/">Contact</a>'
+    mobile = '<a href="/#services">Services</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/gallery/">Gallery</a><a href="/contact/">Contact</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
