@@ -36,8 +36,6 @@ BRANDS = {
 
 # Every van manufacturer shown in the brand grid (same list as Race Car Graphics). Images: logo tiles
 # from the RCG brand set, or a van photo where no logo tile exists. BRANDS above holds model pages.
-ISUZU_IMG = 'https://s3-eu-west-1.amazonaws.com/pitchprint.io/previews/5b1407e9a9b8172db628a8e529ca92ba_1.jpg'
-LDV_IMG = 'https://s3-eu-west-1.amazonaws.com/pitchprint.io/previews/c46429a14f0629a2a633da4f630f4df1_1.jpg'
 VAN_BRANDS = [
     ('aixam', 'Aixam'), ('citroen', 'Citroën'), ('dacia', 'Dacia'), ('daihatsu', 'Daihatsu'), ('dodge', 'Dodge'),
     ('fiat', 'Fiat'), ('ford', 'Ford'), ('holden', 'Holden'), ('hyundai', 'Hyundai'), ('isuzu', 'Isuzu'),
@@ -46,11 +44,16 @@ VAN_BRANDS = [
     ('mitsubishi', 'Mitsubishi'), ('modec', 'Modec'), ('nissan', 'Nissan'), ('peugeot', 'Peugeot'), ('renault', 'Renault'),
     ('ssangyong', 'SsangYong'), ('toyota', 'Toyota'), ('vauxhall', 'Vauxhall'), ('volkswagen', 'Volkswagen'),
 ]
-BRAND_PHOTOS = {'aixam', 'holden', 'isuzu', 'iveco', 'kgm', 'land-rover', 'ldv', 'levc', 'man', 'maxus', 'modec'}
 
 
-def brand_image(key):
-    return {'isuzu': ISUZU_IMG, 'ldv': LDV_IMG}.get(key, f'/assets/brands/{key}.webp')
+def brand_logo(key):
+    """Logo file for a manufacturer, or None. Drop an official logo into dist/assets/brands/ as
+    {key}.svg, {key}.png or {key}.webp and the next build uses it in place of the text tile."""
+    from pathlib import Path
+    for ext in ('webp', 'png', 'svg'):
+        if Path(f'dist/assets/brands/{key}.{ext}').exists():
+            return f'/assets/brands/{key}.{ext}'
+    return None
 
 
 SECTORS = {
