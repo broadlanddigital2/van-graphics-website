@@ -508,3 +508,9 @@ html{scroll-padding-top:96px}
 .brand.brand--logo img{width:auto;height:44px;object-fit:contain;display:block}
 .footer .brand.brand--logo img{height:52px}
 @media(max-width:650px){.brand.brand--logo img{height:32px}}
+/* Quote band: white text on pink */
+.quote .core-quote>div:first-child,.quote .core-quote>div:first-child h2,.quote .core-quote>div:first-child p,.quote .core-quote>div:first-child .eyebrow{color:#fff}
+.quote-ticks li:before{background:#fff;color:var(--lime)}
+.quote-contacts a{background:#ffffff26;border-color:#ffffff59;color:#fff}
+.quote-contacts a:hover{background:#ffffff40}
+.quote .quote-alt .text-link{color:#fff;border-color:#fff}
