@@ -248,3 +248,4 @@ html{scroll-padding-top:96px}
 .main-head .shell{position:relative}.nav-item:nth-child(3) .mega{left:50%;transform:translateX(-50%)}.nav-item.is-wide{position:static}.nav-item.is-wide .mega{left:50%;transform:translateX(-50%);top:calc(100% - 14px)}
 .home-hero h1{font-size:clamp(44px,5.2vw,80px);line-height:.95}@media(max-width:650px){.home-hero h1{font-size:clamp(40px,10vw,56px)}}
 @media(max-width:650px){.main-head .btn{white-space:nowrap;padding:10px 11px;font-size:13px}.main-head .btn .arr{display:none}.head-call{width:38px;height:38px}}
+.nav .nav-top{white-space:nowrap}@media(max-width:1180px) and (min-width:851px){.nav{gap:12px;font-size:13px}.main-head .btn{padding-left:14px;padding-right:14px}}

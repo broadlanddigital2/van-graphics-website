@@ -344,12 +344,14 @@ Deno.serve(async (req) => {
         const message = summary(v, design.state) + `\n\nContact preference: ${pref}` + (phone ? `\nPhone: ${phone}` : "") + (notes ? `\nNotes: ${notes}` : "") + `\n\nDesign ID: ${design.id}`;
         const [first, ...rest] = (user.name || "").split(" ");
         const { data: c2 } = await db.from("customers").select("company_id,mobile,phone").eq("id", s.customer_id).single();
+        const { data: origin } = s.lead_id ? await db.from("leads").select("utm_source,utm_medium,utm_campaign,gclid").eq("id", s.lead_id).maybeSingle() : { data: null };
         const { data: qlead, error } = await db.from("leads").insert({
           business_unit_id: bu.id, channel_integration_id: ch.id, workflow_id: ch.workflow_id, stage_id: ch.default_stage_id,
           customer_id: s.customer_id, company_id: c2?.company_id || null, first_name: first || null, last_name: rest.join(" ") || null,
           email: user.email, mobile: phone || c2?.mobile || null, phone: c2?.phone || null,
           subject: `Van Designer quote – ${v.make || ""} ${v.model || ""} (${user.name})`.replace(/\s+/g, " "),
           message, source_url: clean(body.page, 500),
+          utm_source: origin?.utm_source || null, utm_medium: origin?.utm_medium || null, utm_campaign: origin?.utm_campaign || null, gclid: origin?.gclid || null,
           raw_payload: { source: "van_designer", kind: "quote", design_id: design.id, signup_lead_id: s.lead_id, vehicle: v, style: design.state?.mode || null },
         }).select("id").single();
         if (error) return json({ error: error.message }, 500);
