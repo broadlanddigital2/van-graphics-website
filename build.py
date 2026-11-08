@@ -106,12 +106,12 @@ def footer():
     towns = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])}</a></li>' for t in TOWN_LIST[:15])
     sectors = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS_BY_KEY[k]["name"])}</a></li>' for k in FEATURED_SECTORS)
     guides = ''.join(f'<li><a href="/guides/{k}/">{escape(v[0])}</a></li>' for k, v in GUIDES.items())
-    brands = ''.join(f'<a href="{url}" target="_blank" rel="noopener" aria-label="{name} website (opens in a new tab)"><img src="https://broadlanddigital.co.uk{src}" alt="{name}" loading="lazy" height="70"{cls}></a>' if url else f'<div><img src="https://broadlanddigital.co.uk{src}" alt="{name}" loading="lazy" height="70"></div>'
-                     for name, url, src, cls in (('Broadland Digital', 'https://broadlanddigital.co.uk/', '/wp-content/uploads/2023/03/Broadland_Digital_Logo.svg', ''),
-                                                 ('Race Car Graphics UK', 'https://racecargraphics.uk/', '/brands/rcg-logo.png', ''),
-                                                 ('Auto Opulence', 'https://autoopulence.co.uk/', '/brands/auto-opulence-logo-white.svg', ''),
-                                                 ('Norwich Web Works', 'https://norwichwebworks.co.uk/', '/brands/norwich-web-works-logo.png', ' class="sq"'),
-                                                 ('Consensus Media', '', '/brands/consensus-media-logo.svg', '')))
+    brands = ''.join(f'<a href="{url}" target="_blank" rel="noopener" aria-label="{name} website (opens in a new tab)"><img src="/assets/group/{src}" alt="{name}" loading="lazy" height="70"{cls}></a>' if url else f'<div><img src="/assets/group/{src}" alt="{name}" loading="lazy" height="70"></div>'
+                     for name, url, src, cls in (('Broadland Digital', 'https://broadlanddigital.co.uk/', 'broadland-digital-logo.svg', ''),
+                                                 ('Race Car Graphics UK', 'https://racecargraphics.uk/', 'rcg-logo.png', ''),
+                                                 ('Auto Opulence', 'https://autoopulence.co.uk/', 'auto-opulence-logo-white.svg', ''),
+                                                 ('Norwich Web Works', 'https://norwichwebworks.co.uk/', 'norwich-web-works-logo.png', ' class="sq"'),
+                                                 ('Consensus Media', '', 'consensus-media-logo.svg', '')))
     return f'''<footer class="footer"><div class="shell">
     <div class="footer-contact"><a href="{TEL}"><span class="fc-ico" aria-hidden="true">☎</span><small>Call the workshop</small><b>{PHONE}</b></a><a href="mailto:{EMAIL}"><span class="fc-ico" aria-hidden="true">✉</span><small>Email us</small><b>{EMAIL}</b></a><a href="/contact/#workshop"><span class="fc-ico" aria-hidden="true">⌖</span><small>Visit</small><b>Vulcan House, Vulcan Road North, Norwich NR6 6AQ</b></a></div>
     <div class="footer-grid footer-grid--wide"><div>{brand()}<p>Broadland Digital Ltd<br>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</p>
