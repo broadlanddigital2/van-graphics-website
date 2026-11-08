@@ -248,7 +248,7 @@ def sector_page(key):
     html += ''.join([
         section(1, 'challenge', 'The challenge', 'What the job asks of your van.', challenge),
         section(2, 'must-haves', 'What to include', 'What your van must say.', must, 'tint'),
-        section(3, 'gallery', 'Sector gallery', f'{escape(cap(sec[0]))} ideas.', (__import__('work_gallery').work_gallery() if s['key'] == 'window-cleaners' else '') + design_examples(sector_gallery(s)) + note, 'dark-section'),
+        section(3, 'gallery', 'Sector gallery', f'{escape(cap(sec[0]))} ideas.', __import__('work_gallery').work_gallery(items=__import__('work_gallery').work_for(s['key'])) + design_examples(sector_gallery(s)) + note, 'dark-section'),
         section(4, 'package', 'Recommended package', escape(package_title) + '.', package),
         section(5, 'pricing', 'Price guide', f'What {escape(s["primary"])} cost.', budget, 'tint'),
         section(6, 'design-tips', 'Design tips', 'Build the layout around the job.', tips),
