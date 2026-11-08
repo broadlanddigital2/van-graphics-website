@@ -136,6 +136,26 @@ def hero(title, description, image, alt, eyebrow, home=False, core=False, parent
     return f'''<section class="hero {'' if home else 'subhero service-hero' if core else 'subhero'}"><div class="shell"><div class="hero-copy">{crumb}
     <p class="eyebrow accent">{eyebrow}</p><h1>{title}</h1><p class="lede">{description}</p><div class="actions">{button('Get a free quote','#quote')}{secondary}</div>{'<a class="text-link service-vehicle-link" href="#vehicles">Choose by brand and model ↓</a>' if core else ''}</div>{media(image,alt,caption)}</div></section>'''
 
+def service_hero(s):
+    """Full-width image hero shared with sector, town and Van Designer pages.
+    Uses assets/pages/service-{slug}-hero.webp when added, otherwise the service image."""
+    custom = generated(f'pages/service-{s["slug"]}-hero')
+    image = custom or s['image']
+    price = CONTENT[s['slug']]['pricing'][0] if s['slug'] == 'van-signwriting-norwich' else None
+    chips = ''.join(f'<li>{escape(c)}</li>' for c in ([f'Signwriting {price.lower()}' if price else 'Quoted per vehicle', 'Designed & fitted in Norwich', 'Proof before print']))
+    options = ''.join(f'<li>{escape(o[0])}</li>' for o in s['options'])
+    title = s['title'].replace(' in Norwich', '<span>in Norwich.</span>')
+    return f'''<section class="sector-hero service-hero{' is-dedicated' if custom else ''}">
+    <img class="sector-hero__img" src="/assets/{image}.webp" alt="{escape(s['alt'])}" fetchpriority="high" width="2400" height="1100">
+    <div class="shell sector-hero__inner"><div class="sector-hero__copy">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#services">Services</a><span aria-hidden="true">/</span><span>{escape(s['label'])}</span></nav>
+    <p class="eyebrow accent">Design · Production · Fitting</p><h1>{title}</h1>
+    <p class="lede">{escape(s['intro'])}</p>
+    <div class="actions">{button('Get a free quote', '#quote')}<a class="btn outline" href="#gallery">View design gallery <span class="arr" aria-hidden="true">↓</span></a></div>
+    <ul class="sector-hero__chips">{chips}</ul></div></div>
+    <div class="sector-hero__bar"><div class="shell"><p>Options</p><ul>{options}</ul></div></div>
+    <span class="sector-hero__caption">Illustrative design</span></section>'''
+
 def cards(exclude=None):
     items = ''.join(f'''<a class="card" href="/{s["slug"]}/"><div class="card-image"><img src="/assets/{s["image"]}.webp" width="1150" height="647" loading="lazy" alt="{s["alt"]}"><span class="tag">{s["tag"]}</span></div>
     <div class="card-copy"><h3>{s["label"]}</h3><p>{s["short"]}</p><strong>Explore {s["label"].lower()} {ARROW}</strong></div></a>''' for s in SERVICES if s['slug'] != exclude)
@@ -282,7 +302,7 @@ for s in SERVICES:
         {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in questions]},
     ]}
     page(path,s['title']+' | Norwich Vehicle Graphics',s['intro'],
-         hero(title,s['intro'],s['image'],s['alt'],'01 / Design · Production · Fitting',core=True)
+         service_hero(s)
          + ribbon + core_sections(s, lambda rows: faq(rows, core=True)),
          s['image'],schema,enquiry(s,SERVICES,PHONE,TEL,EMAIL,QUOTE))
 
