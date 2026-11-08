@@ -1,0 +1,5 @@
+# Pages are regenerated on every publish from the CRM: always revalidate HTML.
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/*
+  Cache-Control: public, max-age=86400

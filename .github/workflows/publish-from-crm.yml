@@ -1,0 +1,34 @@
+# Rebuilds the website from the CRM (pages published in SEO pages, business profile for llms.txt)
+# and commits the regenerated dist/ — Cloudflare Workers Builds then deploys it.
+# Runs hourly, on demand (Actions → Publish from CRM → Run workflow) and when the CRM sends "crm-publish".
+name: Publish from CRM
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [crm-publish]
+permissions:
+  contents: write
+concurrency:
+  group: publish-from-crm
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch CRM feed and build site
+        run: python3 build.py
+      - name: Commit if anything changed
+        run: |
+          git config user.name "nvg-crm-publisher"
+          git config user.email "production@broadlanddigital.co.uk"
+          git add -A dist crm_feed_cache.json
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Publish from CRM ($(date -u +%Y-%m-%dT%H:%MZ))"
+          git push

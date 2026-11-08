@@ -1,0 +1,10 @@
+{
+  "name": "van-graphics-website",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev",
+    "rebuild": "python3 build.py"
+  },
+  "devDependencies": { "wrangler": "^4.92.0" }
+}
