@@ -429,3 +429,13 @@ page('/404/', 'Page not found | Norwich Vehicle Graphics', 'This page could not 
 urls = ['/', '/design-your-van/', '/norfolk/', '/sectors/', '/contact/'] + ['/'+s['slug']+'/' for s in SERVICES] + support_urls + crm_urls
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{ORIGIN}{path}</loc></url>' for path in urls) + '</urlset>\n')
 (OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
+
+# Cache-bust CSS/JS: assets are cached for a day, so every page links them with a content hash.
+import hashlib
+for name in ('site.css', 'site.js', 'designer.css', 'designer.js'):
+    digest = hashlib.sha1((OUT / 'assets' / name).read_bytes()).hexdigest()[:10]
+    for html_file in OUT.rglob('*.html'):
+        text = html_file.read_text(encoding='utf-8')
+        new = re.sub(rf'/assets/{re.escape(name)}(\?v=[0-9a-f]+)?"', f'/assets/{name}?v={digest}"', text)
+        if new != text:
+            html_file.write_text(new, encoding='utf-8')
