@@ -3,6 +3,8 @@ import re
 import json
 from pathlib import Path
 
+from guides_content import FULL_GUIDES
+from guide_page import guide_body, guide_schema
 from core_content import CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
@@ -386,6 +388,12 @@ for key,(name,summary,detail) in GUIDES.items():
     path = f'/guides/{key}/'
     support_urls.append(path)
     related = [s for s in SERVICES if key in CONTENT[s['slug']]['guides']]
+    if key in FULL_GUIDES:
+        g = FULL_GUIDES[key]
+        page(path, g['title'], g['summary'], guide_body(key, g, SERVICES) + faq(g['faq']),
+             schema=guide_schema(ORIGIN, key, g, business['@id']), hero_image=f'pages/guide-{key}-hero',
+             quote_block=enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=f'Guide: {name}'))
+        continue
     page(path,name+' | Norwich Vehicle Graphics',summary,
          support_page('Vehicle graphics guide',name,[summary,detail],related), hero_image=f'pages/guide-{key}-hero')
 

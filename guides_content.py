@@ -1,0 +1,56 @@
+"""Full guide pages, following the guides brief (Race Car Graphics style).
+Guides not listed here still render as the short support page."""
+
+FULL_GUIDES = {
+'van-signwriting-brief': {
+    'topic': 'Plan & budget',
+    'read': 6,
+    'title': 'What to Put on a Work Van | Van Signwriting Layout Guide',
+    'h1': 'What to put on a work van.',
+    'summary': 'What to include in your van signwriting, where it should go and what to leave off, so people can read it and remember it.',
+    'answer': ('Put three things on every work van: your business name, what you do and one clear way to contact you. '
+               'Add a website, social handles or accreditations only if there is room for people to read them at a glance.'),
+    'sections': [
+        ('The three things every van needs',
+         ['Most people see your van for a few seconds, often while they are driving or walking past. In that time they need to take in who you are, what you do and how to reach you. Everything else is a bonus.',
+          'Your <strong>business name</strong> should be the biggest thing on the van. Under it, a short <strong>service line</strong> says what you do in plain words, such as "Plumbing · Heating · Bathrooms". Then give <strong>one contact detail</strong> people can remember: usually a phone number for trades, or a website if most of your work is booked online.',
+          'When you write your van signwriting layout, start with these three and only add more if the van still reads clearly.']),
+        ('Side panels: read from the pavement',
+         ['The sides are your biggest panels and the ones people see when you are parked on a drive or a street. Put your name high on the panel, above the swage lines and door handles, so it is not broken up by the shape of the van.',
+          'Keep the service line close to the name, and put the phone number or website lower down where people standing nearby can read it. On a sliding-door side, check that nothing important crosses the door gap or sits under the handle.',
+          'Leave space around the text. A busy panel with lots of small lines is harder to read than a clean one with fewer, bigger words.']),
+        ('The back doors: read in traffic',
+         ['The rear is what the driver behind you sees in a queue, often for minutes at a time. That makes it the best place for your <strong>phone number or website</strong>, as large as the doors allow.',
+          'Repeat your name and logo, and keep the layout simple. Rear windows, number plates, lights and handles all take space, so plan around them. If you use a roof rack or a ladder, check the graphics will not be hidden behind it.']),
+        ('Bonnet and front: what works',
+         ['The front is seen in mirrors and by oncoming traffic, so it suits a logo or your name rather than detail. A bonnet logo or your name across the front helps people recognise your van coming towards them.',
+          'Avoid putting contact details on the front: nobody can write a number down from an oncoming van.']),
+        ('Accreditations, socials and extras',
+         ['Trade badges such as Gas Safe, NICEIC or TrustMark build trust, but only if they are approved for use and big enough to recognise. Put them near your name or service line, not scattered around the van.',
+          'Social handles and QR codes work best on the back doors or sides, where people can stop and look. A QR code on a moving van rarely gets scanned, so only add one if you park where customers can reach it.',
+          'Taglines, long service lists and prices tend to clutter the van. If you want more detail, put it on your website and let the van send people there.']),
+        ('Common van lettering mistakes',
+         ['<strong>Too much text.</strong> Every extra line makes the important ones smaller.<br><strong>Low contrast.</strong> Pale lettering on a white van, or dark on a dark van, disappears at distance.<br><strong>Fonts that are hard to read.</strong> Script and thin fonts can look stylish close up but blur from across the road.<br><strong>Ignoring the van\'s shape.</strong> Lettering that crosses door gaps, handles or deep panel lines breaks up.<br><strong>Different details on each side.</strong> Keep the same name, number and colours everywhere so people remember them.']),
+    ],
+    'checklist': [
+        'Your business name exactly as you want it shown',
+        'A short service line (three or four words at most)',
+        'The one contact detail you want people to remember',
+        'Your logo as a vector file, if you have one',
+        'Brand colours or the colour of your van',
+        'Any trade badges you are approved to display',
+        'Roof racks, ladders or tool boxes that could hide graphics',
+        'Van make, model and wheelbase',
+    ],
+    'image': ('Ford Transit Custom with clear signwriting showing a business name, service line and phone number', 'norwich-vehicle-graphics-cut-vinyl-signwriting-for-a-general-builder'),
+    'services': ['van-signwriting-norwich', 'vehicle-wraps-norwich'],
+    'sectors': ['trades', 'plumbers-heating', 'electricians'],
+    'next': ['artwork-for-van-graphics', 'graphics-costs', 'partial-vs-full-wrap'],
+    'faq': [
+        ('How big should the phone number be on a van?', 'As big as the panel allows while keeping it on one line. On the back doors it should be readable from a car behind you in traffic. We size it to your van and show you a visual before anything is printed.'),
+        ('Should I put my prices on my van?', 'Usually not. Prices change, and a van that shows out-of-date prices can put people off. Send people to your website or phone instead, where you can give a current quote.'),
+        ('Do I need my logo on every side?', 'It helps people recognise you from any angle, but your name matters more than the logo. If space is tight, put the logo on the sides and back and keep the front simple.'),
+        ('Can you help if I don\'t know what to put on my van?', 'Yes. Tell us what you do and who your customers are, and we will suggest a layout. You can also try the free Van Designer to see ideas on your exact van first.'),
+    ],
+},
+}
