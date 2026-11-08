@@ -193,3 +193,7 @@
 .nvg-promo .btn.outline{color:#141f38;border-color:#141f3866;background:transparent}
 .nvg-promo .btn.outline:hover{background:#141f38;color:#fff}
 .nvg-promo .nvg-demo{box-shadow:0 30px 60px #111b3133}
+.nvg-promo-photo{margin:0;position:relative;overflow:hidden;box-shadow:0 30px 60px #111b3133;border:1px solid #d4dbea;background:#111b31}
+.nvg-promo-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:68% 50%}
+.nvg-promo-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:linear-gradient(0deg,#0b1428e6,#0b142800);color:#fff;font-weight:800;font-size:15px}
+.nvg-promo-photo{aspect-ratio:16/11;align-self:center}.nvg-promo-photo img{position:absolute;inset:0;width:100%;height:100%!important;aspect-ratio:auto;object-position:72% 50%}

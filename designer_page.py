@@ -33,13 +33,19 @@ FAQ = [
 def designer_promo(button):
     steps = ''.join(f'<li><b>0{i}</b>{text}</li>' for i, text in enumerate(
         ('Pick your van and colour', 'Choose graphics or a full wrap', 'Upload your logo and add your details', 'See three designs, then spin it in 360°'), 1))
+    from pathlib import Path
+    if Path('dist/assets/pages/van-designer-hero.webp').exists():
+        visual = ('<figure class="nvg-promo-photo"><img src="/assets/pages/van-designer-hero.webp" alt="Van design on a phone next to the finished wrapped van" loading="lazy" width="2400" height="1100">'
+                  '<figcaption>Design it on your phone. See it on your van.</figcaption></figure>')
+    else:
+        visual = '<div class="nvg nvg-demo" aria-hidden="true"><p>Live example · <span id="demoName">Graphics</span></p><div id="nvgDemo"></div></div>'
     return (ASSETS + f'''<section class="section nvg-promo" id="van-designer" aria-labelledby="van-designer-heading"><div class="shell nvg-promo-grid">
     <div><p class="eyebrow accent">Free van designer</p><h2 id="van-designer-heading">Design your van<span>in 60 seconds.</span></h2>
     <p class="lede">Enter your reg or choose your van, add your logo and contact details, and see your graphics or full wrap straight away. Then spin it in 360° or picture it on the road.</p>
     <ol>{steps}</ol>
     <div class="actions">{button('Start designing, free', '/design-your-van/#designer')}<a class="btn outline" href="/design-your-van/">How it works</a></div>
     <small>Free sign-up · No obligation · Graphics or full wrap</small></div>
-    <div class="nvg nvg-demo" aria-hidden="true"><p>Live example · <span id="demoName">Graphics</span></p><div id="nvgDemo"></div></div>
+    {visual}
     </div></section>''' + SCRIPT)
 
 
