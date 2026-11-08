@@ -370,13 +370,16 @@ for town in TOWN_LIST:
     key, name = town['key'], town['name']
     path = f'/norfolk/{key}/'
     support_urls.append(path)
-    heading = f'Van graphics and wraps in {name}'
+    heading = f'Van graphics in {name}'
     questions = town_questions(town)
     image = SECTORS_BY_KEY[town['focus'][0]]['image']
     image = f'concept-{image}' if isinstance(image, int) else image
-    page(path, f'Van Graphics & Wraps {name} | Norwich Vehicle Graphics', town['description'],
+    town_title = f'Van Graphics {name} | Signwriting & Wraps | Norwich Vehicle Graphics'
+    if len(town_title) > 66: town_title = f'Van Graphics {name} | Signwriting & Wraps'
+    town_desc = f'Van graphics in {name}: van signwriting, vehicle wraps and fleet graphics, designed in-house and fitted at our Norwich workshop, {town["miles"]} miles away. Free quote.'
+    page(path, town_title, town_desc,
          town_page(key, PHONE, TEL, EMAIL) + faq(questions), image,
-         location_schema(path, heading, town['description'], area_parent, questions, name, town['county']),
+         location_schema(path, heading, town_desc, area_parent, questions, name, town['county']),
          enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=name))
 
 for key,(name,summary,detail) in GUIDES.items():

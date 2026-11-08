@@ -92,7 +92,7 @@ def town_hero(t, image, alt, phone, tel):
     <img class="sector-hero__img" src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high" width="2400" height="1100">
     <div class="shell sector-hero__inner"><div class="sector-hero__copy">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/norfolk/">Areas we cover</a><span aria-hidden="true">/</span><span>{name}</span></nav>
-    <p class="eyebrow accent">Vehicle graphics · {name}, {escape(t["county"])}</p><h1>Van graphics &amp; wraps<span>in {name}.</span></h1>
+    <p class="eyebrow accent">Vehicle graphics · {name}, {escape(t["county"])}</p><h1>Van graphics<span>in {name}.</span></h1>
     <p class="lede">{escape(t["lede"])}</p>
     <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
@@ -148,12 +148,12 @@ def town_page(key, phone, tel, email):
 
     parts = [
         ('intro', 'Overview', f'Vehicle graphics for {escape(t["area"])}.', intro, ''),
-        ('services', 'Services', f'What we do for {name} businesses.', services, 'tint'),
-        ('pricing', 'Starting prices', 'Budget by vehicle size.', prices, ''),
-        ('gallery', 'Design ideas', 'Graphics for the work you do.', gallery, 'dark-section'),
+        ('services', 'Services', f'Van signwriting, wraps and fleet graphics in {name}.', services, 'tint'),
+        ('pricing', 'Starting prices', f'Van signwriting prices for {name}.', prices, ''),
+        ('gallery', 'Design ideas', f'Vehicle wrap ideas for {name} businesses.', gallery, 'dark-section'),
         ('local', 'Local profile', f'Working in and around {name}.', profile, 'tint'),
         ('getting-here', 'Map &amp; directions', f'From {name} to our workshop.', getting_here, ''),
-        ('businesses', 'Business vehicles', f'Vans that work in {name}.', business, 'tint'),
+        ('businesses', 'Business vehicles', f'Fleet graphics for {name} firms.', business, 'tint'),
         ('spotlight', 'Local spotlight', f'Why it matters in {name}.', spotlight, ''),
     ]
     if t.get('work'):  # only real, approved local jobs
