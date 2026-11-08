@@ -508,9 +508,3 @@ html{scroll-padding-top:96px}
 .brand.brand--logo img{width:auto;height:44px;object-fit:contain;display:block}
 .footer .brand.brand--logo img{height:52px}
 @media(max-width:650px){.brand.brand--logo img{height:32px}}
-/* Quote band: light pink */
-.quote{background:#ffe3ef}
-.quote .eyebrow{color:var(--ink)}
-.quote-contacts a{background:#fff;border-color:#ff0a7826}
-.quote-contacts a:hover{background:#fff6fa}
-.core-quote form.quote-card{box-shadow:0 28px 60px #c4005c22,0 2px 0 #141f3810}
