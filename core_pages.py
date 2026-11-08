@@ -147,9 +147,12 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     vehicle_required = ' required' if service else ''
     return f'''<section class="quote" id="quote"><div class="shell quote-grid core-quote">
     <div><p class="eyebrow">{eyebrow}</p><h2>{heading}</h2>
-    <p>Fill in your details to open a draft in your email app. You can also send an enquiry through the Broadland Digital web form or call the Norwich team.</p>
-    <div class="actions"><a class="btn dark" href="{tel}">Call {phone} {ARROW}</a><a class="text-link" href="{quote_url}">Open web enquiry form {ARROW}</a></div></div>
-    <form id="service-enquiry" data-recipient="{email}" data-context="{escape(context)}">
+    <p>Send us a few details and we’ll come back with design ideas and a fitted price. Prefer to talk? Call the Norwich team.</p>
+    <ul class="quote-ticks"><li>Free design visual on your exact vehicle</li><li>Fitted price in writing, VAT shown</li><li>Designed, printed and fitted in Norwich</li></ul>
+    <div class="quote-contacts"><a href="{tel}"><small>Call</small><b>{phone}</b></a><a href="mailto:{email}"><small>Email</small><b>{email}</b></a></div>
+    <p class="quote-alt"><a class="text-link" href="{quote_url}">Or use the Broadland Digital web form {ARROW}</a></p></div>
+    <form id="service-enquiry" class="quote-card" data-recipient="{email}" data-context="{escape(context)}">
+    <div class="quote-card__head"><b>Free quote request</b><span>Takes about a minute</span></div>
     <label>Service<select name="service">{options}</select></label>
     <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
     <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label>

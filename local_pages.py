@@ -200,6 +200,28 @@ def sector_hero(key, phone, tel):
     <span class="sector-hero__caption">Illustrative design</span></section>'''
 
 
+def recommended_package(title):
+    t = title.lower()
+    hits = [(t.find(w), key) for w, key in (('fleet', 'fleet'), ('partial', 'partial'), ('full', 'full'), ('box-body', 'full'), ('signwriting', 'sign'), ('chevron', 'sign'), ('headboard', 'sign')) if w in t]
+    return min(hits)[1] if hits else 'sign'
+
+def price_cards(s):
+    rec = recommended_package(s['package'][0])
+    cards = (
+        ('sign', 'is-orange', 'Signwriting', 'from', '£149', 'small van', 'Logos, a service line and contact details in cut vinyl.',
+         '<ul class="price-sizes"><li><span>Small van</span><b>£149</b></li><li><span>Medium van</span><b>£210</b></li><li><span>Large van</span><b>£285</b></li></ul>'),
+        ('partial', 'is-cobalt', 'Partial wrap', '', 'Quoted', 'per vehicle', 'Printed panels or colour across selected areas of the van.', ''),
+        ('full', 'is-dark', 'Full wrap', '', 'Quoted', 'per vehicle', 'Printed imagery or brand colours across most exterior panels.', ''),
+        ('fleet', 'is-mint', 'Fleet graphics', '', 'Quoted', 'per fleet', 'One shared layout adapted for each make and model you run.', ''),
+    )
+    out = ''
+    for key, tone, name, pre, price, per, scope, extra in cards:
+        badge = f'<span class="price-badge">Recommended for {escape(s["name"].lower())}</span>' if key == rec else ''
+        out += (f'<article class="price-card {tone}{" is-rec" if key == rec else ""}">{badge}<h3>{name}</h3>'
+                f'<p class="price-big">{f"<small>{pre}</small>" if pre else ""}{price}<span>{per}</span></p>'
+                f'<p class="price-scope">{scope}</p>{extra}<a class="price-cta" href="#quote">Get a free quote {ARROW}</a></article>')
+    return f'<div class="price-cards">{out}</div>'
+
 def sector_page(key):
     s = SECTORS_BY_KEY[key]
     name = s['name']
@@ -212,14 +234,7 @@ def sector_page(key):
     note = '<p class="core-note">Concept images are illustrative. Sector-specific examples will be added as projects complete.</p>' if s['stand_in'] else ''
     package_title, package_copy = s['package']
     package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
-    packages = (
-        ('Signwriting', 'Published signwriting packages from £149', 'Logos, a service line and contact details.'),
-        ('Partial wrap', 'Quoted per vehicle', 'Printed panels or colour across selected areas.'),
-        ('Full wrap', 'Quoted per vehicle', 'Printed imagery or brand colours across most exterior panels.'),
-        ('Fleet graphics', 'Quoted per fleet', 'A shared layout adapted for each make and model.'),
-    )
-    budget = table(f'Price guide for {escape(s["primary"])}', ('Package', 'Price guide', 'Typical scope'), packages)
-    budget += '<p class="core-note">The signwriting benchmark comes from <a href="/van-signwriting-norwich/#pricing">Broadland Digital’s published packages</a>. Ask for a fitted quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
+    budget = price_cards(s) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
     tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
     title, brief, outcome, picture = s['case']
     html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('case-study', 'Featured design'), ('faq', 'FAQs'), ('quote', 'Enquire')))

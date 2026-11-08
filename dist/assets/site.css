@@ -291,3 +291,64 @@ html{scroll-padding-top:96px}
 .service-hero.is-dedicated:before{background:linear-gradient(90deg,#0b1428f0 0%,#0b1428cc 28%,#0b142840 44%,#0b142800 54%),linear-gradient(0deg,#0b1428b3 0%,#0b142800 22%)}
 .service-hero.is-dedicated .sector-hero__copy{max-width:min(560px,40vw)}
 @media(max-width:850px){.service-hero.is-dedicated .sector-hero__copy{max-width:none}}
+/* Sector price cards */
+.price-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:6px}
+.price-card{position:relative;display:flex;flex-direction:column;gap:12px;padding:26px 22px 22px;border-radius:14px;background:#fff;color:var(--ink);box-shadow:0 14px 34px #111b3114}
+.price-card h3{font-size:20px;letter-spacing:-.02em;line-height:1.1}
+.price-big{font-size:clamp(40px,3.6vw,56px);font-weight:900;letter-spacing:-.05em;line-height:.95;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}
+.price-big small{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.75;width:100%}
+.price-big span{font-size:14px;font-weight:700;letter-spacing:0;opacity:.75}
+.price-scope{font-size:15px;line-height:1.45;opacity:.9}
+.price-sizes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.price-sizes li{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:8px;background:#ffffff8c;font-size:14px}
+.price-sizes b{font-size:18px}
+.price-cta{margin-top:auto;padding-top:10px;font-weight:800;font-size:14px;border-top:1px solid currentColor;border-color:#00000022}
+.price-card.is-orange{background:var(--lime)}
+.price-card.is-cobalt{background:var(--cobalt);color:#fff}
+.price-card.is-dark{background:var(--dark);color:#fff}
+.price-card.is-mint{background:#c9f0e3}
+.price-card.is-cobalt .price-cta,.price-card.is-dark .price-cta{border-color:#ffffff33}
+.price-card.is-rec{outline:3px solid var(--ink);outline-offset:4px}
+.price-card.is-dark.is-rec,.price-card.is-cobalt.is-rec{outline-color:var(--lime)}
+.price-badge{position:absolute;top:-12px;left:18px;background:var(--ink);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.price-card.is-dark .price-badge,.price-card.is-cobalt .price-badge{background:var(--lime);color:var(--ink)}
+@media(max-width:1050px){.price-cards{grid-template-columns:1fr 1fr;row-gap:26px}}
+@media(max-width:560px){.price-cards{grid-template-columns:1fr}}
+/* Enquiry form on the orange quote band */
+.core-quote{align-items:center}
+.quote-ticks{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:9px;font-weight:700}
+.quote-ticks li{display:flex;gap:10px;align-items:center}
+.quote-ticks li:before{content:"✓";display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--dark);color:var(--lime);font-size:13px;flex:none}
+.quote-contacts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;max-width:520px}
+.quote-contacts a{display:grid;gap:2px;padding:14px 16px;border-radius:12px;background:#ffffff59;border:1px solid #141f3826;overflow-wrap:anywhere;transition:background .18s}
+.quote-contacts a:hover{background:#ffffffa6}
+.quote-contacts small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.quote-contacts b{font-size:16px}
+.quote-grid p.quote-alt{margin-top:16px}
+.core-quote form.quote-card{background:#fff;border:0;border-radius:18px;padding:0 24px 24px;gap:14px;box-shadow:0 28px 60px #5a2c0033,0 2px 0 #141f3810;overflow:hidden}
+.quote-card__head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 -24px 6px;padding:16px 24px;background:var(--dark);color:#fff;border-bottom:4px solid var(--lime)}
+.quote-card__head b{font-size:17px}
+.quote-card__head span{font-size:12px;opacity:.75}
+.core-quote form.quote-card label{font-size:13px;gap:6px;color:var(--ink)}
+.core-quote .quote-card input,.core-quote .quote-card select,.core-quote .quote-card textarea{padding:12px 13px;border:1.5px solid #d6dcea;border-radius:10px;background:#f7f8fc;font-size:15px;transition:border-color .15s,background .15s,box-shadow .15s}
+.core-quote .quote-card input:focus,.core-quote .quote-card select:focus,.core-quote .quote-card textarea:focus{outline:0;border-color:var(--lime);background:#fff;box-shadow:0 0 0 4px #ffac6233}
+.core-quote form.quote-card .btn{justify-self:stretch;background:var(--lime);color:var(--ink);border-radius:10px;min-height:54px;font-size:16px}
+.core-quote form.quote-card .btn:hover{background:#ff9a40}
+.core-quote form.quote-card .btn:disabled{opacity:.55}
+.field-row{gap:14px}
+@media(max-width:650px){.quote-contacts{grid-template-columns:1fr}.core-quote form.quote-card{padding:0 16px 18px}.quote-card__head{margin:0 -16px 4px;padding:14px 16px}}
+/* Footer contact strip and group brands */
+.footer-contact{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:14px;margin-bottom:38px}
+.footer-contact a{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:center;padding:16px 18px;border-radius:14px;background:#ffffff0d;border:1px solid #ffffff1c;transition:border-color .18s,background .18s}
+.footer-contact a:hover{border-color:var(--lime);background:#ffffff14;color:inherit}
+.footer-contact .fc-ico{grid-row:span 2;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--lime);color:var(--dark);font-size:19px}
+.footer-contact small{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.footer-contact b{color:#fff;font-size:16px;overflow-wrap:anywhere}
+.footer-brands{border-top:1px solid #ffffff25;margin-top:32px;padding-top:26px}
+.footer .footer-brands h2{margin-bottom:18px}
+.footer-brand-grid{display:flex;flex-wrap:wrap;align-items:center;gap:18px 40px}
+.footer-brand-grid img{height:56px;width:auto;max-width:170px;object-fit:contain;opacity:.85;transition:opacity .18s}
+.footer-brand-grid img.sq{height:62px}
+.footer-brand-grid a:hover img{opacity:1}
+@media(max-width:850px){.footer-contact{grid-template-columns:1fr}.footer-brand-grid{gap:16px 28px}.footer-brand-grid img{height:44px}}
+.quote-contacts{grid-template-columns:.75fr 1.25fr;max-width:560px}.quote-contacts b{font-size:15px;overflow-wrap:normal;word-break:normal}

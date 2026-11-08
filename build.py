@@ -106,13 +106,22 @@ def footer():
     towns = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])}</a></li>' for t in TOWN_LIST[:15])
     sectors = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS_BY_KEY[k]["name"])}</a></li>' for k in FEATURED_SECTORS)
     guides = ''.join(f'<li><a href="/guides/{k}/">{escape(v[0])}</a></li>' for k, v in GUIDES.items())
-    return f'''<footer class="footer"><div class="shell"><div class="footer-grid footer-grid--wide"><div>{brand()}<p>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ<br><a href="{TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+    brands = ''.join(f'<a href="{url}" target="_blank" rel="noopener" aria-label="{name} website (opens in a new tab)"><img src="https://broadlanddigital.co.uk{src}" alt="{name}" loading="lazy" height="70"{cls}></a>' if url else f'<div><img src="https://broadlanddigital.co.uk{src}" alt="{name}" loading="lazy" height="70"></div>'
+                     for name, url, src, cls in (('Broadland Digital', 'https://broadlanddigital.co.uk/', '/wp-content/uploads/2023/03/Broadland_Digital_Logo.svg', ''),
+                                                 ('Race Car Graphics UK', 'https://racecargraphics.uk/', '/brands/rcg-logo.png', ''),
+                                                 ('Auto Opulence', 'https://autoopulence.co.uk/', '/brands/auto-opulence-logo-white.svg', ''),
+                                                 ('Norwich Web Works', 'https://norwichwebworks.co.uk/', '/brands/norwich-web-works-logo.png', ' class="sq"'),
+                                                 ('Consensus Media', '', '/brands/consensus-media-logo.svg', '')))
+    return f'''<footer class="footer"><div class="shell">
+    <div class="footer-contact"><a href="{TEL}"><span class="fc-ico" aria-hidden="true">☎</span><small>Call the workshop</small><b>{PHONE}</b></a><a href="mailto:{EMAIL}"><span class="fc-ico" aria-hidden="true">✉</span><small>Email us</small><b>{EMAIL}</b></a><a href="/contact/#workshop"><span class="fc-ico" aria-hidden="true">⌖</span><small>Visit</small><b>Vulcan House, Vulcan Road North, Norwich NR6 6AQ</b></a></div>
+    <div class="footer-grid footer-grid--wide"><div>{brand()}<p>Broadland Digital Ltd<br>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</p>
     <p class="footer-hours">Fitting by appointment. Call ahead to book.</p><p><a class="text-link" href="/contact/#workshop">Map &amp; directions {ARROW}</a></p></div>
     <div><h2>Services</h2><ul>{service_links}<li><a href="/design-your-van/">Van Designer</a></li><li><a href="/vehicles/">Van manufacturers</a></li><li><a href="/contact/">Contact</a></li></ul></div>
     <div><h2>Areas</h2><ul>{towns}<li><a href="/norfolk/">All areas</a></li></ul></div>
     <div><h2>Sectors</h2><ul>{sectors}<li><a href="/sectors/">All sectors</a></li></ul></div>
-    <div><h2>Guides</h2><ul>{guides}</ul><h2 class="footer-sub">Explore the group</h2><ul><li><a href="https://broadlanddigital.co.uk/">Broadland Digital · Signs &amp; print</a></li><li><a href="https://racecargraphics.uk/">Race Car Graphics · Motorsport liveries</a></li><li><a href="https://autoopulence.co.uk/">Auto Opulence · Vehicle care</a></li></ul></div></div>
-    <div class="footnote"><span>© 2026 Norwich Vehicle Graphics</span><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></div></div></footer>'''
+    <div><h2>Guides</h2><ul>{guides}</ul></div></div>
+    <section class="footer-brands" aria-labelledby="footer-brands-title"><h2 id="footer-brands-title">Group brands</h2><div class="footer-brand-grid">{brands}</div></section>
+    <div class="footnote"><span>© 2026 Norwich Vehicle Graphics, part of Broadland Digital Ltd</span><span><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></span></div></div></footer>'''
 
 def quote():
     return f'''<section class="quote" id="quote"><div class="shell quote-grid"><div><p class="eyebrow">Get a free quote</p><h2>What are you driving?</h2><p>Tell us the make and model, how many vehicles you have and the look you’re after. If you have photos or artwork, have them handy.</p><div class="actions">{button('Open our enquiry form', '/contact/#quote', 'dark')}</div></div>
