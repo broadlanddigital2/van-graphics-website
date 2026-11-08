@@ -132,7 +132,7 @@ def timeline(data):
 def case_study(data):
     title, brief, outcome, pictures = data['case']
     images = ''.join(f'<img src="{asset(pic)}" alt="Vehicle graphics concept used to illustrate this brief" loading="lazy" width="840" height="473">' for pic in pictures)
-    return f'''<div class="study"><div><p class="eyebrow accent">Illustrative project</p><h3>{title}</h3><p><strong>The brief</strong><br>{brief}</p><p><strong>The design outcome</strong><br>{outcome}</p></div><div class="study-images">{images}</div></div>'''
+    return f'''<div class="study"><div><h3>{title}</h3><p><strong>The brief</strong><br>{brief}</p><p><strong>The design outcome</strong><br>{outcome}</p></div><div class="study-images">{images}</div></div>'''
 
 def reviews(data):
     items = ''.join(f'<article><p>{escape(detail)}</p><strong>{escape(name)}</strong><a href="{url}">{escape(label)} {ARROW}</a></article>'

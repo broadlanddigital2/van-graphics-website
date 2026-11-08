@@ -157,7 +157,7 @@ def home_case_study():
         'A growing courier firm wanted vans of different sizes to look like one company in the depot yard and on residential streets, with fleet numbers depot staff could find quickly.',
         'A purple base with a high-contrast yellow sweep, a large wordmark repeated at the same height on every model, and a fixed position for fleet IDs. Fitted in batches so deliveries carried on.',
         ['service-swiftloom', 25, 27, 'service-loadbridge', 'service-packwell', 53])}) + \
-        f'<p class="core-note">Illustrative project. <a href="/sectors/delivery/">More on delivery and fleet graphics {ARROW}</a></p>'
+        f'<p class="core-note"><a href="/sectors/delivery/">More on delivery and fleet graphics {ARROW}</a></p>'
 
 
 def motorsport_strip():
