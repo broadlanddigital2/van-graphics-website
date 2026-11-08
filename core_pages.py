@@ -154,6 +154,7 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
     <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label>
     <label>Vehicle make and model{'' if service else ' (optional)'}<input name="vehicle"{vehicle_required} maxlength="120" placeholder="e.g. Ford Transit Custom"></label></div>
+    <label>Postcode (optional)<input name="postcode" autocomplete="postal-code" maxlength="10" placeholder="e.g. NR6 6AQ"></label>
     <label>{'How can we help?' if contact else 'Project details'}<textarea name="details" rows="4" maxlength="1200" required placeholder="Tell us what you need"></textarea></label>
     <button class="btn dark" type="submit" disabled>Open email draft {ARROW}</button><p id="enquiry-status" role="status" hidden></p>
     <p class="form-privacy"><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></p>

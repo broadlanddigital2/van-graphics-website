@@ -39,6 +39,7 @@ if (enquiry) {
       `Email: ${values.get('email')}`,
       values.get('phone') && `Phone: ${values.get('phone')}`,
       values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`,
+      values.get('postcode') && `Postcode: ${values.get('postcode')}`,
     ].filter(Boolean);
     const body = [...fields, '', values.get('details')].join('\r\n');
     const status = document.querySelector('#enquiry-status');
@@ -55,7 +56,7 @@ if (enquiry) {
           headers: { 'content-type': 'application/json', 'x-rcg-channel-key': crm.crmKey, 'x-rcg-channel-secret': crm.crmSecret },
           body: JSON.stringify({
             name: values.get('name'), email: values.get('email'), phone: values.get('phone') || '',
-            subject, message: [values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`, `Service: ${values.get('service')}`, '', values.get('details')].filter((x) => x !== null && x !== false).join('\n'),
+            subject, message: [values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`, values.get('postcode') && `Postcode: ${values.get('postcode')}`, `Service: ${values.get('service')}`, '', values.get('details')].filter((x) => x !== null && x !== false).join('\n'),
             source_url: location.href, utm_source: source.utm_source || '', utm_medium: source.utm_medium || '', utm_campaign: source.utm_campaign || '', gclid: source.gclid || '',
           }),
         });

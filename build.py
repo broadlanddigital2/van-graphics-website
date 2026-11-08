@@ -3,11 +3,12 @@ import re
 import json
 from pathlib import Path
 
-from core_content import CONTENT, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
+from core_content import CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
 from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
 from local_pages import sector_hero, sector_hero_image, sector_page, sectors_hub, town_page, town_questions, workshop_map
+import home_sections as H
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
 
 OUT = Path('dist')
@@ -65,18 +66,37 @@ def brand():
     return '<a class="brand" href="/" aria-label="Norwich Vehicle Graphics home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 29 17 10h5l-4 9h5l4-9h5l-9 19h-5l3-6h-5l-3 6z" fill="currentColor"/></svg></span><span class="brand-name">NORWICH<br><small>VEHICLE GRAPHICS</small></span></a>'
 
 
+def mega(label, href, columns, wide=False):
+    cols = ''.join(f'<div><p>{escape(title)}</p><ul>' + ''.join(f'<li><a href="{u}">{escape(n)}</a></li>' for n, u in items) + '</ul></div>' for title, items in columns)
+    return f'<div class="nav-item{" is-wide" if wide else ""}"><a href="{href}" class="nav-top">{label}</a><div class="mega"><div class="mega-inner">{cols}</div></div></div>'
+
 def header():
-    links = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/#examples">Design ideas</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/contact/">Contact</a>'
+    services = [('Services', [(s['label'], f'/{s["slug"]}/') for s in SERVICES] + [('Van Designer', '/design-your-van/'), ('Van manufacturers', '/vehicles/')])]
+    sector_cols = [(label, [(s['name'], f'/sectors/{s["key"]}/') for s in SECTOR_LIST if s['group'] == g]) for g, label, _ in GROUPS]
+    towns = [t['name'] for t in TOWN_LIST]
+    half = (len(TOWN_LIST) + 1) // 2
+    area_cols = [('Norfolk & Waveney', [(t['name'], f'/norfolk/{t["key"]}/') for t in TOWN_LIST[:half]]), ('', [(t['name'], f'/norfolk/{t["key"]}/') for t in TOWN_LIST[half:]] + [('All areas', '/norfolk/')])]
+    guide_cols = [('Guides', [(v[0], f'/guides/{k}/') for k, v in GUIDES.items()])]
+    nav = (mega('Services', '/#services', services) + '<a class="nav-top" href="/design-your-van/">Design your van</a>'
+           + mega('Sectors', '/sectors/', sector_cols, wide=True) + mega('Areas', '/norfolk/', area_cols) + mega('Guides', '/guides/' if False else '/#guides', guide_cols)
+           + '<a class="nav-top" href="/#gallery">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
+    mobile = '<a href="/#services">Services</a><a href="/design-your-van/">Design your van</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/#gallery">Gallery</a><a href="/contact/">Contact</a>'
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
-    <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{links}</nav>
-    <details class="mobile"><summary>Menu</summary><nav aria-label="Mobile navigation"><div>{links}</div></nav></details>{button('Get a quote', '#quote')}</div></header>'''
+    <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
+    <details class="mobile"><summary>Menu</summary><nav aria-label="Mobile navigation"><div>{mobile}</div></nav></details><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
 
 def footer():
     service_links = ''.join(f'<li><a href="/{s["slug"]}/">{s["label"]}</a></li>' for s in SERVICES)
-    return f'''<footer class="footer"><div class="shell"><div class="footer-grid"><div>{brand()}<p>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ<br><a href="{TEL}">{PHONE}</a></p></div>
-    <div><h2>Vehicle graphics</h2><ul>{service_links}<li><a href="/design-your-van/">Van Designer</a></li><li><a href="/norfolk/">Areas we cover</a></li><li><a href="/sectors/">Sectors</a></li><li><a href="/contact/">Contact</a></li></ul></div>
-    <div><h2>Explore the group</h2><ul><li><a href="https://broadlanddigital.co.uk/">Broadland Digital · Signs &amp; print</a></li><li><a href="https://racecargraphics.uk/">Race Car Graphics · Motorsport liveries</a></li><li><a href="https://autoopulence.co.uk/">Auto Opulence · Vehicle care</a></li></ul></div></div>
+    towns = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])}</a></li>' for t in TOWN_LIST[:15])
+    sectors = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS_BY_KEY[k]["name"])}</a></li>' for k in FEATURED_SECTORS)
+    guides = ''.join(f'<li><a href="/guides/{k}/">{escape(v[0])}</a></li>' for k, v in GUIDES.items())
+    return f'''<footer class="footer"><div class="shell"><div class="footer-grid footer-grid--wide"><div>{brand()}<p>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ<br><a href="{TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+    <p class="footer-hours">Fitting by appointment. Call ahead to book.</p><p><a class="text-link" href="/contact/#workshop">Map &amp; directions {ARROW}</a></p></div>
+    <div><h2>Services</h2><ul>{service_links}<li><a href="/design-your-van/">Van Designer</a></li><li><a href="/vehicles/">Van manufacturers</a></li><li><a href="/contact/">Contact</a></li></ul></div>
+    <div><h2>Areas</h2><ul>{towns}<li><a href="/norfolk/">All areas</a></li></ul></div>
+    <div><h2>Sectors</h2><ul>{sectors}<li><a href="/sectors/">All sectors</a></li></ul></div>
+    <div><h2>Guides</h2><ul>{guides}</ul><h2 class="footer-sub">Explore the group</h2><ul><li><a href="https://broadlanddigital.co.uk/">Broadland Digital · Signs &amp; print</a></li><li><a href="https://racecargraphics.uk/">Race Car Graphics · Motorsport liveries</a></li><li><a href="https://autoopulence.co.uk/">Auto Opulence · Vehicle care</a></li></ul></div></div>
     <div class="footnote"><span>© 2026 Norwich Vehicle Graphics</span><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></div></div></footer>'''
 
 def quote():
@@ -199,11 +219,33 @@ home_faq = [('How much do vehicle graphics cost?','It depends on the vehicle, th
             ('Where are vehicle graphics fitted?','Fitting is arranged in Norwich. Call 01603 407786 before travelling so the team can confirm the fitting location and your appointment.'),
             ('Can you do a single van or a whole fleet?','Yes. We work on individual cars and vans as well as multi-vehicle graphics. Tell us the vehicle types and how many you need to brand.')]
 
-page('/', 'Vehicle Graphics Norwich & Norfolk | Norwich Vehicle Graphics',
-     'Van signwriting, vehicle wraps and fleet graphics designed, produced and fitted in Norwich. Get a free quote from the Norwich workshop.',
-     hero('Make your mark<span>on the road.</span>', 'Van signwriting, vehicle wraps and fleet graphics designed, produced and fitted in Norwich, Norfolk.', 'hero','Orange and blue wrapped van on a UK circuit','Vehicle graphics · Norwich, Norfolk',True)
-     + '<div class="ribbon"><div class="shell"><div><b>01</b> Designed in Norwich</div><div><b>02</b> Produced in-house</div><div><b>03</b> Fitted locally</div></div></div>'
-     + designer_promo(button) + cards()+showcase()+process()+local()+faq(home_faq), schema=business)
+from core_pages import section as numbered
+home_hero = hero('Vehicle graphics &amp; van wraps<span>in Norwich, Norfolk.</span>', 'Van signwriting, partial and full wraps and fleet graphics, designed, printed and fitted in-house at our Norwich workshop.', 'hero','Orange and blue wrapped van on a UK circuit','Vehicle graphics · Norwich, Norfolk',True)
+home_hero = home_hero.replace('<a class="btn outline" href="#services">Explore services <span class="arr" aria-hidden="true">↓</span></a>', button('Design your van', '/design-your-van/#designer', 'outline'), 1)
+home_hero = home_hero.replace('<section class="hero ', '<section class="hero home-hero ', 1)
+home_hero = home_hero.replace('</div></div><div class="hero-media">', '</div>' + H.trust_row() + '</div><div class="hero-media">', 1)
+home_schema = {'@context':'https://schema.org','@graph':[{k:v for k,v in business.items() if k!='@context'},
+    {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in H.HOME_FAQ]}]}
+page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
+     'Van graphics, full and partial van wraps and fleet livery across Norwich and Norfolk. Designed, printed and fitted in-house. Design your van online or get a free quote.',
+     home_hero
+     + designer_promo(button)
+     + showcase()
+     + numbered(4, 'services', 'Our services', 'Find the right finish.', H.service_cards())
+     + H.stats_strip()
+     + numbered(6, 'compare', 'Compare your options', 'Signwriting, partial or full wrap?', H.comparison_table(), 'tint')
+     + numbered(7, 'gallery', 'Design gallery', 'Graphics for every kind of business.', H.home_gallery(), 'dark-section')
+     + numbered(8, 'process', 'How it works', 'From first call to fitted.', H.process_steps())
+     + numbered(9, 'sectors', 'Sectors', 'Graphics for your line of work.', H.sectors_grid(), 'tint')
+     + numbered(10, 'vehicles', 'Vehicles we wrap', 'Choose by brand and model.', vehicle_picker())
+     + numbered(11, 'areas', 'Areas we cover', 'From Norwich across Norfolk.', H.areas_map(), 'local')
+     + numbered(12, 'why-us', 'Why choose us', 'Done properly, start to finish.', H.why_us())
+     + numbered(13, 'reviews', 'Reviews', 'What customers say.', H.home_reviews(), 'tint')
+     + numbered(14, 'case-study', 'Featured project', 'A closer look at a fleet livery.', H.home_case_study(), 'dark-section')
+     + H.motorsport_strip()
+     + numbered(15, 'guides', 'Guides', 'Get ready for your project.', H.guides_teaser())
+     + faq(H.HOME_FAQ),
+     schema=home_schema, quote_block=enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context='Homepage'))
 
 page('/design-your-van/', 'Free Van Designer | Design Van Graphics & Wraps Online | Norwich Vehicle Graphics',
      'Design your van graphics or full wrap online in 60 seconds. Add your logo and details, spin it in 360° and request a quote from the Norwich team.',
