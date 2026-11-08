@@ -65,7 +65,7 @@ def button(label, url, cls=''):
     return f'<a class="btn {cls}" href="{url}">{label}{ARROW}</a>'
 
 def brand():
-    return '<a class="brand" href="/" aria-label="Norwich Vehicle Graphics home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M8 29 17 10h5l-4 9h5l4-9h5l-9 19h-5l3-6h-5l-3 6z" fill="currentColor"/></svg></span><span class="brand-name">NORWICH<br><small>VEHICLE GRAPHICS</small></span></a>'
+    return '<a class="brand brand--logo" href="/" aria-label="Wrapt home"><img src="/assets/wrapt-logo.webp" alt="Wrapt" width="566" height="120"></a>'
 
 
 def mega(label, href, columns, intro):
