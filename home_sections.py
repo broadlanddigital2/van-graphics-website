@@ -92,7 +92,7 @@ def home_gallery(limit=18, work=True):
     group_label = {g: label for g, label, _ in GROUPS}
     by_group = {g: [] for g, _, _ in GROUPS}
     for sec in SECTOR_LIST:
-        for img, cap in sec['gallery']:
+        for img, cap in __import__('local_pages').sector_gallery(sec):
             by_group[sec['group']].append((img, cap, group_label[sec['group']]))
     seen, picks = set(), []
     while len(picks) < limit and any(by_group.values()):
