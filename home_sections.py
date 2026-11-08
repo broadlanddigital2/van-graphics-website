@@ -56,7 +56,6 @@ def service_cards():
         ('Partial wraps', 'Printed panels or colour over selected areas, using your paint as part of the design.', '/vehicle-wraps-norwich/#comparison', 'service-petalmill', 'Quoted per vehicle'),
         ('Full wraps', 'Printed imagery or a full colour change across the body.', '/vehicle-wraps-norwich/', 'service-tidelark', 'Quoted per vehicle'),
         ('Fleet graphics', 'One design adapted to every make and model, fitted in batches.', '/fleet-graphics-norwich/', 'service-juniper', 'Quoted per fleet'),
-        ('Van Designer', 'Design your van online in about a minute, free.', '/design-your-van/', 'transit-custom-msrt-printed-wrap', 'Free to use'),
     ]
     items = ''.join(f'''<a class="svc-card" href="{href}"><img src="{asset(img)}" alt="" loading="lazy" width="840" height="473">
     <div><span class="svc-price">{price}</span><h3>{title}</h3><p>{copy}</p><strong>Explore {ARROW}</strong></div></a>''' for title, copy, href, img, price in cards)

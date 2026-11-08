@@ -180,3 +180,16 @@
 .nvg .my-design__act{display:flex;gap:6px}
 .nvg .err:empty{display:none}
 @media(max-width:620px){.nvg .my-design{grid-template-columns:96px 1fr}.nvg .my-design__act{grid-column:1/-1}.nvg .save-state{display:block;margin:4px 0 0}}
+/* light variant so the top of the homepage alternates dark / light / dark */
+.nvg-promo{background:linear-gradient(180deg,#eef2ff 0%,#e3eaff 100%);color:var(--ink,#141f38);border-bottom:1px solid #d4dbea}
+.nvg-promo h2{color:#141f38}
+.nvg-promo h2 span{color:#364bc2}
+.nvg-promo .eyebrow.accent{color:#364bc2}
+.nvg-promo .eyebrow.accent:before{background:#364bc2}
+.nvg-promo .lede{color:#485774}
+.nvg-promo li{color:#141f38}
+.nvg-promo li b{color:#364bc2}
+.nvg-promo small{color:#485774}
+.nvg-promo .btn.outline{color:#141f38;border-color:#141f3866;background:transparent}
+.nvg-promo .btn.outline:hover{background:#141f38;color:#fff}
+.nvg-promo .nvg-demo{box-shadow:0 30px 60px #111b3133}

@@ -271,3 +271,7 @@ html{scroll-padding-top:96px}
 .mega{display:block;visibility:hidden;opacity:0;transition:opacity .12s ease .18s,visibility 0s linear .3s}
 .nav-item:hover .mega,.nav-item:focus-within .mega{visibility:visible;opacity:1;z-index:62;transition-delay:0s}
 .mega:before{content:"";position:absolute;left:0;right:0;bottom:100%;height:34px}
+.svc-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.svc-card,.svc-card:nth-child(n+4),.svc-card:last-child{grid-column:auto}
+@media(max-width:1000px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.svc-grid{grid-template-columns:1fr}}
+.svc-card img{flex:none;height:auto;aspect-ratio:4/3;object-fit:cover;display:block}
