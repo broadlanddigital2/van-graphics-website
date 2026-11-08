@@ -96,8 +96,7 @@ def town_hero(t, image, alt, phone, tel):
     <p class="lede">{escape(t["lede"])}</p>
     <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
-    <div class="sector-hero__bar"><div class="shell"><p>Popular in {name}</p><ul>{focus}</ul></div></div>
-    <span class="sector-hero__caption">{'Illustrative design' }</span></section>'''
+    <div class="sector-hero__bar"><div class="shell"><p>Popular in {name}</p><ul>{focus}</ul></div></div></section>'''
 
 
 def town_page(key, phone, tel, email):
@@ -196,8 +195,7 @@ def sector_hero(key, phone, tel):
     <p class="lede">{escape(s['card'])} We design, print and fit {escape(s['secondary'][0])} and {escape(s['secondary'][1])} at our Norwich workshop.</p>
     <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Try the Van Designer{ARROW}</a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
-    <div class="sector-hero__bar"><div class="shell"><p>Your van should say</p><ul>{must}</ul></div></div>
-    <span class="sector-hero__caption">Illustrative design</span></section>'''
+    <div class="sector-hero__bar"><div class="shell"><p>Your van should say</p><ul>{must}</ul></div></div></section>'''
 
 
 def recommended_package(title):

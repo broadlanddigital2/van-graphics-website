@@ -141,7 +141,7 @@ def hero(title, description, image, alt, eyebrow, home=False, core=False, parent
         secondary = '<a class="btn outline" href="#gallery">View design gallery <span class="arr" aria-hidden="true">↓</span></a>'
     if call:
         secondary = button(f'Call {PHONE}', TEL, 'outline')
-    caption = 'Concept design / Printed wrap' if home else 'Illustrative design'
+    caption = 'Concept design / Printed wrap' if home else ''
     return f'''<section class="hero {'' if home else 'subhero service-hero' if core else 'subhero'}"><div class="shell"><div class="hero-copy">{crumb}
     <p class="eyebrow accent">{eyebrow}</p><h1>{title}</h1><p class="lede">{description}</p><div class="actions">{button('Get a free quote','#quote')}{secondary}</div>{'<a class="text-link service-vehicle-link" href="#vehicles">Choose by brand and model ↓</a>' if core else ''}</div>{media(image,alt,caption)}</div></section>'''
 
@@ -162,8 +162,7 @@ def service_hero(s):
     <p class="lede">{escape(s['intro'])}</p>
     <div class="actions">{button('Get a free quote', '#quote')}<a class="btn outline" href="#gallery">View design gallery <span class="arr" aria-hidden="true">↓</span></a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
-    <div class="sector-hero__bar"><div class="shell"><p>Options</p><ul>{options}</ul></div></div>
-    <span class="sector-hero__caption">Illustrative design</span></section>'''
+    <div class="sector-hero__bar"><div class="shell"><p>Options</p><ul>{options}</ul></div></div></section>'''
 
 def cards(exclude=None):
     items = ''.join(f'''<a class="card" href="/{s["slug"]}/"><div class="card-image"><img src="/assets/{s["image"]}.webp" width="1150" height="647" loading="lazy" alt="{s["alt"]}"><span class="tag">{s["tag"]}</span></div>
