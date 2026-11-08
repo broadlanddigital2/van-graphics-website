@@ -6,7 +6,7 @@ from pathlib import Path
 from core_content import CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
-from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
+from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY, cap, sector_meta
 from local_pages import sector_hero, sector_hero_image, sector_page, sectors_hub, town_page, town_questions, workshop_map
 import home_sections as H
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
@@ -349,11 +349,11 @@ for sector in SECTOR_LIST:
     key, name = sector['key'], sector['name']
     path = f'/sectors/{key}/'
     support_urls.append(path)
-    heading = f'Van graphics for {name.lower()}'
-    description = f'Van signwriting, wraps and fleet graphics for {name.lower()} across Norwich and Norfolk. {sector["card"]}'
+    heading = cap(sector['primary'])
+    meta_title, description = sector_meta(sector)
     questions = sector['faqs']
     image, _ = sector_hero_image(key)
-    page(path, f'{name} Van Graphics & Wraps Norfolk | Norwich Vehicle Graphics', description,
+    page(path, meta_title, description,
          sector_hero(key, PHONE, TEL)
          + sector_page(key) + faq(questions), image,
          location_schema(path, heading, description, sector_parent, questions),

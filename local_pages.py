@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 from areas import TOWN_LIST, TOWNS_BY_KEY
 from core_content import CONTENT, SECTOR_CARDS, SECTORS
 from core_pages import ARROW, asset, case_study, info_cards, link_tiles, pricing, reviews, section, sector_cards, table
-from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY
+from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY, cap
 
 ADDRESS = 'Vulcan House, Vulcan Road North, Norwich NR6 6AQ'
 MAP_QUERY = f'Broadland Digital, {ADDRESS}'
@@ -186,15 +186,14 @@ def sector_hero(key, phone, tel):
     s = SECTORS_BY_KEY[key]
     image, dedicated = sector_hero_image(key)
     group = next(label for g, label, _ in GROUPS if g == s['group'])
-    name = escape(s['name'].lower().replace('chapter 8', 'Chapter 8'))
     chips = ''.join(f'<li>{escape(c)}</li>' for c in (s['package'][0], 'Signwriting from £149', 'Designed & fitted in Norwich'))
     must = ''.join(f'<li>{escape(m)}</li>' for m in s['must'])
-    return f'''<section class="sector-hero{' is-dedicated' if dedicated else ''}{' is-long' if len(s['name']) > 22 else ''}">
+    return f'''<section class="sector-hero{' is-dedicated' if dedicated else ''}{' is-long' if len(s['primary']) > 24 else ''}">
     <img class="sector-hero__img" src="{asset(image)}" alt="{escape(s['alt'])}" fetchpriority="high" width="2400" height="1100">
     <div class="shell sector-hero__inner"><div class="sector-hero__copy">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/sectors/">Sectors</a><span aria-hidden="true">/</span><span>{escape(s['name'])}</span></nav>
-    <p class="eyebrow accent">{escape(group)}</p><h1>Van graphics for<span>{name}.</span></h1>
-    <p class="lede">{escape(s['card'])} Designed, printed and fitted in Norwich.</p>
+    <p class="eyebrow accent">{escape(group)} · {escape(s['name'])}</p><h1>{escape(cap(s['primary']))}<span>in Norwich &amp; Norfolk.</span></h1>
+    <p class="lede">{escape(s['card'])} We design, print and fit {escape(s['secondary'][0])} and {escape(s['secondary'][1])} at our Norwich workshop.</p>
     <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Try the Van Designer{ARROW}</a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
     <div class="sector-hero__bar"><div class="shell"><p>Your van should say</p><ul>{must}</ul></div></div>
@@ -205,7 +204,9 @@ def sector_page(key):
     s = SECTORS_BY_KEY[key]
     name = s['name']
     pains = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['pains'], 1)])
-    challenge = f'<p class="core-prose">{escape(s["intro"])}</p>' + pains
+    sec = s['secondary']
+    challenge = (f'<p class="core-prose">{escape(s["intro"])} Whether you need {escape(sec[1])}, {escape(sec[2])} or {escape(sec[3])}, '
+                 f'the layout has to work on your vehicle as it really is.</p>') + pains
     must = '<ul class="must-list">' + ''.join(f'<li>{escape(item)}</li>' for item in s['must']) + '</ul>' + \
         '<p class="core-note">Not sure what to include? Our guide to <a href="/guides/van-signwriting-brief/">what to put on a work van</a> walks you through it.</p>'
     note = '<p class="core-note">Concept images are illustrative. Sector-specific examples will be added as projects complete.</p>' if s['stand_in'] else ''
@@ -217,17 +218,17 @@ def sector_page(key):
         ('Full wrap', 'Quoted per vehicle', 'Printed imagery or brand colours across most exterior panels.'),
         ('Fleet graphics', 'Quoted per fleet', 'A shared layout adapted for each make and model.'),
     )
-    budget = table(f'Price guide for {escape(name.lower())}', ('Package', 'Price guide', 'Typical scope'), packages)
+    budget = table(f'Price guide for {escape(s["primary"])}', ('Package', 'Price guide', 'Typical scope'), packages)
     budget += '<p class="core-note">The signwriting benchmark comes from <a href="/van-signwriting-norwich/#pricing">Broadland Digital’s published packages</a>. Ask for a fitted quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
     tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
     title, brief, outcome, picture = s['case']
     html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('case-study', 'Featured design'), ('faq', 'FAQs'), ('quote', 'Enquire')))
     html += ''.join([
-        section(1, 'challenge', 'The challenge', f'The challenge for {escape(name.lower())}.', challenge),
+        section(1, 'challenge', 'The challenge', 'What the job asks of your van.', challenge),
         section(2, 'must-haves', 'What to include', 'What your van must say.', must, 'tint'),
-        section(3, 'gallery', 'Sector gallery', 'See how the graphics could work.', design_examples(s['gallery']) + note, 'dark-section'),
+        section(3, 'gallery', 'Sector gallery', f'{escape(cap(sec[0]))} ideas.', design_examples(s['gallery']) + note, 'dark-section'),
         section(4, 'package', 'Recommended package', escape(package_title) + '.', package),
-        section(5, 'pricing', 'Price guide', 'Budget for the coverage you need.', budget, 'tint'),
+        section(5, 'pricing', 'Price guide', f'What {escape(s["primary"])} cost.', budget, 'tint'),
         section(6, 'design-tips', 'Design tips', 'Build the layout around the job.', tips),
         section(7, 'case-study', 'Featured design', 'See the brief and the layout.', case_study({'case': (escape(title), escape(brief), escape(outcome), [picture])}), 'dark-section'),
     ])

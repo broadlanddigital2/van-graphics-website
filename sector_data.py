@@ -331,3 +331,54 @@ SECTOR_LIST = [
 ]
 
 SECTORS_BY_KEY = {s['key']: s for s in SECTOR_LIST}
+
+# SEO: one primary and four secondary keywords per sector (UK search phrasing).
+# The primary leads the title, H1 and meta description; secondaries are worked into the
+# lede, intro, section headings and meta description so pages don't share one template phrase.
+KEYWORDS = {
+    'trades': ('trade van signwriting', ['van graphics for tradesmen', 'tradesman van wraps', 'work van lettering', 'builders van signwriting']),
+    'plumbers-heating': ('plumber van graphics', ['plumbing van signwriting', 'heating engineer van wraps', 'boiler engineer van livery', 'Gas Safe van graphics']),
+    'electricians': ('electrician van graphics', ['electrical contractor van wraps', 'electrician van signwriting', 'EV charger installer van livery', 'sparky van lettering']),
+    'roofers': ('roofing van graphics', ['roofer van signwriting', 'roofing company van wraps', 'roofing pickup graphics', 'roofing contractor van livery']),
+    'scaffolders': ('scaffolding vehicle graphics', ['scaffolding truck livery', 'scaffolder van signwriting', 'dropside lorry graphics', 'scaffolding company fleet branding']),
+    'landscapers-gardeners': ('landscaping van wraps', ['gardener van signwriting', 'tree surgeon van graphics', 'garden maintenance van livery', 'landscaper trailer graphics']),
+    'carpenters-joiners': ('joinery van signwriting', ['carpenter van graphics', 'kitchen fitter van wraps', 'joiner van livery', 'bespoke furniture van lettering']),
+    'cleaning': ('cleaning company vehicle graphics', ['cleaning van signwriting', 'domestic cleaner car graphics', 'commercial cleaning fleet livery', 'cleaning business van wraps']),
+    'window-cleaners': ('window cleaning van graphics', ['window cleaner van signwriting', 'gutter cleaning van wraps', 'water-fed pole van livery', 'exterior cleaning van lettering']),
+    'pest-control': ('pest control van graphics', ['pest control van signwriting', 'discreet pest control vehicle livery', 'pest control fleet branding', 'pest technician van lettering']),
+    'dog-groomers': ('dog grooming van wraps', ['mobile dog grooming van graphics', 'dog groomer van signwriting', 'pet grooming van livery', 'mobile groomer van wrap design']),
+    'mobile-mechanics': ('mobile mechanic van graphics', ['mobile mechanic van signwriting', 'mobile tyre fitting van wraps', 'diagnostic van livery', 'recovery vehicle graphics']),
+    'mobile-bars': ('horsebox bar wraps', ['mobile bar van graphics', 'prosecco van signwriting', 'converted horsebox livery', 'event bar trailer wraps']),
+    'food-drink': ('food truck wraps', ['catering van graphics', 'coffee van wraps', 'street food trailer livery', 'mobile catering van signwriting']),
+    'events': ('event vehicle graphics', ['promotional van wraps', 'event trailer graphics', 'roadshow vehicle livery', 'marquee hire van signwriting']),
+    'care-healthcare': ('care company car graphics', ['home care vehicle livery', 'healthcare fleet graphics', 'carer car signwriting', 'community health van graphics']),
+    'charities': ('charity vehicle graphics', ['community minibus graphics', 'charity van signwriting', 'sponsor panel vehicle livery', 'not-for-profit fleet branding']),
+    'delivery': ('courier van wraps', ['delivery van graphics', 'logistics fleet livery', 'multi-drop van signwriting', 'haulage cab graphics']),
+    'removals': ('removals van graphics', ['Luton van wraps', 'removals lorry livery', 'box van signwriting', 'self-storage van branding']),
+    'fleets-corporate': ('corporate fleet graphics', ['company car graphics', 'fleet livery design', 'pool van signwriting', 'lease vehicle branding']),
+    'highways-chapter-8': ('Chapter 8 chevron kits', ['highways vehicle graphics', 'rear chevron markings', 'roadside maintenance van livery', 'traffic management vehicle graphics']),
+    'construction': ('construction vehicle graphics', ['builder van wraps', 'construction company fleet livery', 'site pickup graphics', 'groundworks van signwriting']),
+    'agriculture': ('agricultural vehicle graphics', ['farm pickup signwriting', 'agricultural contractor van livery', 'farm trailer graphics', 'estate vehicle branding']),
+    'marine-boatyards': ('marine vehicle graphics', ['boatyard van signwriting', 'marine engineer van wraps', 'Broads hire van livery', 'boat trailer graphics']),
+    'retail': ('shop delivery van graphics', ['florist van wraps', 'retail van signwriting', 'local delivery van livery', 'shopfront van branding']),
+    'tourism-holiday-lets': ('holiday let van graphics', ['changeover van signwriting', 'tourism vehicle wraps', 'tour minibus graphics', 'holiday cottage cleaning van livery']),
+    'automotive': ('detailing van wraps', ['garage vehicle graphics', 'courtesy car graphics', 'valeting van signwriting', 'demonstrator van livery']),
+}
+for _s in SECTOR_LIST:
+    _s['primary'], _s['secondary'] = KEYWORDS[_s['key']]
+
+
+def cap(text):
+    """Sentence case that keeps acronyms and proper nouns (EV, Gas Safe, Luton, Broads, Chapter)."""
+    return text[:1].upper() + text[1:]
+
+
+def sector_meta(s):
+    p, sec = s['primary'], s['secondary']
+    title = f'{cap(p)} in Norfolk | Norwich Vehicle Graphics'
+    if len(title) > 66:
+        title = f'{cap(p)} | Norwich Vehicle Graphics'
+    desc = f'{cap(p)}, {sec[0]} and {sec[1]}, designed, printed and fitted in Norwich for businesses across Norfolk. Free design and quote.'
+    if len(desc) > 165:
+        desc = f'{cap(p)} and {sec[0]}, designed, printed and fitted in Norwich for businesses across Norfolk. Free quote.'
+    return title, desc
