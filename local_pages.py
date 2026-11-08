@@ -45,7 +45,7 @@ def page_jumps(links):
 
 def design_examples(entries):
     grid = 'core-gallery four' if len(entries) == 4 else 'core-gallery'
-    return f'<p class="core-note example-note">Illustrative vehicle graphics concepts.</p><div class="{grid}">' + ''.join(
+    return f'<div class="{grid}">' + ''.join(
         f'<figure><img src="{asset(image)}" alt="{escape(caption)}" loading="lazy" width="840" height="473">'
         f'<figcaption><strong>{escape(caption)}</strong></figcaption></figure>'
         for image, caption in entries
@@ -198,6 +198,16 @@ def sector_hero(key, phone, tel):
     <div class="sector-hero__bar"><div class="shell"><p>Your van should say</p><ul>{must}</ul></div></div></section>'''
 
 
+def sector_gallery(s):
+    """Use the sector's own concept images once added (assets/sectors/gallery/{key}-{n}.webp)."""
+    from pathlib import Path
+    from gallery_brief import G
+    out = []
+    for n, (fallback, entry) in enumerate(zip(s['gallery'], G[s['key']]), 1):
+        own = f'sectors/gallery/{s["key"]}-{n}'
+        out.append((own, entry[6]) if Path(f'dist/assets/{own}.webp').exists() else fallback)
+    return out
+
 def recommended_package(title):
     t = title.lower()
     hits = [(t.find(w), key) for w, key in (('fleet', 'fleet'), ('partial', 'partial'), ('full', 'full'), ('box-body', 'full'), ('signwriting', 'sign'), ('chevron', 'sign'), ('headboard', 'sign')) if w in t]
@@ -234,20 +244,21 @@ def sector_page(key):
     package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
     budget = price_cards(s) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
     tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
-    html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('faq', 'FAQs'), ('quote', 'Enquire')))
+    html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('reviews', 'Reviews'), ('faq', 'FAQs'), ('quote', 'Enquire')))
     html += ''.join([
         section(1, 'challenge', 'The challenge', 'What the job asks of your van.', challenge),
         section(2, 'must-haves', 'What to include', 'What your van must say.', must, 'tint'),
-        section(3, 'gallery', 'Sector gallery', f'{escape(cap(sec[0]))} ideas.', design_examples(s['gallery']) + note, 'dark-section'),
+        section(3, 'gallery', 'Sector gallery', f'{escape(cap(sec[0]))} ideas.', design_examples(sector_gallery(s)) + note, 'dark-section'),
         section(4, 'package', 'Recommended package', escape(package_title) + '.', package),
         section(5, 'pricing', 'Price guide', f'What {escape(s["primary"])} cost.', budget, 'tint'),
         section(6, 'design-tips', 'Design tips', 'Build the layout around the job.', tips),
+        section(7, 'reviews', 'Customer reviews', 'What our customers say.', reviews(), 'tint'),
     ])
     html += designer_strip('order')
-    html += section(7, 'areas', 'Where we work', 'Fitted in Norwich, serving all of Norfolk.',
+    html += section(8, 'areas', 'Where we work', 'Fitted in Norwich, serving all of Norfolk.',
                     link_tiles([(t['key'], (t['name'], f'{t["miles"]} miles')) for t in TOWN_LIST[:9]], lambda k: f'/norfolk/{k}/')
                     + '<p class="core-note"><a class="text-link" href="/norfolk/">All areas we cover ' + ARROW + '</a></p>', 'tint')
-    html += section(8, 'related-sectors', 'Related sectors', 'More ideas for working vehicles.', sector_cards(s['related']))
+    html += section(9, 'related-sectors', 'Related sectors', 'More ideas for working vehicles.', sector_cards(s['related']))
     return html
 
 
