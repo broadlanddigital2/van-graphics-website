@@ -130,7 +130,7 @@
 .nvg .gate-side #gateSvg svg{width:100%;height:auto;margin-top:auto}
 .nvg .stage{border-radius:var(--r)}
 .nvg .designer{padding:0}
-.nvg .preview{top:20px}
+.nvg .preview{top:96px}
 .nvg .who{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:10px 14px;margin-bottom:16px;font-size:14px}
 .nvg .who b{color:var(--ink)}
 .nvg .who button{background:none;border:0;color:var(--accent);font-weight:700;text-decoration:underline;padding:0}

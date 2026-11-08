@@ -209,3 +209,12 @@ if (roadViews) {
   });
   turntable.addEventListener('lostpointercapture', () => { drag = null; });
 }
+
+// Sticky header: add a shadow and a slimmer bar once the page has scrolled past the utility strip.
+(function stickyHeader() {
+  const head = document.querySelector('.main-head');
+  if (!head) return;
+  const update = () => head.classList.toggle('is-stuck', window.scrollY > 34);
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
