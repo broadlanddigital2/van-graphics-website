@@ -515,3 +515,4 @@ html{scroll-padding-top:96px}
 .quote-contacts a:hover{background:#ffffff40}
 .quote .quote-alt .text-link{color:#fff;border-color:#fff}
 .footer-brands{text-align:center}.footer-brand-grid{justify-content:center}
+.quote-contacts a{background:var(--dark);border-color:var(--dark);color:#fff}.quote-contacts a:hover{background:#1c2a4d}.quote-contacts small{color:var(--lime);opacity:1}
