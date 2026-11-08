@@ -43,8 +43,8 @@ def guide_body(key, g, services):
     nxt = ''.join(f'<a class="guide-card" href="/guides/{k}/"><small>Guide</small><b>{escape(GUIDES[k][0])}</b><span>{escape(GUIDES[k][1][:120])}…</span><em>Read guide {ARROW}</em></a>' for k in g['next'])
     return f'''<section class="support-hero guide-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#guides">Guides</a><span aria-hidden="true">/</span><span>{escape(GUIDES[key][0])}</span></nav>
     <p class="eyebrow accent">{escape(g["topic"])} · {g["read"]} minute read</p><h1>{escape(g["h1"])}</h1><p class="lede">{escape(g["summary"])}</p>
-    <div class="actions"><a class="btn" href="#quote">Get a free quote {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Try the Van Designer {ARROW}</a></div>
-    <div class="guide-takeaways">{''.join(f'<div><b>{escape(n)}</b><span>{escape(t)}</span></div>' for n, t in g.get('takeaways', []))}</div></div></section>
+    <div class="actions"><a class="btn" href="#quote">Get a free quote {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Try the Van Designer {ARROW}</a></div></div></section>
+    <section class="guide-stats"><div class="shell"><p class="guide-stats__label">At a glance</p><div class="guide-stats__grid">{''.join(f'<div class="guide-stat"><b>{escape(n)}</b><span>{escape(t)}</span></div>' for n, t in g.get('takeaways', []))}</div></div></section>
     <section class="section guide-layout"><div class="shell guide-grid">
       <aside class="guide-toc"><p>In this guide</p><ol>{toc}</ol><a class="btn dark" href="#quote">Get a free quote {ARROW}</a></aside>
       <article class="guide-article"><div class="guide-answer"><p class="guide-answer__label">Quick answer</p><p>{escape(g["answer"])}</p></div>{body}
