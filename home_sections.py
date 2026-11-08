@@ -63,15 +63,28 @@ def service_cards():
 
 
 def comparison_table():
-    rows = [
-        ('<a href="/van-signwriting-norwich/">Van signwriting</a>', 'Cut letters and logos', 'From £149', 'Often fitted in a day', 'Trades, sole traders, tight budgets', 'Clear and professional'),
-        ('<a href="/vehicle-wraps-norwich/#comparison">Partial wrap</a>', 'Selected panels, about a third to two thirds', 'Quoted per vehicle', 'Confirmed with your quote', 'Stronger colour on a sensible budget', 'Bold'),
-        ('<a href="/vehicle-wraps-norwich/">Full wrap</a>', 'Most exterior panels', 'Quoted per vehicle', 'Confirmed with your quote', 'Photo liveries and colour changes', 'Maximum'),
+    """Three option cards. Uses assets/pages/compare-{key}.webp (1200x800) when added, else the coverage diagram."""
+    from pathlib import Path
+    options = [
+        ('signwriting', 'graphics', 'Van signwriting', 'is-orange', 'From', '£149', 'small van', 1, 'Clear and professional',
+         [('Coverage', 'Cut letters and logos'), ('Lead time', 'Often fitted in a day'), ('Best for', 'Trades, sole traders and tight budgets')], '/van-signwriting-norwich/'),
+        ('partial', 'partial', 'Partial wrap', 'is-cobalt', '', 'Quoted', 'per vehicle', 2, 'Bold colour',
+         [('Coverage', 'Selected panels, about a third to two thirds'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Stronger colour without a full wrap')], '/vehicle-wraps-norwich/#comparison'),
+        ('full', 'full', 'Full wrap', 'is-dark', '', 'Quoted', 'per vehicle', 3, 'Maximum impact',
+         [('Coverage', 'Most exterior panels'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Photo liveries and colour changes')], '/vehicle-wraps-norwich/'),
     ]
-    diagrams = ''.join(f'<figure>{van_diagram(kind)}<figcaption>{label}</figcaption></figure>'
-                       for kind, label in [('graphics', 'Signwriting'), ('partial', 'Partial wrap'), ('full', 'Full wrap')])
-    return (table('Signwriting, partial wrap and full wrap compared', ('Option', 'Coverage', 'Price guide', 'Lead time', 'Best for', 'Impact'), rows)
-            + f'<div class="coverage-diagrams" aria-label="Illustrative van coverage">{diagrams}</div>'
+    cards = ''
+    for key, diagram, name, tone, pre, price, per, impact, impact_label, specs, href in options:
+        img = f'pages/compare-{key}'
+        media = (f'<img src="/assets/{img}.webp" alt="{name} example on a van" loading="lazy" width="1200" height="800">'
+                 if Path(f'dist/assets/{img}.webp').exists() else van_diagram(diagram))
+        meter = ''.join(f'<i class="{"on" if n <= impact else ""}"></i>' for n in (1, 2, 3))
+        rows = ''.join(f'<li><span>{k}</span><b>{v}</b></li>' for k, v in specs)
+        cards += (f'<article class="option-card {tone}"><div class="option-card__media">{media}</div><div class="option-card__body">'
+                  f'<h3>{name}</h3><p class="price-big">{f"<small>{pre}</small>" if pre else ""}{price}<span>{per}</span></p>'
+                  f'<div class="option-impact"><span>Impact</span><span class="meter" aria-label="Impact {impact} of 3">{meter}</span><b>{impact_label}</b></div>'
+                  f'<ul class="option-specs">{rows}</ul><a class="btn{" dark" if tone == "is-orange" else ""}" href="{href}">Explore {name.lower()} {ARROW}</a></div></article>')
+    return (f'<div class="option-cards">{cards}</div>'
             + f'<p class="core-note">All options use quality cast vinyl that lasts several years with good care. Read the guide: <a href="/guides/partial-vs-full-wrap/">partial wrap vs full wrap {ARROW}</a></p>')
 
 

@@ -364,3 +364,24 @@ html{scroll-padding-top:96px}
 .reviews-block__widget{background:#fff;border-radius:18px;padding:18px;box-shadow:0 14px 34px #111b3114;min-height:320px;overflow:hidden}
 .reviews-block__widget iframe{width:100%!important;border:0}
 @media(max-width:850px){.reviews-block{grid-template-columns:1fr}.reviews-block__summary{position:static}}
+/* Homepage option cards */
+.option-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.option-card{display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 16px 40px #111b311a}
+.option-card__media{aspect-ratio:3/2;background:#e9edf8;display:grid;place-items:center;overflow:hidden}
+.option-card__media img{width:100%;height:100%;object-fit:cover}
+.option-card__media svg{width:82%;height:auto}
+.option-card__body{display:flex;flex-direction:column;gap:16px;padding:24px 24px 26px;flex:1}
+.option-card h3{font-size:26px}
+.option-card.is-orange .option-card__body{background:var(--lime)}
+.option-card.is-cobalt .option-card__body{background:var(--cobalt);color:#fff}
+.option-card.is-dark .option-card__body{background:var(--dark);color:#fff}
+.option-impact{display:flex;align-items:center;gap:10px;font-size:14px}
+.option-impact>span:first-child{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.meter{display:inline-flex;gap:4px}.meter i{width:26px;height:8px;border-radius:4px;background:currentColor;opacity:.2}.meter i.on{opacity:1}
+.option-specs{list-style:none;margin:0;padding:0;display:grid}
+.option-specs li{display:grid;gap:2px;padding:11px 0;border-top:1px solid #00000020}
+.option-card.is-cobalt .option-specs li,.option-card.is-dark .option-specs li{border-color:#ffffff26}
+.option-specs span{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.option-specs b{font-size:16px;line-height:1.35}
+.option-card .btn{margin-top:auto;align-self:flex-start;border-radius:10px}
+@media(max-width:1000px){.option-cards{grid-template-columns:1fr;max-width:560px}}
