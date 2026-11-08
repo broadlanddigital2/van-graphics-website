@@ -197,3 +197,9 @@
 .nvg-promo-photo img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:68% 50%}
 .nvg-promo-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;background:linear-gradient(0deg,#0b1428e6,#0b142800);color:#fff;font-weight:800;font-size:15px}
 .nvg-promo-photo{aspect-ratio:16/11;align-self:center}.nvg-promo-photo img{position:absolute;inset:0;width:100%;height:100%!important;aspect-ratio:auto;object-position:72% 50%}
+/* gate side: no illustration, stronger text */
+.nvg .gate-side{justify-content:center;gap:22px;padding:40px 38px}
+.nvg .gate-side h2{font-size:clamp(32px,3.4vw,46px);line-height:1}
+.nvg .gate-side ul{gap:14px;color:#fff}
+.nvg .gate-side li{font-weight:800;font-size:18px;line-height:1.35}
+.nvg .gate-side li:before{font-size:18px}

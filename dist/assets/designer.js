@@ -417,7 +417,7 @@ function demoTick(){
   else { $('#nvgDemo').innerHTML=renderVan(d,{design:true,layout:d.layout,floor:'rgba(255,255,255,.04)'}); (document.getElementById('demoName')||{}).textContent=(d.mode==='wrap'?'Full wrap':'Graphics')+' · '+d.company; demoCur=randomDemo(); }
   plainPhase=!plainPhase;
 }
-function gateArt(){ const d=Object.assign({},DEFAULT,randomDemo(),{mode:'wrap',show:Object.assign({},DEFAULT.show),logo:null}); $('#gateSvg').innerHTML=renderVan(d,{design:true,layout:d.layout,floor:'rgba(255,255,255,.04)'}); }
+function gateArt(){ if(!document.getElementById('gateSvg')) return; const d=Object.assign({},DEFAULT,randomDemo(),{mode:'wrap',show:Object.assign({},DEFAULT.show),logo:null}); $('#gateSvg').innerHTML=renderVan(d,{design:true,layout:d.layout,floor:'rgba(255,255,255,.04)'}); }
 
 
 if(document.getElementById('nvgDemo')){ demoTick(); const t=setInterval(demoTick,2400); }
