@@ -229,7 +229,6 @@ home_schema = {'@context':'https://schema.org','@graph':[{k:v for k,v in busines
 page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
      'Van graphics, full and partial van wraps and fleet livery across Norwich and Norfolk. Designed, printed and fitted in-house. Design your van online or get a free quote.',
      home_hero
-     + designer_promo(button)
      + showcase()
      + numbered(4, 'services', 'Our services', 'Find the right finish.', H.service_cards())
      + H.stats_strip()
