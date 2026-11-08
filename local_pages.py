@@ -231,7 +231,7 @@ def sector_page(key):
                  f'the layout has to work on your vehicle as it really is.</p>') + pains
     must = '<ul class="must-list">' + ''.join(f'<li>{escape(item)}</li>' for item in s['must']) + '</ul>' + \
         '<p class="core-note">Not sure what to include? Our guide to <a href="/guides/van-signwriting-brief/">what to put on a work van</a> walks you through it.</p>'
-    note = '<p class="core-note">Concept images are illustrative. Sector-specific examples will be added as projects complete.</p>' if s['stand_in'] else ''
+    note = ''
     package_title, package_copy = s['package']
     package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
     budget = price_cards(s) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
