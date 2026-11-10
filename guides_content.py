@@ -49,7 +49,7 @@ FULL_GUIDES = {
         'Roof racks, ladders or tool boxes that could hide graphics',
         'Van make, model and wheelbase',
     ],
-    'image': ('Ford Transit Custom with clear signwriting showing a business name, service line and phone number', 'norwich-vehicle-graphics-cut-vinyl-signwriting-for-a-general-builder'),
+    'image': ('Ford Transit Custom with clear signwriting showing a business name and service line', 'norwich-vehicle-graphics-cut-vinyl-signwriting-for-a-general-builder'),
     'services': ['van-signwriting-norwich', 'vehicle-wraps-norwich'],
     'sectors': ['trades', 'plumbers-heating', 'electricians'],
     'next': ['artwork-for-van-graphics', 'graphics-costs', 'partial-vs-full-wrap'],
@@ -61,3 +61,6 @@ FULL_GUIDES = {
     ],
 },
 }
+
+from guides_more import MORE_GUIDES
+FULL_GUIDES.update(MORE_GUIDES)

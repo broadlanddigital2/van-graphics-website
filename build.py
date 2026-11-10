@@ -236,7 +236,63 @@ def generated(name):
     """Path stem of a generated hero (see the Hero images brief) if the file has been added."""
     return name if (OUT / 'assets' / f'{name}.webp').exists() else None
 
+_IMG_SIZES = {'/assets/group/broadland-digital-logo.svg': (178, 108), '/assets/group/auto-opulence-logo-white.svg': (289, 94), '/assets/group/consensus-media-logo.svg': (312, 156)}
+def sized_images(html):
+    """Give every local <img> a width and height so the page doesn't jump as images load."""
+    from PIL import Image as _Im
+    def fix(m):
+        tag = m.group(0)
+        if ' width=' in tag:
+            return tag
+        src = re.search(r'src="([^"?]+)', tag)
+        if not src or not src.group(1).startswith('/'):
+            return tag
+        size = _IMG_SIZES.get(src.group(1))
+        if not size:
+            try:
+                with _Im.open('dist' + src.group(1)) as im:
+                    size = im.size
+            except Exception:
+                return tag
+        tag = re.sub(r'\sheight="\d+"', '', tag)
+        return tag[:-1].rstrip('/') + f' width="{size[0]}" height="{size[1]}">'
+    return re.sub(r'<img\b[^>]*>', fix, html)
+
+def fit_title(t, limit=60):
+    """Keep titles inside what Google shows: drop the brand suffix, then shorten the middle part."""
+    if len(t) <= limit:
+        return t
+    for suffix in (' | Norwich Vehicle Graphics', ' | NVG'):
+        if t.endswith(suffix) and len(t[:-len(suffix)]) <= limit:
+            return t[:-len(suffix)]
+    t = t.replace(' | Norwich Vehicle Graphics', '')
+    parts = t.split(' | ')
+    while len(' | '.join(parts)) > limit and len(parts) > 1:
+        parts.pop()
+    t = ' | '.join(parts)
+    return t if len(t) <= limit else t[:limit].rsplit(' ', 1)[0]
+
+def fit_desc(d, limit=158):
+    """Trim meta descriptions to whole sentences (or a clause) under the limit."""
+    if len(d) <= limit:
+        return d
+    sentences = re.split(r'(?<=[.!?])\s+', d)
+    out = ''
+    for sn in sentences:
+        if len((out + ' ' + sn).strip()) > limit:
+            break
+        out = (out + ' ' + sn).strip()
+    if len(out) >= 90:
+        return out
+    cut = d[:limit - 1]
+    for sep in (', ', ' and ', ' '):
+        if sep in cut:
+            cut = cut.rsplit(sep, 1)[0]
+            break
+    return cut.rstrip(' ,;:') + '.'
+
 def page(path, title, desc, content, image='hero', schema=None, quote_block=None, hero_image=None):
+    title, desc = fit_title(title), fit_desc(desc)
     url = ORIGIN + path
     hero_image = generated(hero_image) if hero_image else None
     if hero_image and '<section class="support-hero' in content:
@@ -253,6 +309,7 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     <link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}<script src="/assets/site.js" defer></script></body></html>'''
     target = OUT / path.strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
+    html = sized_images(html)
     target.write_text(html, encoding='utf-8')
 
 business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Norwich Vehicle Graphics','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
@@ -319,8 +376,22 @@ for key,(name,category,description) in MODELS.items():
     path = f'/vehicles/{key}/'
     support_urls.append(path)
     heading = f'{name} graphics and wraps'
-    page(path,heading+' | Norwich Vehicle Graphics',description,
-         support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES))
+    price = {'Small van': '£149', 'Medium van': '£210', 'Large van': '£285'}.get(category)
+    size = category.lower()
+    opts = [('Signwriting', f'Cut vinyl lettering for your name, services and contact details, laid out around the {name} doors, handles and panel lines.' + (f' Our published fitted price for a {size} starts from {price}.' if price else ' Priced to the size of the body.')),
+            ('Partial wrap', f'Printed panels or colour over selected areas of the {name}, usually the rear half or lower sides, using the paint as part of the design.'),
+            ('Full wrap', f'Printed imagery or a colour change across most of the {name}, including the bonnet, doors and bumpers where the film can be fitted cleanly.')]
+    extra = (f'<h2>Graphics options for the {escape(name)}</h2><div class="info-cards">' + ''.join(f'<article><h3>{t}</h3><p>{escape(d)}</p></article>' for t, d in opts) + '</div>'
+             + f'<h2>Planning your {escape(name)} layout</h2><div class="core-prose"><p>Every {escape(size)} has its own panel shapes, so we plan the layout on your exact model rather than a generic template. '
+             + f'We check where the sliding door gap, handles, swage lines, rear glazing and any roof racks fall, then place your name and phone number where they stay readable from the pavement and in traffic.</p>'
+             + f'<p>If you are not sure what suits your {escape(name)}, try the free <a href="/design-your-van/">Van Designer</a> or send us photos of both sides and the rear and we will suggest a layout with a fitted price.</p></div>')
+    model_faq = [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
+                 (f'Can you wrap a leased {name}?', 'Usually, with your lease company’s agreement. We use removable cast film and can remove the graphics before the vehicle goes back.'),
+                 (f'What do you need to quote for my {name}?', 'The model year, wheelbase and roof height, photos of both sides and the rear, your logo and the wording you want on the van.')]
+    model_desc = f'{name} signwriting, partial and full wraps, laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
+    page(path,heading+' | Norwich Vehicle Graphics',model_desc,
+         support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + faq(model_faq),
+         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]})
 
 from core_content import VAN_BRANDS
 for key,label in VAN_BRANDS:
@@ -333,7 +404,12 @@ support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
-     + '<section class="section core-section"><div class="shell">' + vehicle_picker() + '</div></section>', hero_image='pages/vehicles-hub-hero')
+     + '<section class="section core-section"><div class="shell">' + vehicle_picker()
+     + '<div class="core-prose" style="margin-top:36px"><h2>Graphics planned around your model.</h2><p>Every van has its own panel shapes, door gaps, handles and glazing, so we lay out signwriting and wraps on your exact make and model. Choose your manufacturer above to see the models we work with most, from small vans like the Caddy and Berlingo to large vans such as the Sprinter, Transit and Crafter, and Luton box vans.</p>'
+     + '<p>If your van is not listed, we can still help. Send the make, model, year and wheelbase with photos of both sides and the rear, and we will plan the layout and send a fitted price.</p></div></div></section>'
+     + faq([('Do you fit graphics to every van make?', 'Yes. We fit signwriting and wraps to vans from all the main manufacturers, plus pickups, cars, minibuses and box vans.'),
+            ('Does the price change between models?', 'Signwriting is priced by van size, from £149 for a small van. Wraps are quoted per vehicle because coverage and panel shapes vary between models.'),
+            ('Can you match graphics across different models in my fleet?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image='pages/vehicles-hub-hero')
 
 def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):
     parent_path, parent_name = parent
@@ -418,6 +494,10 @@ page('/gallery/', 'Van Graphics Gallery | Norwich Vehicle Graphics',
      quote_block=enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context='Gallery'), hero_image='pages/gallery-hero')
 support_urls.append('/gallery/')
 
+CONTACT_FAQ = [('How quickly will you reply?', 'We aim to reply the same working day, with questions about your vehicle or a first idea of the layout and price.'),
+       ('Can I visit without an appointment?', 'Please call ahead. Fitting is by appointment, so we can make sure someone is free to talk through your project and look at your vehicle.'),
+       ('Do you work with businesses outside Norwich?', 'Yes. We work with businesses across Norfolk and Waveney. Design and quotes can be done remotely, and vehicles are fitted at our Norwich workshop.'),
+       ('What should I send with my enquiry?', 'Your vehicle make, model and year, photos of both sides and the rear, your logo if you have one and the wording you want on the van.')]
 page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
      '<section class="support-hero contact-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Norwich, Norfolk</p><h1>Contact us.</h1>'
@@ -425,7 +505,14 @@ page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      + '<div class="actions">' + button('Ask a question','#quote') + button('Find the workshop','#workshop','outline') + '</div></div></section>'
      + enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,contact=True)
      + '<section class="section core-section" id="workshop"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Find us</p><h2>Visit the Norwich workshop.</h2></div></div>'
-     + workshop_map(PHONE,TEL,EMAIL) + '</div></section>',
+     + workshop_map(PHONE,TEL,EMAIL) + '</div></section>'
+     + '<section class="section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">What happens next</p><h2>From enquiry to fitted van.</h2></div></div><div class="info-cards">'
+     + ''.join(f'<article><h3>{t}</h3><p>{d}</p></article>' for t, d in [
+         ('1. Tell us about the vehicle', 'Send the make, model and year, what the van is used for and the coverage you have in mind: signwriting, a partial wrap or a full wrap.'),
+         ('2. Design and price', 'We draw your layout on the exact model and send a visual with a written, fitted price. Changes are made before anything is printed.'),
+         ('3. Print and book in', 'Once you approve the proof we print in-house and book a fitting slot that suits your diary.'),
+         ('4. Fit and collect', 'Your vehicle is fitted at our Norwich workshop on Vulcan Road North, with aftercare advice when you collect it.')])
+     + '</div></div></section>' + faq(CONTACT_FAQ),
      schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Norwich Vehicle Graphics','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='', hero_image='pages/contact-hero')
 
 def crm_feed():

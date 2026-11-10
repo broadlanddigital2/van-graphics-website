@@ -266,10 +266,10 @@ def core_sections(service, faq):
         faq(service['questions']+data['faq']),
     ])
 
-def support_page(label, heading, paragraphs, services, context=''):
+def support_page(label, heading, paragraphs, services, context='', extra=''):
     copy = ''.join(f'<p>{escape(p)}</p>' for p in paragraphs)
     cards = ''.join(f'''<article id="{CONTENT[s["slug"]]["key"]}"><h3>{s["label"]}</h3><p>{escape(s["short"])} {escape(context)}</p>
     <a class="text-link" href="/{s["slug"]}/">{s["label"]} in Norwich {ARROW}</a></article>''' for s in services)
     return f'''<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Vehicle graphics home</a>
     <p class="eyebrow accent">{label}</p><h1>{escape(heading)}</h1></div></section><section class="section core-section"><div class="shell">
-    <div class="core-prose">{copy}</div><div class="info-cards support-links">{cards}</div></div></section>'''
+    <div class="core-prose">{copy}</div>{extra}<h2 class="support-links__title">Related services</h2><div class="info-cards support-links">{cards}</div></div></section>'''

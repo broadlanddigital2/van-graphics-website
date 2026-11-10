@@ -22,6 +22,10 @@ def render_block(b):
         (yt, yes), (nt, no) = data
         return (f'<div class="guide-compare"><div class="is-yes"><h3>{escape(yt)}</h3><ul>' + ''.join(f'<li>{escape(x)}</li>' for x in yes) + '</ul></div>'
                 f'<div class="is-no"><h3>{escape(nt)}</h3><ul>' + ''.join(f'<li>{escape(x)}</li>' for x in no) + '</ul></div></div>')
+    if kind == 'table':
+        head, rows = data
+        return ('<div class="guide-table"><table><thead><tr>' + ''.join(f'<th>{escape(h)}</th>' for h in head) + '</tr></thead><tbody>'
+                + ''.join('<tr>' + ''.join(f'<td>{escape(c)}</td>' for c in r) + '</tr>' for r in rows) + '</tbody></table></div>')
     if kind == 'mistakes':
         return '<div class="guide-mistakes">' + ''.join(f'<div class="guide-mistake"><h3>{escape(t)}</h3><p>{escape(why)}</p><p class="fix"><b>Fix:</b> {escape(fix)}</p></div>' for t, why, fix in data) + '</div>'
     return ''
@@ -33,7 +37,7 @@ def guide_body(key, g, services):
     body = ''
     for i, (h, blocks) in enumerate(g['sections'], 1):
         body += f'<section class="guide-section" id="s{i}"><div class="guide-section__head"><span class="guide-num">{i:02}</span><h2>{escape(h)}</h2></div>' + ''.join(render_block(b) for b in blocks) + '</section>'
-        if i == 2:
+        if i == min(2, len(g['sections'])):
             body += figure
     checklist = ''.join(f'<li>{escape(c)}</li>' for c in g['checklist'])
     svc = {s['slug']: s for s in services}
