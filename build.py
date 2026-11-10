@@ -333,7 +333,7 @@ def keyword_alt(content, primary):
     """Make sure the page's main image is described with its search phrase."""
     def fix(m):
         tag = m.group(0)
-        if re.search(r'logo|icon|/assets/brands/|/assets/group/', tag, re.I):
+        if re.search(r'logo|icon|/assets/brands/|/assets/group/|/assets/work/', tag, re.I):
             return tag
         alt = re.search(r'alt="([^"]*)"', tag)
         if not alt:
