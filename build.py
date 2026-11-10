@@ -9,6 +9,7 @@ from core_content import CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS
 from core_pages import brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
 from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY, cap, sector_meta
+from core_content import VAN_BRANDS
 from local_pages import sector_hero, sector_hero_image, sector_page, sectors_hub, town_page, town_questions, workshop_map
 import home_sections as H
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
@@ -258,6 +259,76 @@ def sized_images(html):
         return tag[:-1].rstrip('/') + f' width="{size[0]}" height="{size[1]}">'
     return re.sub(r'<img\b[^>]*>', fix, html)
 
+_KW = json.loads(Path('page_keywords.json').read_text(encoding='utf-8'))
+def page_keywords(path):
+    """The SEO optimiser's keywords for a page (exported from the CRM), or the ones our templates target."""
+    key = '/' + path.strip('/') if path != '/' else '/'
+    if key in _KW:
+        return _KW[key]['p'], _KW[key]['s']
+    parts = key.strip('/').split('/')
+    if parts[0] == 'sectors' and len(parts) == 2 and parts[1] in SECTORS_BY_KEY:
+        sec = SECTORS_BY_KEY[parts[1]]
+        return sec['primary'], sec['secondary'][:3]
+    if parts[0] == 'norfolk' and len(parts) == 2 and parts[1] in TOWNS_BY_KEY:
+        n = TOWNS_BY_KEY[parts[1]]['name'].lower()
+        return f'van graphics {n}', [f'van signwriting {n}', f'vehicle wraps {n}', f'fleet graphics {n}']
+    if parts[0] == 'vehicles' and len(parts) == 2 and parts[1] in dict(VAN_BRANDS):
+        l = dict(VAN_BRANDS)[parts[1]].lower()
+        return f'{l} van graphics norwich', [f'{l} van wraps', f'{l} van signwriting', f'{l} vehicle graphics norfolk']
+    return None
+
+_PROPER = None
+def _cap(t):
+    """Sentence case, with place, brand and model names capitalised."""
+    global _PROPER
+    if _PROPER is None:
+        from core_content import MODELS
+        names = ['Norwich', 'Norfolk', 'Broads', 'Chapter', 'EV', 'VW', 'L200', 'Luton'] + [t['name'] for t in TOWN_LIST] + [l for _, l in VAN_BRANDS] + [m[0] for m in MODELS.values()]
+        _PROPER = {}
+        for n in names:
+            for w in n.split():
+                _PROPER[w.lower()] = w
+    out = _proper(t)
+    return out[:1].upper() + out[1:]
+
+def _proper(t):
+    if _PROPER is None:
+        _cap('x')
+    return ' '.join(_PROPER.get(w, w) for w in t.split(' '))
+
+def keyword_band(path, content):
+    """A short section that uses the page's main search phrase and gives each related phrase its own subheading."""
+    kw = page_keywords(path)
+    if not kw or path in ('/', '/404/'):
+        return content
+    primary, sec = kw
+    sec = [x for x in sec if x][:3]
+    if len(sec) < 3:
+        return content
+    if path.startswith('/guides/'):
+        cards = ''.join(f'<article><h3>{escape(_cap(x))}</h3><p>{escape(t)}</p></article>' for x, t in zip(sec, (
+            'The sections above cover the essentials. For advice on your own vehicle, call or send photos and we will talk it through.',
+            'Every vehicle is different, so we confirm the details with a free design visual and a written, fitted price.',
+            'Our Norwich team answers these questions every day for businesses across Norfolk.')))
+        P = escape(_proper(primary))
+        head = f'More on {P}.'
+        intro = f'Still have questions about {P}? Here are the related topics customers ask us about most. If your question is about {P} for a specific vehicle, send us the make and model.'
+    else:
+        cards = ''.join(f'<article><h3>{escape(_cap(x))}</h3><p>{escape(t)}</p></article>' for x, t in zip(sec, (
+            'Designed around your exact vehicle, with your name, services and contact details laid out to read clearly from the road.',
+            'Printed in-house on quality cast film and fitted at our Norwich workshop on Vulcan Road North.',
+            'Every job starts with a free design visual, so you can see the result before anything is printed.')))
+        head = f'{escape(_cap(primary))}.'
+        P, S0, S1 = (escape(_proper(x)) for x in (primary, sec[0], sec[1]))
+        intro = (f'Looking for {P}? We design, print and fit {S0} and {S1} at our Norwich workshop for businesses across Norfolk. '
+                 f'Every {P} project starts with a free design visual and a written, fitted price.')
+    band = (f'<section class="section kw-band"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Norwich workshop</p><h2>{head}</h2></div>'
+            f'<p>{intro}</p></div><div class="info-cards">{cards}</div></div></section>')
+    for marker in ('<section class="section faq"', '<section class="quote"'):
+        if marker in content:
+            return content.replace(marker, band + marker, 1)
+    return content + band
+
 CRUMB_NAMES = {'norfolk': 'Areas we cover', 'sectors': 'Sectors', 'vehicles': 'Van manufacturers', 'guides': 'Guides'}
 def page_schema(path, title, desc, image, schema):
     """Every page gets a WebPage with a picture and breadcrumbs, merged into any schema it already has."""
@@ -314,12 +385,16 @@ def fit_desc(d, limit=158):
     return cut.rstrip(' ,;:') + '.'
 
 def page(path, title, desc, content, image='hero', schema=None, quote_block=None, hero_image=None):
+    kw = page_keywords(path)
     title, desc = fit_title(title), fit_desc(desc)
+    content = keyword_band(path, content)
+    if kw:
+        content = content.replace('<h2>Good to know.</h2>', f'<h2>{escape(_cap(kw[0]))}: your questions.</h2>', 1)
     url = ORIGIN + path
     hero_image = generated(hero_image) if hero_image else None
     if hero_image and '<section class="support-hero' in content:
         content = content.replace('<section class="support-hero', f'<section class="has-image support-hero', 1)
-        content = re.sub(r'(<section class="has-image support-hero[^"]*">)', rf'\1<img class="support-hero__img" src="/assets/{hero_image}.webp" alt="{escape(title.split(" | ")[0])}" fetchpriority="high" width="2400" height="1100">', content, count=1)
+        content = re.sub(r'(<section class="has-image support-hero[^"]*">)', rf'\1<img class="support-hero__img" src="/assets/{hero_image}.webp" alt="{escape(_cap(kw[0]) if kw else title.split(" | ")[0])}" fetchpriority="high" width="2400" height="1100">', content, count=1)
         image = hero_image
     if image == 'hero' and generated('pages/social-share'):
         image = 'pages/social-share'
@@ -337,7 +412,8 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
 
 business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Norwich Vehicle Graphics','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
             'address':{'@type':'PostalAddress','streetAddress':'Vulcan House, Vulcan Road North','addressLocality':'Norwich','addressRegion':'Norfolk','postalCode':'NR6 6AQ','addressCountry':'GB'},
-            'areaServed':['Norwich','Norfolk'],'image':ORIGIN+'/assets/hero.webp'}
+            'areaServed':['Norwich','Norfolk'],'image':ORIGIN+'/assets/hero.webp','logo':ORIGIN+'/assets/wrapt-logo.png',
+            'geo':{'@type':'GeoCoordinates','latitude':52.6610201,'longitude':1.2806856},'hasMap':'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'}
 
 home_faq = [('How much do vehicle graphics cost?','It depends on the vehicle, the amount of coverage and whether the artwork is ready to use. Send the make and model and a description of what you want so we can quote for the job.'),
             ('Can you help design my graphics?','Yes. Our Norwich team can design a livery from your brief or work with existing branding. We’ll discuss what you want drivers and pedestrians to see first.'),
@@ -411,7 +487,7 @@ for key,(name,category,description) in MODELS.items():
     model_faq = [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
                  (f'Can you wrap a leased {name}?', 'Usually, with your lease company’s agreement. We use removable cast film and can remove the graphics before the vehicle goes back.'),
                  (f'What do you need to quote for my {name}?', 'The model year, wheelbase and roof height, photos of both sides and the rear, your logo and the wording you want on the van.')]
-    model_desc = f'{name} signwriting, partial and full wraps, laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
+    model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Norwich Vehicle Graphics',model_desc,
          support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + faq(model_faq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]})
@@ -424,7 +500,7 @@ for key,label in VAN_BRANDS:
             (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted. Wraps are quoted per vehicle.'),
             (f'Can you match my {label} to the rest of my fleet?', 'Yes. We adapt one master layout to each make and model, so a mixed fleet still looks like one business.')]
     page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
-         f'{label} van graphics in Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
+         f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
          brand_page(key) + faq(bfaq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]})
 support_urls.append('/vehicles/')
