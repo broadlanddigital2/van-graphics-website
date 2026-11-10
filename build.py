@@ -329,6 +329,37 @@ def keyword_band(path, content):
             return content.replace(marker, band + marker, 1)
     return content + band
 
+def keyword_alt(content, primary):
+    """Make sure the page's main image is described with its search phrase."""
+    def fix(m):
+        tag = m.group(0)
+        if re.search(r'logo|icon|/assets/brands/|/assets/group/', tag, re.I):
+            return tag
+        alt = re.search(r'alt="([^"]*)"', tag)
+        if not alt:
+            return tag
+        if primary.lower() in alt.group(1).lower():
+            return tag
+        new = escape(_cap(primary)) + (': ' + alt.group(1) if alt.group(1) else '')
+        return tag.replace(alt.group(0), f'alt="{new}"', 1)
+    done = [False]
+    def once(m):
+        if done[0]:
+            return m.group(0)
+        new = fix(m)
+        if new != m.group(0) or (primary.lower() in m.group(0).lower() and not re.search(r'logo|/assets/brands/', m.group(0))):
+            done[0] = True
+        return new
+    return re.sub(r'<img\b[^>]*>', once, content)
+
+def job_strip(primary):
+    from work_gallery import WORK
+    picks = [WORK[0], WORK[1], WORK[3]]
+    tiles = ''.join(f'<a class="work-tile" href="/assets/work/{f}.webp" data-caption="{escape(c)}: {escape(cap)}"><img src="/assets/work/{f}.webp" alt="{escape(alt)}" loading="lazy"><span><b>{escape(c)}</b>{escape(cap)}</span></a>'
+                    for f, c, cap, alt, _ in picks)
+    return (f'<section class="section dark-section"><div class="shell"><div class="work-gallery"><div class="work-head"><p class="eyebrow accent">Recent work</p><p>Vans we have designed, printed and fitted in Norwich.</p></div>'
+            f'<div class="work-grid work-grid--3">{tiles}</div><p class="core-note"><a class="text-link" href="/gallery/">See the full gallery {ARROW}</a></p></div></div></section>')
+
 CRUMB_NAMES = {'norfolk': 'Areas we cover', 'sectors': 'Sectors', 'vehicles': 'Van manufacturers', 'guides': 'Guides'}
 def page_schema(path, title, desc, image, schema):
     """Every page gets a WebPage with a picture and breadcrumbs, merged into any schema it already has."""
@@ -388,6 +419,10 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     kw = page_keywords(path)
     title, desc = fit_title(title), fit_desc(desc)
     content = keyword_band(path, content)
+    if kw and path != '/':
+        content = keyword_alt(content, kw[0])
+        if len([t for t in re.findall(r'<img\b[^>]*>', content) if not re.search(r'logo|/assets/brands/|/assets/group/', t)]) < 3 and path.startswith('/vehicles/') and path != '/vehicles/':
+            content = content.replace('<section class="section faq"', job_strip(kw[0]) + '<section class="section faq"', 1)
     if kw:
         content = content.replace('<h2>Good to know.</h2>', f'<h2>{escape(_cap(kw[0]))}: your questions.</h2>', 1)
     url = ORIGIN + path

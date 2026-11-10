@@ -526,3 +526,4 @@ html{scroll-padding-top:96px}
 .guide-table td:first-child{font-weight:800}
 .guide-table tr:nth-child(even) td{background:#f7f8fc}
 .guide-steps+.guide-steps{margin-top:-6px}
+.work-grid--3{grid-template-columns:repeat(3,1fr)}@media(max-width:560px){.work-grid--3{grid-template-columns:1fr 1fr}}
