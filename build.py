@@ -258,6 +258,28 @@ def sized_images(html):
         return tag[:-1].rstrip('/') + f' width="{size[0]}" height="{size[1]}">'
     return re.sub(r'<img\b[^>]*>', fix, html)
 
+CRUMB_NAMES = {'norfolk': 'Areas we cover', 'sectors': 'Sectors', 'vehicles': 'Van manufacturers', 'guides': 'Guides'}
+def page_schema(path, title, desc, image, schema):
+    """Every page gets a WebPage with a picture and breadcrumbs, merged into any schema it already has."""
+    if path in ('/', '/404/'):
+        return schema
+    url = ORIGIN + path
+    parts = [p for p in path.strip('/').split('/') if p]
+    crumbs = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': ORIGIN + '/'}]
+    for i, part in enumerate(parts, 2):
+        last = i == len(parts) + 1
+        name = title.split(' | ')[0] if last else CRUMB_NAMES.get(part, part.replace('-', ' ').title())
+        crumbs.append({'@type': 'ListItem', 'position': i, 'name': name, 'item': ORIGIN + '/' + '/'.join(parts[:i - 1]) + '/'})
+    extra = [{'@type': 'WebPage', '@id': url + '#webpage', 'url': url, 'name': title, 'description': desc, 'inLanguage': 'en-GB',
+              'primaryImageOfPage': {'@type': 'ImageObject', 'url': f'{ORIGIN}/assets/{image}.webp'}, 'about': {'@id': ORIGIN + '/#business'}},
+             {'@type': 'BreadcrumbList', 'itemListElement': crumbs}]
+    if not schema:
+        return {'@context': 'https://schema.org', '@graph': extra}
+    graph = schema.get('@graph') or [{k: v for k, v in schema.items() if k != '@context'}]
+    types = {g.get('@type') for g in graph if isinstance(g, dict)}
+    graph = graph + [e for e in extra if e['@type'] not in types]
+    return {'@context': 'https://schema.org', '@graph': graph}
+
 def fit_title(t, limit=60):
     """Keep titles inside what Google shows: drop the brand suffix, then shorten the middle part."""
     if len(t) <= limit:
@@ -297,10 +319,11 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     hero_image = generated(hero_image) if hero_image else None
     if hero_image and '<section class="support-hero' in content:
         content = content.replace('<section class="support-hero', f'<section class="has-image support-hero', 1)
-        content = re.sub(r'(<section class="has-image support-hero[^"]*">)', rf'\1<img class="support-hero__img" src="/assets/{hero_image}.webp" alt="" fetchpriority="high" width="2400" height="1100">', content, count=1)
+        content = re.sub(r'(<section class="has-image support-hero[^"]*">)', rf'\1<img class="support-hero__img" src="/assets/{hero_image}.webp" alt="{escape(title.split(" | ")[0])}" fetchpriority="high" width="2400" height="1100">', content, count=1)
         image = hero_image
     if image == 'hero' and generated('pages/social-share'):
         image = 'pages/social-share'
+    schema = page_schema(path, title, desc, image, schema)
     structured = f'<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>' if schema else ''
     html = f'''<!doctype html>
     <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -397,9 +420,13 @@ from core_content import VAN_BRANDS
 for key,label in VAN_BRANDS:
     path = f'/vehicles/{key}/'
     support_urls.append(path)
-    page(path, f'{label} Van Graphics & Wraps Norwich | Norwich Vehicle Graphics',
-         f'{label} van signwriting, wraps and fleet graphics designed around your model and fitted in Norwich. Choose your {label} model to get started.',
-         brand_page(key))
+    bfaq = [(f'Do you fit graphics to all {label} vans?', f'Yes. We fit signwriting, partial wraps and full wraps to {label} vans, pickups and commercial vehicles, laid out on your exact model.'),
+            (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted. Wraps are quoted per vehicle.'),
+            (f'Can you match my {label} to the rest of my fleet?', 'Yes. We adapt one master layout to each make and model, so a mixed fleet still looks like one business.')]
+    page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
+         f'{label} van graphics in Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
+         brand_page(key) + faq(bfaq),
+         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]})
 support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',

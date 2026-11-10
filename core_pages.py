@@ -192,7 +192,7 @@ def brand_card(href, logo, name, action):
 def brand_img(key, label, size=480):
     logo = brand_logo(key)
     if logo:
-        return f'<img src="{logo}" alt="{escape(label)} logo" width="{size}" height="{size}" decoding="async">'
+        return f'<img src="{logo}" alt="{escape(label)} van graphics Norwich" width="{size}" height="{size}" decoding="async">'
     return f'<span class="brand-wordmark" aria-hidden="true">{escape(label)}</span>'
 
 
@@ -224,11 +224,16 @@ def brand_page(key):
     <article><b class="core-index">02</b><h3>Try a look online</h3><p>Use the free <a href="/design-your-van/">Van Designer</a> to compare graphics and a full wrap before you brief us.</p></article>
     <article><b class="core-index">03</b><h3>Approve your proof</h3><p>We send a proof for your {escape(label)} and fit the graphics at our Norwich workshop.</p></article></div>'''
     return f'''<section class="support-hero brand-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/vehicles/">Van manufacturers</a><span aria-hidden="true">/</span><span>{escape(label)}</span></nav>
-    <div class="brand-hero__grid"><div><p class="eyebrow accent">Van graphics by manufacturer</p><h1>{escape(label)} van graphics.</h1>
+    <div class="brand-hero__grid"><div><p class="eyebrow accent">Van graphics by manufacturer</p><h1>{escape(label)} van graphics in Norwich.</h1>
     <p class="brand-hero__lede">Signwriting, partial and full wraps and fleet graphics designed around your {escape(label)} van, then produced and fitted at our Norwich workshop.</p>
     <div class="actions"><a class="btn" href="#models">{'Choose your model' if slugs else 'Plan your graphics'} {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
     <span class="brand-hero__logo">{brand_img(key, label)}</span></div></div></section>
     <section class="section core-section" id="models"><div class="shell">{models_block}</div></section>
+    <section class="section core-section"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">What we fit</p><h2>{escape(label)} van wraps and signwriting.</h2></div>
+    <p>{escape(label)} vehicle graphics for businesses across Norwich and Norfolk, designed in-house and fitted at our workshop on Vulcan Road North.</p></div>
+    <div class="info-cards"><article><h3>{escape(label)} signwriting</h3><p>Cut vinyl lettering for your name, services and contact details, placed around the doors, handles and panel lines of your {escape(label)}. From £149 for a small van.</p></article>
+    <article><h3>{escape(label)} van wraps</h3><p>Partial wraps over selected panels or a full wrap for maximum impact, printed in-house on quality cast film.</p></article>
+    <article><h3>{escape(label)} fleet graphics</h3><p>One consistent livery adapted to every {escape(label)} model you run, with fleet numbers and files kept on record.</p></article></div></div></section>
     <section class="section core-section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Other manufacturers</p><h2>Browse another brand.</h2></div></div>{vehicle_picker()}</div></section>'''
 
 
