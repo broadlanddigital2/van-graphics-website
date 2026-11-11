@@ -278,3 +278,19 @@ def support_page(label, heading, paragraphs, services, context='', extra=''):
     return f'''<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Vehicle graphics home</a>
     <p class="eyebrow accent">{label}</p><h1>{escape(heading)}</h1></div></section><section class="section core-section"><div class="shell">
     <div class="core-prose">{copy}</div>{extra}<h2 class="support-links__title">Related services</h2><div class="info-cards support-links">{cards}</div></div></section>'''
+
+
+def care_upsell(vehicle='your van'):
+    """Before-and-after care from Auto Opulence, our sister vehicle care business."""
+    v = escape(vehicle)
+    before = [('Decontamination wash', f'A deep clean, including a clay bar treatment, removes the road film and wax that stop vinyl bonding properly to your {v}.'),
+              ('Machine polish', 'Tired, dull paint can be machine polished before signwriting or a partial wrap, so the paint left on show looks as good as the new graphics.')]
+    after = [('Ceramic coating', 'Protect the painted panels around your graphics with a long-lasting ceramic coating that makes washing quicker and keeps the gloss.'),
+             ('Regular hand wash', 'Gentle hand washing that is safe for vinyl, so your graphics and paint stay clean without brushes or harsh chemicals.')]
+    col = lambda items: ''.join(f'<div class="care-item"><h4>{t}</h4><p>{d}</p></div>' for t, d in items)
+    return (f'<section class="section care-upsell"><div class="shell"><div class="section-head"><div><p class="eyebrow accent">Before &amp; after your graphics</p>'
+            f'<h2>Prep and protect your {v}.</h2></div><p>Our sister business Auto Opulence offers valeting, polishing and ceramic coating in Norwich. Add it to your booking and your {v} arrives ready for graphics and leaves protected.</p></div>'
+            f'<div class="care-grid"><div class="care-col"><p class="care-label">Before fitting</p>{col(before)}</div>'
+            f'<div class="care-col is-after"><p class="care-label">After fitting</p>{col(after)}</div></div>'
+            f'<div class="care-actions"><a class="btn" href="#quote">Add vehicle care to my quote {ARROW}</a><a class="btn outline" href="https://autoopulence.co.uk/" target="_blank" rel="noopener">See Auto Opulence services ↗</a>'
+            '<span class="care-note">Washing from £30 · Valeting from £40 · Polishing from £295, prices from Auto Opulence.</span></div></div></section>')

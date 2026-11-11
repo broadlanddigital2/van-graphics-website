@@ -197,3 +197,27 @@ HOME_FAQ = [
     ('Can you do a whole fleet?', 'Yes. We create one master design, adapt it to each make and model, and fit in batches so the fleet keeps working.'),
     ('What areas do you cover?', f'We work with businesses across Norfolk and the Waveney valley, from King’s Lynn to Lowestoft. Fitting is at our Norwich workshop.'),
 ]
+
+
+GROUP_BRANDS = [
+    ('Broadland Digital', 'https://broadlanddigital.co.uk/', 'broadland-digital-logo.svg', 'Signs, print & web',
+     'Our parent company and Norwich workshop: shop and building signage, large format print, exhibition stands, promotional items and websites.',
+     ['Shop & building signs', 'Large format print', 'Web design']),
+    ('Race Car Graphics', 'https://racecargraphics.uk/', 'rcg-logo.png', 'Motorsport liveries',
+     'Race and rally car liveries, number boards, sponsor decals and replacement graphics, designed and printed for club racers and teams.',
+     ['Race car liveries', 'Replacement decals', 'Sponsor graphics']),
+    ('Auto Opulence', 'https://autoopulence.co.uk/', 'auto-opulence-logo-white.svg', 'Vehicle care',
+     'Car and van valeting, hand washing, machine polishing and ceramic coating in Norwich, so your vehicle stays looking its best.',
+     ['Valeting & hand washing', 'Machine polishing', 'Ceramic coating']),
+]
+
+def group_blocks():
+    cards = ''.join(
+        f'<a class="group-card" href="{url}" target="_blank" rel="noopener" aria-label="{escape(name)} website (opens in a new tab)">'
+        f'<div class="group-card__logo"><img src="/assets/group/{logo}" alt="{escape(name)} logo" loading="lazy"></div>'
+        f'<p class="group-card__tag">{escape(tag)}</p><h3>{escape(name)}</h3><p>{escape(text)}</p>'
+        f'<ul>{"".join(f"<li>{escape(i)}</li>" for i in items)}</ul><span class="group-card__cta">Visit {escape(name)} ↗</span></a>'
+        for name, url, logo, tag, text, items in GROUP_BRANDS)
+    return ('<section class="section group-section"><div class="shell"><div class="section-head"><div><p class="eyebrow accent">Part of the Broadland Digital group</p>'
+            '<h2>More from our Norwich team.</h2></div><p>We sit alongside three sister businesses, all part of the same Norwich group.</p></div>'
+            f'<div class="group-cards">{cards}</div></div></section>')
