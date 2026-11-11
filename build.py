@@ -554,21 +554,27 @@ for key,(name,category,description) in MODELS.items():
              + f'<h2>Planning your {escape(name)} layout</h2><div class="core-prose"><p>Every {escape(size)} has its own panel shapes, so we plan the layout on your exact model rather than a generic template. '
              + f'We check where the sliding door gap, handles, swage lines, rear glazing and any roof racks fall, then place your name and phone number where they stay readable from the pavement and in traffic.</p>'
              + f'<p>If you are not sure what suits your {escape(name)}, try the free <a href="/design-your-van/">Van Designer</a> or send us photos of both sides and the rear and we will suggest a layout with a fitted price.</p></div>')
-    model_faq = [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
-                 (f'Can you wrap a leased {name}?', 'Usually, with your lease company’s agreement. We use removable cast film and can remove the graphics before the vehicle goes back.'),
+    from vehicle_content import MODEL_COPY
+    if Path(f'dist/assets/vehicles/{key}-side.webp').exists():
+        extra = extra.replace('<h2>Planning your', f'<figure class="guide-figure"><img src="/assets/vehicles/{key}-side.webp" alt="{escape(name)} graphics and wraps: side view of a branded {escape(name)}" loading="lazy"><figcaption>Side view of a branded {escape(name)}.</figcaption></figure><h2>Planning your', 1)
+    if key in MODEL_COPY:
+        extra = extra.replace('<h2>Planning your', f'<div class="brand-tip"><b>Our recommendation</b><p>{escape(MODEL_COPY[key][2])}</p></div><h2>Planning your', 1)
+    model_faq = (MODEL_COPY[key][3] if key in MODEL_COPY else []) + [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
                  (f'What do you need to quote for my {name}?', 'The model year, wheelbase and roof height, photos of both sides and the rear, your logo and the wording you want on the van.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Norwich Vehicle Graphics',model_desc,
-         support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
-         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]})
+         support_page('Vehicle model · '+category,heading,[MODEL_COPY[key][0] if key in MODEL_COPY else description, MODEL_COPY[key][1] if key in MODEL_COPY else 'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
+         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]},
+         hero_image=f'vehicles/{key}-hero')
 
 from core_content import VAN_BRANDS
 for key,label in VAN_BRANDS:
     path = f'/vehicles/{key}/'
     support_urls.append(path)
-    bfaq = [(f'Do you fit graphics to all {label} vans?', f'Yes. We fit signwriting, partial wraps and full wraps to {label} vans, pickups and commercial vehicles, laid out on your exact model.'),
+    from vehicle_content import BRAND_COPY, MODEL_COPY
+    bfaq = ([BRAND_COPY[key][3]] if key in BRAND_COPY else []) + [(f'Do you fit graphics to all {label} vans?', f'Yes. We fit signwriting, partial wraps and full wraps to {label} vans, pickups and commercial vehicles, laid out on your exact model.'),
             (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted. Wraps are quoted per vehicle.'),
-            (f'Can you match my {label} to the rest of my fleet?', 'Yes. We adapt one master layout to each make and model, so a mixed fleet still looks like one business.')]
+            ]
     page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
          brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),

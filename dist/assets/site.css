@@ -578,3 +578,12 @@ html{scroll-padding-top:96px}
 .fam-card details summary{cursor:pointer;font-size:13px;font-weight:800;color:var(--cobalt);margin-bottom:8px}
 .fam-card .text-link{margin-top:auto;font-size:14px}
 @media(max-width:1000px){.fam-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.fam-grid{grid-template-columns:1fr}}
+.brand-extras{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:20px}
+.brand-tip{background:#e6ebff;border-left:5px solid var(--cobalt);border-radius:12px;padding:16px 18px;margin:18px 0}
+.brand-extras .brand-tip{margin:0}
+.brand-tip b,.brand-popular b{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--cobalt);margin-bottom:6px}
+.brand-tip p{font-size:16px;line-height:1.55;color:#1d2a4c}
+.brand-popular{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.brand-popular div{display:flex;flex-wrap:wrap;gap:8px}.brand-popular a{font-size:13px;font-weight:800;background:#f1f3f9;border-radius:999px;padding:6px 12px}
+.brand-popular a:hover{background:var(--lime)}
+@media(max-width:800px){.brand-extras{grid-template-columns:1fr}}
