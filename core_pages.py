@@ -205,11 +205,55 @@ def vehicle_picker():
     <div class="brand-grid" role="list" aria-label="Van manufacturers">{cards}</div></div>'''
 
 
+import json as _json, re as _re
+from pathlib import Path as _P
+_VAN_MODELS = _json.loads(_P('van_models.json').read_text(encoding='utf-8'))
+_STOP_FAM = _re.compile(r'^(\d{4}\+?|\d{2,4}-\d{2,4}|onwards|cab\d.*|L[1-5]|H[1-3]|SWB|MWB|LWB|ELWB|HR|MR|SHR|EHR|EXHR|NSLD|NLD|Dropside|Chassis|Luton|Crew|Box|Low|Double|Single|Extended|UTE|First|Reg|Club|Tailgate)$', _re.I)
+FAMILY_RENAME = {('ford', 'custom'): 'Transit Custom', ('ford', 'custom ms-rt'): 'Transit Custom MS-RT', ('ford', 'connect'): 'Transit Connect', ('ford', 'courier'): 'Transit Courier'}
+FAMILY_PAGES = {('ford', 'transit custom'): 'transit-custom', ('ford', 'transit connect'): 'transit-connect', ('ford', 'transit'): 'ford-transit',
+                ('vauxhall', 'vivaro'): 'vivaro', ('vauxhall', 'combo'): 'vauxhall-combo', ('vauxhall', 'movano'): 'vauxhall-movano',
+                ('volkswagen', 'caddy'): 'caddy', ('volkswagen', 'transporter'): 'vw-transporter', ('volkswagen', 'crafter'): 'vw-crafter',
+                ('citroën', 'berlingo'): 'berlingo', ('citroën', 'dispatch'): 'citroen-dispatch', ('citroën', 'relay'): 'citroen-relay',
+                ('peugeot', 'partner'): 'partner', ('peugeot', 'expert'): 'peugeot-expert', ('peugeot', 'boxer'): 'peugeot-boxer',
+                ('mercedes-benz', 'sprinter'): 'sprinter', ('mercedes-benz', 'vito'): 'mercedes-vito', ('mercedes-benz', 'citan'): 'mercedes-citan'}
+
+def van_families(label):
+    """All van models we hold templates for (the Race Car Graphics catalogue), grouped by model family."""
+    models = next((v for k, v in _VAN_MODELS.items() if k.lower() == label.lower()), [])
+    fams = {}
+    for m in models:
+        words = m.split()
+        i = 0
+        while i < len(words) and not _STOP_FAM.match(words[i]):
+            i += 1
+        fam = ' '.join(words[:i]) or words[0]
+        variant = ' '.join(words[i:]) if i else ' '.join(words[1:])
+        fam = FAMILY_RENAME.get((label.lower(), fam.lower()), fam)
+        fams.setdefault(fam, []).append(variant or 'All years')
+    return sorted(fams.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+
 def brand_page(key):
     """A manufacturer page: its models as cards (where we have model pages), plus routes to the Van Designer and a quote."""
     label = dict(VAN_BRANDS)[key]
     slugs = BRANDS.get(key, (label, ()))[1]
-    if slugs:
+    families = van_families(label)
+    if families:
+        cards = ''
+        for fam, variants in families:
+            slug = FAMILY_PAGES.get((label.lower(), fam.lower()))
+            shown = variants[:8]
+            chips = ''.join(f'<li>{escape(v)}</li>' for v in shown)
+            more = (f'<details><summary>+{len(variants) - 8} more</summary><ul class="fam-chips">' + ''.join(f'<li>{escape(v)}</li>' for v in variants[8:]) + '</ul></details>') if len(variants) > 8 else ''
+            link = (f'<a class="text-link" href="/vehicles/{slug}/">{escape(label)} {escape(fam)} graphics {ARROW}</a>' if slug
+                    else f'<a class="text-link" href="#quote">Quote for my {escape(fam)} {ARROW}</a>')
+            cards += (f'<article class="fam-card{" has-page" if slug else ""}"><div class="fam-card__head"><h3>{escape(label)} {escape(fam)}</h3>'
+                      f'<small>{len(variants)} version{"s" if len(variants) != 1 else ""}</small></div>'
+                      + (f'<ul class="fam-chips">{chips}</ul>{more}' if any(variants) else '') + link + '</article>')
+        total = sum(len(v) for _, v in families)
+        models_block = f'''<div class="section-head"><div><p class="eyebrow blue">Every {escape(label)} model</p><h2>{escape(label)} models we fit.</h2></div>
+    <p>Signwriting, wraps and fleet graphics for {total} {escape(label)} body styles and model years. Find yours, then send the photos for a fitted quote.</p></div><div class="fam-grid">{cards}</div>
+    <p class="core-note">Model not listed? <a href="#quote">Tell us what you drive</a> and we will plan the layout for it.</p>'''
+    elif slugs:
         models = ''.join(
             f'<a class="model-card" href="/vehicles/{slug}/"><small>{escape(MODELS[slug][1])}</small><h3>{escape(MODELS[slug][0])}</h3>'
             f'<p>{escape(MODELS[slug][2].split(". ")[0])}.</p><b>View graphics {ARROW}</b></a>'
@@ -226,7 +270,7 @@ def brand_page(key):
     return f'''<section class="support-hero brand-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/vehicles/">Van manufacturers</a><span aria-hidden="true">/</span><span>{escape(label)}</span></nav>
     <div class="brand-hero__grid"><div><p class="eyebrow accent">Van graphics by manufacturer</p><h1>{escape(label)} van graphics in Norwich.</h1>
     <p class="brand-hero__lede">Signwriting, partial and full wraps and fleet graphics designed around your {escape(label)} van, then produced and fitted at our Norwich workshop.</p>
-    <div class="actions"><a class="btn" href="#models">{'Choose your model' if slugs else 'Plan your graphics'} {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
+    <div class="actions"><a class="btn" href="#models">{'Choose your model' if (slugs or families) else 'Plan your graphics'} {ARROW}</a><a class="btn outline" href="/design-your-van/#designer">Design your van {ARROW}</a></div></div>
     <span class="brand-hero__logo">{brand_img(key, label)}</span></div></div></section>
     <section class="section core-section" id="models"><div class="shell">{models_block}</div></section>
     <section class="section core-section"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">What we fit</p><h2>{escape(label)} van wraps and signwriting.</h2></div>

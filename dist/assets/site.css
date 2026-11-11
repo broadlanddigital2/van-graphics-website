@@ -567,3 +567,14 @@ html{scroll-padding-top:96px}
 .repair-card__cta{display:grid;gap:10px;max-width:260px}.repair-card__cta span{font-size:13px;color:#aebbe0;line-height:1.45}
 @media(max-width:1000px){.repair-card{grid-template-columns:1fr}.repair-card__cta{max-width:none}}
 .repair-card__cta .btn{white-space:nowrap}
+/* Brand page: every model family */
+.fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fam-card{display:flex;flex-direction:column;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.fam-card.has-page{border-top:4px solid var(--lime)}
+.fam-card__head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fam-card h3{font-size:19px;letter-spacing:-.02em}.fam-card__head small{color:var(--muted);font-size:12px;font-weight:700;white-space:nowrap}
+.fam-chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.fam-chips li{font-size:12px;font-weight:700;background:#f1f3f9;border-radius:999px;padding:5px 10px;color:#2a3654}
+.fam-card details summary{cursor:pointer;font-size:13px;font-weight:800;color:var(--cobalt);margin-bottom:8px}
+.fam-card .text-link{margin-top:auto;font-size:14px}
+@media(max-width:1000px){.fam-grid{grid-template-columns:1fr 1fr}}@media(max-width:600px){.fam-grid{grid-template-columns:1fr}}
