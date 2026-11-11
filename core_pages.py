@@ -1,3 +1,5 @@
+import re
+from pathlib import Path
 """Render the shared 17-section service layout."""
 
 from html import escape
@@ -217,6 +219,26 @@ FAMILY_PAGES = {('ford', 'transit custom'): 'transit-custom', ('ford', 'transit 
                 ('peugeot', 'partner'): 'partner', ('peugeot', 'expert'): 'peugeot-expert', ('peugeot', 'boxer'): 'peugeot-boxer',
                 ('mercedes-benz', 'sprinter'): 'sprinter', ('mercedes-benz', 'vito'): 'mercedes-vito', ('mercedes-benz', 'citan'): 'mercedes-citan'}
 
+FAMILY_IMAGE_ALIAS = {('ford', 'transit custom ms-rt'): 'transit-custom', ('volkswagen', 'caddy maxi'): 'caddy',
+                      ('volkswagen', 'transporter sportline'): 'vw-transporter', ('vauxhall', 'vivaro prime'): 'vivaro', ('vauxhall', 'vivaro pro'): 'vivaro'}
+
+def family_slug(label, fam):
+    return re.sub(r'[^a-z0-9]+', '-', f'{label} {fam}'.lower().replace('ë', 'e')).strip('-')
+
+def family_image(label, fam):
+    """Card thumbnail for a model family: its model page's side view, or a dropped-in family image
+    (dist/assets/vehicles/families/<brand>-<family>.webp). Thumbnails are made at 720px wide on build."""
+    key = FAMILY_PAGES.get((label.lower(), fam.lower())) or FAMILY_IMAGE_ALIAS.get((label.lower(), fam.lower()))
+    for src in ([Path(f'dist/assets/vehicles/{key}-side.webp')] if key else []) + [Path(f'dist/assets/vehicles/families/{family_slug(label, fam)}.webp')]:
+        if src.exists():
+            thumb = Path('dist/assets/vehicles/thumbs') / src.name
+            if not thumb.exists() or thumb.stat().st_mtime < src.stat().st_mtime:
+                from PIL import Image
+                thumb.parent.mkdir(parents=True, exist_ok=True)
+                im = Image.open(src); im.thumbnail((720, 720)); im.save(thumb, 'WEBP', quality=80)
+            return '/' + str(thumb).removeprefix('dist/')
+    return None
+
 def van_families(label):
     """All van models we hold templates for (the Race Car Graphics catalogue), grouped by model family."""
     models = next((v for k, v in _VAN_MODELS.items() if k.lower() == label.lower()), [])
@@ -257,7 +279,10 @@ def brand_page(key):
             more = (f'<details><summary>+{len(variants) - 8} more</summary><ul class="fam-chips">' + ''.join(f'<li>{escape(v)}</li>' for v in variants[8:]) + '</ul></details>') if len(variants) > 8 else ''
             link = (f'<a class="text-link" href="/vehicles/{slug}/">{escape(label)} {escape(fam)} graphics {ARROW}</a>' if slug
                     else f'<a class="text-link" href="#quote">Quote for my {escape(fam)} {ARROW}</a>')
-            cards += (f'<article class="fam-card{" has-page" if slug else ""}"><div class="fam-card__head"><h3>{escape(label)} {escape(fam)}</h3>'
+            img = family_image(label, fam)
+            media = (f'<div class="fam-card__media"><img src="{img}" alt="{escape(label)} {escape(fam)} van graphics" width="720" height="405" loading="lazy"></div>' if img
+                     else f'<div class="fam-card__media is-empty">{brand_img(key, label, 120)}<span>{escape(fam)}</span></div>')
+            cards += (f'<article class="fam-card{" has-page" if slug else ""}">{media}<div class="fam-card__head"><h3>{escape(label)} {escape(fam)}</h3>'
                       f'<small>{len(variants)} version{"s" if len(variants) != 1 else ""}</small></div>'
                       + (f'<ul class="fam-chips">{chips}</ul>{more}' if any(variants) else '') + link + '</article>')
         total = sum(len(v) for _, v in families)
@@ -335,21 +360,34 @@ def support_page(label, heading, paragraphs, services, context='', extra=''):
     <div class="core-prose">{copy}</div>{extra}<h2 class="support-links__title">Related services</h2><div class="info-cards support-links">{cards}</div></div></section>'''
 
 
-def care_upsell(vehicle='your van'):
-    """Before-and-after care from Auto Opulence, our sister vehicle care business."""
-    v = escape(vehicle)
-    before = [('Decontamination wash', f'A deep clean, including a clay bar treatment, removes the road film and wax that stop vinyl bonding properly to your {v}.'),
-              ('Machine polish', 'Tired, dull paint can be machine polished before signwriting or a partial wrap, so the paint left on show looks as good as the new graphics.')]
-    after = [('Ceramic coating', 'Protect the painted panels around your graphics with a long-lasting ceramic coating that makes washing quicker and keeps the gloss.'),
-             ('Regular hand wash', 'Gentle hand washing that is safe for vinyl, so your graphics and paint stay clean without brushes or harsh chemicals.')]
-    col = lambda items: ''.join(f'<div class="care-item"><h4>{t}</h4><p>{d}</p></div>' for t, d in items)
-    return (f'<section class="section care-upsell"><div class="shell"><div class="section-head"><div><p class="eyebrow accent">Before &amp; after your graphics</p>'
-            f'<h2>Prep and protect your {v}.</h2></div><p>Our sister business Auto Opulence offers valeting, polishing and ceramic coating in Norwich. Add it to your booking and your {v} arrives ready for graphics and leaves protected.</p></div>'
-            f'<div class="care-grid"><div class="care-col"><p class="care-label">Before fitting</p>{col(before)}</div>'
-            f'<div class="care-col is-after"><p class="care-label">After fitting</p>{col(after)}</div></div>'
-            f'<div class="care-actions"><a class="btn" href="#quote">Add vehicle care to my quote {ARROW}</a><a class="btn outline" href="https://autoopulence.co.uk/" target="_blank" rel="noopener">See Auto Opulence services ↗</a>'
-            '<span class="care-note">Washing from £30 · Valeting from £40 · Polishing from £295, prices from Auto Opulence.</span></div></div></section>')
+AO = 'https://autoopulence.co.uk'
+CARE_BEFORE = [
+    ('Two-Step Decontamination Wash', '£80', '/service/exterior-full-decontamination-wash', 'Removes road film, fallout and old wax so vinyl bonds properly to clean paint.'),
+    ('Clay Bar Decontamination Wash', '£195', '/service/exterior-full-decontamination-wash-with-clay-bar', 'A deeper clean with clay bar treatment for the smoothest surface before fitting.'),
+    ('Stage 1 Machine Polish', '£295', '/service/stage-1-vehicle-machine-polish', 'Lifts dull, tired paint so the panels left on show look as good as the graphics.'),
+]
+CARE_AFTER = [
+    ('3 + 1 Year Ceramic Coating', '£445', '/service/3-plus-1-year-ceramic-coating', 'Protects the painted panels around your graphics and makes washing quicker.'),
+    ('7-Year Ceramic Coating + Clay Bar Wash', '£495', '/service/7-year-ceramic-coating-with-clay-bar-decontamination-wash', 'Long-term gloss and protection, with a full clay bar decontamination first.'),
+    ('Hand Car Wash', '£30', '/service/hand-car-wash-norwich', 'Gentle hand washing that keeps paint and vinyl clean without brushes.'),
+]
 
+def care_upsell(vehicle='your van'):
+    """Before-and-after care from Auto Opulence, our sister vehicle care business, with its published prices."""
+    v = escape(vehicle)
+    def cards(items, tone):
+        return ''.join(f'<a class="care-card {tone}" href="{AO}{path}" target="_blank" rel="noopener" aria-label="{escape(name)} at Auto Opulence (opens in a new tab)">'
+                       f'<span class="care-card__step">{n:02}</span><h4>{escape(name)}</h4><p>{escape(desc)}</p>'
+                       f'<div class="care-card__foot"><span class="care-card__price"><small>From</small>{price}</span><span class="care-card__go">View service ↗</span></div></a>'
+                       for n, (name, price, path, desc) in enumerate(items, 1))
+    return (f'<section class="section care-upsell"><div class="shell">'
+            f'<div class="care-head"><div><p class="eyebrow accent">Before &amp; after your graphics</p><h2>Prep and protect your {v}.</h2>'
+            f'<p>Our sister business <a href="{AO}/" target="_blank" rel="noopener">Auto Opulence</a> preps paint before fitting and protects it afterwards, in Norwich. Add any of these to your booking.</p></div>'
+            f'<img class="care-head__logo" src="/assets/group/auto-opulence-logo-white.svg" alt="Auto Opulence logo" loading="lazy"></div>'
+            f'<div class="care-group"><p class="care-label"><span>1</span>Before fitting: prep the paint</p><div class="care-cards">{cards(CARE_BEFORE, "is-before")}</div></div>'
+            f'<div class="care-group"><p class="care-label is-after"><span>2</span>After fitting: protect and maintain</p><div class="care-cards">{cards(CARE_AFTER, "is-after")}</div></div>'
+            f'<div class="care-actions"><a class="btn" href="#quote">Add vehicle care to my quote {ARROW}</a>'
+            f'<span class="care-note">Prices are Auto Opulence’s published “from” prices for the smallest vehicle size; larger vans are priced by size on their website.</span></div></div></section>')
 
 def repair_block(vehicle='your van'):
     """Panel repairs organised as part of the graphics job."""

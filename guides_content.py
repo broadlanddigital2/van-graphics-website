@@ -10,7 +10,7 @@ FULL_GUIDES = {
     'summary': 'What to include in your van signwriting, where it should go and what to leave off, so people can read it and remember it.',
     'answer': ('Put three things on every work van: your business name, what you do and one clear way to contact you. '
                'Add a website, social handles or accreditations only if there is room for people to read them at a glance.'),
-    'takeaways': [('3', 'things every van needs'), ('3', 'sides, each with its own job'), ('1', 'contact detail to push')],
+    'takeaways': [('3', 'things every van needs'), ('3', 'sides of the van, each with its own job'), ('1', 'contact detail to make the biggest')],
     'sections': [
         ('The three things every van needs', [
             ('p', 'Most people see your van for a few seconds, often while they are driving or walking past. In that time they need to take in who you are, what you do and how to reach you. Everything else is a bonus.'),

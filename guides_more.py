@@ -7,7 +7,7 @@ MORE_GUIDES = {
     'h1': 'What affects the cost of van graphics?',
     'summary': 'The main things that change the price of van signwriting and wraps, our published signwriting prices, and how to get a quote you can compare.',
     'answer': 'The price depends on the size of the van, how much of it is covered, the film used, how much design work is needed and how long it takes to fit. Signwriting starts from £149 for a small van; wraps and fleets are quoted per vehicle.',
-    'takeaways': [('£149', 'signwriting from, small van'), ('3', 'levels of coverage'), ('6', 'things that set the price')],
+    'takeaways': [('£149', 'starting price for signwriting on a small van'), ('3', 'levels of coverage to choose from'), ('6', 'factors that set the price')],
     'sections': [
         ('Signwriting, partial and full wraps compared', [
             ('p', 'Coverage is the biggest single factor in van graphics cost. The more of the van that is covered, the more film, print time and fitting time the job needs.'),
@@ -46,7 +46,7 @@ MORE_GUIDES = {
     'h1': 'Preparing artwork for vehicle graphics.',
     'summary': 'Which logo files work for van signwriting and wraps, how colours are matched, and what to do if you only have a low-resolution logo.',
     'answer': 'Send a vector logo (AI, EPS, SVG or a vector PDF), your brand colours and the exact wording you want. If you only have a JPEG or a photo of an old sign, we can redraw it.',
-    'takeaways': [('4', 'vector file types that work'), ('1', 'proof to approve'), ('0', 'printing before sign-off')],
+    'takeaways': [('4', 'vector file types we can print from'), ('1', 'proof for you to approve'), ('0', 'printing until you sign off')],
     'sections': [
         ('Vector and pixel files explained', [
             ('p', 'Vector files are made of shapes, so they can be scaled to the side of a van without losing quality. Pixel files such as JPEG and PNG are made of dots and go blurry when they are enlarged.'),
@@ -82,7 +82,7 @@ MORE_GUIDES = {
     'h1': 'Partial wrap vs full wrap.',
     'summary': 'How a partial van wrap compares with a full wrap for impact, cost, fitting time and paint protection, and which suits your business.',
     'answer': 'A partial wrap covers selected panels and uses your paint as part of the design. A full wrap covers almost every panel for maximum impact, printed imagery or a complete colour change.',
-    'takeaways': [('½', 'van typically covered by a partial'), ('100%', 'of panels on a full wrap'), ('2', 'ways to stand out')],
+    'takeaways': [('½', 'of the van is typically covered by a partial wrap'), ('100%', 'of the panels are covered by a full wrap'), ('2', 'ways to make your van stand out')],
     'sections': [
         ('Side by side', [
             ('table', (['', 'Partial wrap', 'Full wrap'], [
@@ -117,7 +117,7 @@ MORE_GUIDES = {
     'h1': 'Vehicle wrap vs paint.',
     'summary': 'How a van wrap compares with a respray for cost, downtime, finish, durability and resale, and when paint is the better choice.',
     'answer': 'A wrap changes the look of sound paint, can carry printed branding and can be removed later. A respray is permanent and is the better choice when the paint itself is damaged.',
-    'takeaways': [('1', 'is removable, 1 is permanent'), ('2', 'very different jobs'), ('0', 'wraps over rust')],
+    'takeaways': [('2', 'finishes: one removable, one permanent'), ('2', 'very different jobs to compare'), ('0', 'wraps fitted over rust')],
     'sections': [
         ('How each one works', [
             ('compare', ('Vehicle wrap', ['Printed or coloured film applied over the paint', 'Can carry logos, photos and contact details', 'Removable, revealing the original paint', 'Panels can be replaced if damaged']),
@@ -149,7 +149,7 @@ MORE_GUIDES = {
     'h1': 'How to look after a vehicle wrap.',
     'summary': 'How to wash a wrapped van, which products to use and avoid, how to deal with fuel, tar and bird droppings, and what to do if an edge lifts.',
     'answer': 'Leave the wrap to settle before the first wash, hand wash with a mild shampoo, keep pressure washers well back and away from edges, and avoid polishes or waxes not made for vinyl.',
-    'takeaways': [('1', 'week before the first wash'), ('2', 'buckets for hand washing'), ('0', 'pressure washer on the edges')],
+    'takeaways': [('1', 'week to wait before the first wash'), ('2', 'buckets needed for a safe hand wash'), ('0', 'pressure washing on the vinyl edges')],
     'sections': [
         ('The first week after fitting', [
             ('p', 'The adhesive on a new wrap keeps bonding to the paint for a few days after fitting. Give it time to settle before washing, and avoid parking against hedges or walls that could catch the edges.'),
@@ -183,7 +183,7 @@ MORE_GUIDES = {
     'h1': 'Planning a fleet graphics rollout.',
     'summary': 'How to plan fleet livery across several vans: auditing the fleet, one master design, approvals, scheduling around your work and adding new vehicles later.',
     'answer': 'List every vehicle, agree one master layout, group vans by model, then book fitting in batches so the business keeps running. Keep the files on record for future vehicles.',
-    'takeaways': [('1', 'master design for every van'), ('4', 'steps to roll it out'), ('0', 'guesswork for new vehicles')],
+    'takeaways': [('1', 'master design shared by every van'), ('4', 'steps to roll it out across the fleet'), ('0', 'guesswork when a new van joins')],
     'sections': [
         ('Start with a fleet audit', [
             ('p', 'Before any design work, list every vehicle: make, model, wheelbase, roof height, colour, registration and whether it is owned or leased. Note any existing graphics that need removing.'),
@@ -216,7 +216,7 @@ MORE_GUIDES = {
     'h1': 'Graphics on leased vehicles.',
     'summary': 'Whether you can put signwriting or a wrap on a lease van, which films remove cleanly, and how to plan removal before the vehicle goes back.',
     'answer': 'Usually yes, with your lease company’s agreement. Use removable cast film, keep the paint in good condition and book removal before the return date.',
-    'takeaways': [('1', 'check with your lease company'), ('2', 'weeks to plan removal'), ('0', 'permanent changes')],
+    'takeaways': [('1', 'call to your lease company first'), ('2', 'weeks to plan the removal'), ('0', 'permanent changes to the paint')],
     'sections': [
         ('Check your lease agreement first', [
             ('p', 'Most lease companies allow removable graphics, but the terms vary. Check your agreement or ask your provider before booking, and keep their answer on file.'),
@@ -248,7 +248,7 @@ MORE_GUIDES = {
     'h1': 'Keeping fleet graphics consistent.',
     'summary': 'How to keep fleet livery consistent across different makes and models, colour batches, replacements and new vehicles.',
     'answer': 'Agree a master set of colours, logo sizes and positions, then adapt it to each model using templates so every vehicle looks like the same company.',
-    'takeaways': [('1', 'master spec for the whole fleet'), ('3', 'things to lock down'), ('0', 'mismatched vans')],
+    'takeaways': [('1', 'master spec covering the whole fleet'), ('3', 'things to agree up front'), ('0', 'mismatched vans on the road')],
     'sections': [
         ('Why consistency matters', [
             ('p', 'A consistent fleet looks established and is easier to recognise on the road. Vans with different logos, colours or phone numbers look like different businesses and are harder to remember.'),
