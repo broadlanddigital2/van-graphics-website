@@ -6,7 +6,7 @@ from pathlib import Path
 from guides_content import FULL_GUIDES
 from guide_page import guide_body, guide_schema
 from core_content import CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS
-from core_pages import care_upsell, brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
+from core_pages import repair_block, care_upsell, brand_page, core_sections, enquiry, sector_cards, support_page, vehicle_picker
 from areas import TOWN_LIST, TOWNS_BY_KEY
 from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY, cap, sector_meta
 from core_content import VAN_BRANDS
@@ -538,7 +538,7 @@ for s in SERVICES:
     ]}
     page(path,s['title']+' | Norwich Vehicle Graphics',s['intro'],
          service_hero(s)
-         + ribbon + core_sections(s, lambda rows: faq(rows, core=True)),
+         + ribbon + core_sections(s, lambda rows: repair_block('vehicle') + faq(rows, core=True)),
          s['image'],schema,enquiry(s,SERVICES,PHONE,TEL,EMAIL,QUOTE))
 
 for key,(name,category,description) in MODELS.items():
@@ -559,7 +559,7 @@ for key,(name,category,description) in MODELS.items():
                  (f'What do you need to quote for my {name}?', 'The model year, wheelbase and roof height, photos of both sides and the rear, your logo and the wording you want on the van.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Norwich Vehicle Graphics',model_desc,
-         support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + faq(model_faq),
+         support_page('Vehicle model · '+category,heading,[description,'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]})
 
 from core_content import VAN_BRANDS
@@ -571,7 +571,7 @@ for key,label in VAN_BRANDS:
             (f'Can you match my {label} to the rest of my fleet?', 'Yes. We adapt one master layout to each make and model, so a mixed fleet still looks like one business.')]
     page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
-         brand_page(key) + care_upsell(f'{label} van') + faq(bfaq),
+         brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]})
 support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',

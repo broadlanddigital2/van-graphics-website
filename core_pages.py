@@ -294,3 +294,16 @@ def care_upsell(vehicle='your van'):
             f'<div class="care-col is-after"><p class="care-label">After fitting</p>{col(after)}</div></div>'
             f'<div class="care-actions"><a class="btn" href="#quote">Add vehicle care to my quote {ARROW}</a><a class="btn outline" href="https://autoopulence.co.uk/" target="_blank" rel="noopener">See Auto Opulence services ↗</a>'
             '<span class="care-note">Washing from £30 · Valeting from £40 · Polishing from £295, prices from Auto Opulence.</span></div></div></section>')
+
+
+def repair_block(vehicle='your van'):
+    """Panel repairs organised as part of the graphics job."""
+    v = escape(vehicle)
+    points = ['Dents, scrapes and scuffed panels', 'Rust spots and chipped paint', 'Damaged bumpers and trims']
+    return (f'<section class="section repair-block"><div class="shell"><div class="repair-card">'
+            f'<div class="repair-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></div>'
+            f'<div class="repair-card__copy"><p class="eyebrow accent">Vehicle damaged?</p><h2>We can organise panel repairs.</h2>'
+            f'<p>Graphics look their best on straight, sound panels, and vinyl cannot hide dents or rust. If your {v} needs some bodywork first, we can organise panel repairs as part of the service, so it comes back repaired and branded in one go.</p>'
+            f'<ul>{"".join(f"<li>{p}</li>" for p in points)}</ul></div>'
+            f'<div class="repair-card__cta"><a class="btn" href="#quote">Ask for details and a quote {ARROW}</a><span>Send photos of the damage with your enquiry and we will include the repair in your quote.</span></div>'
+            '</div></div></section>')

@@ -556,3 +556,14 @@ html{scroll-padding-top:96px}
 .care-note{font-size:13px;color:var(--muted)}
 @media(max-width:800px){.care-grid{grid-template-columns:1fr}}
 .care-upsell .btn.outline{color:var(--ink);border-color:var(--ink);background:transparent}.care-upsell .btn.outline:hover{background:var(--ink);color:#fff}
+/* Panel repair block */
+.repair-block{padding-top:20px}
+.repair-card{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:var(--dark);color:#fff;border-radius:22px;padding:34px 36px;box-shadow:0 22px 50px #111b3126}
+.repair-card__icon{width:72px;height:72px;border-radius:18px;background:var(--lime);color:var(--dark);display:grid;place-items:center}
+.repair-card h2{color:#fff;font-size:clamp(28px,3vw,40px);margin:4px 0 10px}
+.repair-card p{color:#c9d3ee;max-width:640px;line-height:1.6}
+.repair-card ul{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px}
+.repair-card li{display:flex;gap:8px;font-weight:700;font-size:14px}.repair-card li:before{content:"✓";color:var(--lime)}
+.repair-card__cta{display:grid;gap:10px;max-width:260px}.repair-card__cta span{font-size:13px;color:#aebbe0;line-height:1.45}
+@media(max-width:1000px){.repair-card{grid-template-columns:1fr}.repair-card__cta{max-width:none}}
+.repair-card__cta .btn{white-space:nowrap}
