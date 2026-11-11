@@ -360,12 +360,47 @@ def job_strip(primary):
     return (f'<section class="section dark-section"><div class="shell"><div class="work-gallery"><div class="work-head"><p class="eyebrow accent">Recent work</p><p>Vans we have designed, printed and fitted in Norwich.</p></div>'
             f'<div class="work-grid work-grid--3">{tiles}</div><p class="core-note"><a class="text-link" href="/gallery/">See the full gallery {ARROW}</a></p></div></div></section>')
 
+import unicodedata as _ud
+def _slug(t):
+    t = _ud.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower().replace('&', ' and ')
+    t = re.sub(r"[’']", '', t)
+    return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
+
+_URL_MAP = None
+def url_map():
+    """Old structural addresses → keyword addresses (the old ones redirect)."""
+    global _URL_MAP
+    if _URL_MAP is not None:
+        return _URL_MAP
+    from core_content import MODELS
+    m = {}
+    for sec in SECTOR_LIST:
+        m[f'/sectors/{sec["key"]}/'] = f'/{_slug(sec["primary"])}/'
+    for t in TOWN_LIST:
+        m[f'/norfolk/{t["key"]}/'] = f'/van-graphics-{t["key"]}/'
+    for key in MODELS:
+        kw = page_keywords(f'/vehicles/{key}/')
+        m[f'/vehicles/{key}/'] = f'/vehicles/{_slug(kw[0].replace(" and ", " "))}/' if kw else f'/vehicles/{key}/'
+    for key, label in VAN_BRANDS:
+        m[f'/vehicles/{key}/'] = f'/vehicles/{key}-van-graphics/'
+    for key in GUIDES:
+        kw = page_keywords(f'/guides/{key}/')
+        if kw:
+            m[f'/guides/{key}/'] = f'/guides/{_slug(kw[0])}/'
+    _URL_MAP = {a: b for a, b in m.items() if a != b}
+    return _URL_MAP
+
+def rewrite_urls(text):
+    for old, new in sorted(url_map().items(), key=lambda kv: -len(kv[0])):
+        text = text.replace(ORIGIN + old, ORIGIN + new).replace('"' + old, '"' + new).replace("'" + old, "'" + new).replace('(' + old, '(' + new)
+    return text
+
 CRUMB_NAMES = {'norfolk': 'Areas we cover', 'sectors': 'Sectors', 'vehicles': 'Van manufacturers', 'guides': 'Guides'}
 def page_schema(path, title, desc, image, schema):
     """Every page gets a WebPage with a picture and breadcrumbs, merged into any schema it already has."""
     if path in ('/', '/404/'):
         return schema
-    url = ORIGIN + path
+    url = ORIGIN + url_map().get(path, path)
     parts = [p for p in path.strip('/').split('/') if p]
     crumbs = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': ORIGIN + '/'}]
     for i, part in enumerate(parts, 2):
@@ -440,9 +475,9 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     <title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}">
     <meta property="og:type" content="website"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/{image}.webp"><meta name="theme-color" content="#111b31"><link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}<script src="/assets/site.js" defer></script></body></html>'''
-    target = OUT / path.strip('/') / 'index.html'
+    target = OUT / url_map().get(path, path).strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
-    html = sized_images(html)
+    html = rewrite_urls(sized_images(html))
     target.write_text(html, encoding='utf-8')
 
 business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Norwich Vehicle Graphics','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
@@ -691,7 +726,7 @@ if feed.get('llms'):
         lines += ['', '## Key pages', f'- [Van signwriting]({ORIGIN}/van-signwriting-norwich/)', f'- [Vehicle wraps]({ORIGIN}/vehicle-wraps-norwich/)',
                   f'- [Fleet graphics]({ORIGIN}/fleet-graphics-norwich/)', f'- [Free Van Designer]({ORIGIN}/design-your-van/)', f'- [Contact]({ORIGIN}/contact/)']
         text = '\n'.join(lines) + '\n'
-    (OUT / 'llms.txt').write_text(text, encoding='utf-8')
+    (OUT / 'llms.txt').write_text(rewrite_urls(text), encoding='utf-8')
 
 page('/404/', 'Page not found | Norwich Vehicle Graphics', 'This page could not be found.',
      '<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Error 404</p><h1>We can’t find that page.</h1></div></section>'
@@ -699,6 +734,12 @@ page('/404/', 'Page not found | Norwich Vehicle Graphics', 'This page could not 
 (OUT / '404' / 'index.html').replace(OUT / '404.html'); (OUT / '404').rmdir()
 
 urls = ['/', '/design-your-van/', '/norfolk/', '/sectors/', '/contact/'] + ['/'+s['slug']+'/' for s in SERVICES] + support_urls + crm_urls
+urls = [url_map().get(u, u) for u in urls]
+for old, new in url_map().items():
+    stale = OUT / old.strip('/')
+    if stale.is_dir() and old.strip('/') != new.strip('/'):
+        import shutil; shutil.rmtree(stale)
+(OUT/'redirects.json').write_text(json.dumps(url_map(), ensure_ascii=False))
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{ORIGIN}{path}</loc></url>' for path in urls) + '</urlset>\n')
 (OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
 
