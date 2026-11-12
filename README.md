@@ -56,3 +56,21 @@ The designer at `/design-your-van/` sits behind a free, passwordless account.
 - **Quote request** creates a separate "Van Designer quote" lead carrying the sign-up's ad tracking, emails the team (`NVG_TEAM_EMAIL` secret, default production@broadlanddigital.co.uk) and confirms to the customer.
 - **Reg lookup** uses the DVLA Vehicle Enquiry Service once a `DVLA_VES_API_KEY` secret is added; until then customers pick make and model.
 - **Emails** send through the CRM's SendGrid account from the business unit's `outbound_from_email` (currently falls back to noreply@racecargraphics.uk). Login links use the business unit's `website_url`, so update it at launch.
+
+## Launch checklist (search engines and AI assistants)
+
+Until launch the site is only on the workers.dev preview, which tells every crawler to stay away (the Worker serves
+`Disallow: /` and `X-Robots-Tag: noindex`). That's deliberate, so the preview never competes with the real site.
+At launch:
+
+1. **Domain**: attach it to the Worker in Cloudflare, add it to `routes` in `wrangler.jsonc` and to `LIVE_HOSTS` in
+   `worker/index.ts`.
+2. **Site address**: build with `SITE_ORIGIN=https://<domain> python3 build.py` (or change the fallback `ORIGIN` in
+   `build.py`) so the sitemap, canonical links, `llms.txt` and structured data use the real domain. Commit `dist/`.
+3. **Cloudflare AI settings** (zone → AI Crawl Control / Security → Bots): leave **Block AI bots** OFF and
+   **Manage your robots.txt** OFF. Otherwise Cloudflare puts its own blocklist in front of `robots.txt` and returns
+   403 to ChatGPT, Claude and Perplexity (this is what happened on lemancave.co.uk).
+4. **CRM**: set the SEO site's domain (Marketing → SEO, `seo_sites.domain`) and the business's `website_url`; re-run
+   the AI crawler check (Marketing → SEO tracking → AI answers) and confirm every crawler shows OK.
+5. **Listings**: put the real domain on the Google Business Profile, then use "Sync with Google" in Bing Places.
+6. **Search Console and Bing Webmaster Tools**: verify the domain and submit `/sitemap.xml`.

@@ -15,7 +15,10 @@ import home_sections as H
 from designer_page import FAQ as DESIGNER_FAQ, designer_page, designer_promo
 
 OUT = Path('dist')
-ORIGIN = 'https://van-graphics-website.justin-b8f.workers.dev'  # preview host; change to the live domain at launch
+import os as _os
+# Preview host until launch. At launch set SITE_ORIGIN (e.g. https://norwichvehiclegraphics.co.uk) for the build, or change
+# the fallback here, and add the domain to LIVE_HOSTS in worker/index.ts (see "Launch checklist" in README.md).
+ORIGIN = (_os.environ.get('SITE_ORIGIN') or 'https://van-graphics-website.justin-b8f.workers.dev').rstrip('/')
 QUOTE = 'https://broadlanddigital.co.uk/get-a-quote/'
 PHONE = '01603 407786'
 TEL = 'tel:+441603407786'
@@ -747,7 +750,12 @@ for old, new in url_map().items():
         import shutil; shutil.rmtree(stale)
 (OUT/'redirects.json').write_text(json.dumps(url_map(), ensure_ascii=False))
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{ORIGIN}{path}</loc></url>' for path in urls) + '</urlset>\n')
-(OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {ORIGIN}/sitemap.xml\n')
+# Everyone may crawl; AI search and assistant crawlers are named so it's clear they're welcome (ChatGPT, Claude,
+# Perplexity, Gemini, Apple Intelligence, Bing/Copilot). On the preview host the Worker replaces this with Disallow: /.
+AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot',
+               'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot']
+(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\n' + ''.join(f'User-agent: {b}\n' for b in AI_CRAWLERS)
+                              + f'Allow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n')
 
 # Cache-bust CSS/JS: assets are cached for a day, so every page links them with a content hash.
 import hashlib
