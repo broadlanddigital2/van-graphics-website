@@ -624,3 +624,4 @@ html{scroll-padding-top:96px}
 .fam-card__media.is-empty img{width:64px;height:64px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
 .fam-card__media.is-empty .brand-wordmark{font-size:16px;color:#fff}
 .fam-card__media.is-empty span:last-child{font-weight:900;font-size:20px;letter-spacing:-.02em}
+.has-image.brand-hero .brand-hero__logo{display:none}

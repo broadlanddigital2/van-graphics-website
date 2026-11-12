@@ -571,6 +571,13 @@ for key,(name,category,description) in MODELS.items():
          hero_image=f'vehicles/{key}-hero')
 
 from core_content import VAN_BRANDS
+BRAND_HERO_FALLBACK = {'ford': 'transit-custom', 'vauxhall': 'vivaro', 'volkswagen': 'vw-transporter',
+                       'citroen': 'berlingo', 'peugeot': 'peugeot-expert', 'mercedes': 'sprinter'}
+def brand_hero(key):
+    """A branded hero for a manufacturer page: its own image (assets/vehicles/brands/<key>-hero.webp) if added, else its best-known model's branded hero."""
+    own = f'vehicles/brands/{key}-hero'
+    if generated(own): return own
+    return f'vehicles/{BRAND_HERO_FALLBACK[key]}-hero' if key in BRAND_HERO_FALLBACK else None
 for key,label in VAN_BRANDS:
     path = f'/vehicles/{key}/'
     support_urls.append(path)
@@ -581,7 +588,8 @@ for key,label in VAN_BRANDS:
     page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
          brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),
-         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]})
+         schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]},
+         hero_image=brand_hero(key))
 support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
@@ -591,7 +599,7 @@ page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      + '<p>If your van is not listed, we can still help. Send the make, model, year and wheelbase with photos of both sides and the rear, and we will plan the layout and send a fitted price.</p></div></div></section>'
      + faq([('Do you fit graphics to every van make?', 'Yes. We fit signwriting and wraps to vans from all the main manufacturers, plus pickups, cars, minibuses and box vans.'),
             ('Does the price change between models?', 'Signwriting is priced by van size, from £149 for a small van. Wraps are quoted per vehicle because coverage and panel shapes vary between models.'),
-            ('Can you match graphics across different models in my fleet?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image='pages/vehicles-hub-hero')
+            ('Can you match graphics across different models in my fleet?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image=generated('pages/vehicles-hub-branded-hero') or 'vehicles/transit-custom-hero')
 
 def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):
     parent_path, parent_name = parent
