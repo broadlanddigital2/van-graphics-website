@@ -2,6 +2,7 @@
 from html import escape
 
 WORK = [  # (file, client, caption, alt, sectors)
+    ('norwich-vehicle-graphics-miller-installations-ford-transit-custom-bonnet-graphics', 'Miller Installations', 'Bonnet stripes and logo on a Ford Transit Custom', 'Miller Installations silver Ford Transit Custom with blue and grey bonnet racing stripes, logo and Heating, Cooling, Renewables strapline', ('plumbers-heating', 'electricians', 'trades')),
     ('norwich-vehicle-graphics-gs-pro-clean-ford-transit-custom-printed-wrap', 'GS Pro Clean', 'Printed wrap on a black Ford Transit Custom', 'GS Pro Clean window cleaning van with a printed blue and white wrap on a black Ford Transit Custom', ('window-cleaners', 'cleaning')),
     ('norwich-vehicle-graphics-acdc-norfolk-electrician-ford-transit-custom-van-graphics', 'ACDC Norfolk Electrician', 'Signwriting on a Ford Transit Custom', 'ACDC Norfolk Electrician Ford Transit Custom with green lettering and a lightning plug graphic', ('electricians', 'trades')),
     ('norwich-vehicle-graphics-window-door-doctor-kia-pv5-partial-wrap-side', 'Window & Door Doctor', 'Partial wrap and signwriting on a Kia PV5', 'Window & Door Doctor Kia PV5 van with a green and black partial wrap and service list', ('trades',)),
@@ -15,6 +16,7 @@ WORK = [  # (file, client, caption, alt, sectors)
     ('norwich-vehicle-graphics-acdc-norfolk-electrician-van-rear-doors', 'ACDC Norfolk Electrician', 'Rear doors with logo and contact details', 'Rear doors of the ACDC Norfolk Electrician van with large logo, phone and website', ('electricians',)),
     ('norwich-vehicle-graphics-gs-pro-clean-van-wrap-rear', 'GS Pro Clean', 'Rear doors with phone and website', 'Rear of the GS Pro Clean Ford Transit Custom with phone number, website and pure water technology graphics', ('window-cleaners', 'cleaning')),
     ('norwich-vehicle-graphics-reliable-garden-van-rear-decals', 'Reliable Garden', 'Rear window and door decals', 'Rear of the red Reliable Garden van with printed rear window, phone number and website', ('landscapers-gardeners',)),
+    ('norwich-vehicle-graphics-miller-installations-heating-van-signwriting-side', 'Miller Installations', 'Side signwriting with services list', 'Side of the Miller Installations van with logo, Heating, Cooling, Renewables and a list of heat pump, boiler, air con and solar PV services', ('plumbers-heating', 'electricians', 'trades')),
     ('norwich-vehicle-graphics-window-door-doctor-van-rear-door-graphics', 'Window & Door Doctor', 'Rear doors with website and services', 'Rear doors of the Window & Door Doctor van with website, phone numbers and services in lime green', ('trades',)),
     ('norwich-vehicle-graphics-benissimo-van-bonnet-logo', 'Benissimo', 'Bonnet logo close-up', 'Close-up of the Benissimo script logo and chef illustration on a Mercedes Sprinter bonnet', ('food-drink',)),
 ]
