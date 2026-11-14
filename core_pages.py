@@ -140,22 +140,22 @@ def case_study(data):
 REVIEWS_WIDGET = 'https://www.local-marketing-reports.com/external/showcase-reviews/widgets/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef'
 REVIEWS_EMBED = 'https://www.local-marketing-reports.com/external/showcase-reviews/embed/1e3e700f5ddf21a13ff257d1f4ef7f02c7237aef?id=18987'
 
-GOOGLE_REVIEWS = [  # Broadland Digital's Google reviews (vehicle graphics jobs)
-    ('Daniel Ellert', 'September 2025', 'Helpful and professional. Now have a great new livery on my van. Reasonable price, and good quality, even overcame a small issue with my van on the day!'),
-    ('Andy', 'August 2025', 'From first contact, taking vehicle to the guys to choose what type of wrap and get their suggestions to the fitment the whole process was friendly and professional and at a reasonable price. Would definitely use again. Thank you.'),
-    ('Simon Bainbridge', 'July 2025', 'Friendly staff, quick installation of van graphics and they look awesome. I highly recommend Race Car Graphics and their sister company Broadland Digital to everyone!'),
-    ('Iwan Utting', 'November 2025', 'Brilliant service, quickly and very good quality! Also very welcoming!'),
+REVIEW_THEMES = [  # Our own summary of what Broadland Digital's Google reviewers mention most; no quoted review text
+    ('Friendly from the first call', 'Customers often say the team is welcoming and easy to deal with, from the first chat to collection.'),
+    ('Fair, clear pricing', 'Fair prices come up again and again, with the cost agreed before any work starts.'),
+    ('Quick, tidy fitting', 'Reviewers mention fast turnaround and a neat finish, with little time off the road.'),
+    ('Problems sorted on the day', 'When something unexpected turns up with a vehicle, people say the team found a fix and finished the job.'),
 ]
 GOOGLE_URL = 'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'
 
 def reviews(data=None):
-    """Summary panel plus four Google review cards for Broadland Digital, our parent company."""
-    cards = ''.join(f'''<article class="review-card"><p class="review-card__stars" aria-label="5 out of 5">★★★★★</p><blockquote>{escape(text)}</blockquote>
-    <footer><span class="review-card__avatar" aria-hidden="true">{escape(name[0])}</span><span><b>{escape(name)}</b><small>Google review · {when}</small></span></footer></article>''' for name, when, text in GOOGLE_REVIEWS)
+    """Google rating summary plus our own summary of common review themes. Review text itself stays on Google."""
+    cards = ''.join(f'<article class="review-card is-theme"><span class="review-card__num">{n:02}</span><h3>{escape(t)}</h3><p>{escape(d)}</p></article>'
+                    for n, (t, d) in enumerate(REVIEW_THEMES, 1))
     return (f'''<div class="reviews-block"><div class="reviews-block__summary"><p class="reviews-stars" aria-label="Rated 5 out of 5">★★★★★</p>
     <p class="reviews-score"><b>5.0</b> on Google</p><p>From 23 reviews of Broadland Digital, the Norwich workshop that designs, prints and fits our vehicle graphics.</p>
-    <a class="text-link" href="{GOOGLE_URL}" target="_blank" rel="noopener">Read all reviews on Google {ARROW}</a></div>
-    <div class="review-cards">{cards}</div></div>''')
+    <a class="text-link" href="{GOOGLE_URL}" target="_blank" rel="noopener">Read the reviews on Google {ARROW}</a></div>
+    <div class="review-cards"><p class="review-cards__label">What customers mention most</p>{cards}</div></div>''')
 
 def enquiry(service, services, phone, tel, email, quote_url, *, context='', contact=False):
     options = '' if service else '<option>General enquiry</option>'
@@ -200,7 +200,7 @@ def brand_img(key, label, size=480):
 
 def vehicle_picker():
     """Manufacturer grid in the Race Car Graphics style: square logo tiles, 4 across, each opening a brand page."""
-    cards = ''.join(brand_card(f'/vehicles/{key}/', brand_img(key, label), label, 'Explore graphics') for key, label in VAN_BRANDS)
+    cards = ''.join(brand_card(f'/vehicles/{key}/', brand_img(key, label), label, 'View models') for key, label in VAN_BRANDS)
     cards += brand_card('#quote', OTHER_ICON, 'Other makes', 'Tell us what you drive')
     return f'''<div class="vehicle-picker">
     <p>Pick the make of your van, then the model, for layout tips that suit its panels.</p>

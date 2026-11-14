@@ -625,3 +625,9 @@ html{scroll-padding-top:96px}
 .fam-card__media.is-empty .brand-wordmark{font-size:16px;color:#fff}
 .fam-card__media.is-empty span:last-child{font-weight:900;font-size:20px;letter-spacing:-.02em}
 .has-image.brand-hero .brand-hero__logo{display:none}
+/* Review themes */
+.review-cards__label{grid-column:1/-1;margin:0;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.review-card.is-theme{gap:10px;border-top:5px solid var(--lime)}
+.review-card__num{font-size:13px;font-weight:900;color:var(--lime);letter-spacing:.08em}
+.review-card.is-theme h3{font-size:21px;letter-spacing:-.02em;line-height:1.2;margin:0}
+.review-card.is-theme p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
