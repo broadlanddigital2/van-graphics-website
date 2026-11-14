@@ -495,32 +495,53 @@ home_faq = [('What do van graphics cost in Norwich?','It depends on the vehicle,
 
 from core_pages import section as numbered
 HOME_SLIDES = [
-    ('Vehicle graphics · Norwich, Norfolk', 'Vehicle graphics &amp; van wraps<span>in Norwich, Norfolk.</span>',
-     'Van signwriting, partial and full wraps and fleet graphics, designed, printed and fitted in-house at our Norwich workshop.',
-     'hero', 'Orange and blue wrapped van on a race circuit', ('Get a free quote', '#quote'), ('Design your van', '/design-your-van/#designer')),
-    ('Van signwriting · From £149', 'Signwriting that<span>gets you called.</span>',
+    ('Van wraps', 'Vehicle graphics · Norwich, Norfolk', 'Vehicle graphics<br>&amp; van wraps <span>in Norwich.</span>',
+     'Signwriting, partial and full wraps and fleet livery, designed, printed and fitted under one roof at our Norwich workshop.',
+     'pages/service-vehicle-wraps-norwich-hero', 'Blue wave printed van wrap for a surf shop on the Norfolk coast', ('Get a free quote', '#quote'), ('See van wraps', '/vehicle-wraps-norwich/')),
+    ('Signwriting', 'Van signwriting · From £149', 'Signwriting that<br><span>gets you called.</span>',
      'Your name, trade and number in crisp cut vinyl, laid out to be read at a glance. Small vans from £149, fitted.',
-     'pages/service-van-signwriting-norwich-hero', 'Signwritten trade van outside a Norwich home', ('See signwriting prices', '/van-signwriting-norwich/'), ('Get a free quote', '#quote')),
-    ('Fleet graphics · 2 to 200 vehicles', 'One look across<span>your whole fleet.</span>',
+     'pages/service-van-signwriting-norwich-hero', 'Signwritten electrician’s van outside a workshop', ('See signwriting prices', '/van-signwriting-norwich/'), ('Get a free quote', '#quote')),
+    ('Fleet graphics', 'Fleet graphics · 2 to 200 vehicles', 'One look across<br><span>your whole fleet.</span>',
      'A single master design, adapted to every make and model, so each new van joins the fleet already matching.',
      'pages/vehicles-hub-branded-hero', 'Fleet of vans in matching livery at a Norfolk yard', ('Plan fleet graphics', '/fleet-graphics-norwich/'), ('Get a free quote', '#quote')),
-    ('Free online Van Designer', 'Design your van<span>in minutes.</span>',
+    ('Van Designer', 'Free online Van Designer', 'Design your van<br><span>in minutes.</span>',
      'Pick your van, add your logo and contact details, and try graphics or a full wrap before you spend a penny.',
-     'pages/van-designer-hero', 'Van design shown on screen in the online Van Designer', ('Start designing', '/design-your-van/#designer'), ('Get a free quote', '#quote')),
+     'pages/van-designer-hero', 'Van design previewed on a phone next to the finished van', ('Start designing', '/design-your-van/#designer'), ('Get a free quote', '#quote')),
 ]
 
+TRUST_ITEMS = [('Designed in Norwich', 'Layouts drawn by our own team, not outsourced.', 'pen'),
+               ('Printed in-house', 'Wide-format printing on site for colour control.', 'print'),
+               ('Premium cast vinyl', 'Conformable films that last on curves and rivets.', 'layers'),
+               ('Proof before print', 'You approve a visual of your vehicle first.', 'check'),
+               ('Fitted at our Norwich workshop', 'Clean, indoor fitting by experienced installers.', 'pin')]
+TRUST_ICONS = {
+    'pen': '<path d="M4 20l4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10L4 20z"/><path d="M14 7l3 3"/>',
+    'print': '<path d="M7 9V4h10v5"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v6H7z"/>',
+    'layers': '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>',
+    'check': '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/>',
+    'pin': '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'}
+
+def trust_block():
+    items = ''.join(f'<li><span class="trust-block__icon"><svg viewBox="0 0 24 24" aria-hidden="true">{TRUST_ICONS[icon]}</svg></span><b>{escape(t)}</b><small>{escape(d)}</small></li>'
+                    for t, d, icon in TRUST_ITEMS)
+    return f'<section class="trust-block" aria-label="Why choose us"><div class="shell"><ul>{items}</ul></div></section>'
+
 def home_slider():
-    copies, imgs, dots = '', '', ''
-    for n, (eyebrow, title, lede, image, alt, primary, secondary) in enumerate(HOME_SLIDES):
+    copies, imgs, tabs = '', '', ''
+    total = len(HOME_SLIDES)
+    for n, (tab, eyebrow, title, lede, image, alt, primary, secondary) in enumerate(HOME_SLIDES):
         on = ' is-active' if n == 0 else ''
         tag = 'h1' if n == 0 else 'h2'
-        copies += (f'<div class="slide-copy{on}" data-slide="{n}"{"" if n == 0 else " aria-hidden=\"true\""}><p class="eyebrow accent">{eyebrow}</p><{tag} class="slide-title">{title}</{tag}>'
-                   f'<p class="lede">{lede}</p><div class="actions">{button(*primary)}{button(*secondary, "outline")}</div></div>')
-        imgs += f'<img class="slide-img{on}" data-slide="{n}" src="/assets/{image}.webp" alt="{escape(alt)}"{"" if n == 0 else " style=\"object-position:80% 55%\""}{" fetchpriority=\"high\"" if n == 0 else " loading=\"lazy\""}>'
-        dots += f'<button type="button" class="slide-dot{on}" data-go="{n}" aria-label="Show banner {n + 1} of {len(HOME_SLIDES)}"{" aria-current=\"true\"" if n == 0 else ""}><i></i></button>'
-    return (f'<section class="hero home-hero home-slider" aria-roledescription="carousel" aria-label="Featured services"><div class="shell"><div class="hero-copy">'
-            f'<div class="slide-stack">{copies}</div><div class="slide-dots">{dots}</div>{H.trust_row()}</div>'
-            f'<div class="hero-media">{imgs}<span class="marker" aria-hidden="true"><i></i><i></i><i></i></span></div></div></section>')
+        copies += (f'<div class="slide-copy{on}" data-slide="{n}"{"" if n == 0 else " aria-hidden=\"true\""}><p class="hx-eyebrow">{eyebrow}</p><{tag} class="hx-title">{title}</{tag}>'
+                   f'<p class="hx-lede">{lede}</p><div class="actions">{button(*primary)}{button(*secondary, "ghost")}</div></div>')
+        imgs += f'<img class="slide-img{on}" data-slide="{n}" src="/assets/{image}.webp" alt="{escape(alt)}" width="2400" height="1100"{" fetchpriority=\"high\"" if n == 0 else " loading=\"lazy\""}>'
+        tabs += (f'<button type="button" class="slide-dot hx-tab{on}" data-go="{n}" aria-label="Show {escape(tab)} banner, {n + 1} of {total}"{" aria-current=\"true\"" if n == 0 else ""}>'
+                 f'<span class="hx-tab__num">{n + 1:02}</span><span class="hx-tab__label">{escape(tab)}</span><i></i></button>')
+    return (f'<section class="hx home-slider" aria-roledescription="carousel" aria-label="Featured services">'
+            f'<div class="hx-media" aria-hidden="false">{imgs}</div><div class="hx-shade" aria-hidden="true"></div>'
+            f'<div class="shell hx-inner"><div class="hx-copy"><div class="slide-stack">{copies}</div></div>'
+            f'</div>'
+            f'<div class="hx-bar"><div class="shell hx-bar__inner"><div class="hx-tabs" role="group" aria-label="Choose a banner">{tabs}</div></div></div></section>' + trust_block())
 home_hero = home_slider()
 home_schema = {'@context':'https://schema.org','@graph':[{k:v for k,v in business.items() if k!='@context'},
     {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in H.HOME_FAQ]}]}
