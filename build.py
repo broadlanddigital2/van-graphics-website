@@ -503,7 +503,7 @@ HOME_SLIDES = [
      'pages/service-van-signwriting-norwich-hero', 'Signwritten electrician’s van outside a workshop', ('See signwriting prices', '/van-signwriting-norwich/'), ('Get a free quote', '#quote')),
     ('Fleet graphics', 'Fleet graphics · 2 to 200 vehicles', 'One look across<br><span>your whole fleet.</span>',
      'A single master design, adapted to every make and model, so each new van joins the fleet already matching.',
-     'pages/vehicles-hub-branded-hero', 'Fleet of vans in matching livery at a Norfolk yard', ('Plan fleet graphics', '/fleet-graphics-norwich/'), ('Get a free quote', '#quote')),
+     'pages/guide-fleet-artwork-consistency-hero', 'Meridian Facilities Group car and vans in matching fleet livery', ('Plan fleet graphics', '/fleet-graphics-norwich/'), ('Get a free quote', '#quote')),
     ('Van Designer', 'Free online Van Designer', 'Design your van<br><span>in minutes.</span>',
      'Pick your van, add your logo and contact details, and try graphics or a full wrap before you spend a penny.',
      'pages/van-designer-hero', 'Van design previewed on a phone next to the finished van', ('Start designing', '/design-your-van/#designer'), ('Get a free quote', '#quote')),
