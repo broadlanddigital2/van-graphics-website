@@ -71,9 +71,9 @@ def comparison(data):
     elif data['key']=='fleet':
         rows.append(('Fleet graphics', 'Choose coverage for each vehicle', 'One master design across several vehicles', '/fleet-graphics-norwich/'))
     links = [(f'<a href="{href}">{name}</a>', coverage, purpose) for name,coverage,purpose,href in rows]
-    diagrams = ''.join(f'<figure>{van_diagram(kind)}<figcaption>{label}</figcaption></figure>'
-                      for kind,label in [('graphics','Individual graphics'),('partial','Partial wrap'),('full','Full wrap')])
-    return table('Vehicle graphics and wrap comparison',('Option','Typical coverage','Best suited to'),links)+f'<div class="coverage-diagrams" aria-label="Illustrative van coverage">{diagrams}</div>'
+    diagrams = ''.join(f'<figure class="has-photo"><img src="/assets/pages/compare-{key}.webp" alt="{label} on a Ford Transit Custom" width="1200" height="800" loading="lazy"><figcaption>{label}</figcaption></figure>'
+                      for key,label in [('signwriting','Van signwriting'),('partial','Partial wrap'),('full','Full wrap')])
+    return table('Vehicle graphics and wrap comparison',('Option','Typical coverage','Best suited to'),links)+f'<div class="coverage-diagrams" aria-label="Van coverage examples">{diagrams}</div>'
 
 ICON_PATHS = {
     'design':'<path d="m4 17 12-12 3 3L7 20H4zM14 7l3 3"/>',

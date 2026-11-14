@@ -714,3 +714,8 @@ html{scroll-padding-top:96px}
 @media(max-width:650px){.trust-block ul{grid-template-columns:1fr}.trust-block li{padding:16px 0!important;border-left:0!important}.trust-block li+li{border-top:1px solid var(--line)}}
 .hx-tab.slide-dot{width:auto;height:auto}.hx-tab.slide-dot i{width:auto}
 .hx-media img[data-slide="2"]{object-position:100% 60%}
+.coverage-diagrams{gap:16px;margin-top:20px}
+.coverage-diagrams figure.has-photo{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 30px #111b3114}
+.coverage-diagrams figure.has-photo img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;display:block}
+.coverage-diagrams figure.has-photo figcaption{font-size:15px;padding:14px 10px;text-align:center}
+@media(max-width:650px){.coverage-diagrams{grid-template-columns:1fr}}
