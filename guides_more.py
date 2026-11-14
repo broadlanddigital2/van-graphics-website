@@ -7,12 +7,12 @@ MORE_GUIDES = {
     'h1': 'What affects the cost of van graphics?',
     'summary': 'The main things that change the price of van signwriting and wraps, our published signwriting prices, and how to get a quote you can compare.',
     'answer': 'The price depends on the size of the van, how much of it is covered, the film used, how much design work is needed and how long it takes to fit. Signwriting starts from £149 for a small van; wraps and fleets are quoted per vehicle.',
-    'takeaways': [('£149', 'starting price for signwriting on a small van'), ('3', 'levels of coverage to choose from'), ('6', 'factors that set the price')],
+    'takeaways': [('£149', 'starting price (+ VAT) for signwriting on a small van'), ('3', 'levels of coverage to choose from'), ('6', 'factors that set the price')],
     'sections': [
         ('Signwriting, partial and full wraps compared', [
             ('p', 'Coverage is the biggest single factor in van graphics cost. The more of the van that is covered, the more film, print time and fitting time the job needs.'),
             ('table', (['Option', 'What it covers', 'Price guide'], [
-                ['Van signwriting', 'Cut vinyl name, services and contact details', 'From £149 small · £210 medium · £285 large'],
+                ['Van signwriting', 'Cut vinyl name, services and contact details', 'From £149 small · £210 medium · £285 large (+ VAT)'],
                 ['Partial wrap', 'Printed panels over selected areas', 'Quoted per vehicle'],
                 ['Full wrap', 'Printed design or colour over most panels', 'Quoted per vehicle'],
                 ['Fleet graphics', 'One layout adapted across several vehicles', 'Quoted per fleet']])),

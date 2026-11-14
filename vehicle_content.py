@@ -135,7 +135,7 @@ MODEL_COPY = {
 'caddy': ('The Volkswagen Caddy is a premium small van that suits sole traders, cleaners and mobile services. The longer Caddy Maxi adds more load space and more panel space for graphics.',
           'Caddys have a sliding side door and either a tailgate or twin rear doors. Panels are smaller than a medium van’s, so we keep lettering bold and uncluttered.',
           'Cut vinyl signwriting is the most popular choice; a colour change or partial wrap makes a small van look much bigger on the road.',
-          [('Does a Caddy Maxi cost more to brand?', 'Slightly, as there is more panel to cover. Signwriting for small vans starts from £149 fitted.'),
+          [('Does a Caddy Maxi cost more to brand?', 'Slightly, as there is more panel to cover. Signwriting for small vans starts from £149 + VAT, fitted.'),
            ('Tailgate or twin doors: does it matter?', 'Yes. A tailgate gives one large rear panel; twin doors split it. Tell us which you have so we lay out the rear correctly.')]),
 'berlingo': ('The Citroën Berlingo is one of the most practical small vans, with L1 and L2 lengths and a crew cab option. It shares its body with the Peugeot Partner, Vauxhall Combo and Toyota Proace City.',
              'The rear quarter behind the sliding door is the largest flat area, so it is the best place for your name. Twin rear doors take the phone number.',
@@ -216,5 +216,5 @@ MODEL_COPY = {
                    'The rear quarter behind the sliding door is the main canvas; rear doors carry the phone number.',
                    'Clean signwriting suits the Citan’s compact panels and premium look.',
                    [('Which Citan template do I need?', 'It depends on the year: 2012–22 and 2023-onwards Citans look different. Send the year or a photo.'),
-                    ('Is signwriting on a Citan expensive?', 'Signwriting on small vans starts from £149 fitted using our published packages.')]),
+                    ('Is signwriting on a Citan expensive?', 'Signwriting on small vans starts from £149 + VAT, fitted, using our published packages.')]),
 }

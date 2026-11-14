@@ -97,7 +97,7 @@ CONTENT = {
             'Start with the details you want someone to read at a glance. Your business name, main service and one contact detail usually give the design a clear order. We lay the artwork out around handles, recesses and door joins, taking the original paint colour into account. If your logo needs several colours or contains a gradient, we can discuss printing it as a graphic instead of building it from separate colours of cut film.',
             'Tell us the make, model and year, and send a picture of every side. We can advise on coverage, show you a proof and arrange fitting in Norwich after you approve the design.',
         ],
-        'pricing': ['From £149', 'From £210', 'From £285 for large vans¹', 'Quote required'],
+        'pricing': ['From £149 + VAT', 'From £210 + VAT', 'From £285 + VAT', 'Quote required'],
         'price_note': 'Signwriting packages are fixed fitted prices for a standard layout. Tap a price to start a quote, and we confirm the exact layout for your van before anything is printed.',
         'price_factor': 'Panel count, artwork preparation, printed colour, existing vinyl removal and access to the bodywork.',
         'materials': 'Cut lettering suits simple colours and shapes. Printed film can reproduce complex logos or gradients. Specify the finish against the body colour, including how it reads under overcast light.',

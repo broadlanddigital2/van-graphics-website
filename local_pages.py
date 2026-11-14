@@ -185,7 +185,7 @@ def sector_hero(key, phone, tel):
     s = SECTORS_BY_KEY[key]
     image, dedicated = sector_hero_image(key)
     group = next(label for g, label, _ in GROUPS if g == s['group'])
-    chips = ''.join(f'<li>{escape(c)}</li>' for c in (s['package'][0], 'Signwriting from £149', 'Designed & fitted in Norwich'))
+    chips = ''.join(f'<li>{escape(c)}</li>' for c in (s['package'][0], 'Signwriting from £149 + VAT', 'Designed & fitted in Norwich'))
     must = ''.join(f'<li>{escape(m)}</li>' for m in s['must'])
     return f'''<section class="sector-hero{' is-dedicated' if dedicated else ''}{' is-long' if len(s['primary']) > 24 else ''}">
     <img class="sector-hero__img" src="{asset(image)}" alt="{escape(s['alt'])}" fetchpriority="high" width="2400" height="1100">
@@ -216,8 +216,8 @@ def recommended_package(title):
 def price_cards(s):
     rec = recommended_package(s['package'][0]) if s else None
     cards = (
-        ('sign', 'is-orange', 'Signwriting', 'from', '£149', 'small van', 'Logos, a service line and contact details in cut vinyl.',
-         '<ul class="price-sizes"><li><span>Small van</span><b>£149</b></li><li><span>Medium van</span><b>£210</b></li><li><span>Large van</span><b>£285</b></li></ul>'),
+        ('sign', 'is-orange', 'Signwriting', 'from', '£149', 'small van + VAT', 'Logos, a service line and contact details in cut vinyl.',
+         '<ul class="price-sizes"><li><span>Small van</span><b>£149</b></li><li><span>Medium van</span><b>£210</b></li><li><span>Large van</span><b>£285</b></li></ul><p class="price-vat">All prices + VAT</p>'),
         ('partial', 'is-cobalt', 'Partial wrap', '', 'Quoted', 'per vehicle', 'Printed panels or colour across selected areas of the van.', ''),
         ('full', 'is-dark', 'Full wrap', '', 'Quoted', 'per vehicle', 'Printed imagery or brand colours across most exterior panels.', ''),
         ('fleet', 'is-mint', 'Fleet graphics', '', 'Quoted', 'per fleet', 'One shared layout adapted for each make and model you run.', ''),

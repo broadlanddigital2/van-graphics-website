@@ -757,3 +757,4 @@ html{scroll-padding-top:96px}
 .price-quote .enquiry-status{font-size:14px;font-weight:700;color:var(--ink)}
 @media(max-width:900px){.pm-quote{grid-template-columns:1fr}}
 @media(max-width:560px){.price-quote .field-row{grid-template-columns:1fr}}
+.price-vat{margin:8px 0 0;font-size:12px;font-weight:700;color:inherit;opacity:.75}.pm .pm-corner small{display:block;margin-top:4px;letter-spacing:0;text-transform:none;font-weight:600;font-size:12px}

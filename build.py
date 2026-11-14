@@ -157,7 +157,7 @@ def service_hero(s):
     custom = generated(f'pages/service-{s["slug"]}-hero')
     image = custom or s['image']
     price = CONTENT[s['slug']]['pricing'][0] if s['slug'] == 'van-signwriting-norwich' else None
-    chips = ''.join(f'<li>{escape(c)}</li>' for c in ([f'Signwriting {price.lower()}' if price else 'Quoted per vehicle', 'Designed & fitted in Norwich', 'Proof before print']))
+    chips = ''.join(f'<li>{escape(c)}</li>' for c in ([f'Signwriting {price[0].lower() + price[1:]}' if price else 'Quoted per vehicle', 'Designed & fitted in Norwich', 'Proof before print']))
     options = ''.join(f'<li>{escape(o[0])}</li>' for o in s['options'])
     title = s['title'].replace(' in Norwich', '<span>in Norwich.</span>')
     return f'''<section class="sector-hero service-hero{' is-dedicated' if custom else ''}">
@@ -498,8 +498,8 @@ HOME_SLIDES = [
     ('Van wraps', 'Vehicle graphics · Norwich, Norfolk', 'Vehicle graphics<br>&amp; van wraps <span>in Norwich.</span>',
      'Signwriting, partial and full wraps and fleet livery, designed, printed and fitted under one roof at our Norwich workshop.',
      'pages/service-vehicle-wraps-norwich-hero', 'Blue wave printed van wrap for a surf shop on the Norfolk coast', ('Get a free quote', '#quote'), ('See van wraps', '/vehicle-wraps-norwich/')),
-    ('Signwriting', 'Van signwriting · From £149', 'Signwriting that<br><span>gets you called.</span>',
-     'Your name, trade and number in crisp cut vinyl, laid out to be read at a glance. Small vans from £149, fitted.',
+    ('Signwriting', 'Van signwriting · From £149 + VAT', 'Signwriting that<br><span>gets you called.</span>',
+     'Your name, trade and number in crisp cut vinyl, laid out to be read at a glance. Small vans from £149 + VAT, fitted.',
      'pages/service-van-signwriting-norwich-hero', 'Signwritten electrician’s van outside a workshop', ('See signwriting prices', '/van-signwriting-norwich/'), ('Get a free quote', '#quote')),
     ('Fleet graphics', 'Fleet graphics · 2 to 200 vehicles', 'One look across<br><span>your whole fleet.</span>',
      'A single master design, adapted to every make and model, so each new van joins the fleet already matching.',
@@ -595,7 +595,7 @@ for key,(name,category,description) in MODELS.items():
     heading = f'{name} graphics and wraps'
     price = {'Small van': '£149', 'Medium van': '£210', 'Large van': '£285'}.get(category)
     size = category.lower()
-    opts = [('Signwriting', f'Cut vinyl lettering for your name, services and contact details, laid out around the {name} doors, handles and panel lines.' + (f' Our published fitted price for a {size} starts from {price}.' if price else ' Priced to the size of the body.')),
+    opts = [('Signwriting', f'Cut vinyl lettering for your name, services and contact details, laid out around the {name} doors, handles and panel lines.' + (f' Our published fitted price for a {size} starts from {price} + VAT.' if price else ' Priced to the size of the body.')),
             ('Partial wrap', f'Printed panels or colour over selected areas of the {name}, usually the rear half or lower sides, using the paint as part of the design.'),
             ('Full wrap', f'Printed imagery or a colour change across most of the {name}, including the bonnet, doors and bumpers where the film can be fitted cleanly.')]
     extra = (f'<h2>Graphics options for the {escape(name)}</h2><div class="info-cards">' + ''.join(f'<article><h3>{t}</h3><p>{escape(d)}</p></article>' for t, d in opts) + '</div>'
@@ -607,7 +607,7 @@ for key,(name,category,description) in MODELS.items():
         extra = extra.replace('<h2>Planning your', f'<figure class="guide-figure"><img src="/assets/vehicles/{key}-side.webp" alt="{escape(name)} graphics and wraps: side view of a branded {escape(name)}" loading="lazy"><figcaption>Side view of a branded {escape(name)}.</figcaption></figure><h2>Planning your', 1)
     if key in MODEL_COPY:
         extra = extra.replace('<h2>Planning your', f'<div class="brand-tip"><b>Our recommendation</b><p>{escape(MODEL_COPY[key][2])}</p></div><h2>Planning your', 1)
-    model_faq = (MODEL_COPY[key][3] if key in MODEL_COPY else []) + [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
+    model_faq = (MODEL_COPY[key][3] if key in MODEL_COPY else []) + [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} + VAT, fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
                  (f'What do you need to quote for my {name}?', 'Its year, wheelbase and roof height, a photo of each side and the back doors, your logo and the words you want on it.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Norwich Vehicle Graphics',model_desc,
@@ -628,7 +628,7 @@ for key,label in VAN_BRANDS:
     support_urls.append(path)
     from vehicle_content import BRAND_COPY, MODEL_COPY
     bfaq = ([BRAND_COPY[key][3]] if key in BRAND_COPY else []) + [(f'Do you fit graphics to all {label} vans?', f'Yes. We fit signwriting, partial wraps and full wraps to {label} vans, pickups and commercial vehicles, laid out on your exact model.'),
-            (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted. Wraps are quoted per vehicle.'),
+            (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted, all + VAT. Wraps are quoted per vehicle.'),
             ]
     page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
@@ -643,7 +643,7 @@ page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      + '<div class="core-prose" style="margin-top:36px"><h2>Graphics planned around your model.</h2><p>Every van has its own panel shapes, door gaps, handles and glazing, so we lay out signwriting and wraps on your exact make and model. Choose your manufacturer above to see the models we work with most, from small vans like the Caddy and Berlingo to large vans such as the Sprinter, Transit and Crafter, and Luton box vans.</p>'
      + '<p>Can’t see your van? No problem. Tell us the make, model, year and wheelbase, add a photo of each side and the back, and we’ll draw up a layout with a fitted price.</p></div></div></section>'
      + faq([('Do you fit graphics to every van make?', 'Yes. We fit signwriting and wraps to vans from all the main manufacturers, plus pickups, cars, minibuses and box vans.'),
-            ('Does the price change between models?', 'Signwriting is priced by van size, from £149 for a small van. Wraps are quoted per vehicle because coverage and panel shapes vary between models.'),
+            ('Does the price change between models?', 'Signwriting is priced by van size, from £149 + VAT for a small van. Wraps are quoted per vehicle because coverage and panel shapes vary between models.'),
             ('My fleet is a mix of makes. Can every van look the same?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image=generated('pages/vehicles-hub-branded-hero') or 'vehicles/transit-custom-hero')
 
 def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):

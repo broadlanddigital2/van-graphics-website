@@ -52,7 +52,7 @@ def stats_strip():
 
 def service_cards():
     cards = [
-        ('Van signwriting', 'Lettering, logos and contact details for working vans.', '/van-signwriting-norwich/', 'service-copperline', 'From £149 fitted'),
+        ('Van signwriting', 'Lettering, logos and contact details for working vans.', '/van-signwriting-norwich/', 'service-copperline', 'From £149 + VAT, fitted'),
         ('Partial wraps', 'Printed panels or colour over selected areas, using your paint as part of the design.', '/vehicle-wraps-norwich/#comparison', 'service-petalmill', 'Quoted per vehicle'),
         ('Full wraps', 'Printed imagery or a full colour change across the body.', '/vehicle-wraps-norwich/', 'service-tidelark', 'Quoted per vehicle'),
         ('Fleet graphics', 'One design adapted to every make and model, fitted in batches.', '/fleet-graphics-norwich/', 'service-juniper', 'Quoted per fleet'),
@@ -66,7 +66,7 @@ def comparison_table():
     """Three option cards. Uses assets/pages/compare-{key}.webp (1200x800) when added, else the coverage diagram."""
     from pathlib import Path
     options = [
-        ('signwriting', 'graphics', 'Van signwriting', 'is-orange', 'From', '£149', 'small van', 1, 'Clear and professional',
+        ('signwriting', 'graphics', 'Van signwriting', 'is-orange', 'From', '£149', 'small van + VAT', 1, 'Clear and professional',
          [('Coverage', 'Cut letters and logos'), ('Lead time', 'Often fitted in a day'), ('Best for', 'Trades, sole traders and tight budgets')], '/van-signwriting-norwich/'),
         ('partial', 'partial', 'Partial wrap', 'is-cobalt', '', 'Quoted', 'per vehicle', 2, 'Bold colour',
          [('Coverage', 'Selected panels, about a third to two thirds'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Stronger colour without a full wrap')], '/vehicle-wraps-norwich/#comparison'),
@@ -187,7 +187,7 @@ def guides_teaser():
 
 
 HOME_FAQ = [
-    ('What do van graphics cost in Norwich?', 'Signwriting packages start from £149 fitted. Partial and full wraps are quoted per vehicle, because size, coverage, artwork and film all change the price. Send your make and model, or use the Van Designer, for a quote.'),
+    ('What do van graphics cost in Norwich?', 'Signwriting packages start from £149 + VAT, fitted. Partial and full wraps are quoted per vehicle, because size, coverage, artwork and film all change the price. Send your make and model, or use the Van Designer, for a quote.'),
     ('How long does it take?', 'Simple lettering is often fitted in a day. Partial and full wraps take longer, depending on the vehicle and whether old graphics need removing. We confirm timings with your quote.'),
     ('Can you put graphics on a leased van?', 'Yes. Quality vinyl removes cleanly from sound factory paint, which is why it suits leased vehicles. Check your lease terms and tell us when the van is due back.'),
     ('Will vinyl damage my paint?', 'Not on sound factory paint. Vinyl can lift poor-quality resprays or damaged paint, so send photos of any repairs and we will check before fitting.'),

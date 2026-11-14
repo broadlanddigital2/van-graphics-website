@@ -70,12 +70,12 @@ def price_matrix(focus=None):
         cells = ''
         for n, (size, size_name, _) in enumerate(PRICE_SIZES):
             price = fitted[n] if fitted else 'Quoted'
-            extra = f'<small>{supply[n]} supply only</small>' if supply else ('<small>per vehicle</small>' if not fitted else '<small>fitted</small>')
+            extra = f'<small>+ VAT · {supply[n]} supply only</small>' if supply else ('<small>per vehicle</small>' if not fitted else '<small>+ VAT · fitted</small>')
             cells += (f'<td><button type="button" class="pm-pick" data-package="{escape(name)}" data-size="{escape(size_name)}" aria-label="Choose {escape(name)}, {escape(size_name)}: {price}">'
                       f'<span class="pm-price{" is-quote" if not fitted else ""}">{price}</span>{extra}<span class="pm-choose">Choose</span></button></td>')
         rows += f'<tr class="{"is-focus" if focus and key in focus else ""}"><th scope="row"><b>{name}</b><small>{escape(desc)}</small></th>{cells}</tr>'
     return (f'<div class="pm-wrap" role="region" aria-label="Van graphics price matrix" tabindex="0"><table class="pm"><caption class="sr-only">Van graphics prices by package and van size</caption>'
-            f'<thead><tr><th scope="col" class="pm-corner">Package</th>{head}</tr></thead><tbody>{rows}</tbody></table></div>')
+            f'<thead><tr><th scope="col" class="pm-corner">Package<small>Prices exclude VAT</small></th>{head}</tr></thead><tbody>{rows}</tbody></table></div>')
 
 def price_quote_form(service):
     sizes = ''.join(f'<option>{n}</option>' for _, n, _ in PRICE_SIZES) + '<option>Luton / box van</option><option>Not sure</option>'
@@ -96,7 +96,7 @@ def pricing(data):
     return (price_matrix(focus)
             + f'<p class="core-note">{data["price_note"]}</p>'
             + f'<div class="pm-quote"><div class="pm-quote__aside"><h3>What changes the price?</h3><p>{data["price_factor"]}</p>'
-            + '<ul class="quote-ticks"><li>Fitted prices include design and fitting at our Norwich workshop</li><li>Supply-only means printed and cut, ready for you to fit</li><li>Luton and box vans are quoted by body size</li></ul></div>'
+            + '<ul class="quote-ticks"><li>All prices are shown + VAT; your written quote shows the VAT</li><li>Fitted prices include design and fitting at our Norwich workshop</li><li>Supply-only means printed and cut, ready for you to fit</li><li>Luton and box vans are quoted by body size</li></ul></div>'
             + price_quote_form(service) + '</div>')
 
 def comparison(data):
@@ -350,7 +350,7 @@ def brand_page(key):
     <section class="section core-section" id="models"><div class="shell">{models_block}</div></section>
     <section class="section core-section"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">What we fit</p><h2>{escape(label)} van wraps and signwriting.</h2></div>
     <p>{escape(label)} vehicle graphics for businesses across Norwich and Norfolk, designed in-house and fitted at our workshop on Vulcan Road North.</p></div>
-    <div class="info-cards"><article><h3>{escape(label)} signwriting</h3><p>Cut vinyl lettering for your name, services and contact details, placed around the doors, handles and panel lines of your {escape(label)}. From £149 for a small van.</p></article>
+    <div class="info-cards"><article><h3>{escape(label)} signwriting</h3><p>Cut vinyl lettering for your name, services and contact details, placed around the doors, handles and panel lines of your {escape(label)}. From £149 + VAT for a small van.</p></article>
     <article><h3>{escape(label)} van wraps</h3><p>Partial wraps over selected panels or a full wrap for maximum impact, printed in-house on quality cast film.</p></article>
     <article><h3>{escape(label)} fleet graphics</h3><p>One consistent livery adapted to every {escape(label)} model you run, with fleet numbers and files kept on record.</p></article></div>{brand_extras(key, label)}</div></section>
     <section class="section core-section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Other manufacturers</p><h2>Browse another brand.</h2></div></div>{vehicle_picker()}</div></section>'''
