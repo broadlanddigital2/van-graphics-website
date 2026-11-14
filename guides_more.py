@@ -23,7 +23,7 @@ MORE_GUIDES = {
                        ('Coverage', 'Lettering only, selected panels or the whole vehicle.'),
                        ('Film and finish', 'Cast film, printed or plain colour, gloss, matte or satin.'),
                        ('Artwork and design', 'A ready-to-use vector logo costs less to set up than redrawing a logo or designing a full livery.'),
-                       ('Removal and preparation', 'Old graphics, adhesive residue or damaged paint add time before the new graphics go on.'),
+                       ('Removal and preparation', 'Stripping old lettering, cleaning off glue or repairing paint all adds time before fitting can start.'),
                        ('Number of vehicles', 'Fleets share one design, so the set-up is spread across every van.')]),
         ]),
         ('How to get a quote you can compare', [
@@ -32,7 +32,7 @@ MORE_GUIDES = {
                         ('Watch out for', ['Prices without a written scope', 'Calendered film quoted for a full wrap', 'Design charged separately after the quote', 'No proof to approve before printing'])),
         ]),
     ],
-    'checklist': ['Van make, model and wheelbase', 'Coverage you have in mind', 'Your logo as a vector file', 'Wording for the van', 'Photos of both sides and the rear', 'Any old graphics to remove', 'Your target date', 'Number of vehicles'],
+    'checklist': ['Van make, model and wheelbase', 'Coverage you have in mind', 'Your logo as a vector file', 'Wording for the van', 'A photo of each side and the back doors', 'Any old graphics to remove', 'Your target date', 'Number of vehicles'],
     'image': ('Ford Transit Custom with clear plumbing signwriting and a service line', 'norwich-vehicle-graphics-plumbing-van-with-a-clear-service-line'),
     'services': ['van-signwriting-norwich', 'vehicle-wraps-norwich'], 'sectors': ['trades', 'delivery', 'fleets-corporate'],
     'next': ['partial-vs-full-wrap', 'artwork-for-van-graphics', 'van-signwriting-brief'],
@@ -45,7 +45,7 @@ MORE_GUIDES = {
     'title': 'Artwork for Vehicle Graphics: Files to Send | Guide',
     'h1': 'Preparing artwork for vehicle graphics.',
     'summary': 'Which logo files work for van signwriting and wraps, how colours are matched, and what to do if you only have a low-resolution logo.',
-    'answer': 'Send a vector logo (AI, EPS, SVG or a vector PDF), your brand colours and the exact wording you want. If you only have a JPEG or a photo of an old sign, we can redraw it.',
+    'answer': 'The best logo file is a vector (an AI, EPS or SVG, or a PDF saved as vectors), plus your brand colours and the final wording. If you only have a JPEG or a photo of an old sign, we can redraw it.',
     'takeaways': [('4', 'vector file types we can print from'), ('1', 'proof for you to approve'), ('0', 'printing until you sign off')],
     'sections': [
         ('Vector and pixel files explained', [
@@ -163,7 +163,7 @@ MORE_GUIDES = {
                         ('Avoid', ['Brush car washes', 'Solvents, polishes and cutting compounds', 'Wax on matte or satin films', 'Scrapers or stiff brushes'])),
         ]),
         ('Stains, damage and quick repairs', [
-            ('p', 'Fuel, tar, tree sap and bird droppings can mark film if they are left to bake in the sun. Clean them off as soon as you can with water and a mild cleaner made for vinyl.'),
+            ('p', 'Fuel, tar, tree sap and bird droppings can mark film if they are left to bake in the sun. Wipe them away quickly using water and a gentle, vinyl-safe shampoo.'),
             ('mistakes', [('Leaving bird droppings', 'They can etch the film in hot weather.', 'Soak and wipe them off quickly.'),
                           ('Picking at a lifted edge', 'Pulling makes it worse and lets dirt in.', 'Call us and we will reseal or replace it.'),
                           ('Polishing matte film', 'Polish leaves shiny patches.', 'Use matte-safe products only.')]),
@@ -199,7 +199,7 @@ MORE_GUIDES = {
                         ('Causes delays', ['Late changes to the design', 'Vans arriving dirty or damaged', 'Missing lease approvals', 'Different wording per vehicle'])),
         ]),
         ('Adding vehicles later', [
-            ('p', 'We keep your approved artwork on file, so new vans can be matched to the rest of the fleet without starting again. Fleet numbers and records make it easy to order replacement panels.'),
+            ('p', 'Signed-off artwork stays in our archive, so the next van you buy can join the fleet look without a fresh design fee. Fleet numbers and records make it easy to order replacement panels.'),
         ]),
     ],
     'checklist': ['Full vehicle list with models', 'Owned or leased for each van', 'Existing graphics to remove', 'Master logo and colours', 'Who approves proofs', 'Fleet numbering system', 'Preferred fitting days', 'Future vehicles planned'],
@@ -208,7 +208,7 @@ MORE_GUIDES = {
     'next': ['fleet-artwork-consistency', 'lease-vehicle-graphics', 'graphics-costs'],
     'faq': [('How many vans can you fit in a day?', 'It depends on the coverage. Signwriting is quicker than wraps. We plan the schedule with you once the vehicle list and design are agreed.'),
             ('Can you work around our shifts?', 'Yes. We book fitting slots that suit your work so vehicles are off the road when they are least needed.'),
-            ('Do you keep our files for future vans?', 'Yes. Approved artwork is kept on record so new vehicles can be matched to the rest of the fleet.')],
+            ('Do you keep our files for future vans?', 'Yes. Your signed-off artwork is archived, so any new vehicle can be finished to match.')],
 },
 'lease-vehicle-graphics': {
     'topic': 'Fleets & business', 'read': 6,
@@ -272,7 +272,7 @@ MORE_GUIDES = {
     'image': ('Four white vans with matching green and navy corporate fleet livery', 'norwich-vehicle-graphics-corporate-van-fleet-livery'),
     'services': ['fleet-graphics-norwich', 'vehicle-wraps-norwich'], 'sectors': ['fleets-corporate', 'delivery', 'highways-chapter-8'],
     'next': ['planning-fleet-graphics', 'artwork-for-van-graphics', 'lease-vehicle-graphics'],
-    'faq': [('What if we change van models?', 'We adapt the master layout to the new model so it matches the rest of the fleet.'),
+    'faq': [('What if we change van models?', 'The master design is reworked for the new model’s panels, so it sits alongside your other vans.'),
             ('Can you match graphics another company fitted?', 'Often, yes. Send photos and any files you have, and we will match the layout and colours as closely as possible.'),
             ('How do you keep colours the same over time?', 'We record the exact films and print settings used, so replacements and new vehicles match.')],
 },

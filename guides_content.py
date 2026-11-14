@@ -13,7 +13,7 @@ FULL_GUIDES = {
     'takeaways': [('3', 'things every van needs'), ('3', 'sides of the van, each with its own job'), ('1', 'contact detail to make the biggest')],
     'sections': [
         ('The three things every van needs', [
-            ('p', 'Most people see your van for a few seconds, often while they are driving or walking past. In that time they need to take in who you are, what you do and how to reach you. Everything else is a bonus.'),
+            ('p', 'Most people see your van for a few seconds, often while they are driving or walking past. That brief look has to tell them your business name, your trade and a number or web address. Anything more is extra.'),
             ('steps', [('Your business name', 'The biggest thing on the van, placed high where nothing breaks it up.'),
                        ('What you do', 'A short service line in plain words, such as "Plumbing · Heating · Bathrooms".'),
                        ('One way to contact you', 'Usually a phone number for trades, or a website if most work is booked online.')]),
@@ -36,7 +36,7 @@ FULL_GUIDES = {
                           ('Hard-to-read fonts', 'Script and thin fonts look stylish close up but blur from across the road.', 'Use a bold, simple font for the key details.'),
                           ('Ignoring the van shape', 'Lettering across door gaps, handles or deep panel lines breaks up.', 'Lay it out on your exact model first.'),
                           ('Different details each side', 'A different number or name on each side is hard to remember.', 'Keep name, number and colours the same everywhere.'),
-                          ('Hidden by racks or ladders', 'Graphics behind a roof rack or ladder are wasted.', 'Tell us what is fitted to the van.')]),
+                          ('Hidden by racks or ladders', 'Graphics behind a roof rack or ladder are wasted.', 'List any racking, ladders or roof bars on the van.')]),
         ]),
     ],
     'checklist': [

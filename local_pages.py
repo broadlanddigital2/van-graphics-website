@@ -60,7 +60,7 @@ def designer_strip(context):
 
 def process_steps(last):
     return info_cards([
-        ('01', 'Send photos or use the Van Designer', 'Share both sides and the rear, your logo and what you want the van to say. Or start with the free Van Designer.'),
+        ('01', 'Send photos or use the Van Designer', 'Send a photo of each side and the back doors, your logo and the words you want on it. Or start with the free Van Designer.'),
         ('02', 'Approve your proof', 'We send a visual of the layout on your vehicle. Changes are made before anything is printed.'),
         ('03', 'Production', 'Graphics are printed, laminated and cut in-house in Norwich.'),
         ('04', last, 'Drop the vehicle at Vulcan Road North on the agreed date and collect it branded and ready to work.'),
@@ -111,7 +111,7 @@ def town_page(key, phone, tel, email):
     intro = f'''<div class="intro-grid"><div class="core-prose"><p>{escape(t["intro"])}</p><p>Everything is designed, printed and fitted by our own team in Norwich. You can start with the free <a href="/design-your-van/">Van Designer</a>, send us photos for a quote, or call {phone}.</p></div>{facts}</div>'''
 
     tiles = [
-        ('signwriting', 'Van signwriting', 'Cut vinyl lettering, logos and contact details. The fastest, most affordable way to brand a work van.', '/van-signwriting-norwich/'),
+        ('signwriting', 'Van signwriting', 'Your name, logo and number in crisp cut vinyl. The quickest, most affordable way to brand a work van.', '/van-signwriting-norwich/'),
         ('wraps', 'Partial wraps', 'Printed panels or colour across selected areas, using your van’s paint as part of the design.', '/vehicle-wraps-norwich/#comparison'),
         ('full-wrap', 'Full wraps', 'Printed imagery or a complete colour change across the main exterior panels.', '/vehicle-wraps-norwich/'),
         ('fleet', 'Fleet graphics', 'One design adapted to every make and model, fitted in batches around your schedule.', '/fleet-graphics-norwich/'),
@@ -147,7 +147,7 @@ def town_page(key, phone, tel, email):
     nearby = link_tiles([(k, (TOWNS_BY_KEY[k]['name'], f'{TOWNS_BY_KEY[k]["miles"]} miles · {TOWNS_BY_KEY[k]["time"]}')) for k in t['nearby']], lambda k: f'/norfolk/{k}/').replace('class="tile-grid"', 'class="tile-grid four"', 1)
 
     parts = [
-        ('intro', 'Overview', f'Vehicle graphics for {escape(t["area"])}.', intro, ''),
+        ('intro', 'Overview', f'Signwriting and wraps across {escape(t["area"])}.', intro, ''),
         ('services', 'Services', f'Van signwriting, wraps and fleet graphics in {name}.', services, 'tint'),
         ('pricing', 'Starting prices', f'Van signwriting prices for {name}.', prices, ''),
         ('gallery', 'Design ideas', f'Vehicle wrap ideas for {name} businesses.', gallery, 'dark-section'),

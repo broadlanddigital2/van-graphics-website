@@ -86,7 +86,7 @@ def designer_page(button, media, faq, phone, tel, email, leads):
     <noscript><p class="core-note">The Van Designer needs JavaScript. Call <a href="{tel}">{phone}</a> or email <a href="mailto:{email}">{email}</a> and we will design it for you.</p></noscript>
     </div></section>'''
     seo = f'''<section class="section core-section"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Free van wrap design</p><h2>From concept to fitted van.</h2></div></div>
-    <div class="core-prose"><p>The Van Designer is a free way to try van graphics and wrap ideas before you speak to us. It lays out your business name, services and contact details on a van of the right size, in graphics or a full printed wrap, so you can compare looks in minutes.</p>
+    <div class="core-prose"><p>The Van Designer is a free way to try van graphics and wrap ideas before you speak to us. It lays out your business name, services and phone number on a van matched to yours, in graphics or a full printed wrap, so you can try different looks in a few minutes.</p>
     <p>When you are happy with a concept, request a quote from the designer. Our Norwich team turns it into a production-ready layout for your exact vehicle, checks the panels, handles and seams, and sends a proof before anything is printed. Fitting is arranged at our workshop on Vulcan Road North.</p>
     <p>Prefer to talk it through? Explore <a href="/van-signwriting-norwich/">van signwriting</a>, <a href="/vehicle-wraps-norwich/">vehicle wraps</a> and <a href="/fleet-graphics-norwich/">fleet graphics</a>, or call <a href="{tel}">{phone}</a>.</p></div></div></section>'''
     return ASSETS + hero + how + app + seo + faq(FAQ) + SCRIPT

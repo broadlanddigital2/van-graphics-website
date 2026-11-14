@@ -166,7 +166,7 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     return f'''<section class="quote" id="quote"><div class="shell quote-grid core-quote">
     <div><p class="eyebrow">{eyebrow}</p><h2>{heading}</h2>
     <p>Send us a few details and we’ll come back with design ideas and a fitted price. Prefer to talk? Call the Norwich team.</p>
-    <ul class="quote-ticks"><li>Free design visual on your exact vehicle</li><li>Fitted price in writing, VAT shown</li><li>Designed, printed and fitted in Norwich</li></ul>
+    <ul class="quote-ticks"><li>Free design visual on your exact vehicle</li><li>Fitted price in writing, VAT shown</li><li>Every job drawn, printed and fitted at our NR6 workshop</li></ul>
     <div class="quote-contacts"><a href="{tel}"><small>Call</small><b>{phone}</b></a><a href="mailto:{email}"><small>Email</small><b>{email}</b></a></div>
     <p class="quote-alt"><a class="text-link" href="{quote_url}">Or use the Broadland Digital web form {ARROW}</a></p></div>
     <form id="service-enquiry" class="quote-card" data-recipient="{email}" data-context="{escape(context)}">
@@ -203,7 +203,7 @@ def vehicle_picker():
     cards = ''.join(brand_card(f'/vehicles/{key}/', brand_img(key, label), label, 'Explore graphics') for key, label in VAN_BRANDS)
     cards += brand_card('#quote', OTHER_ICON, 'Other makes', 'Tell us what you drive')
     return f'''<div class="vehicle-picker">
-    <p>Choose your van manufacturer to see its models, then pick your model for layout advice.</p>
+    <p>Pick the make of your van, then the model, for layout tips that suit its panels.</p>
     <div class="brand-grid" role="list" aria-label="Van manufacturers">{cards}</div></div>'''
 
 

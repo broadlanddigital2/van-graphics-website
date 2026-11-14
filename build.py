@@ -48,14 +48,14 @@ SERVICES = [
          questions=[('What should I put on my van?','Start with your business name, what you do and the contact detail you want customers to use. Your logo, colours and website can help tie it to your other branding.'),('Can you work from my own artwork?','Yes. Share what you have when you enquire. A vector logo is useful if available, and we can discuss what needs preparing before production.')]),
     dict(slug='vehicle-wraps-norwich', label='Vehicle wraps', title='Vehicle wraps in Norwich',
          intro='Change the look of a car or give a commercial vehicle more space for your brand. We design and fit partial and full wraps in Norwich.',
-         short='From a bold partial wrap to full coverage for cars, vans and commercial vehicles.', image='service-tidelark',
+         short='Printed vinyl in any colour or image, on a few panels or the whole vehicle.', image='service-tidelark',
          alt='Tidelark Surf Co. van with a full blue wave wrap and coral lettering', tag='02 / PARTIAL & FULL',
-         heading='Choose how much of the vehicle to wrap.',
+         heading='Pick your coverage: a few panels or the whole vehicle.',
          body='The original paint colour can be part of the design. A partial wrap can use that colour to make graphics feel integrated. Full coverage gives you more room for imagery, large colour blocks or a more dramatic transformation.',
          options=[('Partial wraps','Use selected panels, a rear section or a large sweep of colour across the sides.'),('Full wraps','Give a vehicle a coordinated finish across the main exterior panels.'),('Printed wrap designs','Bring together photos, illustrations and brand colours for promotional vehicles, vans and trailers.')],
          questions=[('What affects the cost of a wrap?','Vehicle size, panel shape, coverage, materials and artwork all affect the quote. Photos and your make and model help us give you a more accurate estimate.'),('Can you wrap over damaged paint?','Send clear photos of any damage, corrosion or repairs. The team can assess the surface before agreeing the scope of work.')]),
     dict(slug='fleet-graphics-norwich', label='Fleet graphics', title='Fleet graphics in Norwich',
-         intro='Give your cars, vans and commercial vehicles one recognisable look, even when body styles and sizes vary. Designed, produced and fitted in Norwich.',
+         intro='Give your cars, vans and commercial vehicles one recognisable look, even when body styles and sizes vary. Design, print and fitting all happen under one roof at our NR6 workshop.',
          short='A consistent look across work vans, company cars and commercial fleets.', image='service-juniper',
          alt='Juniper Property Care vans and car with matching green and copper graphics', tag='03 / MULTI-VEHICLE',
          heading='One identity across different vehicles.',
@@ -360,7 +360,7 @@ def job_strip(primary):
     picks = [WORK[0], WORK[1], WORK[3]]
     tiles = ''.join(f'<a class="work-tile" href="/assets/work/{f}.webp" data-caption="{escape(c)}: {escape(cap)}"><img src="/assets/work/{f}.webp" alt="{escape(alt)}" loading="lazy"><span><b>{escape(c)}</b>{escape(cap)}</span></a>'
                     for f, c, cap, alt, _ in picks)
-    return (f'<section class="section dark-section"><div class="shell"><div class="work-gallery"><div class="work-head"><p class="eyebrow accent">Recent work</p><p>Vans we have designed, printed and fitted in Norwich.</p></div>'
+    return (f'<section class="section dark-section"><div class="shell"><div class="work-gallery"><div class="work-head"><p class="eyebrow accent">Recent work</p><p>Recent vans from our Norwich workshop, from first sketch to fitted vinyl.</p></div>'
             f'<div class="work-grid work-grid--3">{tiles}</div><p class="core-note"><a class="text-link" href="/gallery/">See the full gallery {ARROW}</a></p></div></div></section>')
 
 import unicodedata as _ud
@@ -488,7 +488,7 @@ business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN
             'areaServed':['Norwich','Norfolk'],'image':ORIGIN+'/assets/hero.webp','logo':ORIGIN+'/assets/wrapt-logo.png',
             'geo':{'@type':'GeoCoordinates','latitude':52.6610201,'longitude':1.2806856},'hasMap':'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'}
 
-home_faq = [('How much do vehicle graphics cost?','It depends on the vehicle, the amount of coverage and whether the artwork is ready to use. Send the make and model and a description of what you want so we can quote for the job.'),
+home_faq = [('What do van graphics cost in Norwich?','It depends on the vehicle, the amount of coverage and whether the artwork is ready to use. Send the make and model and a description of what you want so we can quote for the job.'),
             ('Can you help design my graphics?','Yes. Our Norwich team can design a livery from your brief or work with existing branding. We’ll discuss what you want drivers and pedestrians to see first.'),
             ('Where are vehicle graphics fitted?','Fitting is arranged in Norwich. Call 01603 407786 before travelling so the team can confirm the fitting location and your appointment.'),
             ('Can you do a single van or a whole fleet?','Yes. We work on individual cars and vans as well as multi-vehicle graphics. Tell us the vehicle types and how many you need to brand.')]
@@ -556,14 +556,14 @@ for key,(name,category,description) in MODELS.items():
     extra = (f'<h2>Graphics options for the {escape(name)}</h2><div class="info-cards">' + ''.join(f'<article><h3>{t}</h3><p>{escape(d)}</p></article>' for t, d in opts) + '</div>'
              + f'<h2>Planning your {escape(name)} layout</h2><div class="core-prose"><p>Every {escape(size)} has its own panel shapes, so we plan the layout on your exact model rather than a generic template. '
              + f'We check where the sliding door gap, handles, swage lines, rear glazing and any roof racks fall, then place your name and phone number where they stay readable from the pavement and in traffic.</p>'
-             + f'<p>If you are not sure what suits your {escape(name)}, try the free <a href="/design-your-van/">Van Designer</a> or send us photos of both sides and the rear and we will suggest a layout with a fitted price.</p></div>')
+             + f'<p>If you are not sure what suits your {escape(name)}, try the free <a href="/design-your-van/">Van Designer</a> or email a picture of each side and the back doors, and we’ll come back with a suggested layout and a fitted price.</p></div>')
     from vehicle_content import MODEL_COPY
     if Path(f'dist/assets/vehicles/{key}-side.webp').exists():
         extra = extra.replace('<h2>Planning your', f'<figure class="guide-figure"><img src="/assets/vehicles/{key}-side.webp" alt="{escape(name)} graphics and wraps: side view of a branded {escape(name)}" loading="lazy"><figcaption>Side view of a branded {escape(name)}.</figcaption></figure><h2>Planning your', 1)
     if key in MODEL_COPY:
         extra = extra.replace('<h2>Planning your', f'<div class="brand-tip"><b>Our recommendation</b><p>{escape(MODEL_COPY[key][2])}</p></div><h2>Planning your', 1)
     model_faq = (MODEL_COPY[key][3] if key in MODEL_COPY else []) + [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
-                 (f'What do you need to quote for my {name}?', 'The model year, wheelbase and roof height, photos of both sides and the rear, your logo and the wording you want on the van.')]
+                 (f'What do you need to quote for my {name}?', 'Its year, wheelbase and roof height, a photo of each side and the back doors, your logo and the words you want on it.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Norwich Vehicle Graphics',model_desc,
          support_page('Vehicle model · '+category,heading,[MODEL_COPY[key][0] if key in MODEL_COPY else description, MODEL_COPY[key][1] if key in MODEL_COPY else 'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
@@ -596,10 +596,10 @@ page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
      + '<section class="section core-section"><div class="shell">' + vehicle_picker()
      + '<div class="core-prose" style="margin-top:36px"><h2>Graphics planned around your model.</h2><p>Every van has its own panel shapes, door gaps, handles and glazing, so we lay out signwriting and wraps on your exact make and model. Choose your manufacturer above to see the models we work with most, from small vans like the Caddy and Berlingo to large vans such as the Sprinter, Transit and Crafter, and Luton box vans.</p>'
-     + '<p>If your van is not listed, we can still help. Send the make, model, year and wheelbase with photos of both sides and the rear, and we will plan the layout and send a fitted price.</p></div></div></section>'
+     + '<p>Can’t see your van? No problem. Tell us the make, model, year and wheelbase, add a photo of each side and the back, and we’ll draw up a layout with a fitted price.</p></div></div></section>'
      + faq([('Do you fit graphics to every van make?', 'Yes. We fit signwriting and wraps to vans from all the main manufacturers, plus pickups, cars, minibuses and box vans.'),
             ('Does the price change between models?', 'Signwriting is priced by van size, from £149 for a small van. Wraps are quoted per vehicle because coverage and panel shapes vary between models.'),
-            ('Can you match graphics across different models in my fleet?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image=generated('pages/vehicles-hub-branded-hero') or 'vehicles/transit-custom-hero')
+            ('My fleet is a mix of makes. Can every van look the same?', 'Yes. We create one master layout and adapt it to each make and model, so every vehicle looks like the same business.')]), hero_image=generated('pages/vehicles-hub-branded-hero') or 'vehicles/transit-custom-hero')
 
 def location_schema(path, heading, description, parent, questions, town=None, county='Norfolk'):
     parent_path, parent_name = parent
@@ -687,7 +687,7 @@ support_urls.append('/gallery/')
 CONTACT_FAQ = [('How quickly will you reply?', 'We aim to reply the same working day, with questions about your vehicle or a first idea of the layout and price.'),
        ('Can I visit without an appointment?', 'Please call ahead. Fitting is by appointment, so we can make sure someone is free to talk through your project and look at your vehicle.'),
        ('Do you work with businesses outside Norwich?', 'Yes. We work with businesses across Norfolk and Waveney. Design and quotes can be done remotely, and vehicles are fitted at our Norwich workshop.'),
-       ('What should I send with my enquiry?', 'Your vehicle make, model and year, photos of both sides and the rear, your logo if you have one and the wording you want on the van.')]
+       ('What should I send with my enquiry?', 'The make, model and year, a photo of each side and the back, any logo you already use and the words you want on the van.')]
 page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
      '<section class="support-hero contact-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Norwich, Norfolk</p><h1>Contact us.</h1>'
@@ -698,7 +698,7 @@ page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
      + workshop_map(PHONE,TEL,EMAIL) + '</div></section>'
      + '<section class="section tint"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">What happens next</p><h2>From enquiry to fitted van.</h2></div></div><div class="info-cards">'
      + ''.join(f'<article><h3>{t}</h3><p>{d}</p></article>' for t, d in [
-         ('1. Tell us about the vehicle', 'Send the make, model and year, what the van is used for and the coverage you have in mind: signwriting, a partial wrap or a full wrap.'),
+         ('1. Tell us about the vehicle', 'Give us the make, model and year, the job the van does and how much coverage you’re after: signwriting, a partial wrap or a full wrap.'),
          ('2. Design and price', 'We draw your layout on the exact model and send a visual with a written, fitted price. Changes are made before anything is printed.'),
          ('3. Print and book in', 'Once you approve the proof we print in-house and book a fitting slot that suits your diary.'),
          ('4. Fit and collect', 'Your vehicle is fitted at our Norwich workshop on Vulcan Road North, with aftercare advice when you collect it.')])

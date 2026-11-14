@@ -187,7 +187,7 @@ def guides_teaser():
 
 
 HOME_FAQ = [
-    ('How much do vehicle graphics cost?', 'Signwriting packages start from £149 fitted. Partial and full wraps are quoted per vehicle, because size, coverage, artwork and film all change the price. Send your make and model, or use the Van Designer, for a quote.'),
+    ('What do van graphics cost in Norwich?', 'Signwriting packages start from £149 fitted. Partial and full wraps are quoted per vehicle, because size, coverage, artwork and film all change the price. Send your make and model, or use the Van Designer, for a quote.'),
     ('How long does it take?', 'Simple lettering is often fitted in a day. Partial and full wraps take longer, depending on the vehicle and whether old graphics need removing. We confirm timings with your quote.'),
     ('Can you put graphics on a leased van?', 'Yes. Quality vinyl removes cleanly from sound factory paint, which is why it suits leased vehicles. Check your lease terms and tell us when the van is due back.'),
     ('Will vinyl damage my paint?', 'Not on sound factory paint. Vinyl can lift poor-quality resprays or damaged paint, so send photos of any repairs and we will check before fitting.'),

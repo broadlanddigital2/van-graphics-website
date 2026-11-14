@@ -66,10 +66,10 @@ FEATURED_SECTORS = ('trades', 'plumbers-heating', 'electricians', 'delivery', 'c
 TOWNS = {t['key']: (t['name'], t['lede']) for t in TOWN_LIST}
 
 GUIDES = {
-    'van-signwriting-brief': ('What to put on a work van', 'Start with who you are, what you do and how to contact you. A short trade line, a clear number or web address and strong contrast are the essentials.', 'Walk around the van in normal parking position and decide which sides get seen. Send photos with doors shut and with any ladders or racks fitted.'),
+    'van-signwriting-brief': ('What to put on a work van', 'Lead with your business name, your trade and one way to get in touch. A short trade line, a clear number or web address and strong contrast are the essentials.', 'Walk around the van in normal parking position and decide which sides get seen. Send photos with doors shut and with any ladders or racks fitted.'),
     'graphics-costs': ('What affects the cost of van graphics?', 'Panel count, vehicle size, artwork preparation, film type and fitting time are the main variables. Supply-only and fitted packages serve different needs.', 'For a comparable quote, ask which panels are covered, whether design time and removal are included, and whether the price includes VAT.'),
     'artwork-for-van-graphics': ('Preparing artwork for vehicle graphics', 'Send your vector logo, colour references and the exact wording. Where the design uses photography, send the original image at the largest available resolution.', 'Check the proof for phone numbers, spelling, spacing around panel joins and what appears on each side before approving.'),
-    'partial-vs-full-wrap': ('Partial wrap vs full wrap', 'A partial wrap covers agreed panels and can make the original paint part of the design. A full wrap changes the appearance of most exterior body panels.', 'Look at both side and rear views before choosing. Confirm which trims, bumpers, roof sections and door shuts are included in the written quote.'),
+    'partial-vs-full-wrap': ('Partial wrap vs full wrap', 'A partial wrap covers agreed panels and can make the original paint part of the design. A full wrap covers nearly every painted panel, changing the look of the whole vehicle.', 'Look at both side and rear views before choosing. Confirm which trims, bumpers, roof sections and door shuts are included in the written quote.'),
     'wrap-vs-paint': ('Vehicle wrap vs paint', 'Wrap film changes the appearance of a sound surface and can carry printed branding. Paint is a bodywork finish and may be the better option where the underlying finish needs repair.', 'Show us chips, flaking or repaired areas before agreeing the work. Discuss removal and expectations if the vehicle is leased or likely to be sold.'),
     'wrap-aftercare': ('How to look after a vehicle wrap', 'Follow the care sheet for your exact film. Use a mild wash, keep abrasive tools away from the film and deal with bird droppings and road grime promptly.', 'If an edge lifts or a panel is damaged, take a photo and contact the fitter before attempting repairs or using a pressure washer near the area.'),
     'planning-fleet-graphics': ('Planning a fleet graphics rollout', 'List every vehicle, model year, body size, depot and availability. Group similar vehicles and decide which ones should go first.', 'Approve a master design and proofs for each body type. Keep a reference for approved colours, film choices, vehicle numbers and any later repairs.'),
@@ -95,7 +95,7 @@ CONTENT = {
         'intro': [
             'Van signwriting gives people a quick way to recognise your business and know who to call. At our Norwich workshop, we design, produce and fit cut vinyl lettering and printed van graphics for tradespeople, local deliveries and service businesses across Norfolk. It works on everything from a compact service van with a logo and phone number to a long-wheelbase van with a larger design across both sides and the rear.',
             'Start with the details you want someone to read at a glance. Your business name, main service and one contact detail usually give the design a clear order. We lay the artwork out around handles, recesses and door joins, taking the original paint colour into account. If your logo needs several colours or contains a gradient, we can discuss printing it as a graphic instead of building it from separate colours of cut film.',
-            'Send the make, model, year and photos of each side. We can advise on coverage, show you a proof and arrange fitting in Norwich after you approve the design.',
+            'Tell us the make, model and year, and send a picture of every side. We can advise on coverage, show you a proof and arrange fitting in Norwich after you approve the design.',
         ],
         'pricing': ['From £149', 'From £210', 'From £285 for large vans¹', 'Quote required'],
         'price_note': 'Local benchmark from Broadland Digital’s published fitted Basic packages. Confirm current prices with the Norwich Vehicle Graphics team. ¹The source groups large vans together. Confirm the price for your specific LWB vehicle and whether VAT is included.',
@@ -108,14 +108,14 @@ CONTENT = {
                     ('Jack G', 'Reported good communication throughout and compliments on their new van signwriting.', 'Race Car Graphics · van signwriting', 'https://racecargraphics.uk/'),
                     ('Simon B', 'Highlighted a quick installation and a good-looking result on their van.', 'Race Car Graphics · van graphics', 'https://racecargraphics.uk/')],
         'faq': [
-            ('What is the difference between cut vinyl and printed graphics?', 'Cut vinyl uses shapes and letters cut from a coloured film. Printed graphics can reproduce gradients, photos and more complex branding.'),
+            ('Cut vinyl or printed vinyl: which should I choose?', 'Cut vinyl uses shapes and letters cut from a coloured film. Printed graphics can reproduce gradients, photos and more complex branding.'),
             ('Can I signwrite just the rear doors?', 'Yes. Tell us which panels you want covered. A rear-only design can focus on a phone number, website or short trade description.'),
             ('How should I prepare my van?', 'Tell us about wax, coatings, existing stickers and paint repairs before the fitting. Follow the workshop’s preparation instructions when confirming your slot.'),
             ('Can old lettering be removed first?', 'Send photos of the existing film and the paint around it. Removal and any adhesive cleanup can be priced separately after inspection.'),
             ('Can you add my logo to a coloured van?', 'Yes. We can check contrast against the actual body colour and advise on a suitable film or a backing panel if the logo needs it.'),
             ('Do you offer graphics for one van?', 'Yes. A single work van can be quoted and fitted in Norwich. Tell us which sides and doors you want to use.'),
             ('Will I see the design before fitting?', 'Yes. Review the layout on a proof and check your contact details, colours and artwork placement before approving it.'),
-            ('Can signwriting be removed before a lease return?', 'Ask the lease provider first. Film can generally be removed professionally, with the result depending on the paint condition, film and its age.'),
+            ('Can signwriting be removed before a lease return?', 'Ask the lease provider first. Film can usually be taken off by a professional; how cleanly depends on the paint, the film and how long it has been on.'),
         ],
     },
     'vehicle-wraps-norwich': {
@@ -135,7 +135,7 @@ CONTENT = {
         'intro': [
             'Vehicle wraps use specialist vinyl film to change the appearance of a car, van or commercial vehicle. From our Norwich workshop, we design and fit partial and full wraps for Norfolk businesses that want more room for their branding and for drivers planning a colour change. A partial wrap uses selected panels or a section of the body. A full wrap covers most exterior body panels, with trims and door shuts agreed in the quote.',
             'A printed wrap gives you room for photos, custom colours or a large illustration. A solid colour-change film is a different specification and is chosen for its colour and finish. We review the shape and condition of the bodywork before agreeing which film and coverage make sense. Send us photos of any stone chips, repairs or existing film so we can discuss preparation before booking.',
-            'If the van is a working vehicle, tell us which days it can be off the road and what the graphics need to do. We’ll show the planned coverage on a proof and confirm what is included before fitting in Norwich.',
+            'If the van earns its keep daily, let us know when it can be spared and what you want the graphics to achieve. We’ll show the planned coverage on a proof and confirm what is included before fitting in Norwich.',
         ],
         'pricing': ['Quote required'] * 4,
         'price_note': 'Partial and full wraps are quoted individually. We confirm the panels, roof or bumper coverage, materials and VAT on your written quote.',
