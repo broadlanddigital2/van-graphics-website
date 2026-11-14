@@ -494,10 +494,34 @@ home_faq = [('What do van graphics cost in Norwich?','It depends on the vehicle,
             ('Can you do a single van or a whole fleet?','Yes. We work on individual cars and vans as well as multi-vehicle graphics. Tell us the vehicle types and how many you need to brand.')]
 
 from core_pages import section as numbered
-home_hero = hero('Vehicle graphics &amp; van wraps<span>in Norwich, Norfolk.</span>', 'Van signwriting, partial and full wraps and fleet graphics, designed, printed and fitted in-house at our Norwich workshop.', 'hero','Orange and blue wrapped van on a UK circuit','Vehicle graphics · Norwich, Norfolk',True)
-home_hero = home_hero.replace('<a class="btn outline" href="#services">Explore services <span class="arr" aria-hidden="true">↓</span></a>', button('Design your van', '/design-your-van/#designer', 'outline'), 1)
-home_hero = home_hero.replace('<section class="hero ', '<section class="hero home-hero ', 1)
-home_hero = home_hero.replace('</div></div><div class="hero-media">', '</div>' + H.trust_row() + '</div><div class="hero-media">', 1)
+HOME_SLIDES = [
+    ('Vehicle graphics · Norwich, Norfolk', 'Vehicle graphics &amp; van wraps<span>in Norwich, Norfolk.</span>',
+     'Van signwriting, partial and full wraps and fleet graphics, designed, printed and fitted in-house at our Norwich workshop.',
+     'hero', 'Orange and blue wrapped van on a race circuit', ('Get a free quote', '#quote'), ('Design your van', '/design-your-van/#designer')),
+    ('Van signwriting · From £149', 'Signwriting that<span>gets you called.</span>',
+     'Your name, trade and number in crisp cut vinyl, laid out to be read at a glance. Small vans from £149, fitted.',
+     'pages/service-van-signwriting-norwich-hero', 'Signwritten trade van outside a Norwich home', ('See signwriting prices', '/van-signwriting-norwich/'), ('Get a free quote', '#quote')),
+    ('Fleet graphics · 2 to 200 vehicles', 'One look across<span>your whole fleet.</span>',
+     'A single master design, adapted to every make and model, so each new van joins the fleet already matching.',
+     'pages/vehicles-hub-branded-hero', 'Fleet of vans in matching livery at a Norfolk yard', ('Plan fleet graphics', '/fleet-graphics-norwich/'), ('Get a free quote', '#quote')),
+    ('Free online Van Designer', 'Design your van<span>in minutes.</span>',
+     'Pick your van, add your logo and contact details, and try graphics or a full wrap before you spend a penny.',
+     'pages/van-designer-hero', 'Van design shown on screen in the online Van Designer', ('Start designing', '/design-your-van/#designer'), ('Get a free quote', '#quote')),
+]
+
+def home_slider():
+    copies, imgs, dots = '', '', ''
+    for n, (eyebrow, title, lede, image, alt, primary, secondary) in enumerate(HOME_SLIDES):
+        on = ' is-active' if n == 0 else ''
+        tag = 'h1' if n == 0 else 'h2'
+        copies += (f'<div class="slide-copy{on}" data-slide="{n}"{"" if n == 0 else " aria-hidden=\"true\""}><p class="eyebrow accent">{eyebrow}</p><{tag} class="slide-title">{title}</{tag}>'
+                   f'<p class="lede">{lede}</p><div class="actions">{button(*primary)}{button(*secondary, "outline")}</div></div>')
+        imgs += f'<img class="slide-img{on}" data-slide="{n}" src="/assets/{image}.webp" alt="{escape(alt)}"{"" if n == 0 else " style=\"object-position:80% 55%\""}{" fetchpriority=\"high\"" if n == 0 else " loading=\"lazy\""}>'
+        dots += f'<button type="button" class="slide-dot{on}" data-go="{n}" aria-label="Show banner {n + 1} of {len(HOME_SLIDES)}"{" aria-current=\"true\"" if n == 0 else ""}><i></i></button>'
+    return (f'<section class="hero home-hero home-slider" aria-roledescription="carousel" aria-label="Featured services"><div class="shell"><div class="hero-copy">'
+            f'<div class="slide-stack">{copies}</div><div class="slide-dots">{dots}</div>{H.trust_row()}</div>'
+            f'<div class="hero-media">{imgs}<span class="marker" aria-hidden="true"><i></i><i></i><i></i></span></div></div></section>')
+home_hero = home_slider()
 home_schema = {'@context':'https://schema.org','@graph':[{k:v for k,v in business.items() if k!='@context'},
     {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in H.HOME_FAQ]}]}
 page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',

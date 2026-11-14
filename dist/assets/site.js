@@ -232,3 +232,30 @@ if (roadViews) {
   box.addEventListener('click',function(e){ if(e.target===box) close(); });
   document.addEventListener('keydown',function(e){ if(box.hidden) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') show(i-1); if(e.key==='ArrowRight') show(i+1); });
 })();
+
+/* Home banner slider: 4 banners, auto-advances, pauses on hover/focus, dots to jump */
+(function(){
+  var root=document.querySelector('.home-slider'); if(!root) return;
+  var copies=root.querySelectorAll('.slide-copy'), imgs=root.querySelectorAll('.slide-img'), dots=root.querySelectorAll('.slide-dot');
+  var n=copies.length, cur=0, ms=6500, timer=null, paused=false;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.style.setProperty('--slide-ms', ms+'ms');
+  function show(i){
+    cur=(i+n)%n;
+    [copies,imgs,dots].forEach(function(list){list.forEach(function(el,k){el.classList.toggle('is-active',k===cur);});});
+    copies.forEach(function(el,k){ if(k===cur){el.removeAttribute('aria-hidden');} else {el.setAttribute('aria-hidden','true');} el.querySelectorAll('a').forEach(function(a){a.tabIndex=k===cur?0:-1;}); });
+    dots.forEach(function(d,k){ if(k===cur) d.setAttribute('aria-current','true'); else d.removeAttribute('aria-current'); });
+    var img=imgs[cur]; if(img && img.loading==='lazy') img.loading='eager';
+    schedule();
+  }
+  function schedule(){ clearTimeout(timer); if(!paused && !reduce) timer=setTimeout(function(){show(cur+1);}, ms); }
+  dots.forEach(function(d){ d.addEventListener('click', function(){ show(+d.dataset.go); }); });
+  root.addEventListener('mouseenter', function(){ paused=true; root.classList.add('is-paused'); clearTimeout(timer); });
+  root.addEventListener('mouseleave', function(){ paused=false; root.classList.remove('is-paused'); show(cur); });
+  root.addEventListener('focusin', function(){ paused=true; root.classList.add('is-paused'); clearTimeout(timer); });
+  root.addEventListener('focusout', function(){ paused=false; root.classList.remove('is-paused'); schedule(); });
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) clearTimeout(timer); else schedule(); });
+  copies.forEach(function(el,k){ if(k) el.querySelectorAll('a').forEach(function(a){a.tabIndex=-1;}); });
+  imgs.forEach(function(img,k){ if(k) setTimeout(function(){ img.loading='eager'; }, 1500); });
+  schedule();
+})();

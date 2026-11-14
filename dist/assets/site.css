@@ -631,3 +631,30 @@ html{scroll-padding-top:96px}
 .review-card__num{font-size:13px;font-weight:900;color:var(--lime);letter-spacing:.08em}
 .review-card.is-theme h3{font-size:21px;letter-spacing:-.02em;line-height:1.2;margin:0}
 .review-card.is-theme p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+/* Home banner slider */
+.home-slider .slide-stack{display:grid}
+.home-slider .slide-copy{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .6s,transform .6s,visibility 0s .6s}
+.home-slider .slide-copy.is-active{opacity:1;visibility:visible;transform:none;transition:opacity .6s,transform .6s,visibility 0s}
+.home-slider .slide-title{font-size:clamp(44px,5.2vw,80px);line-height:.95;letter-spacing:-.045em;color:#fff;margin:0}
+.home-slider .slide-title span{color:var(--lime);display:block}
+.home-slider .slide-img{opacity:0;transition:opacity .9s;transform:scale(1.04)}
+.home-slider .slide-img.is-active{opacity:1;transform:scale(1);transition:opacity .9s,transform 6.5s linear}
+.slide-dots{display:flex;gap:8px;margin:4px 0 22px}
+.slide-dot{width:44px;height:22px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center}
+.slide-dot i{display:block;height:4px;width:100%;background:#ffffff33;border-radius:2px;overflow:hidden;position:relative}
+.slide-dot i:after{content:"";position:absolute;inset:0;background:var(--lime);transform:scaleX(0);transform-origin:left}
+.slide-dot.is-active i:after{animation:slidebar var(--slide-ms,6500ms) linear forwards}
+.home-slider.is-paused .slide-dot.is-active i:after{animation-play-state:paused}
+@keyframes slidebar{to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.home-slider .slide-img,.home-slider .slide-copy{transition:none;transform:none}.slide-dot.is-active i:after{animation:none;transform:scaleX(1)}}
+@media(max-width:650px){.home-slider .slide-title{font-size:clamp(40px,10vw,56px)}}
+.home-slider .slide-copy{align-self:center}
+/* Compact sticky header on scroll */
+.main-head .brand--logo img,.main-head .btn,.main-head .nav{transition:height .25s ease,min-height .25s ease,padding .25s ease,font-size .25s ease}
+.main-head.is-stuck{background:#0f1a33f2;backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px)}
+.main-head.is-stuck .shell{min-height:60px}
+.main-head.is-stuck .brand--logo img{height:34px}
+.main-head.is-stuck .btn{min-height:38px;padding:7px 14px;font-size:13px}
+.main-head.is-stuck .nav{font-size:14px}
+@media(max-width:650px){.main-head.is-stuck .shell{min-height:54px}.main-head.is-stuck .brand--logo img{height:26px}}
+@media(prefers-reduced-motion:reduce){.main-head .brand--logo img,.main-head .btn,.main-head .nav{transition:none}}
