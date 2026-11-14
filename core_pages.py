@@ -8,7 +8,6 @@ from urllib.parse import urlencode
 from core_content import BRANDS, CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS, VAN_BRANDS, brand_logo
 
 ARROW = '<span class="arr" aria-hidden="true">↗</span>'
-PRICE_SOURCE = 'https://broadlanddigital.co.uk/product/pro-large-van-graphics/'
 
 def section(number, key, label, title, body, style=''):
     colour = 'accent' if 'dark-section' in style else 'blue'
@@ -55,10 +54,50 @@ def table(caption, headings, rows):
     body = ''.join(f'<tr><th scope="row">{row[0]}</th>' + ''.join(f'<td>{cell}</td>' for cell in row[1:]) + '</tr>' for row in rows)
     return f'<div class="table-wrap" role="region" aria-label="{escape(caption)}" tabindex="0"><table><caption class="sr-only">{caption}</caption><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>'
 
+PRICE_SIZES = [('small', 'Small van', 'Caddy, Berlingo, Combo'), ('medium', 'Medium van', 'Transit Custom, Vivaro, Trafic'), ('large', 'Large van', 'LWB Transit, Sprinter, Crafter')]
+PRICE_MATRIX = [  # Fitted prices, matching Broadland Digital's published van graphics packages
+    ('basic', 'Basic', 'Single-colour cut vinyl: business name, phone number and web address.', ['£149', '£210', '£285'], ['£95', '£125', '£170']),
+    ('standard', 'Standard', 'Name on the bonnet, both sides and the rear, with contact details on the lower panels and rear doors.', ['£210', '£390', '£480'], ['£150', '£225', '£255']),
+    ('pro', 'Pro', 'Logo, services, contact details and sections of graphics for a stronger look.', ['£455', '£595', '£775'], None),
+    ('half', 'Half wrap', 'Printed wrap over the rear half or selected panels, with lettering.', None, None),
+    ('full', 'Full wrap', 'Printed wrap over almost every painted panel.', None, None),
+]
+
+def price_matrix(focus=None):
+    head = ''.join(f'<th scope="col"><b>{n}</b><small>{escape(e)}</small></th>' for _, n, e in PRICE_SIZES)
+    rows = ''
+    for key, name, desc, fitted, supply in PRICE_MATRIX:
+        cells = ''
+        for n, (size, size_name, _) in enumerate(PRICE_SIZES):
+            price = fitted[n] if fitted else 'Quoted'
+            extra = f'<small>{supply[n]} supply only</small>' if supply else ('<small>per vehicle</small>' if not fitted else '<small>fitted</small>')
+            cells += (f'<td><button type="button" class="pm-pick" data-package="{escape(name)}" data-size="{escape(size_name)}" aria-label="Choose {escape(name)}, {escape(size_name)}: {price}">'
+                      f'<span class="pm-price{" is-quote" if not fitted else ""}">{price}</span>{extra}<span class="pm-choose">Choose</span></button></td>')
+        rows += f'<tr class="{"is-focus" if focus and key in focus else ""}"><th scope="row"><b>{name}</b><small>{escape(desc)}</small></th>{cells}</tr>'
+    return (f'<div class="pm-wrap" role="region" aria-label="Van graphics price matrix" tabindex="0"><table class="pm"><caption class="sr-only">Van graphics prices by package and van size</caption>'
+            f'<thead><tr><th scope="col" class="pm-corner">Package</th>{head}</tr></thead><tbody>{rows}</tbody></table></div>')
+
+def price_quote_form(service):
+    sizes = ''.join(f'<option>{n}</option>' for _, n, _ in PRICE_SIZES) + '<option>Luton / box van</option><option>Not sure</option>'
+    packs = ''.join(f'<option>{p[1]}</option>' for p in PRICE_MATRIX) + '<option>Not sure yet</option>'
+    return (f'''<form class="price-quote js-enquiry" data-recipient="production@broadlanddigital.co.uk" data-context="Price matrix">
+    <div class="price-quote__head"><p class="eyebrow accent">Quick quote</p><h3>Get a price for your van.</h3><p>Pick a price above or choose below. We reply with a fitted price in writing, VAT shown.</p></div>
+    <input type="hidden" name="service" value="{escape(service)}">
+    <div class="field-row"><label>Van size<select name="size">{sizes}</select></label><label>Package<select name="package">{packs}</select></label></div>
+    <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
+    <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label><label>Vehicle make and model<input name="vehicle" maxlength="120" placeholder="e.g. Ford Transit Custom"></label></div>
+    <label>Anything else? (optional)<textarea name="details" rows="2" maxlength="800" placeholder="Logo ready, colours, deadline…"></textarea></label>
+    <div class="price-quote__foot"><button class="btn" type="submit">Request my quote {ARROW}</button><a class="text-link" href="#quote">Or send full project details {ARROW}</a></div>
+    <p class="enquiry-status" role="status" hidden></p></form>''')
+
 def pricing(data):
-    rows = list(zip(('Small van','Medium van','LWB van','Luton'),('Caddy or Berlingo','Transit Custom or Vivaro','Long-wheelbase Transit or Sprinter','Box body with or without tail lift'),data['pricing']))
-    return (table('Price guide by vehicle size',('Vehicle size','Example','Fitted price guide'),rows)
-            + f'<p class="core-note">{data["price_note"]} <a href="{PRICE_SOURCE}">View the published package guide {ARROW}</a></p><p class="core-note"><strong>What changes the price?</strong> {data["price_factor"]}</p>')
+    focus = {'signwriting': ('basic', 'standard', 'pro'), 'wraps': ('half', 'full'), 'fleet': None}.get(data['key'])
+    service = {'signwriting': 'Van signwriting', 'wraps': 'Vehicle wraps', 'fleet': 'Fleet graphics'}.get(data['key'], 'Vehicle graphics')
+    return (price_matrix(focus)
+            + f'<p class="core-note">{data["price_note"]}</p>'
+            + f'<div class="pm-quote"><div class="pm-quote__aside"><h3>What changes the price?</h3><p>{data["price_factor"]}</p>'
+            + '<ul class="quote-ticks"><li>Fitted prices include design and fitting at our Norwich workshop</li><li>Supply-only means printed and cut, ready for you to fit</li><li>Luton and box vans are quoted by body size</li></ul></div>'
+            + price_quote_form(service) + '</div>')
 
 def comparison(data):
     rows = [

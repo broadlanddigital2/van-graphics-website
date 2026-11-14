@@ -25,12 +25,14 @@ if (galleryFilter) {
   updateGallery();
 }
 
-const enquiry = document.querySelector('#service-enquiry');
-if (enquiry) {
+document.querySelectorAll('#service-enquiry, .js-enquiry').forEach((enquiry) => {
   const crm = document.body.dataset;
   enquiry.addEventListener('submit', async (event) => {
     event.preventDefault();
     const values = new FormData(enquiry);
+    if (values.get('package') || values.get('size')) {
+      values.set('details', [values.get('package') && `Package: ${values.get('package')}`, values.get('size') && `Van size: ${values.get('size')}`, values.get('details')].filter(Boolean).join('\n'));
+    }
     const subject = ['Vehicle graphics enquiry', values.get('service'), enquiry.dataset.context]
       .filter(Boolean).join(' – ');
     const fields = [
@@ -42,7 +44,7 @@ if (enquiry) {
       values.get('postcode') && `Postcode: ${values.get('postcode')}`,
     ].filter(Boolean);
     const body = [...fields, '', values.get('details')].join('\r\n');
-    const status = document.querySelector('#enquiry-status');
+    const status = enquiry.querySelector('[role=status]');
     const button = enquiry.querySelector('button[type=submit]');
     status.hidden = false;
     if (crm.crmEndpoint && crm.crmKey && crm.crmSecret) {
@@ -73,7 +75,7 @@ if (enquiry) {
     status.textContent = 'Your email app should open with the draft. If it does not, use the web enquiry form.';
     window.location.href = `mailto:${enquiry.dataset.recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
-}
+});
 
 (function captureSource() {
   try {
@@ -83,7 +85,7 @@ if (enquiry) {
   } catch (e) {}
 })();
 
-if (enquiry) enquiry.querySelector('button[type=submit]').disabled = false;
+document.querySelectorAll('#service-enquiry, .js-enquiry').forEach((f) => { const b = f.querySelector('button[type=submit]'); if (b) b.disabled = false; });
 
 const roadReveal = document.querySelector('#road-reveal');
 if (roadReveal) {
@@ -259,3 +261,16 @@ if (roadViews) {
   imgs.forEach(function(img,k){ if(k) setTimeout(function(){ img.loading='eager'; }, 1500); });
   schedule();
 })();
+
+/* Price matrix: choosing a price fills the quick quote form */
+document.querySelectorAll('.pm-pick').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const wrap = btn.closest('section') || document;
+    const form = wrap.querySelector('.price-quote'); if (!form) return;
+    const set = (name, val) => { const sel = form.querySelector(`[name=${name}]`); if (!sel) return; [...sel.options].forEach((o) => { if (o.text === val) sel.value = o.value || o.text; }); };
+    set('package', btn.dataset.package); set('size', btn.dataset.size);
+    wrap.querySelectorAll('.pm-pick.is-picked').forEach((b) => b.classList.remove('is-picked')); btn.classList.add('is-picked');
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => form.querySelector('[name=name]').focus({ preventScroll: true }), 500);
+  });
+});
