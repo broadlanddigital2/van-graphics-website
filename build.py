@@ -126,7 +126,7 @@ def header():
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
-    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
+    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-basket" href="/checkout/" aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="head-basket__n" data-basket-count hidden>0</span></a><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
 
 def footer():
     service_links = ''.join(f'<li><a href="{h}">{t}</a></li>' for t, h in [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/'), ('Full wraps', '/full-van-wraps-norwich/'), ('Vehicle wraps', '/vehicle-wraps-norwich/'), ('Fleet graphics', '/fleet-graphics-norwich/')])
@@ -498,7 +498,7 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}">
     <meta property="og:type" content="website"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/{image}.webp"><meta name="theme-color" content="#111b31"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#0f1a33">
-    {HEAD_TAGS}<link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-ga="{GA_ID}" data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}{quote_modal(SERVICES, EMAIL, PHONE, TEL)}<script src="/assets/consent.js"></script><script src="/assets/site.js" defer></script><script id="crm-enquiry-bot" src="https://crm.racecargraphics.uk/rcg-enquiry-bot.js" data-bot-key="4c0cec78-ea9a-46ae-a708-d1af0a68ec02" data-auto-open="teaser" data-teaser-title="Need help?" data-teaser="Quotes and advice on van signwriting, wraps and fleet graphics." data-teaser-points="Free, no-obligation quotes|Designed, printed and fitted in Norwich|Try the free Van Designer" data-teaser-cta="Chat with us" data-teaser-phone="01603 407786" defer></script></body></html>'''
+    {HEAD_TAGS}<link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-ga="{GA_ID}" data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}{quote_modal(SERVICES, EMAIL, PHONE, TEL)}<script src="/assets/consent.js"></script><script src="/assets/site.js" defer></script><script src="/assets/shop.js" defer></script><script id="crm-enquiry-bot" src="https://crm.racecargraphics.uk/rcg-enquiry-bot.js" data-bot-key="4c0cec78-ea9a-46ae-a708-d1af0a68ec02" data-auto-open="teaser" data-teaser-title="Need help?" data-teaser="Quotes and advice on van signwriting, wraps and fleet graphics." data-teaser-points="Free, no-obligation quotes|Designed, printed and fitted in Norwich|Try the free Van Designer" data-teaser-cta="Chat with us" data-teaser-phone="01603 407786" defer></script></body></html>'''
     target = OUT / url_map().get(path, path).strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
     html = rewrite_urls(sized_images(html))
@@ -596,6 +596,37 @@ page('/design-your-van/', 'Free Van Designer | Design Van Graphics & Wraps Onlin
 ribbon = '<div class="ribbon"><div class="shell"><div><b>01</b> Designed in Norwich</div><div><b>02</b> Produced in-house</div><div><b>03</b> Fitted locally</div></div></div>'
 support_urls = []
 from legal_pages import privacy_html, cookie_html
+page('/checkout/', 'Checkout', 'Secure checkout for Get It Wrapt van graphics.', '''<section class="section checkout" id="checkout"><div class="shell">
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Checkout</span></nav>
+<h1>Your basket</h1><p class="co-status" role="status" hidden></p>
+<div class="co-grid"><div><div class="co-items"></div>
+<form class="co-form" id="co-form-id" novalidate>
+<fieldset class="co-box"><legend>1. Delivery or fitting</legend>
+<label class="co-choice"><input type="radio" name="fulfilment" value="delivery" checked><span><b>Deliver my graphics</b><small>A DIY kit with application tools and instructions.</small></span></label>
+<label class="co-choice"><input type="radio" name="fulfilment" value="fit"><span><b>Fit them at your Norwich workshop</b><small>We contact you to book fitting at St Faiths Road. Fitting is priced separately once we have seen your van.</small></span></label>
+<div data-for-fulfilment="delivery" class="co-delivery"><label class="co-choice small"><input type="radio" name="delivery" value="65a1e7d6-c259-44aa-80a7-35f0f6cae8d8" checked><span><b>Standard delivery · Free</b><small>Tracked UK delivery, 3–5 working days</small></span></label>
+<label class="co-choice small"><input type="radio" name="delivery" value="fa30ffc3-a966-4684-b25d-d488ddb7dcd6"><span><b>Express delivery · £9.95</b><small>Priority tracked UK delivery, 1–2 working days</small></span></label></div>
+</fieldset>
+<fieldset class="co-box"><legend>2. Your details</legend>
+<div class="field-row"><label>First name<input name="first_name" autocomplete="given-name" required maxlength="120"></label><label>Last name<input name="last_name" autocomplete="family-name" required maxlength="120"></label></div>
+<div class="field-row"><label>Email<input type="email" name="email" autocomplete="email" required maxlength="200"></label><label>Mobile<input type="tel" name="mobile" autocomplete="tel" required maxlength="30"></label></div>
+<label>Address<input name="address_line_1" autocomplete="address-line1" required maxlength="200"></label>
+<label>Address line 2 (optional)<input name="address_line_2" autocomplete="address-line2" maxlength="200"></label>
+<div class="field-row"><label>Town or city<input name="city" autocomplete="address-level2" required maxlength="120"></label><label>Postcode<input name="postcode" autocomplete="postal-code" required maxlength="10"></label></div>
+<div class="field-row"><label>Vehicle registration (optional)<input name="vehicle_reg" class="reg-input" maxlength="10" autocapitalize="characters"></label><label class="co-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+<label>Order notes (optional)<textarea name="notes" rows="2" maxlength="2000" placeholder="Anything we should know about your van or artwork"></textarea></label>
+<label class="co-check"><input type="checkbox" name="marketing"><span>Send me occasional offers and news by email</span></label>
+<label class="co-check"><input type="checkbox" name="terms" required><span>I have checked my van variant and accept the <a href="/privacy-policy/">privacy policy</a>. Graphics are made to order after I approve the proof.</span></label>
+</fieldset></form></div>
+<aside class="co-summary"><h2>Order summary</h2><div class="co-totals"></div>
+<button type="submit" form="co-form-id" class="btn co-pay">Pay securely</button>
+<p class="co-secure">Secure payment by Stripe. Card, Apple Pay and Google Pay accepted. Prices shown + VAT, total includes VAT.</p>
+<ul class="ms-ticks"><li>Proof to approve before printing</li><li>Premium cast vinyl</li><li>Made in Norwich</li><li>Help on 01603 407786</li></ul></aside></div>
+</div></section>''', quote_block='')
+page('/checkout/complete/', 'Order complete', 'Thank you for your Get It Wrapt order.', '''<section class="section order-complete" id="order-complete"><div class="shell oc-shell">
+<div class="oc-tick" aria-hidden="true">✓</div><p class="eyebrow accent">Order received</p><h1>Thank you for your order.</h1>
+<p class="oc-ref"></p><p class="oc-message">Checking your payment…</p>
+<div class="actions"><a class="btn" href="/">Back to the homepage</a><a class="btn outline" href="/vehicles/">Shop more vans</a></div></div></section>''', quote_block='')
 for _path, _title, _h, _desc, _body in [
     ('/privacy-policy/', 'Privacy Policy', 'Privacy policy', 'How Wrapt collects, uses and protects your personal information when you use getitwrapt.co.uk or ask for a quote.', privacy_html(EMAIL, PHONE)),
     ('/cookie-policy/', 'Cookie Policy', 'Cookie policy', 'The cookies and local storage getitwrapt.co.uk uses, why we use them and how to change your cookie settings.', cookie_html())]:
@@ -909,7 +940,7 @@ def _lastmod(path):
 # Perplexity, Gemini, Apple Intelligence, Bing/Copilot). On the preview host the Worker replaces this with Disallow: /.
 AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot',
                'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot']
-(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\n' + ''.join(f'User-agent: {b}\n' for b in AI_CRAWLERS)
+(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\nDisallow: /checkout/\n\n' + ''.join(f'User-agent: {b}\n' for b in AI_CRAWLERS)
                               + f'Allow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n')
 
 # Cache-bust CSS/JS: assets are cached for a day, so every page links them with a content hash.

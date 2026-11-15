@@ -362,47 +362,66 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   if (location.hash === '#quote-popup') open();
 })();
 
-/* Van model shop pages: variant -> option -> colours, live price, then the quote pop-up pre-filled */
+/* Van model shop pages: variant -> option -> colours -> artwork, live price; graphics go in the basket, wraps open the quote form */
 (function () {
   const root = document.querySelector('.ms'); if (!root) return;
   const form = root.querySelector('.ms-form');
   const sel = form.querySelector('[name=variant]');
   const main = document.getElementById('ms-main-img');
+  const cta = form.querySelector('.ms-cta');
   root.querySelectorAll('.ms-thumb').forEach((t) => t.addEventListener('click', () => {
-    main.src = t.dataset.src; main.parentElement.classList.toggle('is-photo', !t.dataset.src.includes('/rcg/')); root.querySelectorAll('.ms-thumb').forEach((x) => x.classList.toggle('is-active', x === t));
+    main.src = t.dataset.src; main.parentElement.classList.toggle('is-photo', !t.dataset.src.includes('/rcg/'));
+    root.querySelectorAll('.ms-thumb').forEach((x) => x.classList.toggle('is-active', x === t));
   }));
   const names = { single: 'Single colour', two: 'Two colour', full: 'Full colour' };
   const optNames = { graphics: 'Simple graphics', half: 'Half wrap', full: 'Full wrap' };
+  const routeNames = { upload: 'I have artwork', service: 'Design service' };
+  const ROUTE_ADD = { upload: 0, service: 50 };
   const gbp = (n) => '£' + Number(n).toLocaleString('en-GB', { minimumFractionDigits: Number(n) % 1 ? 2 : 0, maximumFractionDigits: 2 });
   function state() {
     const o = sel.options[sel.selectedIndex];
     const option = form.querySelector('[name=option]:checked').value;
     const colour = (form.querySelector('[name=colour]:checked') || {}).value || 'single';
-    return { o, option, colour, variant: o.text, price: option === 'graphics' ? o.dataset[colour] : null };
+    const route = (form.querySelector('[name=route]:checked') || {}).value || 'upload';
+    const qty = Math.max(1, Math.min(20, parseInt(form.querySelector('[name=qty]').value, 10) || 1));
+    const unit = option === 'graphics' && o.dataset[colour] ? Number(o.dataset[colour]) + ROUTE_ADD[route] : null;
+    return { o, option, colour, route, qty, unit, variant: o.text, sku: o.dataset.sku };
   }
   function update() {
     const s = state();
     ['single', 'two', 'full'].forEach((k) => { const el = form.querySelector(`[data-price-for="${k}"]`); if (el) el.textContent = s.o.dataset[k] ? gbp(s.o.dataset[k]) : '–'; });
     const from = form.querySelector('[data-from]'); if (from && s.o.dataset.single) from.textContent = gbp(s.o.dataset.single);
-    form.querySelector('.ms-colours').hidden = s.option !== 'graphics';
+    const g = s.option === 'graphics';
+    form.querySelector('.ms-colours').hidden = !g; form.querySelector('.ms-routes').hidden = !g;
+    form.querySelector('.ms-qty').hidden = !g;
     form.querySelector('.ms-sum-name').textContent = s.variant;
-    form.querySelector('.ms-sum-opt').textContent = optNames[s.option] + (s.option === 'graphics' ? ' · ' + names[s.colour] : '');
+    form.querySelector('.ms-sum-opt').textContent = optNames[s.option] + (g ? ` · ${names[s.colour]} · ${routeNames[s.route]}${s.qty > 1 ? ' · ×' + s.qty : ''}` : '');
     const p = form.querySelector('.ms-sum-price');
-    if (s.price) { p.querySelector('b').textContent = gbp(s.price); p.querySelector('small').textContent = '+ VAT'; p.querySelector('.ms-sum-inc').textContent = gbp(Math.round(s.price * 120) / 100) + ' inc VAT'; }
+    if (s.unit) { const t = s.unit * s.qty; p.querySelector('b').textContent = gbp(t); p.querySelector('small').textContent = '+ VAT'; p.querySelector('.ms-sum-inc').textContent = gbp(Math.round(t * 120) / 100) + ' inc VAT'; }
     else { p.querySelector('b').textContent = 'Quote'; p.querySelector('small').textContent = 'per van'; p.querySelector('.ms-sum-inc').textContent = 'Fitted price in writing'; }
-    form.querySelector('.ms-cta').textContent = s.option === 'graphics' ? 'Request these graphics' : 'Get my ' + optNames[s.option].toLowerCase() + ' quote';
+    cta.textContent = g ? 'Add to basket' : 'Get my ' + optNames[s.option].toLowerCase() + ' quote';
   }
-  form.addEventListener('change', update);
-  form.querySelector('.ms-cta').addEventListener('click', () => {
+  function openQuote(extra) {
     const s = state();
     const vehicle = (root.dataset.quoteModel || '') + ' – ' + s.variant;
-    const details = `Option: ${optNames[s.option]}` + (s.option === 'graphics' ? `\nColours: ${names[s.colour]}\nGraphics price: ${gbp(s.price)} + VAT` : '') + '\n';
-    const service = s.option === 'graphics' ? 'Van signwriting' : 'Vehicle wraps';
+    const details = `Option: ${optNames[s.option]}\n` + (extra || '');
     if (window.openQuoteModal) {
-      window.openQuoteModal(service, details);
+      window.openQuoteModal(s.option === 'graphics' ? 'Van signwriting' : 'Vehicle wraps', details);
       const v = document.querySelector('#quote-modal [name=vehicle]'); if (v) v.value = vehicle;
       const d = document.querySelector('#quote-modal [name=details]'); if (d) d.value = details;
     }
+  }
+  form.addEventListener('change', update);
+  form.addEventListener('input', update);
+  cta.addEventListener('click', () => {
+    const s = state();
+    if (s.option !== 'graphics') return openQuote();
+    if (!window.WraptBasket || !s.sku || !s.unit) return openQuote();
+    window.WraptBasket.add({
+      sku: s.sku, title: cta.dataset.title, variant: s.variant, colour: s.colour, route: s.route, quantity: s.qty,
+      unitEx: s.unit, image: cta.dataset.image, path: cta.dataset.path,
+    });
   });
+  form.querySelector('.ms-ask').addEventListener('click', () => openQuote());
   update();
 })();

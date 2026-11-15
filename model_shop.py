@@ -59,7 +59,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
     thumbs = ''.join(f'<button type="button" class="ms-thumb{" is-active" if i == 0 else ""}{"" if "/rcg/" in src else " is-photo"}" data-src="{src}" aria-label="Show image {i + 1}"><img src="{src}" alt="" loading="lazy"></button>'
                      for i, src in enumerate(imgs[:6])) if len(imgs) > 1 else ''
     variants = fam['variants']
-    opts = ''.join(f'<option value="{i}" data-single="{v["prices"].get("single", "")}" data-two="{v["prices"].get("two", "")}" data-full="{v["prices"].get("full", "")}">{escape(variant_label(v))}</option>'
+    opts = ''.join(f'<option value="{i}" data-sku="{v["sku"]}" data-single="{v["prices"].get("single", "")}" data-two="{v["prices"].get("two", "")}" data-full="{v["prices"].get("full", "")}">{escape(variant_label(v))}</option>'
                    for i, v in enumerate(variants))
     first = variants[0]['prices']
     fp = fam['from_price']
@@ -73,7 +73,8 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
     rows = ''.join(f'<tr><td>{escape(variant_label(v))}</td>' + ''.join(f'<td>£{v["prices"].get(k, "–")}</td>' for k, _, _ in COLOURS) + '<td>Quote</td><td>Quote</td></tr>' for v in variants)
     related = ''.join(f'<a class="ms-rel" href="{o["path"]}"><img src="{(o["images"] or [""])[0]}" alt="" loading="lazy"><span><b>{escape(o["name"])}</b>'
                       f'<small>{("From £" + str(o["from_price"]) + " + VAT") if o["from_price"] else "Quoted"}</small></span></a>' for o in others[:8])
-    rcg = (f'<p class="ms-diy">Fitting it yourself? Buy the same graphics as a DIY kit from our sister site '
+    rcg = ''
+    _unused = (f'<p class="ms-diy">Fitting it yourself? Buy the same graphics as a DIY kit from our sister site '
            f'<a href="{fam["rcg_url"]}" target="_blank" rel="noopener">Race Car Graphics</a>.</p>') if fam.get('rcg_url') else ''
     return f'''<section class="ms" data-quote-model="{full}">
 <div class="shell ms-grid">
@@ -98,13 +99,18 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
           <label class="ms-opt"><input type="radio" name="option" value="full"><span><b>Full wrap</b><small>The whole van in printed vinyl</small><em>Quoted</em></span></label>
         </div></fieldset>
       <fieldset class="ms-step ms-colours"><legend><span>3</span>Choose your colours</legend><div class="ms-colour-grid">{colour_cards}</div></fieldset>
+      <fieldset class="ms-step ms-routes"><legend><span>4</span>Your artwork</legend><div class="ms-options ms-options--2">
+        <label class="ms-opt"><input type="radio" name="route" value="upload" checked><span><b>I have artwork</b><small>Upload your logo and wording at checkout. We check it and send a proof.</small><em>Included</em></span></label>
+        <label class="ms-opt"><input type="radio" name="route" value="service"><span><b>Design it for me</b><small>Our team designs your graphics from your brief, with a proof to approve.</small><em>+ £50 + VAT</em></span></label>
+      </div></fieldset>
       <div class="ms-summary" aria-live="polite">
         <div><small>Your selection</small><b class="ms-sum-name">{escape(variant_label(variants[0]))}</b><span class="ms-sum-opt">Simple graphics · Single colour</span></div>
         <div class="ms-sum-price"><b>£{first.get("single", fp)}</b><small>+ VAT</small><span class="ms-sum-inc"></span></div>
       </div>
-      <button type="button" class="btn ms-cta">Request these graphics</button>
-      <a class="btn outline ms-design" href="/design-your-van/#designer">Design it in the Van Designer</a>
-      <p class="ms-note">Graphics prices are for the designed vinyl graphics. Fitting at our Norwich workshop is added to your written quote. Half and full wraps are quoted per van.</p>
+      <div class="ms-buyrow"><label class="ms-qty"><span>Qty</span><input type="number" name="qty" value="1" min="1" max="20" inputmode="numeric"></label>
+      <button type="button" class="btn ms-cta" data-image="{main}" data-path="{fam['path']}" data-title="{full}">Add to basket</button></div>
+      <button type="button" class="btn outline ms-ask">Ask a question about this van</button>
+      <p class="ms-note">Pay securely online. At checkout choose delivery as a DIY kit, or fitting at our Norwich workshop (fitting is booked and priced after your order). Half and full wraps are quoted per van.</p>
       {rcg}
     </form>
     <ul class="ms-ticks"><li>Laid out on your exact model template</li><li>Proof to approve before anything is printed</li><li>Premium cast vinyl, printed in-house</li><li>Fitted at our St Faiths Road workshop</li></ul>
