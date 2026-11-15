@@ -425,3 +425,16 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   form.querySelector('.ms-ask').addEventListener('click', () => openQuote());
   update();
 })();
+
+/* Site search + AI assistant (CRM site-search embed): show the Ask AI buttons once the widget is ready,
+   and close the mobile menu before the search panel opens. */
+(() => {
+  const closeMenu = () => { const m = document.querySelector('.main-head details.mobile'); if (m && m.open) { m.open = false; m.dispatchEvent(new Event('toggle')); } };
+  document.addEventListener('click', (e) => {
+    const ai = e.target.closest('[data-ask-ai]');
+    if (ai && window.SiteSearch) { e.preventDefault(); closeMenu(); window.SiteSearch.ask(); return; }
+    if (e.target.closest('.mm [data-site-search]')) closeMenu();
+  }, true);
+  const ready = () => document.querySelectorAll('[data-ask-ai][hidden],[data-ask-ai-wrap][hidden]').forEach((el) => el.removeAttribute('hidden'));
+  if (window.SiteSearch) ready(); else window.addEventListener('site-search-ready', ready, { once: true });
+})();
