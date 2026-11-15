@@ -954,3 +954,16 @@ a.text-link:hover:after{transform:translateX(3px)}
 
 /* Never let anything push the page sideways on phones (clip keeps the sticky header working) */
 html,body{overflow-x:clip;max-width:100%}
+/* Brand picker on phones: clean 3-across tiles (overrides the swipe rows) */
+@media(max-width:700px){
+  .brand-grid{display:grid!important;grid-auto-flow:row!important;grid-template-rows:none!important;grid-auto-columns:auto!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;overflow:visible!important;margin:16px 0 0!important;padding:0!important;border:0!important;scroll-snap-type:none}
+  .brand-card{border:1px solid #d9deea!important;border-radius:14px;background:#fff!important;color:var(--ink)!important;box-shadow:0 2px 8px #111b310d}
+  .brand-card__logo{aspect-ratio:3/2;background:#fff!important;padding:8px}
+  .brand-card__logo img{max-width:78%;max-height:62%}
+  .brand-card__logo .brand-wordmark{font-size:13px}
+  .brand-card__copy{padding:0 6px 10px!important}
+  .brand-card strong{font-size:11px!important;letter-spacing:.03em;color:var(--ink)}
+  .brand-card b{display:none!important}
+  .brand-card:hover{background:#fff!important;border-color:var(--lime)!important}
+  .vehicle-picker>p{font-size:15px}
+}
