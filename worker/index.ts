@@ -1,6 +1,7 @@
 // Serves the static site from dist/. The only server-side job is search-engine control:
 // preview hosts (workers.dev) are marked noindex; the live domain(s) in LIVE_HOSTS are indexable.
-const LIVE_HOSTS: string[] = []; // e.g. ["norwichvehiclegraphics.co.uk"] once the domain is live
+const LIVE_HOSTS: string[] = ["getitwrapt.co.uk"];
+const CANONICAL_HOST = "getitwrapt.co.uk";
 
 type Env = { ASSETS: { fetch: typeof fetch } };
 
@@ -17,6 +18,10 @@ async function redirects(env: Env, url: URL): Promise<Record<string, string>> {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    if (url.hostname === "www." + CANONICAL_HOST) {
+      url.hostname = CANONICAL_HOST;
+      return Response.redirect(url.toString(), 301);
+    }
     let response = await env.ASSETS.fetch(request);
     if (response.status === 404) {
       // Old addresses (before the keyword URLs) redirect permanently to their new pages.

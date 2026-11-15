@@ -18,7 +18,7 @@ OUT = Path('dist')
 import os as _os
 # Preview host until launch. At launch set SITE_ORIGIN (e.g. https://norwichvehiclegraphics.co.uk) for the build, or change
 # the fallback here, and add the domain to LIVE_HOSTS in worker/index.ts (see "Launch checklist" in README.md).
-ORIGIN = (_os.environ.get('SITE_ORIGIN') or 'https://van-graphics-website.justin-b8f.workers.dev').rstrip('/')
+ORIGIN = (_os.environ.get('SITE_ORIGIN') or 'https://getitwrapt.co.uk').rstrip('/')
 QUOTE = 'https://broadlanddigital.co.uk/get-a-quote/'
 PHONE = '01603 407786'
 TEL = 'tel:+441603407786'

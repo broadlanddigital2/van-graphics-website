@@ -12,7 +12,10 @@
   },
   "observability": { "enabled": true },
   // Keep variables added in the Cloudflare dashboard when deploying from GitHub
-  "keep_vars": true
-  // Live domain: add it in the Cloudflare dashboard (Custom Domain or Worker route) once chosen,
-  // then update ORIGIN in build.py and LIVE_HOSTS below.
+  "keep_vars": true,
+  // Live domain. www redirects to the bare domain in worker/index.ts.
+  "routes": [
+    { "pattern": "getitwrapt.co.uk", "custom_domain": true },
+    { "pattern": "www.getitwrapt.co.uk", "custom_domain": true }
+  ]
 }
