@@ -1043,7 +1043,7 @@ function vanPng(){
 }
 function watermark(src){
   return new Promise(res=>{ const img=new Image(); img.onload=()=>{ const c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight; const x=c.getContext('2d');
-    x.drawImage(img,0,0); const t='Designed with Norwich Vehicle Graphics'; x.font='600 '+Math.round(c.width/64)+'px Arial'; const m=x.measureText(t).width, pad=Math.round(c.width/80);
+    x.drawImage(img,0,0); const t='Designed with Get It Wrapt'; x.font='600 '+Math.round(c.width/64)+'px Arial'; const m=x.measureText(t).width, pad=Math.round(c.width/80);
     x.fillStyle='rgba(11,20,40,.62)'; x.fillRect(c.width-m-pad*3,c.height-pad*3.2,m+pad*2,pad*2.2); x.fillStyle='#fff'; x.textBaseline='middle'; x.fillText(t,c.width-m-pad*2,c.height-pad*2.1);
     res(c.toDataURL('image/jpeg',.88)); }; img.src=src; });
 }

@@ -25,8 +25,8 @@ TEL = 'tel:+441603407786'
 EMAIL = 'enquiries@getitwrapt.co.uk'
 GA_ID = ''  # Google Analytics 4 measurement ID (G-XXXXXXX); loads only after analytics consent
 ARROW = '<span class="arr" aria-hidden="true">↗</span>'
-# CRM (Race Car Graphics CRM, business unit "Norwich Vehicle Graphics").
-# Leads: the enquiry forms and the Van Designer post to the 'Norwich Vehicle Graphics Web Forms'
+# CRM (Race Car Graphics CRM, business unit "Get It Wrapt").
+# Leads: the enquiry forms and the Van Designer post to the 'Get It Wrapt Web Forms'
 # channel. The key and secret are visible in the page source by design of the ingest endpoint;
 # rotate them in the CRM if the form is abused. Leave key/secret empty to fall back to email drafts.
 # Pages: pages written and published in the CRM's SEO section are pulled from the feed at build
@@ -128,7 +128,7 @@ def footer():
     <div><h2>Sectors</h2><ul>{sectors}<li><a href="/sectors/">All sectors</a></li></ul></div>
     <div><h2>Guides</h2><ul>{guides}</ul></div></div>
     <section class="footer-brands" aria-labelledby="footer-brands-title"><h2 id="footer-brands-title">Group brands</h2><div class="footer-brand-grid">{brands}</div></section>
-    <div class="footnote"><span>© 2026 Norwich Vehicle Graphics, part of Broadland Digital Ltd</span><span class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/cookie-policy/">Cookie policy</a><button type="button" class="link-btn" data-cookie-settings>Cookie settings</button></span></div></div></footer>'''
+    <div class="footnote"><span>© 2026 Get It Wrapt, part of Broadland Digital Ltd</span><span class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/cookie-policy/">Cookie policy</a><button type="button" class="link-btn" data-cookie-settings>Cookie settings</button></span></div></div></footer>'''
 
 def quote():
     return f'''<section class="quote" id="quote"><div class="shell quote-grid"><div><p class="eyebrow">Get a free quote</p><h2>What are you driving?</h2><p>Tell us the make and model, how many vehicles you have and the look you’re after. If you have photos or artwork, have them handy.</p><div class="actions">{button('Open our enquiry form', '/contact/#quote', 'dark')}</div></div>
@@ -425,10 +425,10 @@ def fit_title(t, limit=60):
     """Keep titles inside what Google shows: drop the brand suffix, then shorten the middle part."""
     if len(t) <= limit:
         return t
-    for suffix in (' | Norwich Vehicle Graphics', ' | NVG'):
+    for suffix in (' | Get It Wrapt', ' | NVG'):
         if t.endswith(suffix) and len(t[:-len(suffix)]) <= limit:
             return t[:-len(suffix)]
-    t = t.replace(' | Norwich Vehicle Graphics', '')
+    t = t.replace(' | Get It Wrapt', '')
     parts = t.split(' | ')
     while len(' | '.join(parts)) > limit and len(parts) > 1:
         parts.pop()
@@ -484,7 +484,7 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     html = rewrite_urls(sized_images(html))
     target.write_text(html, encoding='utf-8')
 
-business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Norwich Vehicle Graphics','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
+business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Get It Wrapt','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
             'address':{'@type':'PostalAddress','streetAddress':'Vulcan House, Vulcan Road North','addressLocality':'Norwich','addressRegion':'Norfolk','postalCode':'NR6 6AQ','addressCountry':'GB'},
             'areaServed':['Norwich','Norfolk'],'image':ORIGIN+'/assets/hero.webp','logo':ORIGIN+'/assets/wrapt-logo.png',
             'geo':{'@type':'GeoCoordinates','latitude':52.6610201,'longitude':1.2806856},'hasMap':'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'}
@@ -546,7 +546,7 @@ def home_slider():
 home_hero = home_slider()
 home_schema = {'@context':'https://schema.org','@graph':[{k:v for k,v in business.items() if k!='@context'},
     {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in H.HOME_FAQ]}]}
-page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
+page('/', 'Vehicle Graphics & Van Wraps Norwich | Get It Wrapt',
      'Van graphics, full and partial van wraps and fleet livery across Norwich and Norfolk. Designed, printed and fitted in-house. Design your van online or get a free quote.',
      home_hero
      + designer_promo(button)
@@ -566,7 +566,7 @@ page('/', 'Vehicle Graphics & Van Wraps Norwich | Norwich Vehicle Graphics',
      + faq(H.HOME_FAQ),
      schema=home_schema, quote_block=enquiry(None,SERVICES,PHONE,TEL,EMAIL,QUOTE,context='Homepage'))
 
-page('/design-your-van/', 'Free Van Designer | Design Van Graphics & Wraps Online | Norwich Vehicle Graphics',
+page('/design-your-van/', 'Free Van Designer | Design Van Graphics & Wraps Online | Get It Wrapt',
      'Design your van graphics or full wrap online in 60 seconds. Add your logo and details, spin it in 360° and request a quote from the Norwich team.',
      designer_page(button, media, faq, PHONE, TEL, EMAIL, DESIGNER_LEADS), 'transit-custom-msrt-printed-wrap',
      {'@context':'https://schema.org','@graph':[
@@ -591,7 +591,7 @@ for s in SERVICES:
         {'@type':'Service','name':s['label'],'url':ORIGIN+path,'description':s['intro'],'provider':{'@id':ORIGIN+'/#business'},'areaServed':['Norwich','Norfolk']},
         {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in questions]},
     ]}
-    page(path,s['title']+' | Norwich Vehicle Graphics',s['intro'],
+    page(path,s['title']+' | Get It Wrapt',s['intro'],
          service_hero(s)
          + ribbon + core_sections(s, lambda rows: repair_block('vehicle') + faq(rows, core=True)),
          s['image'],schema,enquiry(s,SERVICES,PHONE,TEL,EMAIL,QUOTE))
@@ -617,7 +617,7 @@ for key,(name,category,description) in MODELS.items():
     model_faq = (MODEL_COPY[key][3] if key in MODEL_COPY else []) + [(f'How much does signwriting cost on a {name}?', (f'Signwriting on a {size} starts from {price} + VAT, fitted, using our published packages. ' if price else 'The price depends on the body size and coverage. ') + 'Wraps are quoted per vehicle once we know the coverage and artwork.'),
                  (f'What do you need to quote for my {name}?', 'Its year, wheelbase and roof height, a photo of each side and the back doors, your logo and the words you want on it.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
-    page(path,heading+' | Norwich Vehicle Graphics',model_desc,
+    page(path,heading+' | Get It Wrapt',model_desc,
          support_page('Vehicle model · '+category,heading,[MODEL_COPY[key][0] if key in MODEL_COPY else description, MODEL_COPY[key][1] if key in MODEL_COPY else 'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]},
          hero_image=f'vehicles/{key}-hero')
@@ -637,13 +637,13 @@ for key,label in VAN_BRANDS:
     bfaq = ([BRAND_COPY[key][3]] if key in BRAND_COPY else []) + [(f'Do you fit graphics to all {label} vans?', f'Yes. We fit signwriting, partial wraps and full wraps to {label} vans, pickups and commercial vehicles, laid out on your exact model.'),
             (f'How much are {label} van graphics in Norwich?', 'Signwriting starts from £149 for a small van, £210 for a medium van and £285 for a large van, fitted, all + VAT. Wraps are quoted per vehicle.'),
             ]
-    page(path, f'{label} Van Graphics Norwich | Norwich Vehicle Graphics',
+    page(path, f'{label} Van Graphics Norwich | Get It Wrapt',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
          brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]},
          hero_image=brand_hero(key))
 support_urls.append('/vehicles/')
-page('/vehicles/', 'Van Graphics by Manufacturer | Norwich Vehicle Graphics',
+page('/vehicles/', 'Van Graphics by Manufacturer | Get It Wrapt',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
      + '<section class="section core-section"><div class="shell">' + vehicle_picker()
@@ -694,7 +694,7 @@ for town in TOWN_LIST:
     questions = town_questions(town)
     image = SECTORS_BY_KEY[town['focus'][0]]['image']
     image = f'concept-{image}' if isinstance(image, int) else image
-    town_title = f'Van Graphics {name} | Signwriting & Wraps | Norwich Vehicle Graphics'
+    town_title = f'Van Graphics {name} | Signwriting & Wraps | Get It Wrapt'
     if len(town_title) > 66: town_title = f'Van Graphics {name} | Signwriting & Wraps'
     town_desc = f'Van graphics in {name}: van signwriting, vehicle wraps and fleet graphics, designed in-house and fitted at our Norwich workshop, {town["miles"]} miles away. Free quote.'
     page(path, town_title, town_desc,
@@ -712,22 +712,22 @@ for key,(name,summary,detail) in GUIDES.items():
              schema=guide_schema(ORIGIN, key, g, business['@id']), hero_image=f'pages/guide-{key}-hero',
              quote_block=enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=f'Guide: {name}'))
         continue
-    page(path,name+' | Norwich Vehicle Graphics',summary,
+    page(path,name+' | Get It Wrapt',summary,
          support_page('Vehicle graphics guide',name,[summary,detail],related), hero_image=f'pages/guide-{key}-hero')
 
 places = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])} <small>{t["miles"]} mi · {t["time"]}</small></a></li>' for t in TOWN_LIST)
 coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>We design remotely and fit at our Norwich workshop on Vulcan Road North. Distances below are driving routes to the workshop. If you are arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Broadland+Digital+Vulcan+Road+North+NR6+6AQ">Directions to the Norwich workshop {ARROW}</a></div><ul class="places places-wide">{places}</ul></div></section>'''
-page('/norfolk/','Vehicle Graphics Across Norfolk | Norwich Vehicle Graphics',
+page('/norfolk/','Vehicle Graphics Across Norfolk | Get It Wrapt',
      'Van graphics, wraps and fleet livery for businesses across Norfolk and Waveney: Norwich, King’s Lynn, Great Yarmouth, Lowestoft, Thetford, Dereham, Cromer and more.',
      hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk and the Waveney valley. Bring us one work van or talk to us about graphics for a fleet.',generated('pages/norfolk-hub-hero') or 'fleet','Three branded vans on a Norfolk country road' if generated('pages/norfolk-hub-hero') else 'Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),generated('pages/norfolk-hub-hero') or 'fleet')
 
-page('/sectors/','Van Graphics by Sector | Norwich Vehicle Graphics',
+page('/sectors/','Van Graphics by Sector | Get It Wrapt',
      f'Van wraps, signwriting and fleet graphics for {len(SECTOR_LIST)} sectors, from plumbers and electricians to removals, care teams, farms and boatyards across Norfolk.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Sectors</span></nav><p class="eyebrow accent">Vehicle graphics by sector</p><h1>Van graphics for your line of work.</h1>'
      + f'<p class="lede">{len(SECTOR_LIST)} sectors, each with design ideas, a recommended package and a price guide.</p></div></section>'
      + sectors_hub(), hero_image='sectors/sectors-hub-hero')
 
-page('/gallery/', 'Van Graphics Gallery | Norwich Vehicle Graphics',
+page('/gallery/', 'Van Graphics Gallery | Get It Wrapt',
      'Van signwriting, vehicle wraps and fleet graphics fitted at our Norwich workshop, plus design ideas for every kind of business in Norfolk.',
      '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Gallery</span></nav><p class="eyebrow accent">Van graphics gallery</p><h1>Our van graphics work.</h1>'
      + '<p>Real vans fitted at our Norwich workshop, and design ideas by sector. Tap a photo to enlarge.</p><div class="actions">' + button('Get a free quote','#quote') + button('Try the Van Designer','/design-your-van/','outline') + '</div></div></section>'
@@ -740,8 +740,8 @@ CONTACT_FAQ = [('How quickly will you reply?', 'We aim to reply the same working
        ('Can I visit without an appointment?', 'Please call ahead. Fitting is by appointment, so we can make sure someone is free to talk through your project and look at your vehicle.'),
        ('Do you work with businesses outside Norwich?', 'Yes. We work with businesses across Norfolk and Waveney. Design and quotes can be done remotely, and vehicles are fitted at our Norwich workshop.'),
        ('What should I send with my enquiry?', 'The make, model and year, a photo of each side and the back, any logo you already use and the words you want on the van.')]
-page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
-     'Contact Norwich Vehicle Graphics for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
+page('/contact/','Contact & Directions | Get It Wrapt',
+     'Contact Get It Wrapt for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
      '<section class="support-hero contact-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Norwich, Norfolk</p><h1>Contact us.</h1>'
      + '<p>Ask about van signwriting, vehicle wraps, fleet graphics or an upcoming fitting.</p>'
      + '<div class="actions">' + button('Ask a question','#quote') + button('Find the workshop','#workshop','outline') + '</div></div></section>'
@@ -755,7 +755,7 @@ page('/contact/','Contact & Directions | Norwich Vehicle Graphics',
          ('3. Print and book in', 'Once you approve the proof we print in-house and book a fitting slot that suits your diary.'),
          ('4. Fit and collect', 'Your vehicle is fitted at our Norwich workshop on Vulcan Road North, with aftercare advice when you collect it.')])
      + '</div></div></section>' + faq(CONTACT_FAQ),
-     schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Norwich Vehicle Graphics','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='', hero_image='pages/contact-hero')
+     schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Get It Wrapt','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='', hero_image='pages/contact-hero')
 
 def crm_feed():
     """Pages published in the CRM's SEO section. Falls back to the last good copy."""
@@ -791,13 +791,13 @@ if feed.get('llms'):
     if llms.get('override'):
         text = llms['override']
     else:
-        lines = [f"# {llms.get('name', 'Norwich Vehicle Graphics')}", '', f"> {llms.get('summary', '')}", ''] + [f'- {d}' for d in llms.get('details', [])]
+        lines = [f"# {llms.get('name', 'Get It Wrapt')}", '', f"> {llms.get('summary', '')}", ''] + [f'- {d}' for d in llms.get('details', [])]
         lines += ['', '## Key pages', f'- [Van signwriting]({ORIGIN}/van-signwriting-norwich/)', f'- [Vehicle wraps]({ORIGIN}/vehicle-wraps-norwich/)',
                   f'- [Fleet graphics]({ORIGIN}/fleet-graphics-norwich/)', f'- [Free Van Designer]({ORIGIN}/design-your-van/)', f'- [Contact]({ORIGIN}/contact/)']
         text = '\n'.join(lines) + '\n'
     (OUT / 'llms.txt').write_text(rewrite_urls(text), encoding='utf-8')
 
-page('/404/', 'Page not found | Norwich Vehicle Graphics', 'This page could not be found.',
+page('/404/', 'Page not found | Get It Wrapt', 'This page could not be found.',
      '<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Error 404</p><h1>We can’t find that page.</h1></div></section>'
      + '<section class="section core-section"><div class="shell core-prose"><p>The address may have changed. Try our <a href="/van-signwriting-norwich/">van signwriting</a>, <a href="/vehicle-wraps-norwich/">vehicle wraps</a> or <a href="/fleet-graphics-norwich/">fleet graphics</a> pages, or <a href="/design-your-van/">design your van</a> online.</p></div></section>')
 (OUT / '404' / 'index.html').replace(OUT / '404.html'); (OUT / '404').rmdir()

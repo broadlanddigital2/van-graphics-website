@@ -1,4 +1,4 @@
-# Norwich Vehicle Graphics
+# Get It Wrapt
 
 ## Hosting (same set-up as rcg-website)
 
@@ -17,7 +17,7 @@
 
 Static marketing site. Run `python3 build.py` from the repository root to regenerate pages, sitemap and robots.txt in `dist/`. The shared core service template is in `core_pages.py` and the copy and route data are in `core_content.py`.
 
-The private site uses Norwich Vehicle Graphics as a working name. The core enquiry form prepares an email draft and links to the existing Broadland Digital web enquiry form. Gallery and featured design imagery is illustrative.
+The site trades as Get It Wrapt (logo "Wrapt") on getitwrapt.co.uk; it was called Norwich Vehicle Graphics until 15 Nov 2026. The core enquiry form prepares an email draft and links to the existing Broadland Digital web enquiry form. Gallery and featured design imagery is illustrative.
 
 ## Van Designer
 
@@ -33,13 +33,13 @@ Run `python3 build.py` after any change to `designer_page.py` or `build.py`. The
 
 ## CRM (managed site)
 
-The site is managed in the Race Car Graphics CRM (Supabase project `dipjypzrfigkzuarlsov`) as its own business unit, **Norwich Vehicle Graphics** (slug `norwich-vehicle-graphics`).
+The site is managed in the Race Car Graphics CRM (Supabase project `dipjypzrfigkzuarlsov`) as its own business unit, **Get It Wrapt** (slug `norwich-vehicle-graphics`).
 
 | In the CRM | What it does |
 | --- | --- |
 | Business unit + "Incoming Leads" workflow | Incoming → Quoted → On Proof → Jobs → Completed |
-| Channel "Norwich Vehicle Graphics Web Forms" (`enquiry_form`) | Receives the enquiry forms and Van Designer sign-ups/quotes; emails production@broadlanddigital.co.uk |
-| SEO site "Norwich Vehicle Graphics" (static) | All 50 site pages imported for Search Console, audits and page fixes; brand profile for AI-written content |
+| Channel "Get It Wrapt Web Forms" (`enquiry_form`) | Receives the enquiry forms and Van Designer sign-ups/quotes; emails production@broadlanddigital.co.uk |
+| SEO site "Get It Wrapt" (static) | All 50 site pages imported for Search Console, audits and page fixes; brand profile for AI-written content |
 | SEO feed | Pages written and published in the CRM are added to the site on the next `python3 build.py` |
 
 Config lives in the `CRM` dict at the top of `build.py`. The build fetches the feed (15 s timeout) and keeps the last good copy in `crm_feed_cache.json`, so builds without internet keep working. If the build machine can reach the CRM, schedule `python3 build.py` (for example hourly, as Race Car Graphics does) and redeploy `dist/` so CRM-published pages go live automatically.

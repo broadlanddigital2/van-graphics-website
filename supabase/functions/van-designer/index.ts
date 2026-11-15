@@ -1,4 +1,4 @@
-// Van Designer back end for Norwich Vehicle Graphics (shared CRM project).
+// Van Designer back end for Get It Wrapt (shared CRM project).
 // Passwordless accounts: sign-up logs the customer straight in and emails a login link
 // for returning on another device. Every account is a CRM customer + lead, so the team
 // sees who is designing, what van they have and when they ask for a quote.
@@ -9,7 +9,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.57.4";
 
 const BUSINESS_SLUG = "norwich-vehicle-graphics";
-const CHANNEL_KEY = "318764b3-e82a-4b82-b832-dda45ab860a3"; // "Norwich Vehicle Graphics Web Forms"
+const CHANNEL_KEY = "318764b3-e82a-4b82-b832-dda45ab860a3"; // "Get It Wrapt Web Forms"
 const TEAM_EMAIL = Deno.env.get("NVG_TEAM_EMAIL") || "production@broadlanddigital.co.uk";
 const FALLBACK_FROM = "noreply@racecargraphics.uk";
 const SESSION_DAYS = 180;

@@ -28,7 +28,7 @@ def directions(town=None, county='Norfolk'):
 def workshop_map(phone, tel, email, town=None, county='Norfolk'):
     source = 'https://maps.google.com/maps?' + urlencode({'q': MAP_QUERY, 'output': 'embed'})
     return f'''<div class="workshop-map"><div class="workshop-details">
-    <p class="eyebrow blue">Norwich workshop</p><h3>Norwich Vehicle Graphics</h3>
+    <p class="eyebrow blue">Norwich workshop</p><h3>Get It Wrapt</h3>
     <address>Vulcan House<br>Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</address>
     <p><a href="{tel}">{phone}</a><br><a href="mailto:{email}">{email}</a></p>
     <p>Call ahead to confirm your fitting appointment and drop-off arrangements.</p>

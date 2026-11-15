@@ -375,9 +375,9 @@ def cap(text):
 
 def sector_meta(s):
     p, sec = s['primary'], s['secondary']
-    title = f'{cap(p)} in Norfolk | Norwich Vehicle Graphics'
+    title = f'{cap(p)} in Norfolk | Get It Wrapt'
     if len(title) > 66:
-        title = f'{cap(p)} | Norwich Vehicle Graphics'
+        title = f'{cap(p)} | Get It Wrapt'
     desc = f'{cap(p)}, {sec[0]} and {sec[1]}, designed, printed and fitted in Norwich for businesses across Norfolk. Free design and quote.'
     if len(desc) > 165:
         desc = f'{cap(p)} and {sec[0]}, designed, printed and fitted in Norwich for businesses across Norfolk. Free quote.'
