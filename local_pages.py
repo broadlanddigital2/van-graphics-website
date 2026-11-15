@@ -87,7 +87,7 @@ def town_hero(t, image, alt, phone, tel):
         image, alt = f'towns/{t["key"]}-hero', f'Branded work van in {t["name"]}'
     name = escape(t['name'])
     chips = ''.join(f'<li>{c}</li>' for c in (f'{t["miles"]} miles to our workshop', f'About {t["time"]} drive', f'Via the {escape(t["roads"][0])}'))
-    focus = ''.join(f'<li><a href="/sectors/{k}/"><span>{escape(SECTORS[k][0])}</span><i aria-hidden="true">↗</i></a></li>' for k in t['focus'])
+    focus = ''.join(f'<li><a href="/sectors/{k}/"><span>{escape(SECTORS[k][0])}</span></a></li>' for k in t['focus'])
     return f'''<section class="sector-hero town-hero{' is-dedicated' if dedicated else ''}">
     <img class="sector-hero__img" src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high" width="2400" height="1100">
     <div class="shell sector-hero__inner"><div class="sector-hero__copy">

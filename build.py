@@ -25,7 +25,7 @@ TEL = 'tel:+441603407786'
 EMAIL = 'enquiries@getitwrapt.co.uk'
 HEAD_TAGS = '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}(function(){var c={};try{c=JSON.parse(localStorage.getItem(\'wrapt-cookie-consent\')||\'{}\')||{};}catch(e){}gtag(\'consent\',\'default\',{analytics_storage:c.analytics?\'granted\':\'denied\',ad_storage:c.marketing?\'granted\':\'denied\',ad_user_data:c.marketing?\'granted\':\'denied\',ad_personalization:c.marketing?\'granted\':\'denied\',functionality_storage:\'granted\',security_storage:\'granted\'});})();</script><script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TRG2889N"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());</script>'  # Google tag (GTM-TRG2889N); consent defaults are set first from the cookie banner choice
 GA_ID = ''  # Google Analytics 4 measurement ID (G-XXXXXXX); loads only after analytics consent
-ARROW = '<span class="arr" aria-hidden="true">↗</span>'
+ARROW = ''
 # CRM (Race Car Graphics CRM, business unit "Get It Wrapt").
 # Leads: the enquiry forms and the Van Designer post to the 'Get It Wrapt Web Forms'
 # channel. The key and secret are visible in the page source by design of the ingest endpoint;
@@ -155,7 +155,7 @@ def quote():
     <div class="quote-contact"><p><strong>Speak to the Norwich team</strong></p><p><a href="{TEL}">{PHONE}</a></p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p>Vulcan House, Vulcan Road North<br>Norwich NR6 6AQ</p></div></div></section>'''
 
 def media(image, alt, caption=''):
-    label = f'<div class="hero-caption"><b>↗</b>{caption}</div>' if caption else ''
+    label = f'<div class="hero-caption">{caption}</div>' if caption else ''
     return f'<div class="hero-media"><img src="/assets/{image}.webp" alt="{escape(alt)}" fetchpriority="high"><span class="marker" aria-hidden="true"><i></i><i></i><i></i></span>{label}</div>'
 
 def hero(title, description, image, alt, eyebrow, home=False, core=False, parent=None, call=False):

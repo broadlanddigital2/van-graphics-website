@@ -7,7 +7,7 @@ from urllib.parse import urlencode
 
 from core_content import BRANDS, CONTENT, FEATURED_SECTORS, GUIDES, MODELS, SECTOR_CARDS, SECTORS, TOWNS, VAN_BRANDS, brand_logo
 
-ARROW = '<span class="arr" aria-hidden="true">↗</span>'
+ARROW = ''
 
 def section(number, key, label, title, body, style=''):
     colour = 'accent' if 'dark-section' in style else 'blue'
@@ -218,12 +218,13 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     heading = 'How can we help?' if contact else 'Tell us about the vehicle.'
     eyebrow = 'Contact the team' if contact else '16 / Get a free quote' if service else 'Get a free quote'
     vehicle_required = ' required' if service else ''
-    return f'''<section class="quote" id="quote"><div class="shell quote-grid core-quote">
+    return f'''<section class="quote{' is-contact' if contact else ''}" id="quote"><div class="shell quote-grid core-quote">
     <div><p class="eyebrow">{eyebrow}</p><h2>{heading}</h2>
     <p>Send us a few details and we’ll come back with design ideas and a fitted price. Prefer to talk? Call the Norwich team.</p>
     <ul class="quote-ticks"><li>Free design visual on your exact vehicle</li><li>Fitted price in writing, VAT shown</li><li>Every job drawn, printed and fitted at our NR6 workshop</li></ul>
     <div class="quote-contacts"><a href="{tel}"><small>Call</small><b>{phone}</b></a><a href="mailto:{email}"><small>Email</small><b>{email}</b></a></div>
     </div>
+    <a class="btn quote-mobile-btn" href="#quote">Start your free quote</a>
     <form id="service-enquiry" class="quote-card" data-recipient="{email}" data-context="{escape(context)}">
     <div class="quote-card__head"><b>Quote request</b><span>Takes about a minute</span></div>
     <label>Service<select name="service">{options}</select></label>
@@ -433,7 +434,7 @@ def care_upsell(vehicle='your van'):
     def cards(items, tone):
         return ''.join(f'<a class="care-card {tone}" href="{AO}{path}" target="_blank" rel="noopener" aria-label="{escape(name)} at Auto Opulence (opens in a new tab)">'
                        f'<span class="care-card__step">{n:02}</span><h4>{escape(name)}</h4><p>{escape(desc)}</p>'
-                       f'<div class="care-card__foot"><span class="care-card__price"><small>From</small>{price}</span><span class="care-card__go">View service ↗</span></div></a>'
+                       f'<div class="care-card__foot"><span class="care-card__price"><small>From</small>{price}</span><span class="care-card__go">View service</span></div></a>'
                        for n, (name, price, path, desc) in enumerate(items, 1))
     return (f'<section class="section care-upsell"><div class="shell">'
             f'<div class="care-head"><div><p class="eyebrow accent">Before &amp; after your graphics</p><h2>Prep and protect your {v}.</h2>'

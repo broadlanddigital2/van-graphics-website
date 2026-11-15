@@ -216,7 +216,7 @@ def group_blocks():
         f'<a class="group-card" href="{url}" target="_blank" rel="noopener" aria-label="{escape(name)} website (opens in a new tab)">'
         f'<div class="group-card__logo"><img src="/assets/group/{logo}" alt="{escape(name)} logo" loading="lazy"></div>'
         f'<p class="group-card__tag">{escape(tag)}</p><h3>{escape(name)}</h3><p>{escape(text)}</p>'
-        f'<ul>{"".join(f"<li>{escape(i)}</li>" for i in items)}</ul><span class="group-card__cta">Visit {escape(name)} ↗</span></a>'
+        f'<ul>{"".join(f"<li>{escape(i)}</li>" for i in items)}</ul><span class="group-card__cta">Visit {escape(name)}</span></a>'
         for name, url, logo, tag, text, items in GROUP_BRANDS)
     return ('<section class="section group-section"><div class="shell"><div class="section-head"><div><p class="eyebrow accent">Part of the Broadland Digital group</p>'
             '<h2>More from our Norwich team.</h2></div><p>We sit alongside three sister businesses, all part of the same Norwich group.</p></div>'

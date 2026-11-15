@@ -14,10 +14,23 @@ if (mobileMenu) {
     const head = document.querySelector('.main-head');
     mm.style.setProperty('--mm-top', Math.max(0, Math.round(head.getBoundingClientRect().bottom)) + 'px');
   };
+  // Lock the page behind the menu without losing the scroll position (body is fixed while open).
+  let lockedY = 0;
+  const lock = (on) => {
+    const b = document.body;
+    if (on) {
+      lockedY = window.scrollY;
+      b.style.position = 'fixed'; b.style.top = -lockedY + 'px'; b.style.left = '0'; b.style.right = '0'; b.style.width = '100%';
+    } else {
+      b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.width = '';
+      window.scrollTo(0, lockedY);
+    }
+  };
   mobileMenu.addEventListener('toggle', () => {
     document.documentElement.classList.toggle('mm-open', mobileMenu.open);
     mobileMenu.querySelector('.mm-label').textContent = mobileMenu.open ? 'Close' : 'Menu';
-    if (mobileMenu.open) place(); else show(null);
+    if (mobileMenu.open) { lock(true); place(); requestAnimationFrame(place); setTimeout(place, 320); }
+    else { lock(false); show(null); }
   });
   window.addEventListener('resize', () => { if (mobileMenu.open) place(); });
   mobileMenu.addEventListener('click', (event) => {
@@ -250,7 +263,7 @@ if (roadViews) {
 (function stickyHeader() {
   const head = document.querySelector('.main-head');
   if (!head) return;
-  const update = () => head.classList.toggle('is-stuck', window.scrollY > 34);
+  const update = () => { if (document.documentElement.classList.contains('mm-open')) return; head.classList.toggle('is-stuck', window.scrollY > 34); };
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
@@ -300,6 +313,11 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   btn.addEventListener('click', () => {
     const wrap = btn.closest('section') || document;
     const form = wrap.querySelector('.price-quote'); if (!form) return;
+    if (!form.offsetParent && window.openQuoteModal) {
+      const svc = (form.querySelector('[name=service]') || {}).value;
+      window.openQuoteModal(svc, `Package: ${btn.dataset.package}\nVan size: ${btn.dataset.size}\n`);
+      return;
+    }
     const set = (name, val) => { const sel = form.querySelector(`[name=${name}]`); if (!sel) return; [...sel.options].forEach((o) => { if (o.text === val) sel.value = o.value || o.text; }); };
     set('package', btn.dataset.package); set('size', btn.dataset.size);
     wrap.querySelectorAll('.pm-pick.is-picked').forEach((b) => b.classList.remove('is-picked')); btn.classList.add('is-picked');
@@ -335,5 +353,6 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
     const card = a.closest('[data-service]');
     open(card ? card.dataset.service : (document.querySelector('#service-enquiry [name=service] option[selected]') || {}).text);
   });
+  window.openQuoteModal = (service, details) => { open(service); if (details) { const d = modal.querySelector('[name=details]'); if (d && !d.value) d.value = details; } };
   if (location.hash === '#quote-popup') open();
 })();

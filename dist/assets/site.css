@@ -878,3 +878,76 @@ html.mm-open,html.mm-open body{overflow:hidden}
 .quote-modal .price-quote__head a{color:var(--ink);font-weight:800}
 html.modal-open{overflow:hidden}
 @media(max-width:560px){.quote-modal{max-width:100vw;margin:auto 0 0;max-height:94dvh}.quote-modal__form{border-radius:20px 20px 0 0;max-height:94dvh;padding:22px 18px}.quote-modal[open]{animation:qm-up .25s ease}@keyframes qm-up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}}
+/* Mobile menu fix: a backdrop-filter on the header traps the fixed menu inside it, so drop it while the menu is open */
+html.mm-open .main-head{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--dark)}
+html.mm-open .main-head{position:fixed;top:0;left:0;right:0;z-index:80}
+html.mm-open .mm{display:block}
+/* No diagonal arrows anywhere */
+.arr,.places li:before{display:none!important}
+.profile-grid li a:after{content:none!important}
+/* Page links as obvious buttons */
+a.text-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border:1.5px solid currentColor;border-radius:999px;font-size:14px;font-weight:800;line-height:1.2;text-decoration:none;background:transparent;transition:background .15s,color .15s,border-color .15s;white-space:normal;text-align:center}
+a.text-link:hover,a.text-link:focus-visible{background:var(--lime);border-color:var(--lime);color:#fff!important;outline:0}
+a.text-link:after{content:"→";font-weight:900;transition:transform .15s}
+a.text-link:hover:after{transform:translateX(3px)}
+.btn:after{content:none}
+.profile-grid li a{display:inline-flex;padding:8px 14px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-size:14px;text-decoration:none}
+.profile-grid li a:hover{border-color:var(--lime);color:var(--lime)}
+.profile-grid li{border:0!important;padding:4px 0!important}
+/* ===== Shorter pages: tighter spacing everywhere, swipe rows on phones ===== */
+.section{padding:64px 0}
+.section-head{margin-bottom:26px}
+.quote-mobile-btn{display:none}
+@media(max-width:700px){
+  .section{padding:42px 0}
+  .section-head{margin-bottom:18px}
+  .section-head h2,.core-section h2{font-size:clamp(30px,8.4vw,40px)}
+  /* Card rows become horizontal swipe carousels */
+  .svc-grid,.option-cards,.home-process,.sector-cards,.why-grid,.group-cards,.guide-cards,.info-cards,.price-cards,.profile-grid,.timeline,.review-cards,.coverage-diagrams,.care-cards,.fam-grid,.core-gallery,.route-notes,.must-list{
+    display:flex!important;flex-wrap:nowrap!important;gap:12px!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin-left:-20px!important;margin-right:-20px!important;padding:4px 20px 14px!important;scroll-padding-left:20px;grid-template-columns:none!important}
+  .svc-grid::-webkit-scrollbar,.option-cards::-webkit-scrollbar,.home-process::-webkit-scrollbar,.sector-cards::-webkit-scrollbar,.why-grid::-webkit-scrollbar,.group-cards::-webkit-scrollbar,.guide-cards::-webkit-scrollbar,.info-cards::-webkit-scrollbar,.price-cards::-webkit-scrollbar,.profile-grid::-webkit-scrollbar,.timeline::-webkit-scrollbar,.review-cards::-webkit-scrollbar,.coverage-diagrams::-webkit-scrollbar,.care-cards::-webkit-scrollbar,.fam-grid::-webkit-scrollbar,.core-gallery::-webkit-scrollbar,.route-notes::-webkit-scrollbar,.must-list::-webkit-scrollbar{display:none}
+  .svc-grid>*,.option-cards>*,.home-process>*,.sector-cards>*,.why-grid>*,.group-cards>*,.guide-cards>*,.info-cards>*,.price-cards>*,.profile-grid>*,.timeline>*,.review-cards>.review-card,.coverage-diagrams>*,.care-cards>*,.fam-grid>*,.route-notes>*,.must-list>*{flex:0 0 82%!important;max-width:82%;scroll-snap-align:start;margin:0!important}
+  .core-gallery>*{flex:0 0 70%!important;scroll-snap-align:start;margin:0!important}
+  .review-cards>.review-cards__label{display:none}
+  .info-cards>*{min-height:0}
+  /* Brand picker: two rows that swipe sideways */
+  .brand-grid{display:grid!important;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:42%;grid-template-columns:none!important;gap:10px!important;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 -20px!important;padding:4px 20px 14px!important}
+  .brand-grid::-webkit-scrollbar{display:none}
+  .brand-grid>*{scroll-snap-align:start}
+  /* Town lists as compact chips */
+  .tile-grid{display:flex!important;flex-wrap:wrap;gap:8px!important}
+  .tile-grid>*{flex:0 0 auto!important;width:auto!important;padding:9px 14px!important;min-height:0!important}
+  .tile-grid>* small,.tile-grid>* span:not(:first-child){display:none}
+  /* Map smaller */
+  .workshop-map iframe,.workshop-map .map-frame{height:220px!important;min-height:0!important}
+  /* Bottom quote: button opens the pop-up instead of a long form (full form stays on the contact page) */
+  .quote:not(.is-contact) .quote-card{display:none}
+  .quote:not(.is-contact) .quote-mobile-btn{display:flex;justify-content:center;width:100%;margin-top:6px}
+  .quote .quote-ticks{display:none}
+  /* Footer: keep contact, services and legal; the sitemap links everything else */
+  .footer-grid--wide>div:nth-child(n+3){display:none}
+  .footer-contact{gap:8px}
+}
+@media(min-width:1000px){
+  .brand-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .brand-card__logo{aspect-ratio:16/9}
+  .brand-card__copy{padding:12px 10px 14px}
+  .brand-card strong{font-size:13px}
+  .brand-card b{margin-top:4px;font-size:11px}
+  .core-gallery:not(.four){grid-template-columns:repeat(5,minmax(0,1fr))}
+  .core-gallery:not(.four) figcaption{padding:9px 10px;font-size:13px}
+  .work-gallery{margin-bottom:26px}
+}
+@media(max-width:700px){.work-grid{display:flex!important;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -20px;padding:0 20px 10px}.work-grid::-webkit-scrollbar{display:none}.work-grid>*{flex:0 0 62%;scroll-snap-align:start}}
+@media(max-width:700px){
+  .pm-quote{display:none}
+  .area-list{display:flex!important;flex-wrap:wrap;gap:8px!important;columns:auto!important}
+  .area-list li{border:1px solid var(--line)!important;border-radius:999px;padding:0!important;margin:0!important;background:#fff}
+  .area-list li a{display:block;padding:8px 13px;font-size:14px;font-weight:700}
+  .area-list li small,.area-list li span{display:none}
+}
+/* Card calls-to-action as buttons */
+.price-cta,.sector-cards a>div>strong:last-child,.cards a strong:last-child,.care-card__go,.group-card__cta{display:inline-flex!important;align-items:center;gap:8px;align-self:flex-start;padding:9px 16px!important;border:1.5px solid currentColor!important;border-radius:999px;font-size:13px!important;font-weight:800;text-decoration:none;width:auto!important;margin-top:auto}
+.price-cta:after,.sector-cards a>div>strong:last-child:after,.cards a strong:last-child:after,.care-card__go:after,.group-card__cta:after{content:"→";font-weight:900}
+.price-cta:hover,.sector-cards a:hover strong:last-child,.cards a:hover strong:last-child,.care-card:hover .care-card__go{background:var(--lime);border-color:var(--lime)!important;color:#fff!important}

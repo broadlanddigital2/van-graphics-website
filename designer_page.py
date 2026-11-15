@@ -8,7 +8,7 @@ requests open an email draft to the production inbox.
 
 from html import escape
 
-ARROW = '<span class="arr" aria-hidden="true">↗</span>'
+ARROW = ''
 ASSETS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
           '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
           '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&amp;family=Archivo+Black&amp;display=swap" rel="stylesheet">'
