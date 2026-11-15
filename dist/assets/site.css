@@ -1154,3 +1154,5 @@ html,body{overflow-x:clip;max-width:100%}
 .head-basket__n[hidden]{display:none!important}
 .acc-card .btn.outline,.co-points .btn.outline,.checkout .btn.outline,.ms .btn.outline{color:var(--ink);border-color:#c9d1e3;background:#fff}
 .acc-card .btn.outline:hover,.checkout .btn.outline:hover,.ms .btn.outline:hover{border-color:var(--lime);color:var(--lime)}
+.wrap-related .btn.outline{color:var(--ink)!important;border-color:var(--ink)!important;background:#fff!important}
+.wrap-related .btn.outline:hover{background:var(--lime)!important;border-color:var(--lime)!important;color:#fff!important}
