@@ -107,6 +107,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
         <div><small>Your selection</small><b class="ms-sum-name">{escape(variant_label(variants[0]))}</b><span class="ms-sum-opt">Simple graphics · Single colour</span></div>
         <div class="ms-sum-price"><b>£{first.get("single", fp)}</b><small>+ VAT</small><span class="ms-sum-inc"></span></div>
       </div>
+      <p class="ms-earn" data-earn-points hidden></p>
       <div class="ms-buyrow"><label class="ms-qty"><span>Qty</span><input type="number" name="qty" value="1" min="1" max="20" inputmode="numeric"></label>
       <button type="button" class="btn ms-cta" data-image="{main}" data-path="{fam['path']}" data-title="{full}">Add to basket</button></div>
       <button type="button" class="btn outline ms-ask">Ask a question about this van</button>

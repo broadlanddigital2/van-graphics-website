@@ -126,7 +126,7 @@ def header():
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
-    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-basket" href="/checkout/" aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="head-basket__n" data-basket-count hidden>0</span></a><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
+    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-account" href="/account/" aria-label="My account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="sr-only" data-account-label>Sign in</span></a><a class="head-basket" href="/checkout/" aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="head-basket__n" data-basket-count hidden>0</span></a><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
 
 def footer():
     service_links = ''.join(f'<li><a href="{h}">{t}</a></li>' for t, h in [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/'), ('Full wraps', '/full-van-wraps-norwich/'), ('Vehicle wraps', '/vehicle-wraps-norwich/'), ('Fleet graphics', '/fleet-graphics-norwich/')])
@@ -618,11 +618,14 @@ page('/checkout/', 'Checkout', 'Secure checkout for Get It Wrapt van graphics.',
 <label class="co-check"><input type="checkbox" name="marketing"><span>Send me occasional offers and news by email</span></label>
 <label class="co-check"><input type="checkbox" name="terms" required><span>I have checked my van variant and accept the <a href="/privacy-policy/">privacy policy</a>. Graphics are made to order after I approve the proof.</span></label>
 </fieldset></form></div>
-<aside class="co-summary"><h2>Order summary</h2><div class="co-totals"></div>
+<aside class="co-summary"><h2>Order summary</h2><p class="co-signed" hidden></p><div class="co-totals"></div><div class="co-points" hidden></div>
 <button type="submit" form="co-form-id" class="btn co-pay">Pay securely</button>
 <p class="co-secure">Secure payment by Stripe. Card, Apple Pay and Google Pay accepted. Prices shown + VAT, total includes VAT.</p>
 <ul class="ms-ticks"><li>Proof to approve before printing</li><li>Premium cast vinyl</li><li>Made in Norwich</li><li>Help on 01603 407786</li></ul></aside></div>
 </div></section>''', quote_block='')
+page('/account/', 'My account', 'Sign in or create your Get It Wrapt account to see your orders and collect reward points.', '''<section class="section account" id="account"><div class="shell">
+<nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>My account</span></nav>
+<h1>My account</h1><p class="acc-msg" role="status" hidden></p><div class="acc-body"><p>Loading…</p></div></div></section>''', quote_block='')
 page('/checkout/complete/', 'Order complete', 'Thank you for your Get It Wrapt order.', '''<section class="section order-complete" id="order-complete"><div class="shell oc-shell">
 <div class="oc-tick" aria-hidden="true">✓</div><p class="eyebrow accent">Order received</p><h1>Thank you for your order.</h1>
 <p class="oc-ref"></p><p class="oc-message">Checking your payment…</p>
@@ -940,7 +943,7 @@ def _lastmod(path):
 # Perplexity, Gemini, Apple Intelligence, Bing/Copilot). On the preview host the Worker replaces this with Disallow: /.
 AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot',
                'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot']
-(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\nDisallow: /checkout/\n\n' + ''.join(f'User-agent: {b}\n' for b in AI_CRAWLERS)
+(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\nDisallow: /checkout/\nDisallow: /account/\n\n' + ''.join(f'User-agent: {b}\n' for b in AI_CRAWLERS)
                               + f'Allow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n')
 
 # Cache-bust CSS/JS: assets are cached for a day, so every page links them with a content hash.
