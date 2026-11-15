@@ -87,6 +87,22 @@ def mega(label, href, columns, intro):
 
 SHORT_GROUPS = {'trades': 'Trades & home', 'mobile': 'Mobile services', 'transport': 'Transport & fleets', 'land': 'Land & water', 'leisure': 'Retail & leisure'}
 
+def mobile_menu(sections):
+    """Full-width phone menu: main sections that open a panel of their pages (with Back), then Gallery, Contact and the call / quote buttons."""
+    top = ''.join(f'<li><button type="button" class="mm-next" data-mm="{key}">{escape(label)}<span class="mm-chev" aria-hidden="true"></span></button></li>' for key, label, _, _ in sections)
+    top += '<li><a href="/design-your-van/">Van Designer</a></li><li><a href="/gallery/">Gallery</a></li><li><a href="/contact/">Contact &amp; directions</a></li>'
+    panels = ''
+    for key, label, cols, (all_label, all_href) in sections:
+        groups = ''
+        for heading, items in cols:
+            links = ''.join(f'<li><a href="{it[1]}">{escape(it[0])}' + (f'<small>{escape(it[2])}</small>' if len(it) > 2 else '') + '</a></li>' for it in items)
+            h = heading.strip() if heading else ''
+            groups += (f'<p class="mm-group">{escape(h)}</p>' if h else '') + f'<ul>{links}</ul>'
+        panels += (f'<div class="mm-panel" id="mm-{key}" hidden><button type="button" class="mm-back" data-mm-back><span class="mm-chev mm-chev--back" aria-hidden="true"></span>Back</button>'
+                   f'<p class="mm-title">{escape(label)}</p><a class="mm-all" href="{all_href}">{escape(all_label)} <span aria-hidden="true">→</span></a>{groups}</div>')
+    return (f'<div class="mm-panel mm-root" id="mm-root"><ul>{top}</ul>'
+            f'<div class="mm-cta"><a class="btn" href="/contact/#quote">Get a free quote <span class="arr">→</span></a><a class="btn outline" href="{TEL}">Call {PHONE}</a></div></div>{panels}')
+
 def header():
     services = [('Services', [(s['label'], f'/{s["slug"]}/') for s in SERVICES]),
                 ('Plan your project', [('Van Designer', '/design-your-van/', 'Design your van online, free'), ('Van manufacturers', '/vehicles/', '29 makes covered'), ('Contact & directions', '/contact/')])]
@@ -103,11 +119,14 @@ def header():
            + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on Vulcan Road North. Distances are driving miles.', 'All areas', '/norfolk/'))
            + mega('Guides', '/#guides', guide_cols, ('Guides', 'Costs, coverage, artwork and aftercare explained before you order.', 'Ask a question', '/contact/'))
            + '<a class="nav-top" href="/gallery/">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
-    mobile = '<a href="/#services">Services</a><a href="/sectors/">Sectors</a><a href="/norfolk/">Areas we cover</a><a href="/#guides">Guides</a><a href="/gallery/">Gallery</a><a href="/contact/">Contact</a>'
+    mobile = mobile_menu([('services', 'Services', services, ('All services', '/#services')),
+                          ('sectors', 'Sectors', sector_cols, (f'All {len(SECTOR_LIST)} sectors', '/sectors/')),
+                          ('areas', 'Areas we cover', [('Norfolk & Waveney', [it for _, items in area_cols for it in items])], ('All areas', '/norfolk/')),
+                          ('guides', 'Guides', guide_cols, ('All guides', '/#guides'))])
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span><i class="dot"></i> Norwich workshop · Serving Norfolk</span><a href="{TEL}">Call {PHONE}</a></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
-    <details class="mobile"><summary>Menu</summary><nav aria-label="Mobile navigation"><div>{mobile}</div></nav></details><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
+    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
 
 def footer():
     service_links = ''.join(f'<li><a href="/{s["slug"]}/">{s["label"]}</a></li>' for s in SERVICES)
