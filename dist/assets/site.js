@@ -438,3 +438,53 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   const ready = () => document.querySelectorAll('[data-ask-ai][hidden],[data-ask-ai-wrap][hidden]').forEach((el) => el.removeAttribute('hidden'));
   if (window.SiteSearch) ready(); else window.addEventListener('site-search-ready', ready, { once: true });
 })();
+
+/* Ex VAT / Inc VAT toggle. Every Wrapt price on the site is written ex VAT; this re-writes the price text in place
+   (and anything the shop scripts add later) when the visitor picks Inc VAT. The choice is remembered in this browser. */
+(() => {
+  const KEY = 'wrapt-vat';
+  let mode = 'ex'; try { mode = localStorage.getItem(KEY) === 'inc' ? 'inc' : 'ex'; } catch {}
+  const orig = new WeakMap(); let busy = false;
+  const SKIP = 'script,style,noscript,textarea,input,select,option,.care-card,.care,.co-totals,.co-delivery,.ms-sum-inc,.vat-toggle,[data-vat-skip]';
+  const PRICE = /£\s?(\d{1,3}(?:,\d{3})*|\d+)(\.\d{1,2})?/g;
+  const fmt = (n) => '£' + (Math.abs(n - Math.round(n)) < 0.005 ? Math.round(n).toLocaleString('en-GB') : n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+  const convert = (s) => {
+    const exact = /^\s*\+?\s*£[\d,]+(\.\d{1,2})?\s*$/.test(s);
+    const hasVat = /\+\s*VAT|ex(c|cl)?\.?\s*VAT/i.test(s);
+    if (!exact && !hasVat) return null;
+    let out = s.replace(PRICE, (m, a, b) => fmt(Math.round(parseFloat(a.replace(/,/g, '') + (b || '')) * 120) / 100));
+    out = out.replace(/\+\s*VAT/g, 'inc VAT').replace(/\bex(c|cl)?\.?\s*VAT\b/gi, 'inc VAT');
+    return out;
+  };
+  const relevant = (t) => /£|VAT/.test(t.nodeValue) && !t.parentElement?.closest(SKIP);
+  const apply = (rootEl) => {
+    busy = true;
+    const w = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT);
+    for (let t; (t = w.nextNode());) {
+      if (!orig.has(t)) { if (!relevant(t)) continue; const inc = convert(t.nodeValue); if (inc == null) continue; orig.set(t, { ex: t.nodeValue, inc }); }
+      const o = orig.get(t), want = mode === 'inc' ? o.inc : o.ex;
+      if (t.nodeValue !== want) t.nodeValue = want;
+    }
+    document.documentElement.dataset.vat = mode;
+    document.querySelectorAll('.vat-toggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vat === mode)));
+    busy = false;
+  };
+  const scope = () => [document.querySelector('main'), document.querySelector('.qm, .quote-modal'), document.querySelector('.mm')].filter(Boolean);
+  const run = () => scope().forEach(apply);
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('.vat-toggle button'); if (!b) return;
+    mode = b.dataset.vat === 'inc' ? 'inc' : 'ex'; try { localStorage.setItem(KEY, mode); } catch {}
+    run();
+  });
+  // Shop scripts replace price text as options change: forget the old text and re-apply to what they wrote.
+  new MutationObserver((list) => {
+    if (busy) return;
+    const roots = new Set();
+    for (const m of list) {
+      if (m.type === 'characterData') { const t = m.target; const o = orig.get(t); if (o && t.nodeValue !== o.ex && t.nodeValue !== o.inc) orig.delete(t); if (t.parentElement) roots.add(t.parentElement); }
+      else m.addedNodes.forEach((n) => roots.add(n.nodeType === 3 ? n.parentElement : n));
+    }
+    roots.forEach((r) => r && r.isConnected && apply(r));
+  }).observe(document.body, { childList: true, characterData: true, subtree: true });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();

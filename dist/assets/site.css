@@ -1184,3 +1184,18 @@ html,body{overflow-x:clip;max-width:100%}
 .mm-search__ai{height:48px;padding:0 16px;border-radius:12px;border:0;background:var(--lime);color:#fff;font:inherit;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}
 @media(max-width:560px){.main-head .head-actions{gap:4px}.main-head .head-actions .head-search,.main-head .head-actions .head-account,.main-head .head-actions .head-basket{width:34px;height:34px;flex:0 0 34px;border-radius:10px}.main-head .head-actions .btn{margin-left:2px;padding:8px 10px;white-space:nowrap}.main-head .shell{gap:6px}.main-head .mobile summary{width:38px;height:38px}}
 @media(max-width:380px){.main-head .head-actions .head-account{display:none}}
+
+/* Ex VAT / Inc VAT toggle (utility bar) */
+.utility .shell{gap:14px}.utility-right{display:flex;align-items:center;gap:16px}
+.vat-toggle{display:inline-flex;align-items:center;gap:2px;padding:2px;border:1px solid #ffffff2e;border-radius:999px;background:#ffffff0a}
+.vat-toggle button{border:0;background:transparent;color:#cfd9f5;font:inherit;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;cursor:pointer;line-height:1.2}
+.vat-toggle button[aria-pressed="true"]{background:var(--lime);color:#fff}
+.vat-toggle button:focus-visible{outline:2px solid #fff;outline-offset:1px}
+@media(max-width:650px){.utility-more{display:none}.vat-toggle button{font-size:9px;padding:3px 7px}.utility-right{gap:10px}}
+html[data-vat="inc"] .ms-sum-inc{display:none}
+@media(max-width:650px){.utility-loc{display:none}.utility .shell{justify-content:flex-end}.utility-right{width:100%;justify-content:space-between}.vat-toggle button,.utility-right a{white-space:nowrap}}
+/* Other [brand] vans cards: fixed 16:9 image box (the img width/height attributes were stretching it) */
+.ms-rel img{height:auto;aspect-ratio:16/9;object-fit:cover;display:block}
+.ms-rel__logo img,.ms-rel__logo svg{aspect-ratio:auto;object-fit:contain;width:40%!important}
+.ms-rel>span:last-child{flex:1;align-content:start}
+@media(max-width:560px){.ms-rel-grid{grid-template-columns:1fr 1fr;gap:10px}.ms-rel>span:last-child{padding:10px 11px}.ms-rel b{font-size:14px}.ms-rel small{font-size:12px}}

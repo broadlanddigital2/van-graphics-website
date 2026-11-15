@@ -71,7 +71,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
                                            f'matching template rather than a generic van shape. Tell us about roof racks, ladders or bodywork changes and we will allow for them.')
     tip = escape(copy[2]) if copy else 'Send a photo of each side and the back with your order, so we can check the template against your actual van before anything is printed.'
     rows = ''.join(f'<tr><td>{escape(variant_label(v))}</td>' + ''.join(f'<td>£{v["prices"].get(k, "–")}</td>' for k, _, _ in COLOURS) + '<td>Quote</td><td>Quote</td></tr>' for v in variants)
-    related = ''.join(f'<a class="ms-rel" href="{o["path"]}">' + (f'<img src="{o["images"][0]}" alt="" loading="lazy">' if o["images"] else f'<span class="ms-rel__logo">{brand_logo}</span>') + '<span><b>{escape(o["name"])}</b>'
+    related = ''.join(f'<a class="ms-rel" href="{o["path"]}">' + (f'<img src="{o["images"][0]}" alt="" loading="lazy">' if o["images"] else f'<span class="ms-rel__logo">{brand_logo}</span>') + f'<span><b>{escape(o["name"])}</b>'
                       f'<small>{("From £" + str(o["from_price"]) + " + VAT") if o["from_price"] else "Quoted"}</small></span></a>' for o in others[:8])
     rcg = ''
     _unused = (f'<p class="ms-diy">Fitting it yourself? Buy the same graphics as a DIY kit from our sister site '
