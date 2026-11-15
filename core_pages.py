@@ -321,12 +321,25 @@ def brand_extras(key, label):
     return (f'<div class="brand-extras"><div class="brand-tip"><b>Layout tip for {escape(label)} vans</b><p>{escape(tip)}</p></div>'
             f'<div class="brand-popular"><b>Popular with</b><div>{chips}</div></div></div>')
 
+def shop_families(key, label):
+    from model_shop import families as _fams
+    return _fams(key, label, FAMILY_PAGES, family_image)
+
 def brand_page(key):
     """A manufacturer page: its models as cards (where we have model pages), plus routes to the Van Designer and a quote."""
     label = dict(VAN_BRANDS)[key]
     slugs = BRANDS.get(key, (label, ()))[1]
+    shop = shop_families(key, label)
     families = van_families(label)
-    if families:
+    if shop:
+        cards = ''.join(f'<a class="shop-card" href="{f["path"]}"><span class="shop-card__media{"" if (f["images"] and "/rcg/" in f["images"][0]) else (" is-photo" if f["images"] else " is-logo")}">'
+                        + (f'<img src="{f["images"][0]}" alt="{escape(f["full"])} van graphics" loading="lazy">' if f['images'] else brand_img(key, label, 120))
+                        + f'</span><span class="shop-card__body"><b>{escape(f["full"])}</b><small>{len(f["variants"])} variant{"s" if len(f["variants"]) != 1 else ""}</small>'
+                        + f'<em>{("Graphics from £" + str(f["from_price"]) + " + VAT") if f["from_price"] else "Quoted"}</em><i>Choose variant</i></span></a>' for f in shop)
+        models_block = f'''<div class="section-head"><div><p class="eyebrow blue">Step 1 · Choose your model</p><h2>{escape(label)} models.</h2></div>
+    <p>Pick your model, then choose the exact year and body style. Simple graphics have a fixed price; half and full wraps are quoted.</p></div><div class="shop-grid">{cards}</div>
+    <p class="core-note">Model not listed? <a href="#quote">Tell us what you drive</a> and we will plan the layout for it.</p>'''
+    elif families:
         cards = ''
         for fam, variants in families:
             slug = FAMILY_PAGES.get((label.lower(), fam.lower()))

@@ -1,0 +1,8182 @@
+{
+ "aixam": {
+  "make": "Aixam",
+  "families": [
+   {
+    "name": "Chassis 2007-17 Cab",
+    "slug": "aixam-chassis",
+    "rcg_url": "https://racecargraphics.uk/product/aixam-chassis-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/aixam-chassis/aixam-chassis-van-graphics.webp",
+     "/assets/vehicles/rcg/aixam-chassis/aixam-chassis-livery.webp",
+     "/assets/vehicles/rcg/aixam-chassis/aixam-chassis-van-signwriting-and-graphics.webp",
+     "/assets/vehicles/rcg/aixam-chassis/aixam-chassis-van-vinyl-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "AIXA0002",
+      "model": "Chassis 2007-17 Cab",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Mega 2007-17 Van",
+    "slug": "aixam-mega",
+    "rcg_url": "https://racecargraphics.uk/product/aixam-mega-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/aixam-mega/aixam-mega-van-graphics.webp",
+     "/assets/vehicles/rcg/aixam-mega/aixam-mega-livery.webp",
+     "/assets/vehicles/rcg/aixam-mega/aixam-mega-van-signwriting-and-graphics.webp",
+     "/assets/vehicles/rcg/aixam-mega/aixam-mega-van-vinyl-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "AIXA0001",
+      "model": "Mega 2007-17 Van",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "citroen": {
+  "make": "Citroën",
+  "families": [
+   {
+    "name": "Berlingo",
+    "slug": "citroen-berlingo",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-berlingo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/citroen-berlingo/citroen-berlingo-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-berlingo/citroen-berlingo-livery.webp",
+     "/assets/vehicles/rcg/citroen-berlingo/citroen-berlingo-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-berlingo/citroen-berlingo-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "CITR0002",
+      "model": "Berlingo 1997-02",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "CITR0004",
+      "model": "Berlingo 2003-12 First NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "CITR0009",
+      "model": "Dispatch L2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0013",
+      "model": "Berlingo 2008-15 L2 NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0033",
+      "model": "Berlingo 2015-18 L1 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 171,
+       "two": 196,
+       "full": 236
+      }
+     },
+     {
+      "sku": "CITR0017",
+      "model": "Dispatch L3 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0040",
+      "model": "Berlingo 2015-18 L2 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0025",
+      "model": "Berlingo 2015-18 L2 NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0057",
+      "model": "Berlingo 2018-24 L1 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 171,
+       "two": 196,
+       "full": 236
+      }
+     },
+     {
+      "sku": "CITR0041",
+      "model": "Berlingo 2018-24 L1 NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 171,
+       "two": 196,
+       "full": 236
+      }
+     },
+     {
+      "sku": "CITR0064",
+      "model": "Berlingo 2018-24 L2 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0049",
+      "model": "Berlingo 2018-24 L2 NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0081",
+      "model": "Berlingo 2024+ L1 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 171,
+       "two": 196,
+       "full": 236
+      }
+     },
+     {
+      "sku": "CITR0065",
+      "model": "C15 1985-05 Champ",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "CITR0088",
+      "model": "Berlingo 2024+ L2 Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     },
+     {
+      "sku": "CITR0073",
+      "model": "Berlingo 2024+ L2 NSLD",
+      "body": "Van",
+      "prices": {
+       "single": 185,
+       "two": 210,
+       "full": 250
+      }
+     }
+    ]
+   },
+   {
+    "name": "C15 1985-05 Champ",
+    "slug": "citroen-c15",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-c15-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0065",
+      "model": "C15 1985-05 Champ",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "C2 2005-09 Enterprise",
+    "slug": "citroen-c2",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-c2-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0001",
+      "model": "C2 2005-09 Enterprise",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "C25",
+    "slug": "citroen-c25",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-c25-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0069",
+      "model": "C25 1981-93 LWB Hi Roof Van",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0067",
+      "model": "C25 1981-93 SWB Van",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Dispatch",
+    "slug": "citroen-dispatch",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-dispatch-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/citroen-dispatch/citroen-dispatch-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-dispatch/citroen-dispatch-livery.webp",
+     "/assets/vehicles/rcg/citroen-dispatch/citroen-dispatch-custom-van-decals.webp",
+     "/assets/vehicles/rcg/citroen-dispatch/citroen-dispatch-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "CITR0070",
+      "model": "Dispatch 1996-02",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "CITR0072",
+      "model": "Dispatch 2003-07",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "CITR0009",
+      "model": "Dispatch L2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0017",
+      "model": "Dispatch L3 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0077",
+      "model": "Dispatch LWB 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0099",
+      "model": "Dispatch LWB 2016-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0079",
+      "model": "Dispatch LWB HR 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0091",
+      "model": "Dispatch MWB 2016-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0075",
+      "model": "Dispatch SWB 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "CITR0083",
+      "model": "Dispatch SWB 2016-23",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "H-Van 1969-81",
+    "slug": "citroen-h-van",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-h-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0119",
+      "model": "H-Van 1969-81",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Relay Chassis Cab 1995-01",
+    "slug": "citroen-relay-chassis-cab",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-relay-chassis-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0131",
+      "model": "Relay Chassis Cab 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Relay Dropside",
+    "slug": "citroen-relay-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-relay-dropside-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/citroen-relay-dropside/citroen-relay-dropside-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay-dropside/citroen-relay-dropside-livery.webp",
+     "/assets/vehicles/rcg/citroen-relay-dropside/citroen-relay-dropside-fleet-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay-dropside/citroen-relay-dropside-van-livery-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "CITR0201",
+      "model": "Relay Dropside 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "CITR0244",
+      "model": "Relay Dropside 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Relay Low Loader",
+    "slug": "citroen-relay-low-loader",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-relay-low-loader-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/citroen-relay-low-loader/citroen-relay-low-loader-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay-low-loader/citroen-relay-low-loader-livery.webp",
+     "/assets/vehicles/rcg/citroen-relay-low-loader/citroen-relay-low-loader-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay-low-loader/citroen-relay-low-loader-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "CITR0202",
+      "model": "Relay Low Loader 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "CITR0245",
+      "model": "Relay Low Loader 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Relay",
+    "slug": "citroen-relay",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-relay-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/citroen-relay/citroen-relay-van-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay/citroen-relay-livery.webp",
+     "/assets/vehicles/rcg/citroen-relay/citroen-relay-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/citroen-relay/citroen-relay-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "CITR0168",
+      "model": "Relay L1 H1 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "CITR0211",
+      "model": "Relay L1 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "CITR0172",
+      "model": "Relay L1 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0215",
+      "model": "Relay L1 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0176",
+      "model": "Relay L2 H1 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0219",
+      "model": "Relay L2 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0180",
+      "model": "Relay L2 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0184",
+      "model": "Relay L3 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "CITR0227",
+      "model": "Relay L3 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "CITR0188",
+      "model": "Relay L3 H3 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0231",
+      "model": "Relay L3 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0192",
+      "model": "Relay L4 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "CITR0235",
+      "model": "Relay L4 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "CITR0196",
+      "model": "Relay L4 H3 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0239",
+      "model": "Relay L4 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0158",
+      "model": "Relay LWB EXHR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0129",
+      "model": "Relay LWB HR 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "CITR0127",
+      "model": "Relay MWB 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0142",
+      "model": "Relay MWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0150",
+      "model": "Relay MWB EXHR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0128",
+      "model": "Relay MWB HR 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0146",
+      "model": "Relay MWB HR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "CITR0126",
+      "model": "Relay SWB 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "CITR0134",
+      "model": "Relay SWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "CITR0138",
+      "model": "Relay SWB HR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Xsara 2003-07",
+    "slug": "citroen-xsara",
+    "rcg_url": "https://racecargraphics.uk/product/citroen-xsara-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "CITR0256",
+      "model": "Xsara 2003-07",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "dacia": {
+  "make": "Dacia",
+  "families": [
+   {
+    "name": "Dokker 2012 onwards NLD",
+    "slug": "dacia-dokker",
+    "rcg_url": "https://racecargraphics.uk/product/dacia-dokker-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/dacia-dokker/dacia-dokker-van-graphics.webp",
+     "/assets/vehicles/rcg/dacia-dokker/dacia-dokker-livery.webp",
+     "/assets/vehicles/rcg/dacia-dokker/dacia-dokker-business-van-graphics.webp",
+     "/assets/vehicles/rcg/dacia-dokker/dacia-dokker-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "DACI0002",
+      "model": "Dokker 2012 onwards NLD",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Logan 2009-13",
+    "slug": "dacia-logan",
+    "rcg_url": "https://racecargraphics.uk/product/dacia-logan-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/dacia-logan/dacia-logan-van-graphics.webp",
+     "/assets/vehicles/rcg/dacia-logan/dacia-logan-livery.webp",
+     "/assets/vehicles/rcg/dacia-logan/dacia-logan-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/dacia-logan/dacia-logan-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "DACI0001",
+      "model": "Logan 2009-13",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "daihatsu": {
+  "make": "Daihatsu",
+  "families": [
+   {
+    "name": "Extol 2003-10",
+    "slug": "daihatsu-extol",
+    "rcg_url": "https://racecargraphics.uk/product/daihatsu-extol-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "DAIH0001",
+      "model": "Extol 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Hi",
+    "slug": "daihatsu-hi",
+    "rcg_url": "https://racecargraphics.uk/product/daihatsu-hi-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "DAIH0002",
+      "model": "Hi 1996-98 Jet",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "DAIH0003",
+      "model": "Hi 1996-98 Jet Pick Up",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "dodge": {
+  "make": "Dodge",
+  "families": [
+   {
+    "name": "Dakota",
+    "slug": "dodge-dakota",
+    "rcg_url": "https://racecargraphics.uk/product/dodge-dakota-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "DODG0001",
+      "model": "Dakota 1997-05 Reg Cab",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "DODG0003",
+      "model": "Dakota cab1997-2005 Club",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ram 1500 Crew Cab 2019 onwards",
+    "slug": "dodge-ram-1500-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/dodge-ram-1500-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "DODG0007",
+      "model": "Ram 1500 Crew Cab 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ram cab1997-2005 Reg",
+    "slug": "dodge-ram",
+    "rcg_url": "https://racecargraphics.uk/product/dodge-ram-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "DODG0004",
+      "model": "Ram cab1997-2005 Reg",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "fiat": {
+  "make": "Fiat",
+  "families": [
+   {
+    "name": "Doblo Cargo",
+    "slug": "fiat-doblo-cargo",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-doblo-cargo-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0014",
+      "model": "Doblo Cargo L1 H1 2010-15",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FIAT0037",
+      "model": "Doblo Cargo L1 H1 2015-22",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FIAT0064",
+      "model": "Ducato SWB 1981-93",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0088",
+      "model": "Doblo Cargo L1 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FIAT0022",
+      "model": "Doblo Cargo L1 H2 2010-15",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0045",
+      "model": "Doblo Cargo L1 H2 2015-22",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0029",
+      "model": "Doblo Cargo L2 H1 2010-15",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0051",
+      "model": "Doblo Cargo L2 H1 2015-22",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0072",
+      "model": "Doblo Cargo L2 H1 2022-24",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0096",
+      "model": "Doblo Cargo L2 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0059",
+      "model": "Doblo Cargo L2 H2 2015-22",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "Doblo",
+    "slug": "fiat-doblo",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-doblo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/fiat-doblo/fiat-doblo-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-doblo/fiat-doblo-livery.webp",
+     "/assets/vehicles/rcg/fiat-doblo/fiat-doblo-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-doblo/fiat-doblo-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FIAT0001",
+      "model": "Scudo MWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0003",
+      "model": "Doblo 2006-10",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FIAT0007",
+      "model": "Doblo HR 2006-10",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Doblo Work-Up 2015-22",
+    "slug": "fiat-doblo-work-up",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-doblo-work-up-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0063",
+      "model": "Doblo Work-Up 2015-22",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ducato Dropside",
+    "slug": "fiat-ducato-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-ducato-dropside-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/fiat-ducato-dropside/fiat-ducato-dropside-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-ducato-dropside/fiat-ducato-dropside-livery.webp",
+     "/assets/vehicles/rcg/fiat-ducato-dropside/fiat-ducato-dropside-van-signwriting-and-graphics.webp",
+     "/assets/vehicles/rcg/fiat-ducato-dropside/fiat-ducato-dropside-van-vinyl-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FIAT0145",
+      "model": "Ducato Dropside 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FIAT0195",
+      "model": "Ducato Dropside 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ducato",
+    "slug": "fiat-ducato",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-ducato-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/fiat-ducato/fiat-ducato-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-ducato/fiat-ducato-livery.webp",
+     "/assets/vehicles/rcg/fiat-ducato/fiat-ducato-custom-van-decals.webp",
+     "/assets/vehicles/rcg/fiat-ducato/fiat-ducato-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FIAT0112",
+      "model": "Ducato L1 H1 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "FIAT0154",
+      "model": "Ducato L1 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "FIAT0158",
+      "model": "Ducato L1 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0162",
+      "model": "Ducato L2 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0124",
+      "model": "Ducato L2 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FIAT0166",
+      "model": "Ducato L2 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FIAT0170",
+      "model": "Ducato L3 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FIAT0132",
+      "model": "Ducato L3 H3 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FIAT0174",
+      "model": "Ducato L3 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FIAT0136",
+      "model": "Ducato L4 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FIAT0178",
+      "model": "Ducato L4 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FIAT0182",
+      "model": "Ducato L4 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "FIAT0066",
+      "model": "Ducato LWB HR 1981-93",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FIAT0086",
+      "model": "Ducato MWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0071",
+      "model": "Ducato MWB HR 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0064",
+      "model": "Ducato SWB 1981-93",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0070",
+      "model": "Ducato SWB 1995-01",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0078",
+      "model": "Ducato SWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0065",
+      "model": "Ducato SWB HR 1981-93",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Fiorino Cargo 2017 onwards",
+    "slug": "fiat-fiorino-cargo",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-fiorino-cargo-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0206",
+      "model": "Fiorino Cargo 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Fiorino 2008-17",
+    "slug": "fiat-fiorino",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-fiorino-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/fiat-fiorino/fiat-fiorino-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-fiorino/fiat-fiorino-livery.webp",
+     "/assets/vehicles/rcg/fiat-fiorino/fiat-fiorino-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-fiorino/fiat-fiorino-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FIAT0200",
+      "model": "Fiorino 2008-17",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Fullback 2016 onwards",
+    "slug": "fiat-fullback",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-fullback-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0211",
+      "model": "Fullback 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "Punto Van",
+    "slug": "fiat-punto-van",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-punto-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0212",
+      "model": "Punto Van 1994-99",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FIAT0213",
+      "model": "Punto Van 2000-05",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FIAT0214",
+      "model": "Punto Van 2006-10",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Scudo",
+    "slug": "fiat-scudo",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-scudo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/fiat-scudo/fiat-scudo-van-graphics.webp",
+     "/assets/vehicles/rcg/fiat-scudo/fiat-scudo-livery.webp",
+     "/assets/vehicles/rcg/fiat-scudo/fiat-scudo-van-signwriting-and-graphics.webp",
+     "/assets/vehicles/rcg/fiat-scudo/fiat-scudo-van-vinyl-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FIAT0221",
+      "model": "Scudo LWB 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0243",
+      "model": "Scudo LWB 2022-24",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0009",
+      "model": "Scudo LWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "FIAT0235",
+      "model": "Talento L1 H2 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0001",
+      "model": "Scudo MWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FIAT0219",
+      "model": "Scudo SWB 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0227",
+      "model": "Talento L1 H1 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Talento",
+    "slug": "fiat-talento",
+    "rcg_url": "https://racecargraphics.uk/product/fiat-talento-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FIAT0227",
+      "model": "Talento L1 H1 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FIAT0235",
+      "model": "Talento L1 H2 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "ford": {
+  "make": "Ford",
+  "families": [
+   {
+    "name": "Connect",
+    "slug": "ford-connect",
+    "rcg_url": "https://racecargraphics.uk/product/ford-connect-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ford-connect/ford-connect-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-connect/ford-connect-livery.webp",
+     "/assets/vehicles/rcg/ford-connect/ford-connect-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/ford-connect/ford-connect-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FORD0304",
+      "model": "Connect L1 H1 2018-24",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0331",
+      "model": "Connect L1 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0292",
+      "model": "Connect L2 H1 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0316",
+      "model": "Connect L2 H1 2018-24",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0343",
+      "model": "Connect L2 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0255",
+      "model": "Connect LWB 2002-09",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0243",
+      "model": "Connect SWB 2002-09",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Courier",
+    "slug": "ford-courier",
+    "rcg_url": "https://racecargraphics.uk/product/ford-courier-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ford-courier/ford-courier-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-courier/ford-courier-livery.webp",
+     "/assets/vehicles/rcg/ford-courier/ford-courier-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-courier/ford-courier-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FORD0328",
+      "model": "Courier 2014-18",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "FORD0338",
+      "model": "Courier 2018-24",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "FORD0001",
+      "model": "Courier 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Custom MS-RT",
+    "slug": "ford-custom-ms-rt",
+    "rcg_url": "https://racecargraphics.uk/product/ford-custom-ms-rt-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0422",
+      "model": "Custom MS-RT L1 H1 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0505",
+      "model": "Custom MS-RT L1 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0426",
+      "model": "Custom MS-RT L2 H1 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0509",
+      "model": "Custom MS-RT L2 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Custom",
+    "slug": "ford-custom",
+    "rcg_url": "https://racecargraphics.uk/product/ford-custom-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ford-custom/ford-custom-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-custom/ford-custom-livery.webp",
+     "/assets/vehicles/rcg/ford-custom/ford-custom-business-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-custom/ford-custom-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FORD0346",
+      "model": "Custom L1 H1 2012-18",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0384",
+      "model": "Custom L1 H1 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0439",
+      "model": "Custom L1 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0354",
+      "model": "Custom L1 H2 2012-18",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0392",
+      "model": "Custom L1 H2 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0455",
+      "model": "Custom L1 H2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0358",
+      "model": "Custom L2 H1 2012-18",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0396",
+      "model": "Custom L2 H1 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0447",
+      "model": "Custom L2 H1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0366",
+      "model": "Custom L2 H2 2012-18",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0404",
+      "model": "Custom L2 H2 2018-23",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "F250, 350, 450 2011-16",
+    "slug": "ford-f250-350-450",
+    "rcg_url": "https://racecargraphics.uk/product/ford-f250-350-450-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0009",
+      "model": "F250, 350, 450 2011-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Fiesta Van",
+    "slug": "ford-fiesta-van",
+    "rcg_url": "https://racecargraphics.uk/product/ford-fiesta-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0021",
+      "model": "Fiesta Van 2009-12",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0022",
+      "model": "Fiesta Van 2013-19",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "FORD0023",
+      "model": "Fiesta Van 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ka Van 2009-16",
+    "slug": "ford-ka-van",
+    "rcg_url": "https://racecargraphics.uk/product/ford-ka-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0024",
+      "model": "Ka Van 2009-16",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Ranger",
+    "slug": "ford-ranger",
+    "rcg_url": "https://racecargraphics.uk/product/ford-ranger-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0028",
+      "model": "Ranger 2012-16",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "FORD0031",
+      "model": "Ranger 2016-19",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "FORD0034",
+      "model": "Ranger 2019-22",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "FORD0035",
+      "model": "Ranger 2022 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transit Chassis Cab",
+    "slug": "ford-transit-chassis-cab",
+    "rcg_url": "https://racecargraphics.uk/product/ford-transit-chassis-cab-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ford-transit-chassis-cab/ford-transit-chassis-cab-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-transit-chassis-cab/ford-transit-chassis-cab-livery.webp",
+     "/assets/vehicles/rcg/ford-transit-chassis-cab/ford-transit-chassis-cab-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/ford-transit-chassis-cab/ford-transit-chassis-cab-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FORD0153",
+      "model": "Transit Chassis Cab 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FORD0195",
+      "model": "Transit Chassis Cab 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "FORD0236",
+      "model": "Transit Chassis Cab 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transit Dropside 2019 onwards",
+    "slug": "ford-transit-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/ford-transit-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0240",
+      "model": "Transit Dropside 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transit ELWB Jumbo 2006-14",
+    "slug": "ford-transit-elwb-jumbo",
+    "rcg_url": "https://racecargraphics.uk/product/ford-transit-elwb-jumbo-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0143",
+      "model": "Transit ELWB Jumbo 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transit Luton",
+    "slug": "ford-transit-luton",
+    "rcg_url": "https://racecargraphics.uk/product/ford-transit-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "FORD0155",
+      "model": "Transit Luton 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 495,
+       "two": 520,
+       "full": 560
+      }
+     },
+     {
+      "sku": "FORD0198",
+      "model": "Transit Luton 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 495,
+       "two": 520,
+       "full": 560
+      }
+     },
+     {
+      "sku": "FORD0239",
+      "model": "Transit Luton 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 495,
+       "two": 520,
+       "full": 560
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transit",
+    "slug": "ford-transit",
+    "rcg_url": "https://racecargraphics.uk/product/ford-transit-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ford-transit/ford-transit-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-transit/ford-transit-livery.webp",
+     "/assets/vehicles/rcg/ford-transit/ford-transit-business-van-graphics.webp",
+     "/assets/vehicles/rcg/ford-transit/ford-transit-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "FORD0162",
+      "model": "Transit L2 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0201",
+      "model": "Transit L2 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0166",
+      "model": "Transit L2 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FORD0205",
+      "model": "Transit L2 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FORD0170",
+      "model": "Transit L3 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FORD0209",
+      "model": "Transit L3 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "FORD0174",
+      "model": "Transit L3 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FORD0213",
+      "model": "Transit L3 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FORD0178",
+      "model": "Transit L4 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "FORD0217",
+      "model": "Transit L4 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "FORD0090",
+      "model": "Transit LWB MR 2000-06",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FORD0135",
+      "model": "Transit LWB MR 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "FORD0123",
+      "model": "Transit MWB 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "FORD0082",
+      "model": "Transit MWB MR 2000-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "FORD0070",
+      "model": "Transit SWB 2000-06",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "FORD0111",
+      "model": "Transit SWB 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "holden": {
+  "make": "Holden",
+  "families": [
+   {
+    "name": "Colorado 2016-21 UTE Crew Cab",
+    "slug": "holden-colorado",
+    "rcg_url": "https://racecargraphics.uk/product/holden-colorado-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/holden-colorado/holden-colorado-van-graphics.webp",
+     "/assets/vehicles/rcg/holden-colorado/holden-colorado-livery.webp",
+     "/assets/vehicles/rcg/holden-colorado/holden-colorado-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/holden-colorado/holden-colorado-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "HOLD0001",
+      "model": "Colorado 2016-21 UTE Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "Commodore",
+    "slug": "holden-commodore",
+    "rcg_url": "https://racecargraphics.uk/product/holden-commodore-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "HOLD0002",
+      "model": "Commodore 2002-06 UTE",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "HOLD0003",
+      "model": "Commodore 2007-10 SV6 UTE",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "VF Commodore SS-V Ute",
+    "slug": "holden-vf-commodore-ss-v-ute",
+    "rcg_url": "https://racecargraphics.uk/product/holden-vf-commodore-ss-v-ute-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "HOLD0004",
+      "model": "VF Commodore SS-V Ute",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "isuzu": {
+  "make": "Isuzu",
+  "families": [
+   {
+    "name": "D-Max Double Cab 2020 onwards",
+    "slug": "isuzu-d-max-double-cab",
+    "rcg_url": "https://racecargraphics.uk/product/isuzu-d-max-double-cab-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/isuzu-d-max-double-cab/isuzu-d-max-double-cab-van-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-double-cab/isuzu-d-max-double-cab-livery.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-double-cab/isuzu-d-max-double-cab-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-double-cab/isuzu-d-max-double-cab-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "ISUZ0008",
+      "model": "D-Max Single cab 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "D-Max Extended Cab 2020 onwards",
+    "slug": "isuzu-d-max-extended-cab",
+    "rcg_url": "https://racecargraphics.uk/product/isuzu-d-max-extended-cab-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/isuzu-d-max-extended-cab/isuzu-d-max-extended-cab-van-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-extended-cab/isuzu-d-max-extended-cab-livery.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-extended-cab/isuzu-d-max-extended-cab-custom-van-decals.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-extended-cab/isuzu-d-max-extended-cab-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "ISUZ0007",
+      "model": "D-Max Extended Cab 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "D-Max Single cab 2020 onwards",
+    "slug": "isuzu-d-max-single-cab",
+    "rcg_url": "https://racecargraphics.uk/product/isuzu-d-max-single-cab-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/isuzu-d-max-single-cab/isuzu-d-max-single-cab-van-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-single-cab/isuzu-d-max-single-cab-livery.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-single-cab/isuzu-d-max-single-cab-van-decals.webp",
+     "/assets/vehicles/rcg/isuzu-d-max-single-cab/isuzu-d-max-single-cab-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "ISUZ0008",
+      "model": "D-Max Single cab 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "D-Max",
+    "slug": "isuzu-d-max",
+    "rcg_url": "https://racecargraphics.uk/product/isuzu-d-max-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/isuzu-d-max/isuzu-d-max-van-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max/isuzu-d-max-livery.webp",
+     "/assets/vehicles/rcg/isuzu-d-max/isuzu-d-max-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/isuzu-d-max/isuzu-d-max-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "ISUZ0003A",
+      "model": "D-Max 2012-17 Double Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "ISUZ0002A",
+      "model": "D-Max 2012-17 Extended Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "ISUZ0001A",
+      "model": "D-Max 2012-17 Single Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "ISUZ0006",
+      "model": "D-Max 2017-20 Double Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "ISUZ0005",
+      "model": "D-Max 2017-20 Extended Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "ISUZ0004",
+      "model": "D-Max 2017-20 Single Cab",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "iveco": {
+  "make": "Iveco",
+  "families": [
+   {
+    "name": "Daily Chassis Cab",
+    "slug": "iveco-daily-chassis-cab",
+    "rcg_url": "https://racecargraphics.uk/product/iveco-daily-chassis-cab-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/iveco-daily-chassis-cab/iveco-daily-chassis-cab-van-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily-chassis-cab/iveco-daily-chassis-cab-livery.webp",
+     "/assets/vehicles/rcg/iveco-daily-chassis-cab/iveco-daily-chassis-cab-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily-chassis-cab/iveco-daily-chassis-cab-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "IVEC0050",
+      "model": "Daily Chassis Cab 2006-12",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "IVEC0061",
+      "model": "Daily Chassis Cab 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Daily Dropside",
+    "slug": "iveco-daily-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/iveco-daily-dropside-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/iveco-daily-dropside/iveco-daily-dropside-van-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily-dropside/iveco-daily-dropside-livery.webp",
+     "/assets/vehicles/rcg/iveco-daily-dropside/iveco-daily-dropside-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily-dropside/iveco-daily-dropside-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "IVEC0136",
+      "model": "Daily Dropside 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "IVEC0236",
+      "model": "Daily Dropside 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Daily",
+    "slug": "iveco-daily",
+    "rcg_url": "https://racecargraphics.uk/product/iveco-daily-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/iveco-daily/iveco-daily-van-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily/iveco-daily-livery.webp",
+     "/assets/vehicles/rcg/iveco-daily/iveco-daily-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/iveco-daily/iveco-daily-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "IVEC0006",
+      "model": "Daily 1999-06",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "IVEC0065",
+      "model": "Daily L1 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "IVEC0165",
+      "model": "Daily L1 H1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "IVEC0069",
+      "model": "Daily L1 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0169",
+      "model": "Daily L1 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0017",
+      "model": "Daily L2 H1 2006-12",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0027",
+      "model": "Daily L2 H1 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0073",
+      "model": "Daily L2 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0173",
+      "model": "Daily L2 H1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0077",
+      "model": "Daily L2 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0177",
+      "model": "Daily L2 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0021",
+      "model": "Daily L3 H1 2006-12",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0031",
+      "model": "Daily L3 H1 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0035",
+      "model": "Daily L3 H2 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0081",
+      "model": "Daily L3 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0181",
+      "model": "Daily L3 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0085",
+      "model": "Daily L3 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0185",
+      "model": "Daily L3 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0037",
+      "model": "Daily L4 H2 2006-12",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0047",
+      "model": "Daily L4 H2 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0089",
+      "model": "Daily L4 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0189",
+      "model": "Daily L4 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0051",
+      "model": "Daily L4 H3 2012-14",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0093",
+      "model": "Daily L4 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0193",
+      "model": "Daily L4 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0097",
+      "model": "Daily L5 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0197",
+      "model": "Daily L5 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "IVEC0101",
+      "model": "Daily L5 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "IVEC0201",
+      "model": "Daily L5 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "kgm": {
+  "make": "KGM",
+  "families": [
+   {
+    "name": "Musso",
+    "slug": "kgm-musso",
+    "rcg_url": "https://racecargraphics.uk/product/kgm-musso-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/kgm-musso/kgm-musso-van-graphics.webp",
+     "/assets/vehicles/rcg/kgm-musso/kgm-musso-livery.webp",
+     "/assets/vehicles/rcg/kgm-musso/kgm-musso-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/kgm-musso/kgm-musso-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "V71KMG001",
+      "model": "Musso 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "V71KMG002",
+      "model": "Musso 2023 onwards LWB",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "land-rover": {
+  "make": "Land Rover",
+  "families": [
+   {
+    "name": "Defender 110 Hardtop 1990-16",
+    "slug": "land-rover-defender-110-hardtop",
+    "rcg_url": "https://racecargraphics.uk/product/land-rover-defender-110-hardtop-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/land-rover-defender-110-hardtop/land-rover-defender-110-hardtop-van-graphics.webp",
+     "/assets/vehicles/rcg/land-rover-defender-110-hardtop/land-rover-defender-110-hardtop-livery.webp",
+     "/assets/vehicles/rcg/land-rover-defender-110-hardtop/land-rover-defender-110-hardtop-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/land-rover-defender-110-hardtop/land-rover-defender-110-hardtop-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "LAND00002",
+      "model": "Defender 110 Hardtop 1990-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Defender 90 Hardtop 1990-16",
+    "slug": "land-rover-defender-90-hardtop",
+    "rcg_url": "https://racecargraphics.uk/product/land-rover-defender-90-hardtop-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/land-rover-defender-90-hardtop/land-rover-defender-90-hardtop-van-graphics.webp",
+     "/assets/vehicles/rcg/land-rover-defender-90-hardtop/land-rover-defender-90-hardtop-livery.webp",
+     "/assets/vehicles/rcg/land-rover-defender-90-hardtop/land-rover-defender-90-hardtop-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/land-rover-defender-90-hardtop/land-rover-defender-90-hardtop-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "LAND00001",
+      "model": "Defender 90 Hardtop 1990-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "ldv": {
+  "make": "LDV",
+  "families": [
+   {
+    "name": "Maxus G10 Minivan 2015 onwards Tailgate",
+    "slug": "ldv-maxus-g10-minivan",
+    "rcg_url": "https://racecargraphics.uk/product/ldv-maxus-g10-minivan-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "V69LDV0001",
+      "model": "Maxus G10 Minivan 2015 onwards Tailgate",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Maxus",
+    "slug": "ldv-maxus",
+    "rcg_url": "https://racecargraphics.uk/product/ldv-maxus-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "LDV0023",
+      "model": "Maxus 2005-09 LWB Med Roof",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "LDV0031",
+      "model": "Maxus 2005-09 SWB Minibus",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "levc": {
+  "make": "LEVC",
+  "families": [
+   {
+    "name": "VN5 nsld 2020 onwards NLD",
+    "slug": "levc-vn5-nsld",
+    "rcg_url": "https://racecargraphics.uk/product/levc-vn5-nsld-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/levc-vn5-nsld/levc-vn5-nsld-van-graphics.webp",
+     "/assets/vehicles/rcg/levc-vn5-nsld/levc-vn5-nsld-livery.webp",
+     "/assets/vehicles/rcg/levc-vn5-nsld/levc-vn5-nsld-business-van-graphics.webp",
+     "/assets/vehicles/rcg/levc-vn5-nsld/levc-vn5-nsld-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "LEVC0002",
+      "model": "VN5 nsld 2020 onwards NLD",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "man": {
+  "make": "MAN",
+  "families": [
+   {
+    "name": "TGE Luton 2017 onwards",
+    "slug": "man-tge-luton",
+    "rcg_url": "https://racecargraphics.uk/product/man-tge-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MAN0037",
+      "model": "TGE Luton 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "TGE",
+    "slug": "man-tge",
+    "rcg_url": "https://racecargraphics.uk/product/man-tge-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/man-tge/man-tge-van-graphics.webp",
+     "/assets/vehicles/rcg/man-tge/man-tge-livery.webp",
+     "/assets/vehicles/rcg/man-tge/man-tge-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/man-tge/man-tge-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MAN0017",
+      "model": "TGE ELWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAN0021",
+      "model": "TGE ELWB SHR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAN0009",
+      "model": "TGE LWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAN0013",
+      "model": "TGE LWB SHR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAN0001",
+      "model": "TGE MWB 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MAN0005",
+      "model": "TGE MWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "maxus": {
+  "make": "Maxus",
+  "families": [
+   {
+    "name": "Deliver 9 Dropside 2020 onwards",
+    "slug": "maxus-deliver-9-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-deliver-9-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MAXU0016A",
+      "model": "Deliver 9 Dropside 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Deliver 9 Luton 2020 onwards",
+    "slug": "maxus-deliver-9-luton",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-deliver-9-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MAXU0018",
+      "model": "Deliver 9 Luton 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Deliver 9 LWB EHR 2020 onwards",
+    "slug": "maxus-deliver-9-lwb-ehr",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-deliver-9-lwb-ehr-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MAXU0013",
+      "model": "Deliver 9 LWB EHR 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Deliver 9",
+    "slug": "maxus-deliver-9",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-deliver-9-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/maxus-deliver-9/maxus-deliver-9-van-graphics.webp",
+     "/assets/vehicles/rcg/maxus-deliver-9/maxus-deliver-9-livery.webp",
+     "/assets/vehicles/rcg/maxus-deliver-9/maxus-deliver-9-custom-van-decals.webp",
+     "/assets/vehicles/rcg/maxus-deliver-9/maxus-deliver-9-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MAXU0009",
+      "model": "Deliver 9 LWB HR 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAXU0005",
+      "model": "Deliver 9 MWB HR 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MAXU0001",
+      "model": "Deliver 9 SWB 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "E-Deliver 3 SWB 2020 onwards",
+    "slug": "maxus-e-deliver-3",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-e-deliver-3-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/maxus-e-deliver-3/maxus-e-deliver-3-van-graphics.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-3/maxus-e-deliver-3-livery.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-3/maxus-e-deliver-3-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-3/maxus-e-deliver-3-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MAXU0017",
+      "model": "E-Deliver 3 SWB 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "E-Deliver 7",
+    "slug": "maxus-e-deliver-7",
+    "rcg_url": "https://racecargraphics.uk/product/maxus-e-deliver-7-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/maxus-e-deliver-7/maxus-e-deliver-7-van-graphics.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-7/maxus-e-deliver-7-livery.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-7/maxus-e-deliver-7-business-van-graphics.webp",
+     "/assets/vehicles/rcg/maxus-e-deliver-7/maxus-e-deliver-7-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MAXU0032",
+      "model": "E-Deliver 7 LWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MAXU0036",
+      "model": "E-Deliver 7 LWB HR 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MAXU0028",
+      "model": "E-Deliver 7 SWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "mazda": {
+  "make": "Mazda",
+  "families": [
+   {
+    "name": "BT50 2006-12",
+    "slug": "mazda-bt50",
+    "rcg_url": "https://racecargraphics.uk/product/mazda-bt50-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mazda-bt50/mazda-bt50-van-graphics.webp",
+     "/assets/vehicles/rcg/mazda-bt50/mazda-bt50-livery.webp",
+     "/assets/vehicles/rcg/mazda-bt50/mazda-bt50-van-signwriting-and-graphics.webp",
+     "/assets/vehicles/rcg/mazda-bt50/mazda-bt50-van-vinyl-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MAZD0004",
+      "model": "BT50 2006-12",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "mercedes-benz": {
+  "make": "Mercedes-Benz",
+  "families": [
+   {
+    "name": "208 1990-94",
+    "slug": "mercedes-benz-208",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-208-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0006",
+      "model": "208 1990-94",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "408 1990-94",
+    "slug": "mercedes-benz-408",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-408-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0026",
+      "model": "408 1990-94",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "609 1990-94",
+    "slug": "mercedes-benz-609",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-609-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0036",
+      "model": "609 1990-94",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Citan",
+    "slug": "mercedes-benz-citan",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-citan-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mercedes-benz-citan/mercedes-benz-citan-van-graphics.webp",
+     "/assets/vehicles/rcg/mercedes-benz-citan/mercedes-benz-citan-livery.webp",
+     "/assets/vehicles/rcg/mercedes-benz-citan/mercedes-benz-citan-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/mercedes-benz-citan/mercedes-benz-citan-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MERC0001",
+      "model": "MB 100D SWB 1981-96",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "MERC0001",
+      "model": "MB 100D SWB 1981-96",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "MERC0009",
+      "model": "Citan L2 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "MERC0059",
+      "model": "Citan LWB 2012-22",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "MERC0055",
+      "model": "Citan SWB 2012-22",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "MB 100D SWB 1981-96",
+    "slug": "mercedes-benz-mb-100d",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-mb-100d-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0001",
+      "model": "MB 100D SWB 1981-96",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Sprinter Dropside",
+    "slug": "mercedes-benz-sprinter-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-sprinter-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0249",
+      "model": "Sprinter Dropside 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "MERC0310",
+      "model": "Sprinter Dropside 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Sprinter Luton 2013-18",
+    "slug": "mercedes-benz-sprinter-luton",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-sprinter-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0251",
+      "model": "Sprinter Luton 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Sprinter",
+    "slug": "mercedes-benz-sprinter",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-sprinter-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mercedes-benz-sprinter/mercedes-benz-sprinter-van-graphics.webp",
+     "/assets/vehicles/rcg/mercedes-benz-sprinter/mercedes-benz-sprinter-livery.webp",
+     "/assets/vehicles/rcg/mercedes-benz-sprinter/mercedes-benz-sprinter-van-decals.webp",
+     "/assets/vehicles/rcg/mercedes-benz-sprinter/mercedes-benz-sprinter-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MERC0237",
+      "model": "Sprinter ELWB HR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0241",
+      "model": "Sprinter ELWB SHR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0259",
+      "model": "Sprinter L1 H1 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "MERC0263",
+      "model": "Sprinter L1 H2 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0267",
+      "model": "Sprinter L2 H1 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0279",
+      "model": "Sprinter L2 H1 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0283",
+      "model": "Sprinter L2 H2 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0271",
+      "model": "Sprinter L2 H2 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0287",
+      "model": "Sprinter L2 H3 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "MERC0275",
+      "model": "Sprinter L2 H3 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "MERC0291",
+      "model": "Sprinter L3 H2 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "MERC0295",
+      "model": "Sprinter L3 H3 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0299",
+      "model": "Sprinter L4 H2 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0303",
+      "model": "Sprinter L4 H3 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "MERC0229",
+      "model": "Sprinter LWB HR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0233",
+      "model": "Sprinter LWB SHR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0084",
+      "model": "Sprinter MWB 1996-99",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0107",
+      "model": "Sprinter MWB 2000-06",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0129",
+      "model": "Sprinter MWB 2006-09",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0175",
+      "model": "Sprinter MWB 2009-13",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0217",
+      "model": "Sprinter MWB 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0221",
+      "model": "Sprinter MWB HR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "MERC0225",
+      "model": "Sprinter MWB SHR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0209",
+      "model": "Sprinter SWB 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "MERC0213",
+      "model": "Sprinter SWB HR 2013-18",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vito",
+    "slug": "mercedes-benz-vito",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-vito-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mercedes-benz-vito/mercedes-benz-vito-van-graphics.webp",
+     "/assets/vehicles/rcg/mercedes-benz-vito/mercedes-benz-vito-livery.webp",
+     "/assets/vehicles/rcg/mercedes-benz-vito/mercedes-benz-vito-custom-van-decals.webp",
+     "/assets/vehicles/rcg/mercedes-benz-vito/mercedes-benz-vito-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MERC0314",
+      "model": "Vito 1996-03",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "MERC0388",
+      "model": "Vito ELWB 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "MERC0380",
+      "model": "Vito LWB 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "MERC0318",
+      "model": "Vito SWB 2004-10",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "MERC0372",
+      "model": "Vito SWB 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "X-Class 2018 onwards",
+    "slug": "mercedes-benz-x-class",
+    "rcg_url": "https://racecargraphics.uk/product/mercedes-benz-x-class-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MERC0402",
+      "model": "X-Class 2018 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "mini": {
+  "make": "MINI",
+  "families": [
+   {
+    "name": "Clubvan 2012-15",
+    "slug": "mini-clubvan",
+    "rcg_url": "https://racecargraphics.uk/product/mini-clubvan-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mini-clubvan/mini-clubvan-van-graphics.webp",
+     "/assets/vehicles/rcg/mini-clubvan/mini-clubvan-livery.webp",
+     "/assets/vehicles/rcg/mini-clubvan/mini-clubvan-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/mini-clubvan/mini-clubvan-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MINI0001",
+      "model": "Clubvan 2012-15",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "mitsubishi": {
+  "make": "Mitsubishi",
+  "families": [
+   {
+    "name": "Canter Fuso 2012 onwards",
+    "slug": "mitsubishi-canter-fuso",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-canter-fuso-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mitsubishi-canter-fuso/mitsubishi-canter-fuso-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-canter-fuso/mitsubishi-canter-fuso-livery.webp",
+     "/assets/vehicles/rcg/mitsubishi-canter-fuso/mitsubishi-canter-fuso-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-canter-fuso/mitsubishi-canter-fuso-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MITS0024",
+      "model": "Canter Fuso 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Canter",
+    "slug": "mitsubishi-canter",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-canter-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "MITS0021",
+      "model": "Canter 1998-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "MITS0023",
+      "model": "Canter 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "L200 Triton",
+    "slug": "mitsubishi-l200-triton",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-l200-triton-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mitsubishi-l200-triton/mitsubishi-l200-triton-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200-triton/mitsubishi-l200-triton-livery.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200-triton/mitsubishi-l200-triton-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200-triton/mitsubishi-l200-triton-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MITS0016",
+      "model": "L200 Triton 2019-24",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "MITS0017",
+      "model": "L200 Triton 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "L200",
+    "slug": "mitsubishi-l200",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-l200-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mitsubishi-l200/mitsubishi-l200-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200/mitsubishi-l200-livery.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200/mitsubishi-l200-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l200/mitsubishi-l200-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MITS0004",
+      "model": "L200 1997-99",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "MITS0006",
+      "model": "L200 2000-05",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "MITS0009",
+      "model": "L200 2006-15",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "MITS0013",
+      "model": "L200 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "L300 1993-96",
+    "slug": "mitsubishi-l300",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-l300-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mitsubishi-l300/mitsubishi-l300-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l300/mitsubishi-l300-livery.webp",
+     "/assets/vehicles/rcg/mitsubishi-l300/mitsubishi-l300-custom-van-decals.webp",
+     "/assets/vehicles/rcg/mitsubishi-l300/mitsubishi-l300-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MITS0018",
+      "model": "L300 1993-96",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "L400 1997-05",
+    "slug": "mitsubishi-l400",
+    "rcg_url": "https://racecargraphics.uk/product/mitsubishi-l400-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/mitsubishi-l400/mitsubishi-l400-van-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l400/mitsubishi-l400-livery.webp",
+     "/assets/vehicles/rcg/mitsubishi-l400/mitsubishi-l400-van-branding-graphics.webp",
+     "/assets/vehicles/rcg/mitsubishi-l400/mitsubishi-l400-van-signwriting-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MITS0019",
+      "model": "L400 1997-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "modec": {
+  "make": "Modec",
+  "families": [
+   {
+    "name": "STD Box Van 2007-11",
+    "slug": "modec-std-box-van",
+    "rcg_url": "https://racecargraphics.uk/product/modec-std-box-van-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/modec-std-box-van/modec-std-box-van-van-graphics.webp",
+     "/assets/vehicles/rcg/modec-std-box-van/modec-std-box-van-livery.webp",
+     "/assets/vehicles/rcg/modec-std-box-van/modec-std-box-van-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/modec-std-box-van/modec-std-box-van-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MODE0002",
+      "model": "STD Box Van 2007-11",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "STD Dropside 2007-11",
+    "slug": "modec-std-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/modec-std-dropside-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/modec-std-dropside/modec-std-dropside-van-graphics.webp",
+     "/assets/vehicles/rcg/modec-std-dropside/modec-std-dropside-livery.webp",
+     "/assets/vehicles/rcg/modec-std-dropside/modec-std-dropside-van-decals.webp",
+     "/assets/vehicles/rcg/modec-std-dropside/modec-std-dropside-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "MODE0005",
+      "model": "STD Dropside 2007-11",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "nissan": {
+  "make": "Nissan",
+  "families": [
+   {
+    "name": "Almera 1995-00",
+    "slug": "nissan-almera",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-almera-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0001",
+      "model": "Townstar L1 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Cabstar",
+    "slug": "nissan-cabstar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-cabstar-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0002",
+      "model": "Cabstar 1996-03",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "NISS0003",
+      "model": "Cabstar 2004-06",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "NISS0005",
+      "model": "Townstar L2 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "NISS0007",
+      "model": "Cabstar 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "E-NV200 2014 onwards",
+    "slug": "nissan-e-nv200",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-e-nv200-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/nissan-e-nv200/nissan-e-nv200-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-e-nv200/nissan-e-nv200-livery.webp",
+     "/assets/vehicles/rcg/nissan-e-nv200/nissan-e-nv200-business-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-e-nv200/nissan-e-nv200-fleet-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "NISS0010",
+      "model": "E-NV200 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Interstar",
+    "slug": "nissan-interstar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-interstar-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/nissan-interstar/nissan-interstar-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-interstar/nissan-interstar-livery.webp",
+     "/assets/vehicles/rcg/nissan-interstar/nissan-interstar-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-interstar/nissan-interstar-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "NISS0016",
+      "model": "Interstar 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "NISS0117",
+      "model": "Interstar L3 H3 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "NISS0020",
+      "model": "Interstar MWB MR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     }
+    ]
+   },
+   {
+    "name": "Kubistar 2003-09",
+    "slug": "nissan-kubistar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-kubistar-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0032",
+      "model": "Kubistar 2003-09",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Micra Van 2003-11",
+    "slug": "nissan-micra-van",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-micra-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0036",
+      "model": "Micra Van 2003-11",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Navara",
+    "slug": "nissan-navara",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-navara-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0038",
+      "model": "Navara 2005-15",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "NISS0040",
+      "model": "Navara 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   },
+   {
+    "name": "NV200 2009-17",
+    "slug": "nissan-nv200",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-nv200-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/nissan-nv200/nissan-nv200-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-nv200/nissan-nv200-livery.webp",
+     "/assets/vehicles/rcg/nissan-nv200/nissan-nv200-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-nv200/nissan-nv200-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "NISS0041",
+      "model": "NV200 2009-17",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "NV250",
+    "slug": "nissan-nv250",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-nv250-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0051",
+      "model": "NV250 L1 H1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "NISS0055",
+      "model": "NV250 L2 H1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "NV300 Primastar",
+    "slug": "nissan-nv300-primastar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-nv300-primastar-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0059",
+      "model": "NV300 Primastar L1 H1 2017-22",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "NISS0071",
+      "model": "NV300 Primastar L2 H1 2017-22",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "NISS0079",
+      "model": "NV300 Primastar L2 H2 2017-22",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     }
+    ]
+   },
+   {
+    "name": "NV400 Interstar Dropside 2012 onwards",
+    "slug": "nissan-nv400-interstar-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-nv400-interstar-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0138",
+      "model": "NV400 Interstar Dropside 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "NV400 Interstar",
+    "slug": "nissan-nv400-interstar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-nv400-interstar-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0097",
+      "model": "NV400 Interstar L1 H1 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "NISS0105",
+      "model": "NV400 Interstar L2 H2 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "NISS0109",
+      "model": "NV400 Interstar L2 H3 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "NISS0113",
+      "model": "NV400 Interstar L3 H2 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "NISS0121",
+      "model": "NV400 Interstar L3 H2 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "NISS0125",
+      "model": "NV400 Interstar L3 H3 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "NISS0129",
+      "model": "NV400 Interstar L4 H2 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "NISS0133",
+      "model": "NV400 Interstar L4 H3 2012 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 311,
+       "two": 336,
+       "full": 376
+      }
+     }
+    ]
+   },
+   {
+    "name": "Primastar",
+    "slug": "nissan-primastar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-primastar-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/nissan-primastar/nissan-primastar-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-primastar/nissan-primastar-livery.webp",
+     "/assets/vehicles/rcg/nissan-primastar/nissan-primastar-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/nissan-primastar/nissan-primastar-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "NISS0095",
+      "model": "Primastar L1 H1 2022 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "NISS0103",
+      "model": "Primastar L1 H2 2022 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "NISS0107",
+      "model": "Primastar L2 H1 2022 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "NISS0115",
+      "model": "Primastar L2 H2 2022 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "NISS0144",
+      "model": "Primastar SWB 2008-14",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "S-Cargo 1989-92",
+    "slug": "nissan-s-cargo",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-s-cargo-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0168",
+      "model": "S-Cargo 1989-92",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Sunny 1983-96",
+    "slug": "nissan-sunny",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-sunny-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0169",
+      "model": "Sunny 1983-96",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Terrano 1998-00",
+    "slug": "nissan-terrano",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-terrano-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0172",
+      "model": "Terrano 1998-00",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Townstar",
+    "slug": "nissan-townstar",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-townstar-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/nissan-townstar/nissan-townstar-van-graphics.webp",
+     "/assets/vehicles/rcg/nissan-townstar/nissan-townstar-livery.webp",
+     "/assets/vehicles/rcg/nissan-townstar/nissan-townstar-custom-van-decals.webp",
+     "/assets/vehicles/rcg/nissan-townstar/nissan-townstar-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "NISS0001",
+      "model": "Townstar L1 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "NISS0005",
+      "model": "Townstar L2 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     }
+    ]
+   },
+   {
+    "name": "Urvan 1988-95",
+    "slug": "nissan-urvan",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-urvan-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0171",
+      "model": "Urvan 1988-95",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vanette E 1996-02",
+    "slug": "nissan-vanette-e",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-vanette-e-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0176",
+      "model": "Vanette E 1996-02",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vanette 1997-01",
+    "slug": "nissan-vanette",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-vanette-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0174",
+      "model": "Vanette 1997-01",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Voltair 6M 2020 onwards",
+    "slug": "nissan-voltair-6m",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-voltair-6m-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0177",
+      "model": "Voltair 6M 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Voltair 8M 2020 onwards",
+    "slug": "nissan-voltair-8m",
+    "rcg_url": "https://racecargraphics.uk/product/nissan-voltair-8m-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "NISS0179",
+      "model": "Voltair 8M 2020 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "peugeot": {
+  "make": "Peugeot",
+  "families": [
+   {
+    "name": "106 Van 1992-95",
+    "slug": "peugeot-106-van",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-106-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0001",
+      "model": "106 Van 1992-95",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "205 Van 1992-94",
+    "slug": "peugeot-205-van",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-205-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0002",
+      "model": "205 Van 1992-94",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "206 Van 1998-05",
+    "slug": "peugeot-206-van",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-206-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0003",
+      "model": "206 Van 1998-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "207 Van 2006-10",
+    "slug": "peugeot-207-van",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-207-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0004",
+      "model": "207 Van 2006-10",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "305 Van 1980-90",
+    "slug": "peugeot-305-van",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-305-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0005",
+      "model": "305 Van 1980-90",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "504 1980-94",
+    "slug": "peugeot-504",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-504-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0006",
+      "model": "504 1980-94",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Bipper 2008-18",
+    "slug": "peugeot-bipper",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-bipper-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0009",
+      "model": "Bipper 2008-18",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Boxer Dropside",
+    "slug": "peugeot-boxer-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-boxer-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0091",
+      "model": "Boxer Dropside 2006-144",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "PEUG0143",
+      "model": "Boxer Dropside 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     }
+    ]
+   },
+   {
+    "name": "Boxer Luton",
+    "slug": "peugeot-boxer-luton",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-boxer-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0092",
+      "model": "Boxer Luton 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 495,
+       "two": 520,
+       "full": 560
+      }
+     },
+     {
+      "sku": "PEUG0144",
+      "model": "Boxer Luton 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 495,
+       "two": 520,
+       "full": 560
+      }
+     }
+    ]
+   },
+   {
+    "name": "Boxer MWB EHR 2002-06",
+    "slug": "peugeot-boxer-mwb-ehr",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-boxer-mwb-ehr-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "PEUG0040",
+      "model": "Boxer MWB EHR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Boxer",
+    "slug": "peugeot-boxer",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-boxer-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/peugeot-boxer/peugeot-boxer-van-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-boxer/peugeot-boxer-livery.webp",
+     "/assets/vehicles/rcg/peugeot-boxer/peugeot-boxer-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-boxer/peugeot-boxer-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "PEUG0058",
+      "model": "Boxer L1 H1 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "PEUG0102",
+      "model": "Boxer L1 H1 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "PEUG0070",
+      "model": "Boxer L2 H2 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "PEUG0114",
+      "model": "Boxer L2 H2 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "PEUG0078",
+      "model": "Boxer L3 H3 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "PEUG0122",
+      "model": "Boxer L3 H3 2014 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "PEUG0044",
+      "model": "Boxer LWB HR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "PEUG0032",
+      "model": "Boxer MWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "PEUG0036",
+      "model": "Boxer MWB HR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "PEUG0024",
+      "model": "Boxer SWB 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "PEUG0028",
+      "model": "Boxer SWB HR 2002-06",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Expert",
+    "slug": "peugeot-expert",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-expert-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/peugeot-expert/peugeot-expert-van-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-expert/peugeot-expert-livery.webp",
+     "/assets/vehicles/rcg/peugeot-expert/peugeot-expert-van-branding-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-expert/peugeot-expert-van-signwriting-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "PEUG0148",
+      "model": "Expert 2004-07",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "PEUG0175",
+      "model": "Expert LWB 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "PEUG0205",
+      "model": "Expert LWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "PEUG0155",
+      "model": "Expert LWB HR 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "PEUG0167",
+      "model": "Expert MWB 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "PEUG0151",
+      "model": "Expert SWB 2007-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "PEUG0159",
+      "model": "Expert SWB 2016 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Partner",
+    "slug": "peugeot-partner",
+    "rcg_url": "https://racecargraphics.uk/product/peugeot-partner-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/peugeot-partner/peugeot-partner-van-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-partner/peugeot-partner-livery.webp",
+     "/assets/vehicles/rcg/peugeot-partner/peugeot-partner-van-vinyl-graphics.webp",
+     "/assets/vehicles/rcg/peugeot-partner/peugeot-partner-commercial-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "PEUG0207",
+      "model": "Partner L1 2008-15",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "PEUG0215",
+      "model": "Partner L1 2015-18",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "PEUG0231",
+      "model": "Partner L1 2018-24",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "PEUG0289",
+      "model": "Partner L1 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "PEUG0211",
+      "model": "Partner L2 2008-15",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "PEUG0223",
+      "model": "Partner L2 2015-18",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "PEUG0297",
+      "model": "Partner L2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "renault": {
+  "make": "Renault",
+  "families": [
+   {
+    "name": "Clio Van",
+    "slug": "renault-clio-van",
+    "rcg_url": "https://racecargraphics.uk/product/renault-clio-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0001",
+      "model": "Master L2 H2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0002",
+      "model": "Clio Van 1998-01",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "RENA0003",
+      "model": "Clio Van 2002-05",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Express 2021 onwards",
+    "slug": "renault-express",
+    "rcg_url": "https://racecargraphics.uk/product/renault-express-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/renault-express/renault-express-van-graphics.webp",
+     "/assets/vehicles/rcg/renault-express/renault-express-livery.webp",
+     "/assets/vehicles/rcg/renault-express/renault-express-van-decals.webp",
+     "/assets/vehicles/rcg/renault-express/renault-express-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "RENA001",
+      "model": "Express 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Extra 1994-99",
+    "slug": "renault-extra",
+    "rcg_url": "https://racecargraphics.uk/product/renault-extra-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0004",
+      "model": "Extra 1994-99",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Kangoo",
+    "slug": "renault-kangoo",
+    "rcg_url": "https://racecargraphics.uk/product/renault-kangoo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/renault-kangoo/renault-kangoo-van-graphics.webp",
+     "/assets/vehicles/rcg/renault-kangoo/renault-kangoo-livery.webp",
+     "/assets/vehicles/rcg/renault-kangoo/renault-kangoo-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/renault-kangoo/renault-kangoo-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "RENA0006",
+      "model": "Kangoo 1998-02",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "RENA0005",
+      "model": "Master L3 H2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0029",
+      "model": "Kangoo MWB 2009-13",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "RENA0051",
+      "model": "Kangoo MWB 2013-22",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "RENA0001",
+      "model": "Master L2 H2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0013",
+      "model": "Kangoo SWB 2003-09",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Mascot Crew Cab",
+    "slug": "renault-mascot-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/renault-mascot-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0067",
+      "model": "Mascot Crew Cab",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Master Box Van",
+    "slug": "renault-master-box-van",
+    "rcg_url": "https://racecargraphics.uk/product/renault-master-box-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0136",
+      "model": "Master Box Van 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "RENA0184",
+      "model": "Master Box Van 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Master Dropside",
+    "slug": "renault-master-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/renault-master-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0090",
+      "model": "Master Dropside 2004-10",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "RENA0232",
+      "model": "Master Dropside 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "RENA0182",
+      "model": "Master Dropside L3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "RENA0135",
+      "model": "Master Dropside L4 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Master Luton",
+    "slug": "renault-master-luton",
+    "rcg_url": "https://racecargraphics.uk/product/renault-master-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0233",
+      "model": "Master Luton 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 475,
+       "two": 500,
+       "full": 540
+      }
+     },
+     {
+      "sku": "RENA0137",
+      "model": "Master Luton Van 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 475,
+       "two": 500,
+       "full": 540
+      }
+     }
+    ]
+   },
+   {
+    "name": "Master",
+    "slug": "renault-master",
+    "rcg_url": "https://racecargraphics.uk/product/renault-master-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/renault-master/renault-master-van-graphics.webp",
+     "/assets/vehicles/rcg/renault-master/renault-master-livery.webp",
+     "/assets/vehicles/rcg/renault-master/renault-master-van-branding-graphics.webp",
+     "/assets/vehicles/rcg/renault-master/renault-master-van-signwriting-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "RENA0091",
+      "model": "Master L1 H1 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0139",
+      "model": "Master L1 H1 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0188",
+      "model": "Master L1 H1 2019-24",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0143",
+      "model": "Master L1 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0192",
+      "model": "Master L1 H2 2019-24",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0099",
+      "model": "Master L2 H2 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0147",
+      "model": "Master L2 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0196",
+      "model": "Master L2 H2 2019-24",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0001",
+      "model": "Master L2 H2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0151",
+      "model": "Master L2 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0200",
+      "model": "Master L2 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0155",
+      "model": "Master L3 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0159",
+      "model": "Master L3 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0204",
+      "model": "Master L3 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0208",
+      "model": "Master L3 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0005",
+      "model": "Master L3 H2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "RENA0119",
+      "model": "Master L3 H3 2010-14",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0167",
+      "model": "Master L3 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0163",
+      "model": "Master L3 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0212",
+      "model": "Master L3 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0216",
+      "model": "Master L3 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0171",
+      "model": "Master L4 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0220",
+      "model": "Master L4 H2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "RENA0175",
+      "model": "Master L4 H3 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 311,
+       "two": 336,
+       "full": 376
+      }
+     },
+     {
+      "sku": "RENA0224",
+      "model": "Master L4 H3 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 311,
+       "two": 336,
+       "full": 376
+      }
+     },
+     {
+      "sku": "RENA0070",
+      "model": "Master LWB 1992-97",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0075",
+      "model": "Master MWB HR 1998-03",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0084",
+      "model": "Master MWB HR 2004-10",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "RENA0073",
+      "model": "Master SWB MR 1998-03",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Maxity Crew Cab 2007 onwards",
+    "slug": "renault-maxity-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/renault-maxity-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "RENA0238",
+      "model": "Maxity Crew Cab 2007 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     }
+    ]
+   },
+   {
+    "name": "Trafic",
+    "slug": "renault-trafic",
+    "rcg_url": "https://racecargraphics.uk/product/renault-trafic-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/renault-trafic/renault-trafic-van-graphics.webp",
+     "/assets/vehicles/rcg/renault-trafic/renault-trafic-livery.webp",
+     "/assets/vehicles/rcg/renault-trafic/renault-trafic-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/renault-trafic/renault-trafic-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "RENA0280",
+      "model": "Trafic L1 H1 2014-21",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "RENA0308",
+      "model": "Trafic L1 H1 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "RENA0288",
+      "model": "Trafic L1 H2 2014-21",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0316",
+      "model": "Trafic L1 H2 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0292",
+      "model": "Trafic L2 H1 2014-21",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0320",
+      "model": "Trafic L2 H1 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0300",
+      "model": "Trafic L2 H2 2014-21",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0328",
+      "model": "Trafic L2 H2 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "RENA0240",
+      "model": "Trafic LWB 1994-99",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0250",
+      "model": "Trafic LWB 2000-07",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0268",
+      "model": "Trafic LWB 2008-14",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "RENA0244",
+      "model": "Trafic SWB 2000-07",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "RENA0256",
+      "model": "Trafic SWB 2008-14",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "RENA0246",
+      "model": "Trafic SWB HR 2000-07",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "ssangyong": {
+  "make": "SsangYong",
+  "families": [
+   {
+    "name": "Musso 2023 onwards",
+    "slug": "ssangyong-musso",
+    "rcg_url": "https://racecargraphics.uk/product/ssangyong-musso-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/ssangyong-musso/ssangyong-musso-van-graphics.webp",
+     "/assets/vehicles/rcg/ssangyong-musso/ssangyong-musso-livery.webp",
+     "/assets/vehicles/rcg/ssangyong-musso/ssangyong-musso-van-livery-graphics.webp",
+     "/assets/vehicles/rcg/ssangyong-musso/ssangyong-musso-van-branding-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "KMG002",
+      "model": "Musso 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "toyota": {
+  "make": "Toyota",
+  "families": [
+   {
+    "name": "Dyna 2006-16",
+    "slug": "toyota-dyna",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-dyna-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "TOYO0001",
+      "model": "Dyna 2006-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Hi-Lux",
+    "slug": "toyota-hi-lux",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-hi-lux-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/toyota-hi-lux/toyota-hi-lux-van-graphics.webp",
+     "/assets/vehicles/rcg/toyota-hi-lux/toyota-hi-lux-livery.webp",
+     "/assets/vehicles/rcg/toyota-hi-lux/toyota-hi-lux-van-lettering-and-graphics.webp",
+     "/assets/vehicles/rcg/toyota-hi-lux/toyota-hi-lux-custom-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "TOYO0026",
+      "model": "Hi-Lux 2012-16",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "TOYO0029",
+      "model": "Hi-Lux 2016-21",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "TOYO0031",
+      "model": "Proace L1 H1 2013-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Hiace",
+    "slug": "toyota-hiace",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-hiace-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "TOYO0002",
+      "model": "Hiace",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "TOYO0022",
+      "model": "Hiace ELWB 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "TOYO0007",
+      "model": "Hiace LWB 1998-05",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "TOYO0018",
+      "model": "Hiace LWB 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "TOYO0005",
+      "model": "Hiace SWB 1998-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Liteace",
+    "slug": "toyota-liteace",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-liteace-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "TOYO0030",
+      "model": "Liteace",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Proace City",
+    "slug": "toyota-proace-city",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-proace-city-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/toyota-proace-city/toyota-proace-city-van-graphics.webp",
+     "/assets/vehicles/rcg/toyota-proace-city/toyota-proace-city-livery.webp",
+     "/assets/vehicles/rcg/toyota-proace-city/toyota-proace-city-van-branding-graphics.webp",
+     "/assets/vehicles/rcg/toyota-proace-city/toyota-proace-city-van-signwriting-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "TOYO0075",
+      "model": "Proace City L1 2020-24",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "TOYO0089",
+      "model": "Proace MWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0079",
+      "model": "Proace City L2 2020-24",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "TOYO0093",
+      "model": "Proace City L2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "Proace Max",
+    "slug": "toyota-proace-max",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-proace-max-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/toyota-proace-max/toyota-proace-max-van-graphics.webp",
+     "/assets/vehicles/rcg/toyota-proace-max/toyota-proace-max-livery.webp",
+     "/assets/vehicles/rcg/toyota-proace-max/toyota-proace-max-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/toyota-proace-max/toyota-proace-max-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "TOYO0125",
+      "model": "Proace Max L2 H2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0129",
+      "model": "Proace Max L3 H2 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "TOYO0133",
+      "model": "Proace Max L3 H3 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     }
+    ]
+   },
+   {
+    "name": "Proace",
+    "slug": "toyota-proace",
+    "rcg_url": "https://racecargraphics.uk/product/toyota-proace-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/toyota-proace/toyota-proace-van-graphics.webp",
+     "/assets/vehicles/rcg/toyota-proace/toyota-proace-livery.webp",
+     "/assets/vehicles/rcg/toyota-proace/toyota-proace-custom-van-decals.webp",
+     "/assets/vehicles/rcg/toyota-proace/toyota-proace-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "TOYO0031",
+      "model": "Proace L1 H1 2013-16",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "TOYO0039",
+      "model": "Proace L2 H1 2013-16",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "TOYO0047",
+      "model": "Proace L2 H2 2013-16",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0067",
+      "model": "Proace LWB 2016-24",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0097",
+      "model": "Proace LWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0059",
+      "model": "Proace MWB 2016-24",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0089",
+      "model": "Proace MWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "TOYO0051",
+      "model": "Proace SWB 2016-24",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "TOYO0081",
+      "model": "Proace SWB 2024 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "vauxhall": {
+  "make": "Vauxhall",
+  "families": [
+   {
+    "name": "Arena",
+    "slug": "vauxhall-arena",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-arena-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0001",
+      "model": "Arena 1997-00",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0002",
+      "model": "Arena HR 1997-00",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Astramax 1985-90",
+    "slug": "vauxhall-astramax",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-astramax-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0007",
+      "model": "Astramax 1985-90",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Astravan",
+    "slug": "vauxhall-astravan",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-astravan-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0004",
+      "model": "Astravan 1991-98",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0005",
+      "model": "Astravan 1998-06",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0006",
+      "model": "Astravan 2006-13",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Brava 1992-97",
+    "slug": "vauxhall-brava",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-brava-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0008",
+      "model": "Brava 1992-97",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Combo",
+    "slug": "vauxhall-combo",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-combo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/vauxhall-combo/vauxhall-combo-van-graphics.webp",
+     "/assets/vehicles/rcg/vauxhall-combo/vauxhall-combo-livery.webp",
+     "/assets/vehicles/rcg/vauxhall-combo/vauxhall-combo-van-decals.webp",
+     "/assets/vehicles/rcg/vauxhall-combo/vauxhall-combo-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VAUX0010",
+      "model": "Combo 1993-00",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0012",
+      "model": "Combo 2001-08",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0014",
+      "model": "Combo 2009-12",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0046",
+      "model": "Combo L1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0024",
+      "model": "Combo L1 H1 2012-19",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0030",
+      "model": "Combo L1 H2 2012-19",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0054",
+      "model": "Combo L2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "VAUX0036",
+      "model": "Combo L2 H1 2012-19",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0042",
+      "model": "Combo L2 H2 2012-19",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Corsa Van",
+    "slug": "vauxhall-corsa-van",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-corsa-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0070",
+      "model": "Corsa Van 1993-00",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0071",
+      "model": "Corsa Van 2001-06",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0072",
+      "model": "Corsa Van 2007-11",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0073",
+      "model": "Corsa Van 2011-14",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VAUX0074",
+      "model": "Corsa Van 2015 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Midi",
+    "slug": "vauxhall-midi",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-midi-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0076",
+      "model": "Midi LWB 1991-97",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0077",
+      "model": "Midi LWB HR 1991-97",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VAUX0075",
+      "model": "Midi SWB 1991-97",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Movano Box Van",
+    "slug": "vauxhall-movano-box-van",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-movano-box-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0151",
+      "model": "Movano Box Van 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "VAUX0196",
+      "model": "Movano Box Van 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Movano Crew Cab 1999-02",
+    "slug": "vauxhall-movano-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-movano-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0085",
+      "model": "Movano Crew Cab 1999-02",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Movano Dropside",
+    "slug": "vauxhall-movano-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-movano-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0148",
+      "model": "Movano Dropside 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VAUX0195",
+      "model": "Movano Dropside 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Movano Luton",
+    "slug": "vauxhall-movano-luton",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-movano-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0152",
+      "model": "Movano Luton Van 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "VAUX0197",
+      "model": "Movano Luton Van 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Movano",
+    "slug": "vauxhall-movano",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-movano-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/vauxhall-movano/vauxhall-movano-van-graphics.webp",
+     "/assets/vehicles/rcg/vauxhall-movano/vauxhall-movano-livery.webp",
+     "/assets/vehicles/rcg/vauxhall-movano/vauxhall-movano-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/vauxhall-movano/vauxhall-movano-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VAUX0100",
+      "model": "Movano L1 H1 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0154",
+      "model": "Nova Van 1985-91",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0104",
+      "model": "Movano L1 H2 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0158",
+      "model": "Vivaro SWB 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0162",
+      "model": "Movano L2 H1 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0108",
+      "model": "Movano L2 H2 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0166",
+      "model": "Vivaro LWB HR 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0112",
+      "model": "Movano L2 H3 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0124",
+      "model": "Movano L3 H2 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0116",
+      "model": "Movano L3 H2 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0170",
+      "model": "Movano L3 H2 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0120",
+      "model": "Movano L3 H3 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VAUX0128",
+      "model": "Movano L3 H3 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VAUX0174",
+      "model": "Movano L3 H3 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VAUX0132",
+      "model": "Movano L4 H2 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "VAUX0178",
+      "model": "Movano L4 H2 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 298,
+       "two": 323,
+       "full": 363
+      }
+     },
+     {
+      "sku": "VAUX0136",
+      "model": "Movano L4 H3 2010-21",
+      "body": "Van",
+      "prices": {
+       "single": 311,
+       "two": 336,
+       "full": 376
+      }
+     },
+     {
+      "sku": "VAUX0182",
+      "model": "Movano L4 H3 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 311,
+       "two": 336,
+       "full": 376
+      }
+     },
+     {
+      "sku": "VAUX0098",
+      "model": "Movano LWB HR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VAUX0096",
+      "model": "Movano LWB MR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0094",
+      "model": "Movano MWB HR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0092",
+      "model": "Movano MWB MR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0088",
+      "model": "Movano SWB 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0090",
+      "model": "Movano SWB MR 2003-10",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     }
+    ]
+   },
+   {
+    "name": "Nova Van 1985-91",
+    "slug": "vauxhall-nova-van",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-nova-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0154",
+      "model": "Nova Van 1985-91",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Rascal 1986-93",
+    "slug": "vauxhall-rascal",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-rascal-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0155",
+      "model": "Rascal 1986-93",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vivaro Prime",
+    "slug": "vauxhall-vivaro-prime",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-vivaro-prime-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0307",
+      "model": "Vivaro Prime L1 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0323",
+      "model": "Vivaro Prime L2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vivaro Pro",
+    "slug": "vauxhall-vivaro-pro",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-vivaro-pro-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VAUX0315",
+      "model": "Vivaro Pro L1 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0331",
+      "model": "Vivaro Pro L2 2025 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   },
+   {
+    "name": "Vivaro",
+    "slug": "vauxhall-vivaro",
+    "rcg_url": "https://racecargraphics.uk/product/vauxhall-vivaro-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/vauxhall-vivaro/vauxhall-vivaro-van-graphics.webp",
+     "/assets/vehicles/rcg/vauxhall-vivaro/vauxhall-vivaro-livery.webp",
+     "/assets/vehicles/rcg/vauxhall-vivaro/vauxhall-vivaro-custom-van-decals.webp",
+     "/assets/vehicles/rcg/vauxhall-vivaro/vauxhall-vivaro-van-decals.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VAUX0236",
+      "model": "Vivaro L1 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0204",
+      "model": "Vivaro L1 H1 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0212",
+      "model": "Vivaro L1 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VAUX0244",
+      "model": "Vivaro L2 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "VAUX0216",
+      "model": "Vivaro L2 H1 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "VAUX0224",
+      "model": "Vivaro L2 H2 2014-19",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0164",
+      "model": "Vivaro LWB 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "VAUX0184",
+      "model": "Vivaro LWB 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "VAUX0166",
+      "model": "Vivaro LWB HR 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0192",
+      "model": "Vivaro LWB HR 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VAUX0158",
+      "model": "Vivaro SWB 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0172",
+      "model": "Vivaro SWB 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VAUX0160",
+      "model": "Vivaro SWB HR 2001-05",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     },
+     {
+      "sku": "VAUX0180",
+      "model": "Vivaro SWB HR 2006-14",
+      "body": "Van",
+      "prices": {
+       "single": 229,
+       "two": 254,
+       "full": 294
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "volkswagen": {
+  "make": "Volkswagen",
+  "families": [
+   {
+    "name": "Amarok",
+    "slug": "volkswagen-amarok",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-amarok-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/volkswagen-amarok/volkswagen-amarok-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-amarok/volkswagen-amarok-livery.webp",
+     "/assets/vehicles/rcg/volkswagen-amarok/volkswagen-amarok-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-amarok/volkswagen-amarok-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VOLK0002",
+      "model": "Amarok 2010-16",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "VOLK0003",
+      "model": "Amarok 2017-23",
+      "body": "Van",
+      "prices": {
+       "single": 190,
+       "two": 215,
+       "full": 255
+      }
+     },
+     {
+      "sku": "VOLK0004",
+      "model": "Caddy 1996-03",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Caddy Maxi",
+    "slug": "volkswagen-caddy-maxi",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-caddy-maxi-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0039",
+      "model": "Caddy Maxi 2010-15",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0064",
+      "model": "Caddy Maxi 2015-21",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0088",
+      "model": "Caddy Maxi 2021 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Caddy",
+    "slug": "volkswagen-caddy",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-caddy-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/volkswagen-caddy/volkswagen-caddy-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-caddy/volkswagen-caddy-livery.webp",
+     "/assets/vehicles/rcg/volkswagen-caddy/volkswagen-caddy-signwritten-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-caddy/volkswagen-caddy-van-lettering-and-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VOLK0004",
+      "model": "Caddy 1996-03",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0008",
+      "model": "Caddy 2004-10",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0020",
+      "model": "Caddy 2007-10",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0025",
+      "model": "Caddy 2010-15",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0052",
+      "model": "Caddy 2015-21",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     },
+     {
+      "sku": "VOLK0076",
+      "model": "Golf Van 1992-98",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Crafter Crew Cab 2006-11",
+    "slug": "volkswagen-crafter-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-crafter-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0106",
+      "model": "Crafter Crew Cab 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Crafter Dropside",
+    "slug": "volkswagen-crafter-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-crafter-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0149",
+      "model": "Crafter Dropside 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0192",
+      "model": "Crafter Dropside 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Crafter Luton",
+    "slug": "volkswagen-crafter-luton",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-crafter-luton-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0107",
+      "model": "Crafter Luton 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "VOLK0151",
+      "model": "Crafter Luton Van 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     },
+     {
+      "sku": "VOLK0193",
+      "model": "Crafter Luton Van 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 465,
+       "two": 490,
+       "full": 530
+      }
+     }
+    ]
+   },
+   {
+    "name": "Crafter",
+    "slug": "volkswagen-crafter",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-crafter-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/volkswagen-crafter/volkswagen-crafter-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-crafter/volkswagen-crafter-livery.webp",
+     "/assets/vehicles/rcg/volkswagen-crafter/volkswagen-crafter-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-crafter/volkswagen-crafter-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VOLK0137",
+      "model": "Crafter ELWB HR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0169",
+      "model": "Crafter ELWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0141",
+      "model": "Crafter ELWB SHR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0173",
+      "model": "Crafter ELWB SHR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0097",
+      "model": "Crafter LWB 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VOLK0129",
+      "model": "Crafter LWB HR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0161",
+      "model": "Crafter LWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0101",
+      "model": "Crafter LWB SHR 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0133",
+      "model": "Crafter LWB SHR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0165",
+      "model": "Crafter LWB SHR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0085",
+      "model": "Crafter MWB 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0117",
+      "model": "Crafter MWB 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0153",
+      "model": "Crafter MWB 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0089",
+      "model": "Crafter MWB HR 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VOLK0121",
+      "model": "Crafter MWB HR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VOLK0157",
+      "model": "Crafter MWB HR 2017 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 270,
+       "two": 295,
+       "full": 335
+      }
+     },
+     {
+      "sku": "VOLK0093",
+      "model": "Crafter MWB SHR 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0125",
+      "model": "Crafter MWB SHR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 284,
+       "two": 309,
+       "full": 349
+      }
+     },
+     {
+      "sku": "VOLK0077",
+      "model": "Crafter SWB 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VOLK0109",
+      "model": "Crafter SWB 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 243,
+       "two": 268,
+       "full": 308
+      }
+     },
+     {
+      "sku": "VOLK0081",
+      "model": "Crafter SWB HR 2006-11",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     },
+     {
+      "sku": "VOLK0113",
+      "model": "Crafter SWB HR 2011-17",
+      "body": "Van",
+      "prices": {
+       "single": 257,
+       "two": 282,
+       "full": 322
+      }
+     }
+    ]
+   },
+   {
+    "name": "Golf Van 1992-98",
+    "slug": "volkswagen-golf-van",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-golf-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0076",
+      "model": "Golf Van 1992-98",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "ID Buzz Cargo 2023 onwards",
+    "slug": "volkswagen-id-buzz-cargo",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-id-buzz-cargo-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/volkswagen-id-buzz-cargo/volkswagen-id-buzz-cargo-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-id-buzz-cargo/volkswagen-id-buzz-cargo-livery.webp",
+     "/assets/vehicles/rcg/volkswagen-id-buzz-cargo/volkswagen-id-buzz-cargo-van-decals.webp",
+     "/assets/vehicles/rcg/volkswagen-id-buzz-cargo/volkswagen-id-buzz-cargo-business-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VOLK0219",
+      "model": "ID Buzz Cargo 2023 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "LT",
+    "slug": "volkswagen-lt",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-lt-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0195",
+      "model": "LT 1990-95",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     },
+     {
+      "sku": "VOLK0205",
+      "model": "LT 1996-06",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Polo Van 1990-94",
+    "slug": "volkswagen-polo-van",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-polo-van-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0209",
+      "model": "Polo Van 1990-94",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "T2",
+    "slug": "volkswagen-t2",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-t2-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0210",
+      "model": "T2",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transporter Crew Cab 1990-03",
+    "slug": "volkswagen-transporter-crew-cab",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-transporter-crew-cab-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0223",
+      "model": "Transporter Crew Cab 1990-03",
+      "body": "Van",
+      "prices": {
+       "single": 177,
+       "two": 202,
+       "full": 242
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transporter Dropside 2003-0808",
+    "slug": "volkswagen-transporter-dropside",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-transporter-dropside-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0270",
+      "model": "Transporter Dropside 2003-0808",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transporter Sportline 2006-08",
+    "slug": "volkswagen-transporter-sportline",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-transporter-sportline-van-graphics",
+    "images": [],
+    "variants": [
+     {
+      "sku": "VOLK0267",
+      "model": "Transporter Sportline 2006-08",
+      "body": "Van",
+      "prices": {
+       "single": 215,
+       "two": 240,
+       "full": 280
+      }
+     }
+    ]
+   },
+   {
+    "name": "Transporter",
+    "slug": "volkswagen-transporter",
+    "rcg_url": "https://racecargraphics.uk/product/volkswagen-transporter-van-graphics",
+    "images": [
+     "/assets/vehicles/rcg/volkswagen-transporter/volkswagen-transporter-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-transporter/volkswagen-transporter-livery.webp",
+     "/assets/vehicles/rcg/volkswagen-transporter/volkswagen-transporter-commercial-van-graphics.webp",
+     "/assets/vehicles/rcg/volkswagen-transporter/volkswagen-transporter-signwritten-van-graphics.webp"
+    ],
+    "variants": [
+     {
+      "sku": "VOLK0215",
+      "model": "Transporter LWB 1990-03",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0245",
+      "model": "Transporter LWB 2003-08",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0311",
+      "model": "Transporter LWB 2009-15",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0351",
+      "model": "Transporter LWB 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0411",
+      "model": "Transporter LWB 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0217",
+      "model": "Transporter LWB HR 1990-03",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0265",
+      "model": "Transporter LWB HR 2003-08",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0327",
+      "model": "Transporter LWB HR 2009-15",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0367",
+      "model": "Transporter LWB HR 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0427",
+      "model": "Transporter LWB HR 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0319",
+      "model": "Transporter LWB MR 2009-15",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0359",
+      "model": "Transporter LWB MR 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0419",
+      "model": "Transporter LWB MR 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0213",
+      "model": "Transporter SWB 1990-03",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0225",
+      "model": "Transporter SWB 2003-08",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0295",
+      "model": "Transporter SWB 2009-15",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0331",
+      "model": "Transporter SWB 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 188,
+       "two": 213,
+       "full": 253
+      }
+     },
+     {
+      "sku": "VOLK0347",
+      "model": "Transporter SWB HR 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0407",
+      "model": "Transporter SWB HR 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0303",
+      "model": "Transporter SWB MR 2009-15",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0339",
+      "model": "Transporter SWB MR 2015-19",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     },
+     {
+      "sku": "VOLK0399",
+      "model": "Transporter SWB MR 2019 onwards",
+      "body": "Van",
+      "prices": {
+       "single": 201,
+       "two": 226,
+       "full": 266
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

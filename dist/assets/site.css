@@ -995,3 +995,74 @@ html,body{overflow-x:clip;max-width:100%}
 .wrap-gallery figcaption small{color:#c9d3ee!important;text-transform:none!important;letter-spacing:0!important;font-size:13px!important;font-weight:500!important}
 .wrap-gallery figcaption b{color:#fff;font-size:15px}
 .dark-section .core-note{color:#c9d3ee}.dark-section .core-note a.text-link{color:#fff}
+/* ===== Van model shop page ===== */
+.ms{padding:28px 0 56px;background:#fff}
+.ms-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:start}
+.ms-gallery{position:sticky;top:84px}
+.ms-main{background:linear-gradient(180deg,#f3f5fb,#e8ecf6);border-radius:20px;overflow:hidden;aspect-ratio:16/10;display:grid;place-items:center}
+.ms-main img{width:100%;height:100%;object-fit:contain}
+.ms-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:10px}
+.ms-thumb{border:2px solid transparent;border-radius:12px;background:#f3f5fb;padding:0;overflow:hidden;cursor:pointer;aspect-ratio:16/10}
+.ms-thumb img{width:100%;height:100%;object-fit:contain}
+.ms-thumb.is-active,.ms-thumb:hover{border-color:var(--lime)}
+.ms-buy .crumb{font-size:13px;margin-bottom:14px;color:var(--muted)}.ms-buy .crumb a{color:var(--muted)}
+.ms-brand{display:flex;align-items:center;gap:12px;margin-bottom:8px}.ms-brand img{height:28px;width:auto}.ms-brand .brand-wordmark{font-size:14px}
+.ms-brand span{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ms-buy h1{font-size:clamp(30px,3.2vw,44px);line-height:1.05;letter-spacing:-.035em;margin:0 0 8px}
+.ms-rating{margin:0 0 14px;font-size:14px;color:var(--muted)}.ms-rating span{color:#f5b82e;letter-spacing:2px;margin-right:4px}
+.ms-price{display:flex;align-items:baseline;gap:8px;margin:0 0 12px}.ms-price__label{font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.ms-price b{font-size:40px;font-weight:900;letter-spacing:-.04em;color:var(--ink)}.ms-price small{font-weight:800;color:var(--muted)}
+.ms-lede{color:#3c4560;margin:0 0 18px;line-height:1.55}
+.ms-form{display:grid;gap:14px}
+.ms-step{border:0;margin:0;padding:0}
+.ms-step legend{display:flex;align-items:center;gap:10px;font-weight:900;font-size:15px;margin-bottom:8px;padding:0}
+.ms-step legend span{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px}
+.ms-select{width:100%;padding:13px 14px;border:1.5px solid #cfd6e6;border-radius:12px;font:inherit;font-size:15px;font-weight:700;background:#fff}
+.ms-select:focus{outline:0;border-color:var(--lime);box-shadow:0 0 0 4px #ff0a7826}
+.ms-options,.ms-colour-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ms-opt,.ms-colour{position:relative;cursor:pointer}
+.ms-opt input,.ms-colour input{position:absolute;opacity:0;pointer-events:none}
+.ms-opt>span,.ms-colour>span{display:grid;gap:3px;height:100%;padding:12px;border:1.5px solid #d6dcea;border-radius:14px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.ms-opt b,.ms-colour b{font-size:14px}.ms-opt small,.ms-colour small{font-size:12px;color:var(--muted);line-height:1.35}
+.ms-opt em,.ms-colour em{font-style:normal;font-weight:900;font-size:14px;color:var(--ink);margin-top:auto}.ms-opt em i{font-style:normal}
+.ms-opt input:checked+span,.ms-colour input:checked+span{border-color:var(--lime);box-shadow:0 0 0 3px #ff0a7826;background:#fff7fb}
+.ms-opt input:focus-visible+span,.ms-colour input:focus-visible+span{outline:3px solid #ff0a7866;outline-offset:2px}
+.ms-summary{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;border-radius:16px;background:var(--dark);color:#fff}
+.ms-summary small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aebbe0}
+.ms-sum-name{display:block;font-size:15px;margin-top:2px}.ms-sum-opt{font-size:13px;color:#c9d3ee}
+.ms-sum-price{text-align:right;flex:none}.ms-sum-price b{font-size:30px;font-weight:900;letter-spacing:-.03em}.ms-sum-price small{display:inline;margin-left:4px;letter-spacing:0;text-transform:none;font-size:13px;color:#c9d3ee}
+.ms-sum-inc{display:block;font-size:12px;color:#aebbe0}
+.ms-cta{width:100%;justify-content:center;min-height:54px;font-size:16px}
+.ms-design{width:100%;justify-content:center}
+.ms-note,.ms-diy{font-size:13px;color:var(--muted);margin:0;line-height:1.5}.ms-diy a{color:var(--ink);font-weight:800}
+.ms-ticks{list-style:none;margin:18px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+.ms-ticks li{position:relative;padding-left:22px;font-size:13px;font-weight:700}.ms-ticks li:before{content:"✓";position:absolute;left:0;color:var(--lime);font-weight:900}
+.ms-details__grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.ms-details h2{font-size:clamp(28px,3vw,40px);margin:6px 0 12px}
+.ms-included{background:#f6f8fd;border:1px solid var(--line);border-radius:18px;padding:24px}
+.ms-included h3{margin:0 0 12px}.ms-included dt{font-weight:900;margin-top:12px}.ms-included dd{margin:4px 0 0;color:#3c4560;font-size:15px;line-height:1.55}
+.ms-variants{width:100%;border-collapse:collapse;background:#fff;font-size:14px}
+.ms-variants th,.ms-variants td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.ms-variants thead th{background:var(--dark);color:#fff;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.ms-variants td:first-child{font-weight:800;white-space:normal}
+.ms-rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.ms-rel{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;color:var(--ink);text-decoration:none}
+.ms-rel img{width:100%;aspect-ratio:16/9;object-fit:contain;background:#f3f5fb}
+.ms-rel span{display:grid;gap:2px;padding:12px 14px}.ms-rel small{color:var(--lime);font-weight:800}
+.ms-rel:hover{border-color:var(--lime)}
+/* Brand page model cards */
+.shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.shop-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s,box-shadow .15s}
+.shop-card:hover{border-color:var(--lime);transform:translateY(-3px);box-shadow:0 16px 36px #111b3118}
+.shop-card__media{display:grid;place-items:center;aspect-ratio:16/10;background:linear-gradient(180deg,#f3f5fb,#e8ecf6)}
+.shop-card__media img{width:100%;height:100%;object-fit:contain}
+.shop-card__body{display:grid;gap:4px;padding:14px 16px 16px}
+.shop-card__body b{font-size:17px;letter-spacing:-.01em}.shop-card__body small{color:var(--muted);font-size:13px}
+.shop-card__body em{font-style:normal;font-weight:900;color:var(--lime);font-size:14px}
+.shop-card__body i{font-style:normal;justify-self:start;margin-top:6px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--ink);font-size:13px;font-weight:800}
+.shop-card:hover i{background:var(--lime);border-color:var(--lime);color:#fff}
+@media(max-width:1000px){.ms-grid,.ms-details__grid{grid-template-columns:1fr;gap:24px}.ms-gallery{position:static}.shop-grid{grid-template-columns:repeat(2,1fr)}.ms-rel-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ms{padding-top:16px}.ms-options,.ms-colour-grid{grid-template-columns:1fr}.ms-opt>span,.ms-colour>span{grid-template-columns:1fr auto;align-items:center}.ms-opt em,.ms-colour em{grid-row:1/span 2;grid-column:2;margin:0}.ms-ticks{grid-template-columns:1fr}.shop-grid{gap:10px}.shop-card__body{padding:10px 12px 12px}.shop-card__body b{font-size:15px}.ms-thumbs{grid-template-columns:repeat(4,1fr)}.ms-rel-grid{display:flex;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px 10px}.ms-rel{flex:0 0 60%}}
+.ms-main.is-photo img,.ms-thumb.is-photo img,.shop-card__media.is-photo img{object-fit:cover}
+.shop-card__media.is-logo img,.shop-card__media.is-logo svg{width:42%!important;height:auto!important;max-height:50%;opacity:.8}
+.shop-card__media.is-logo .brand-wordmark{font-size:16px}

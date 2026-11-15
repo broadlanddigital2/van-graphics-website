@@ -632,7 +632,36 @@ for s in SERVICES:
          + ribbon + core_sections(s, lambda rows: repair_block('vehicle') + faq(rows, core=True)),
          s['image'],schema,enquiry(s,SERVICES,PHONE,TEL,EMAIL,QUOTE))
 
+from model_shop import product_page as _product_page
+from core_pages import shop_families as _shop_families, brand_img as _brand_img
+from vehicle_content import MODEL_COPY as _MODEL_COPY
+_shop_done = set()
+for _bkey, _blabel in VAN_BRANDS:
+    _fams = _shop_families(_bkey, _blabel)
+    for _f in _fams:
+        _copy = _MODEL_COPY.get(_f['dedicated']) if _f['dedicated'] else None
+        _faqs = (_copy[3] if _copy else []) + [
+            (f'How do I choose the right {_f["full"]} variant?', 'Pick the year and body style that match your van. If you are not sure, send the registration with your enquiry and we will check it.'),
+            (f'Are the graphics prices fitted?', 'The graphics price covers the designed vinyl graphics for your variant. Fitting at our Norwich workshop is added to your written quote.'),
+            (f'Can I get a half or full wrap on my {_f["full"]}?', 'Yes. Choose half wrap or full wrap and send your details; wraps are quoted per van once we know the coverage and artwork.')]
+        _others = [o for o in _fams if o is not _f]
+        _desc = (f'{_f["full"]} graphics and wraps: choose your variant, then simple vinyl graphics from £{_f["from_price"]} + VAT or a quoted half or full wrap. Designed and fitted in Norwich.'
+                 if _f['from_price'] else f'{_f["full"]} graphics and wraps, designed around your variant and fitted in Norwich.')
+        _schema = {'@context':'https://schema.org','@graph':[
+            {'@type':'ProductGroup','name':f'{_f["full"]} van graphics','productGroupID':_f['slug'],'brand':{'@type':'Brand','name':'Get It Wrapt'},'variesBy':['Vehicle year','Body style'],
+             'hasVariant':[{'@type':'Product','name':f'{_blabel} {v["model"]} graphics','sku':v['sku'],
+                            'offers':{'@type':'Offer','priceCurrency':'GBP','price':v['prices'].get('single'),'availability':'https://schema.org/InStock',
+                                      'priceSpecification':{'@type':'UnitPriceSpecification','price':v['prices'].get('single'),'priceCurrency':'GBP','valueAddedTaxIncluded':False}}}
+                           for v in _f['variants'] if v['prices'].get('single')]},
+            {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in _faqs]}]}
+        page(_f['path'], f'{_f["full"]} Graphics & Wraps | Get It Wrapt', _desc,
+             f'<span hidden data-quote-vehicle="{escape(_f["full"])}"></span>' + _product_page(_f, _blabel, _bkey, _brand_img(_bkey, _blabel, 90), _others, _copy)
+             + care_upsell(_f['full']) + repair_block(_f['full']) + faq(_faqs),
+             schema=_schema)
+        support_urls.append(_f['path'])
+        if _f['dedicated']: _shop_done.add(_f['dedicated'])
 for key,(name,category,description) in MODELS.items():
+    if key in _shop_done: continue
     path = f'/vehicles/{key}/'
     support_urls.append(path)
     heading = f'{name} graphics and wraps'
