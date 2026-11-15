@@ -242,8 +242,8 @@ OTHER_ICON = ('<svg viewBox="0 0 64 40" aria-hidden="true" focusable="false"><ci
               '<path d="M27 16a5 5 0 1 1 7 4.6c-1.4.6-2 1.4-2 2.9V25" fill="none" stroke="#273b4b" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="30" r="1.9" fill="#273b4b"/></svg>')
 
 
-def brand_card(href, logo, name, action):
-    return (f'<a class="brand-card" href="{href}" role="listitem"><span class="brand-card__logo">{logo}</span>'
+def brand_card(href, logo, name, action, photo=False):
+    return (f'<a class="brand-card" href="{href}" role="listitem"><span class="brand-card__logo{" has-photo" if photo else ""}">{logo}</span>'
             f'<span class="brand-card__copy"><strong>{escape(name)}</strong><b>{action} <span aria-hidden="true">→</span></b></span></a>')
 
 
@@ -254,9 +254,20 @@ def brand_img(key, label, size=480):
     return f'<span class="brand-wordmark" aria-hidden="true">{escape(label)}</span>'
 
 
+def brand_photo(key, label):
+    """Brand card picture: the brand's best-known van in the white studio style (assets/brand-cards/<key>.webp,
+    renamed to its keyword name on build) with the brand's logo as a small badge; the logo tile if there is no photo."""
+    from image_names import resolve as _res
+    if not _res(f'dist/assets/brand-cards/{key}.webp').exists():
+        return None
+    logo = brand_logo(key)
+    badge = f'<span class="brand-card__badge"><img src="{logo}" alt="" width="64" height="64" decoding="async"></span>' if logo else ''
+    return f'<img class="brand-card__photo" src="/assets/brand-cards/{key}.webp" alt="{escape(label)} van graphics Norwich" width="900" height="540" loading="lazy" decoding="async">{badge}'
+
+
 def vehicle_picker():
-    """Manufacturer grid in the Race Car Graphics style: square logo tiles, 4 across, each opening a brand page."""
-    cards = ''.join(brand_card(f'/vehicles/{key}/', brand_img(key, label), label, 'View models') for key, label in VAN_BRANDS)
+    """Manufacturer grid in the Race Car Graphics style: a card per make (studio photo of its best-known van), each opening a brand page."""
+    cards = ''.join(brand_card(f'/vehicles/{key}/', brand_photo(key, label) or brand_img(key, label), label, 'View models', photo=bool(brand_photo(key, label))) for key, label in VAN_BRANDS)
     cards += brand_card('#quote', OTHER_ICON, 'Other makes', 'Tell us what you drive')
     return f'''<div class="vehicle-picker">
     <p>Pick the make of your van, then the model, for layout tips that suit its panels.</p>

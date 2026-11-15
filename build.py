@@ -784,7 +784,8 @@ for _bkey, _blabel in VAN_BRANDS:
     _fams = _shop_families(_bkey, _blabel)
     from core_content import brand_logo as _brand_logo
     _blogo = _brand_logo(_bkey) or ''
-    VEH_INDEX.append({'t': 'b', 'n': f'{_blabel} van graphics', 'k': _blabel, 'p': f'/vehicles/{_bkey}/', 'i': _blogo, 'd': f'{len(_fams)} models' if _fams else 'All models'})
+    _bphoto = f'/assets/brand-cards/{_bkey}.webp' if _resolve(f'dist/assets/brand-cards/{_bkey}.webp').exists() else _blogo
+    VEH_INDEX.append({'t': 'b', 'n': f'{_blabel} van graphics', 'k': _blabel, 'p': f'/vehicles/{_bkey}/', 'i': _bphoto, 'd': f'{len(_fams)} models' if _fams else 'All models'})
     for _f in _fams:
         _thumb = _family_image(_blabel, _f['name']) or (_f['images'][0] if _f['images'] else _blogo)
         VEH_INDEX.append({'t': 'm', 'n': _f['full'], 'k': _blabel + ' ' + _f['name'], 'p': _f['path'], 'i': _thumb,
