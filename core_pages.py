@@ -197,6 +197,21 @@ def reviews(data=None):
     <a class="text-link" href="{GOOGLE_URL}" target="_blank" rel="noopener">Read the reviews on Google {ARROW}</a></div>
     <div class="review-cards"><p class="review-cards__label">What customers mention most</p>{cards}</div></div>''')
 
+def quote_modal(services, email, phone, tel):
+    """Pop-up quote form opened by every 'Get a quote' link (#quote). Posts to the CRM like the main form."""
+    options = '<option>General enquiry</option>' + ''.join(f'<option>{s["label"]}</option>' for s in services)
+    return f'''<dialog class="quote-modal" id="quote-modal" aria-labelledby="quote-modal-title">
+    <form class="price-quote quote-modal__form js-enquiry" data-recipient="{email}" data-context="Quote pop-up">
+    <button type="button" class="quote-modal__close" aria-label="Close" data-close-modal>×</button>
+    <div class="price-quote__head"><p class="eyebrow accent">Free quote</p><h3 id="quote-modal-title">Tell us about your van.</h3><p>We reply with design ideas and a fitted price in writing. Prefer to talk? Call <a href="{tel}">{phone}</a>.</p></div>
+    <label>Service<select name="service">{options}</select></label>
+    <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
+    <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label><label>Vehicle make and model<input name="vehicle" maxlength="120" placeholder="e.g. Ford Transit Custom"></label></div>
+    <div class="field-row"><label>Vehicle registration (optional)<input name="registration" maxlength="10" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. AB12 CDE" class="reg-input"></label><label>Postcode (optional)<input name="postcode" autocomplete="postal-code" maxlength="10" placeholder="e.g. NR6 6AQ"></label></div>
+    <label>Project details<textarea name="details" rows="3" maxlength="1200" required placeholder="What would you like on the van?"></textarea></label>
+    <div class="price-quote__foot"><button class="btn" type="submit">Submit request {ARROW}</button><a class="text-link" href="/privacy-policy/">Privacy policy</a></div>
+    <p class="enquiry-status" role="status" hidden></p></form></dialog>'''
+
 def enquiry(service, services, phone, tel, email, quote_url, *, context='', contact=False):
     options = '' if service else '<option>General enquiry</option>'
     options += ''.join(f'<option{" selected" if item == service else ""}>{item["label"]}</option>' for item in services)

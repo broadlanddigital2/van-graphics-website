@@ -307,3 +307,33 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
     setTimeout(() => form.querySelector('[name=name]').focus({ preventScroll: true }), 500);
   });
 });
+
+/* Quote pop-up: every "Get a quote" link (#quote) opens a modal form instead of scrolling to the bottom */
+(function () {
+  const modal = document.getElementById('quote-modal');
+  if (!modal || typeof modal.showModal !== 'function') return;
+  let lastFocus = null;
+  function open(service) {
+    lastFocus = document.activeElement;
+    const sel = modal.querySelector('[name=service]');
+    if (service && sel) [...sel.options].forEach((o) => { if (o.text === service) sel.value = o.value || o.text; });
+    modal.showModal();
+    document.documentElement.classList.add('modal-open');
+    setTimeout(() => modal.querySelector('[name=name]').focus(), 50);
+    try { (window.dataLayer = window.dataLayer || []).push({ event: 'quote_popup_open' }); } catch (e) {}
+  }
+  function close() { modal.close(); }
+  modal.addEventListener('close', () => { document.documentElement.classList.remove('modal-open'); if (lastFocus) lastFocus.focus(); });
+  modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('[data-close-modal]')) close(); });
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href$="#quote"]');
+    if (!a || a.closest('#quote-modal') || e.metaKey || e.ctrlKey) return;
+    const url = new URL(a.href, location.href);
+    if (url.pathname !== location.pathname && url.pathname !== '/contact/') return;
+    if (location.pathname === '/contact/' && url.pathname === '/contact/') return;
+    e.preventDefault();
+    const card = a.closest('[data-service]');
+    open(card ? card.dataset.service : (document.querySelector('#service-enquiry [name=service] option[selected]') || {}).text);
+  });
+  if (location.hash === '#quote-popup') open();
+})();
