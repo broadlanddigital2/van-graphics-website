@@ -39,7 +39,7 @@ def families(brand_key, label, family_pages, image_for):
         if not big and ours:
             fam_full = Path('dist' + ours.replace('/thumbs/', '/families/'))
             big = ['/' + str(fam_full).removeprefix('dist/')] if fam_full.exists() else [ours]
-        images = big + f['images']
+        images = big  # only Get It Wrapt's own photos; Race Car Graphics product images are not used here
         prices = [v['prices'].get('single') for v in f['variants'] if v['prices'].get('single')]
         out.append(dict(name=display, full=f'{label} {display}', slug=f['slug'], path=path, dedicated=dedicated,
                         images=images, variants=f['variants'], rcg_url=f.get('rcg_url'), from_price=min(prices) if prices else None))
@@ -54,8 +54,8 @@ def variant_label(v):
 def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None):
     """Shop-style model page. copy = (intro, panels, tip, faqs) bespoke text when we have it."""
     full = escape(fam['full'])
-    imgs = fam['images'] or ['/assets/vehicles/thumbs/placeholder.webp']
-    main = imgs[0]
+    imgs = fam['images']
+    main = imgs[0] if imgs else ''
     thumbs = ''.join(f'<button type="button" class="ms-thumb{" is-active" if i == 0 else ""}{"" if "/rcg/" in src else " is-photo"}" data-src="{src}" aria-label="Show image {i + 1}"><img src="{src}" alt="" loading="lazy"></button>'
                      for i, src in enumerate(imgs[:6])) if len(imgs) > 1 else ''
     variants = fam['variants']
@@ -71,7 +71,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
                                            f'matching template rather than a generic van shape. Tell us about roof racks, ladders or bodywork changes and we will allow for them.')
     tip = escape(copy[2]) if copy else 'Send a photo of each side and the back with your order, so we can check the template against your actual van before anything is printed.'
     rows = ''.join(f'<tr><td>{escape(variant_label(v))}</td>' + ''.join(f'<td>£{v["prices"].get(k, "–")}</td>' for k, _, _ in COLOURS) + '<td>Quote</td><td>Quote</td></tr>' for v in variants)
-    related = ''.join(f'<a class="ms-rel" href="{o["path"]}"><img src="{(o["images"] or [""])[0]}" alt="" loading="lazy"><span><b>{escape(o["name"])}</b>'
+    related = ''.join(f'<a class="ms-rel" href="{o["path"]}">' + (f'<img src="{o["images"][0]}" alt="" loading="lazy">' if o["images"] else f'<span class="ms-rel__logo">{brand_logo}</span>') + '<span><b>{escape(o["name"])}</b>'
                       f'<small>{("From £" + str(o["from_price"]) + " + VAT") if o["from_price"] else "Quoted"}</small></span></a>' for o in others[:8])
     rcg = ''
     _unused = (f'<p class="ms-diy">Fitting it yourself? Buy the same graphics as a DIY kit from our sister site '
@@ -79,7 +79,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
     return f'''<section class="ms" data-quote-model="{full}">
 <div class="shell ms-grid">
   <div class="ms-gallery">
-    <div class="ms-main{'' if '/rcg/' in main else ' is-photo'}"><img id="ms-main-img" src="{main}" alt="{full} van graphics" width="1200" height="675" fetchpriority="high"></div>
+    <div class="ms-main{' is-photo' if main else ' is-logo'}">{f'<img id="ms-main-img" src="{main}" alt="{full} van graphics" width="1200" height="675" fetchpriority="high">' if main else brand_logo}</div>
     <div class="ms-thumbs">{thumbs}</div>
   </div>
   <div class="ms-buy">

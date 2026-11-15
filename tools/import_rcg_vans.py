@@ -31,15 +31,16 @@ for page in sorted((rcg / 'dist/product').glob('*-van-graphics/index.html')):
     imgs = [i for i in group.get('image', []) if i.endswith('.webp')][:4]
     out.setdefault(make_slug, {'make': make, 'families': []})['families'].append(dict(
         name=fam, slug=slug, rcg_url=group.get('url'), images=imgs, variants=variants))
+# Race Car Graphics product images are not copied: Get It Wrapt pages use only their own photos.
 import shutil
-dest = Path('dist/assets/vehicles/rcg')
+dest = None
 for b in out.values():
     for f in b['families']:
         local = []
         for url in f['images']:
             name = url.rsplit('/', 1)[-1]
             src = rcg / 'dist' / url.split('racecargraphics.uk/', 1)[-1]
-            if src.exists():
+            if dest and src.exists():
                 (dest / f['slug']).mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(src, dest / f['slug'] / name)
                 local.append(f'/assets/vehicles/rcg/{f["slug"]}/{name}')

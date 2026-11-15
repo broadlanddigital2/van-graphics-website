@@ -1156,3 +1156,5 @@ html,body{overflow-x:clip;max-width:100%}
 .acc-card .btn.outline:hover,.checkout .btn.outline:hover,.ms .btn.outline:hover{border-color:var(--lime);color:var(--lime)}
 .wrap-related .btn.outline{color:var(--ink)!important;border-color:var(--ink)!important;background:#fff!important}
 .wrap-related .btn.outline:hover{background:var(--lime)!important;border-color:var(--lime)!important;color:#fff!important}
+.ms-main.is-logo{display:grid;place-items:center}.ms-main.is-logo img,.ms-main.is-logo svg{width:34%;height:auto;opacity:.85}.ms-main.is-logo .brand-wordmark{font-size:28px}
+.ms-rel__logo{display:grid!important;place-items:center;aspect-ratio:16/9;background:#f3f5fb;padding:0!important}.ms-rel__logo img,.ms-rel__logo svg{width:40%;height:auto}
