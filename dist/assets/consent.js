@@ -1,6 +1,6 @@
 /* Wrapt cookie consent: banner, settings panel, and consent-gated scripts (analytics, chat tracking). */
 (function () {
-  var KEY = 'wrapt-cookie-consent', VERSION = 1, GA = document.body.dataset.ga || '';
+  var KEY = 'wrapt-cookie-consent', VERSION = 1, GA = document.body.dataset.ga || '', GTM = document.body.dataset.gtm || '';
   function read() { try { var c = JSON.parse(localStorage.getItem(KEY) || 'null'); return c && c.v === VERSION ? c : null; } catch (e) { return null; } }
   function save(c) { c.v = VERSION; c.ts = new Date().toISOString(); try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} apply(c); }
   var state = read();
@@ -8,6 +8,7 @@
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
   gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', functionality_storage: 'granted', security_storage: 'granted' });
   var gaLoaded = false;
   function loadGA() {
@@ -15,10 +16,17 @@
     var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA); document.head.appendChild(s);
     gtag('js', new Date()); gtag('config', GA);
   }
+  var gtmLoaded = false;
+  function loadGTM() {
+    if (gtmLoaded || !GTM) return; gtmLoaded = true;
+    dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM); document.head.appendChild(s);
+  }
   function apply(c) {
     state = c;
     gtag('consent', 'update', { analytics_storage: c.analytics ? 'granted' : 'denied', ad_storage: c.marketing ? 'granted' : 'denied', ad_user_data: c.marketing ? 'granted' : 'denied', ad_personalization: c.marketing ? 'granted' : 'denied' });
-    if (c.analytics) loadGA();
+    if (c.analytics) { loadGTM(); loadGA(); }
+    dataLayer.push({ event: 'cookie_consent_update', consent_analytics: !!c.analytics, consent_marketing: !!c.marketing });
     if (!c.analytics) { try { localStorage.removeItem('nvg_source'); } catch (e) {} }
     window.__crmBotTracking = !!c.analytics;
     window.dispatchEvent(new CustomEvent('rcg-enquiry-bot-consent', { detail: { tracking: !!c.analytics } }));
