@@ -116,7 +116,7 @@ def header():
     nav = (mega('Services', '/#services', services, ('Vehicle graphics', 'Signwriting, wraps and fleet livery, designed and fitted in Norwich.', 'Get a free quote', '/contact/#quote'))
            + ''
            + mega('Sectors', '/sectors/', sector_cols, (f'{len(SECTOR_LIST)} sectors', 'Design ideas, a recommended package and a price guide for your line of work.', 'All sectors', '/sectors/'))
-           + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on Vulcan Road North. Distances are driving miles.', 'All areas', '/norfolk/'))
+           + mega('Areas', '/norfolk/', area_cols, ('Areas we cover', 'Fitted at our Norwich workshop on St Faiths Road. Distances are driving miles.', 'All areas', '/norfolk/'))
            + mega('Guides', '/#guides', guide_cols, ('Guides', 'Costs, coverage, artwork and aftercare explained before you order.', 'Ask a question', '/contact/'))
            + '<a class="nav-top" href="/gallery/">Gallery</a><a class="nav-top" href="/contact/">Contact</a>')
     mobile = mobile_menu([('services', 'Services', services, ('All services', '/#services')),
@@ -140,8 +140,8 @@ def footer():
                                                  ('Norwich Web Works', 'https://norwichwebworks.co.uk/', 'norwich-web-works-logo.png', ' class="sq"'),
                                                  ('Consensus Media', '', 'consensus-media-logo.svg', '')))
     return f'''<footer class="footer"><div class="shell">
-    <div class="footer-contact"><a href="{TEL}"><span class="fc-ico" aria-hidden="true">☎</span><small>Call the workshop</small><b>{PHONE}</b></a><a href="mailto:{EMAIL}"><span class="fc-ico" aria-hidden="true">✉</span><small>Email us</small><b>{EMAIL}</b></a><a href="/contact/#workshop"><span class="fc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><small>Visit</small><b>Vulcan House, Vulcan Road North, Norwich NR6 6AQ</b></a></div>
-    <div class="footer-grid footer-grid--wide"><div>{brand()}<p>Broadland Digital Ltd<br>Vulcan House, Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</p>
+    <div class="footer-contact"><a href="{TEL}"><span class="fc-ico" aria-hidden="true">☎</span><small>Call the workshop</small><b>{PHONE}</b></a><a href="mailto:{EMAIL}"><span class="fc-ico" aria-hidden="true">✉</span><small>Email us</small><b>{EMAIL}</b></a><a href="/contact/#workshop"><span class="fc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span><small>Visit</small><b>Consensus House, St Faiths Rd, Norwich NR6 7BW</b></a></div>
+    <div class="footer-grid footer-grid--wide"><div>{brand()}<p>Get It Wrapt<br>Consensus House, St Faiths Rd<br>Norwich NR6 7BW</p>
     <p class="footer-hours">Fitting by appointment. Call ahead to book.</p><p><a class="text-link" href="/contact/#workshop">Map &amp; directions {ARROW}</a></p></div>
     <div><h2>Services</h2><ul>{service_links}<li><a href="/design-your-van/">Van Designer</a></li><li><a href="/vehicles/">Van manufacturers</a></li><li><a href="/contact/">Contact</a></li></ul></div>
     <div><h2>Areas</h2><ul>{towns}<li><a href="/norfolk/">All areas</a></li></ul></div>
@@ -152,7 +152,7 @@ def footer():
 
 def quote():
     return f'''<section class="quote" id="quote"><div class="shell quote-grid"><div><p class="eyebrow">Get a free quote</p><h2>What are you driving?</h2><p>Tell us the make and model, how many vehicles you have and the look you’re after. If you have photos or artwork, have them handy.</p><div class="actions">{button('Open our enquiry form', '/contact/#quote', 'dark')}</div></div>
-    <div class="quote-contact"><p><strong>Speak to the Norwich team</strong></p><p><a href="{TEL}">{PHONE}</a></p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p>Vulcan House, Vulcan Road North<br>Norwich NR6 6AQ</p></div></div></section>'''
+    <div class="quote-contact"><p><strong>Speak to the Norwich team</strong></p><p><a href="{TEL}">{PHONE}</a></p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p>Consensus House, St Faiths Rd<br>Norwich NR6 7BW</p></div></div></section>'''
 
 def media(image, alt, caption=''):
     label = f'<div class="hero-caption">{caption}</div>' if caption else ''
@@ -202,7 +202,7 @@ def faq(questions, core=False):
 
 def local():
     places = ''.join(f'<li>{place}</li>' for place in AREAS)
-    return f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Based in Norwich</p><h2>On the road<br>across Norfolk.</h2><p>We work with local trades, independent businesses and fleet operators from our Norwich base on Vulcan Road North.</p>{button('See areas we cover','/norfolk/','dark')}</div><ul class="places">{places}</ul></div></section>'''
+    return f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Based in Norwich</p><h2>On the road<br>across Norfolk.</h2><p>We work with local trades, independent businesses and fleet operators from our Norwich base on St Faiths Road.</p>{button('See areas we cover','/norfolk/','dark')}</div><ul class="places">{places}</ul></div></section>'''
 
 def process():
     steps = [('Send your brief', 'Share the vehicle details, a few photos and any existing logos or artwork.'),('Approve your design', 'Review a visual of the layout on your vehicle so you can see how it reads before production.'),('Book your fitting', 'We make the graphics and arrange fitting in Norwich around an agreed date.')]
@@ -340,7 +340,7 @@ def keyword_band(path, content):
     else:
         cards = ''.join(f'<article><h3>{escape(_cap(x))}</h3><p>{escape(t)}</p></article>' for x, t in zip(sec, (
             'Designed around your exact vehicle, with your name, services and contact details laid out to read clearly from the road.',
-            'Printed in-house on quality cast film and fitted at our Norwich workshop on Vulcan Road North.',
+            'Printed in-house on quality cast film and fitted at our Norwich workshop on St Faiths Road.',
             'Every job starts with a free design visual, so you can see the result before anything is printed.')))
         head = f'{escape(_cap(primary))}.'
         P, S0, S1 = (escape(_proper(x)) for x in (primary, sec[0], sec[1]))
@@ -505,9 +505,9 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     target.write_text(html, encoding='utf-8')
 
 business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Get It Wrapt','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
-            'address':{'@type':'PostalAddress','streetAddress':'Vulcan House, Vulcan Road North','addressLocality':'Norwich','addressRegion':'Norfolk','postalCode':'NR6 6AQ','addressCountry':'GB'},
+            'address':{'@type':'PostalAddress','streetAddress':'Consensus House, St Faiths Rd','addressLocality':'Norwich','addressRegion':'Norfolk','postalCode':'NR6 7BW','addressCountry':'GB'},
             'areaServed':['Norwich','Norfolk'],'image':ORIGIN+'/assets/hero.webp','logo':ORIGIN+'/assets/wrapt-logo.png',
-            'geo':{'@type':'GeoCoordinates','latitude':52.6610201,'longitude':1.2806856},'hasMap':'https://www.google.com/maps/place/Broadland+Digital,+Signs+%26+Graphics/@52.6610201,1.2806856,17z/'}
+            'hasMap':'https://www.google.com/maps/search/?api=1&query=Consensus+House,+St+Faiths+Rd,+Norwich+NR6+7BW'}
 
 home_faq = [('What do van graphics cost in Norwich?','It depends on the vehicle, the amount of coverage and whether the artwork is ready to use. Send the make and model and a description of what you want so we can quote for the job.'),
             ('Can you help design my graphics?','Yes. Our Norwich team can design a livery from your brief or work with existing branding. We’ll discuss what you want drivers and pedestrians to see first.'),
@@ -736,7 +736,7 @@ for key,(name,summary,detail) in GUIDES.items():
          support_page('Vehicle graphics guide',name,[summary,detail],related), hero_image=f'pages/guide-{key}-hero')
 
 places = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])} <small>{t["miles"]} mi · {t["time"]}</small></a></li>' for t in TOWN_LIST)
-coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>We design remotely and fit at our Norwich workshop on Vulcan Road North. Distances below are driving routes to the workshop. If you are arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Broadland+Digital+Vulcan+Road+North+NR6+6AQ">Directions to the Norwich workshop {ARROW}</a></div><ul class="places places-wide">{places}</ul></div></section>'''
+coverage = f'''<section class="section local"><div class="shell local-grid"><div><p class="eyebrow blue">Our service area</p><h2>From Norwich into Norfolk.</h2><p>We design remotely and fit at our Norwich workshop on St Faiths Road. Distances below are driving routes to the workshop. If you are arranging several vehicles, tell us where they are based and which dates work for you.</p><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Consensus+House,+St+Faiths+Rd,+Norwich+NR6+7BW">Directions to the Norwich workshop {ARROW}</a></div><ul class="places places-wide">{places}</ul></div></section>'''
 page('/norfolk/','Vehicle Graphics Across Norfolk | Get It Wrapt',
      'Van graphics, wraps and fleet livery for businesses across Norfolk and Waveney: Norwich, King’s Lynn, Great Yarmouth, Lowestoft, Thetford, Dereham, Cromer and more.',
      hero('Vehicle graphics<span>across Norfolk.</span>','Our Norwich team works with businesses across Norfolk and the Waveney valley. Bring us one work van or talk to us about graphics for a fleet.',generated('pages/norfolk-hub-hero') or 'fleet','Three branded vans on a Norfolk country road' if generated('pages/norfolk-hub-hero') else 'Branded car and van with coordinated graphics','Areas we cover')+coverage+cards(),generated('pages/norfolk-hub-hero') or 'fleet')
@@ -761,7 +761,7 @@ CONTACT_FAQ = [('How quickly will you reply?', 'We aim to reply the same working
        ('Do you work with businesses outside Norwich?', 'Yes. We work with businesses across Norfolk and Waveney. Design and quotes can be done remotely, and vehicles are fitted at our Norwich workshop.'),
        ('What should I send with my enquiry?', 'The make, model and year, a photo of each side and the back, any logo you already use and the words you want on the van.')]
 page('/contact/','Contact & Directions | Get It Wrapt',
-     'Contact Get It Wrapt for signwriting, wraps and fleet graphics. Find the workshop on Vulcan Road North, get directions or ask for a quote.',
+     'Contact Get It Wrapt for signwriting, wraps and fleet graphics. Find the workshop on St Faiths Road, get directions or ask for a quote.',
      '<section class="support-hero contact-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Norwich, Norfolk</p><h1>Contact us.</h1>'
      + '<p>Ask about van signwriting, vehicle wraps, fleet graphics or an upcoming fitting.</p>'
      + '<div class="actions">' + button('Ask a question','#quote') + button('Find the workshop','#workshop','outline') + '</div></div></section>'
@@ -773,7 +773,7 @@ page('/contact/','Contact & Directions | Get It Wrapt',
          ('1. Tell us about the vehicle', 'Give us the make, model and year, the job the van does and how much coverage you’re after: signwriting, a partial wrap or a full wrap.'),
          ('2. Design and price', 'We draw your layout on the exact model and send a visual with a written, fitted price. Changes are made before anything is printed.'),
          ('3. Print and book in', 'Once you approve the proof we print in-house and book a fitting slot that suits your diary.'),
-         ('4. Fit and collect', 'Your vehicle is fitted at our Norwich workshop on Vulcan Road North, with aftercare advice when you collect it.')])
+         ('4. Fit and collect', 'Your vehicle is fitted at our Norwich workshop on St Faiths Road, with aftercare advice when you collect it.')])
      + '</div></div></section>' + faq(CONTACT_FAQ),
      schema={'@context':'https://schema.org','@type':'ContactPage','name':'Contact Get It Wrapt','url':ORIGIN+'/contact/','mainEntity':{'@id':business['@id']}},quote_block='', hero_image='pages/contact-hero')
 

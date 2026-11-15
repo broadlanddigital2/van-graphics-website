@@ -1,7 +1,7 @@
 """Privacy policy and cookie policy for getitwrapt.co.uk."""
 UPDATED = '15 November 2026'
 CONTROLLER = 'Broadland Digital Ltd, trading as Wrapt'
-ADDRESS = 'Vulcan House, Vulcan Road North, Norwich, Norfolk NR6 6AQ'
+ADDRESS = 'Consensus House, St Faiths Rd, Norwich NR6 7BW'
 
 def _section(h, body):
     return f'<h2>{h}</h2>{body}'

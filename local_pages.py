@@ -14,8 +14,8 @@ from core_content import CONTENT, SECTOR_CARDS, SECTORS
 from core_pages import ARROW, asset, case_study, info_cards, link_tiles, pricing, reviews, section, sector_cards, table
 from sector_data import GROUPS, SECTOR_LIST, SECTORS_BY_KEY, cap
 
-ADDRESS = 'Vulcan House, Vulcan Road North, Norwich NR6 6AQ'
-MAP_QUERY = f'Broadland Digital, {ADDRESS}'
+ADDRESS = 'Consensus House, St Faiths Rd, Norwich NR6 7BW'
+MAP_QUERY = ADDRESS
 
 
 def directions(town=None, county='Norfolk'):
@@ -29,7 +29,7 @@ def workshop_map(phone, tel, email, town=None, county='Norfolk'):
     source = 'https://maps.google.com/maps?' + urlencode({'q': MAP_QUERY, 'output': 'embed'})
     return f'''<div class="workshop-map"><div class="workshop-details">
     <p class="eyebrow blue">Norwich workshop</p><h3>Get It Wrapt</h3>
-    <address>Vulcan House<br>Vulcan Road North<br>Norwich, Norfolk NR6 6AQ</address>
+    <address>Consensus House<br>St Faiths Rd<br>Norwich NR6 7BW</address>
     <p><a href="{tel}">{phone}</a><br><a href="mailto:{email}">{email}</a></p>
     <p>Call ahead to confirm your fitting appointment and drop-off arrangements.</p>
     <a class="btn dark" href="{escape(directions(town, county))}">{f'Directions from {escape(town)}' if town else 'Get directions'} {ARROW}</a>
@@ -63,7 +63,7 @@ def process_steps(last):
         ('01', 'Send photos or use the Van Designer', 'Send a photo of each side and the back doors, your logo and the words you want on it. Or start with the free Van Designer.'),
         ('02', 'Approve your proof', 'We send a visual of the layout on your vehicle. Changes are made before anything is printed.'),
         ('03', 'Production', 'Graphics are printed, laminated and cut in-house in Norwich.'),
-        ('04', last, 'Drop the vehicle at Vulcan Road North on the agreed date and collect it branded and ready to work.'),
+        ('04', last, 'Drop the vehicle at our St Faiths Road workshop on the agreed date and collect it branded and ready to work.'),
     ]).replace('class="info-cards"', 'class="info-cards four"', 1)
 
 
@@ -105,7 +105,7 @@ def town_page(key, phone, tel, email):
     focus = t['focus']
     image, alt, _ = SECTOR_CARDS[focus[0]]
 
-    facts = (f'<dl class="fact-list"><div><dt>Distance</dt><dd>{t["miles"]} miles to Vulcan Road North</dd></div>'
+    facts = (f'<dl class="fact-list"><div><dt>Distance</dt><dd>{t["miles"]} miles to our workshop</dd></div>'
              f'<div><dt>Typical drive</dt><dd>About {t["time"]} outside peak hours</dd></div>'
              f'<div><dt>Main roads</dt><dd>{escape(", ".join(t["roads"]))}</dd></div></dl>')
     intro = f'''<div class="intro-grid"><div class="core-prose"><p>{escape(t["intro"])}</p><p>Everything is designed, printed and fitted by our own team in Norwich. You can start with the free <a href="/design-your-van/">Van Designer</a>, send us photos for a quote, or call {phone}.</p></div>{facts}</div>'''

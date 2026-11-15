@@ -144,7 +144,7 @@ def areas_map():
            + ''.join(f'<line class="area-map__ray" x1="{wx}" y1="{wy}" x2="{_xy(*TOWN_COORDS[t["key"]])[0]}" y2="{_xy(*TOWN_COORDS[t["key"]])[1]}"/>' for t in TOWN_LIST)
            + pins + f'<g class="area-map__hq"><rect x="{wx - 6}" y="{wy - 6}" width="12" height="12" transform="rotate(45 {wx} {wy})"/></g></svg>')
     towns = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])}<small>{t["miles"]} mi</small></a></li>' for t in TOWN_LIST)
-    return (f'<div class="areas-grid"><figure class="area-map-wrap">{svg}<figcaption><i class="hq-key"></i>Our workshop, Vulcan Road North, Norwich. '
+    return (f'<div class="areas-grid"><figure class="area-map-wrap">{svg}<figcaption><i class="hq-key"></i>Our workshop, St Faiths Road, Norwich. '
             f'Lines show the towns we serve. Simplified map.</figcaption></figure><div><ul class="area-list">{towns}</ul>'
             f'<p class="core-note"><a class="text-link" href="/norfolk/">All areas we cover {ARROW}</a></p></div></div>')
 
@@ -193,7 +193,7 @@ HOME_FAQ = [
     ('Will vinyl damage my paint?', 'Not on sound factory paint. Vinyl can lift poor-quality resprays or damaged paint, so send photos of any repairs and we will check before fitting.'),
     ('How long does a wrap last?', 'A quality cast vinyl with laminate lasts several years with good care. We give you aftercare advice for the film we fit.'),
     ('Can you help design my graphics?', 'Yes. Our team designs from your brief or works with your existing branding. You can also start with the free Van Designer and we will refine it.'),
-    ('Where are vehicle graphics fitted?', 'At our workshop on Vulcan Road North, Norwich NR6 6AQ. Call 01603 407786 to book a fitting appointment.'),
+    ('Where are vehicle graphics fitted?', 'At our workshop at Consensus House, St Faiths Rd, Norwich NR6 7BW. Call 01603 407786 to book a fitting appointment.'),
     ('Can you do a whole fleet?', 'Yes. We create one master design, adapt it to each make and model, and fit in batches so the fleet keeps working.'),
     ('What areas do you cover?', f'We work with businesses across Norfolk and the Waveney valley, from King’s Lynn to Lowestoft. Fitting is at our Norwich workshop.'),
 ]
