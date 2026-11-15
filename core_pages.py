@@ -80,7 +80,7 @@ def price_matrix(focus=None):
 def price_quote_form(service):
     sizes = ''.join(f'<option>{n}</option>' for _, n, _ in PRICE_SIZES) + '<option>Luton / box van</option><option>Not sure</option>'
     packs = ''.join(f'<option>{p[1]}</option>' for p in PRICE_MATRIX) + '<option>Not sure yet</option>'
-    return (f'''<form class="price-quote js-enquiry" data-recipient="production@broadlanddigital.co.uk" data-context="Price matrix">
+    return (f'''<form class="price-quote js-enquiry" data-recipient="enquiries@getitwrapt.co.uk" data-context="Price matrix">
     <div class="price-quote__head"><p class="eyebrow accent">Quick quote</p><h3>Get a price for your van.</h3><p>Pick a price above or choose below. We reply with a fitted price in writing, VAT shown.</p></div>
     <input type="hidden" name="service" value="{escape(service)}">
     <div class="field-row"><label>Van size<select name="size">{sizes}</select></label><label>Package<select name="package">{packs}</select></label></div>

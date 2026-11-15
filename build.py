@@ -22,7 +22,8 @@ ORIGIN = (_os.environ.get('SITE_ORIGIN') or 'https://getitwrapt.co.uk').rstrip('
 QUOTE = 'https://broadlanddigital.co.uk/get-a-quote/'
 PHONE = '01603 407786'
 TEL = 'tel:+441603407786'
-EMAIL = 'production@broadlanddigital.co.uk'
+EMAIL = 'enquiries@getitwrapt.co.uk'
+GA_ID = ''  # Google Analytics 4 measurement ID (G-XXXXXXX); loads only after analytics consent
 ARROW = '<span class="arr" aria-hidden="true">↗</span>'
 # CRM (Race Car Graphics CRM, business unit "Norwich Vehicle Graphics").
 # Leads: the enquiry forms and the Van Designer post to the 'Norwich Vehicle Graphics Web Forms'
@@ -127,7 +128,7 @@ def footer():
     <div><h2>Sectors</h2><ul>{sectors}<li><a href="/sectors/">All sectors</a></li></ul></div>
     <div><h2>Guides</h2><ul>{guides}</ul></div></div>
     <section class="footer-brands" aria-labelledby="footer-brands-title"><h2 id="footer-brands-title">Group brands</h2><div class="footer-brand-grid">{brands}</div></section>
-    <div class="footnote"><span>© 2026 Norwich Vehicle Graphics, part of Broadland Digital Ltd</span><span><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></span></div></div></footer>'''
+    <div class="footnote"><span>© 2026 Norwich Vehicle Graphics, part of Broadland Digital Ltd</span><span class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/cookie-policy/">Cookie policy</a><button type="button" class="link-btn" data-cookie-settings>Cookie settings</button></span></div></div></footer>'''
 
 def quote():
     return f'''<section class="quote" id="quote"><div class="shell quote-grid"><div><p class="eyebrow">Get a free quote</p><h2>What are you driving?</h2><p>Tell us the make and model, how many vehicles you have and the look you’re after. If you have photos or artwork, have them handy.</p><div class="actions">{button('Open our enquiry form', '/contact/#quote', 'dark')}</div></div>
@@ -476,8 +477,8 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     html = f'''<!doctype html>
     <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{escape(title)}</title><meta name="description" content="{escape(desc)}"><link rel="canonical" href="{url}">
-    <meta property="og:type" content="website"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/{image}.webp"><meta name="theme-color" content="#111b31"><link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}<script src="/assets/site.js" defer></script></body></html>'''
+    <meta property="og:type" content="website"><meta property="og:title" content="{escape(title)}"><meta property="og:description" content="{escape(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/{image}.webp"><meta name="theme-color" content="#111b31"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#0f1a33">
+    <link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-ga="{GA_ID}" data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}<script src="/assets/consent.js"></script><script src="/assets/site.js" defer></script><script id="crm-enquiry-bot" src="https://crm.racecargraphics.uk/rcg-enquiry-bot.js" data-bot-key="4c0cec78-ea9a-46ae-a708-d1af0a68ec02" defer></script></body></html>'''
     target = OUT / url_map().get(path, path).strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
     html = rewrite_urls(sized_images(html))
@@ -574,6 +575,12 @@ page('/design-your-van/', 'Free Van Designer | Design Van Graphics & Wraps Onlin
 
 ribbon = '<div class="ribbon"><div class="shell"><div><b>01</b> Designed in Norwich</div><div><b>02</b> Produced in-house</div><div><b>03</b> Fitted locally</div></div></div>'
 support_urls = []
+from legal_pages import privacy_html, cookie_html
+for _path, _title, _h, _desc, _body in [
+    ('/privacy-policy/', 'Privacy Policy', 'Privacy policy', 'How Wrapt collects, uses and protects your personal information when you use getitwrapt.co.uk or ask for a quote.', privacy_html(EMAIL, PHONE)),
+    ('/cookie-policy/', 'Cookie Policy', 'Cookie policy', 'The cookies and local storage getitwrapt.co.uk uses, why we use them and how to change your cookie settings.', cookie_html())]:
+    page(_path, _title, _desc, f'<section class="section legal"><div class="shell legal-shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{_h}</span></nav><h1>{_h}</h1><div class="legal-body">{_body}</div></div></section>', quote_block='')
+    support_urls.append(_path)
 
 for s in SERVICES:
     data = CONTENT[s['slug']]

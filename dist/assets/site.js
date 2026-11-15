@@ -79,6 +79,7 @@ document.querySelectorAll('#service-enquiry, .js-enquiry').forEach((enquiry) => 
 
 (function captureSource() {
   try {
+    if (!(window.WraptConsent && window.WraptConsent.get().analytics)) return;
     const q = new URLSearchParams(location.search), keep = {};
     ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'].forEach((k) => { if (q.get(k)) keep[k] = q.get(k); });
     if (Object.keys(keep).length) localStorage.setItem('nvg_source', JSON.stringify(keep));
