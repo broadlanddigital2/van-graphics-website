@@ -905,14 +905,14 @@ a.text-link:hover:after{transform:translateX(3px)}
   /* Card rows become horizontal swipe carousels */
   .svc-grid,.option-cards,.home-process,.sector-cards,.why-grid,.group-cards,.guide-cards,.info-cards,.price-cards,.profile-grid,.timeline,.review-cards,.coverage-diagrams,.care-cards,.fam-grid,.core-gallery,.route-notes,.must-list{
     display:flex!important;flex-wrap:nowrap!important;gap:12px!important;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-    margin-left:-20px!important;margin-right:-20px!important;padding:4px 20px 14px!important;scroll-padding-left:20px;grid-template-columns:none!important}
+    margin-left:-18px!important;margin-right:-18px!important;padding:4px 18px 14px!important;scroll-padding-left:18px;grid-template-columns:none!important}
   .svc-grid::-webkit-scrollbar,.option-cards::-webkit-scrollbar,.home-process::-webkit-scrollbar,.sector-cards::-webkit-scrollbar,.why-grid::-webkit-scrollbar,.group-cards::-webkit-scrollbar,.guide-cards::-webkit-scrollbar,.info-cards::-webkit-scrollbar,.price-cards::-webkit-scrollbar,.profile-grid::-webkit-scrollbar,.timeline::-webkit-scrollbar,.review-cards::-webkit-scrollbar,.coverage-diagrams::-webkit-scrollbar,.care-cards::-webkit-scrollbar,.fam-grid::-webkit-scrollbar,.core-gallery::-webkit-scrollbar,.route-notes::-webkit-scrollbar,.must-list::-webkit-scrollbar{display:none}
   .svc-grid>*,.option-cards>*,.home-process>*,.sector-cards>*,.why-grid>*,.group-cards>*,.guide-cards>*,.info-cards>*,.price-cards>*,.profile-grid>*,.timeline>*,.review-cards>.review-card,.coverage-diagrams>*,.care-cards>*,.fam-grid>*,.route-notes>*,.must-list>*{flex:0 0 82%!important;max-width:82%;scroll-snap-align:start;margin:0!important}
   .core-gallery>*{flex:0 0 70%!important;scroll-snap-align:start;margin:0!important}
   .review-cards>.review-cards__label{display:none}
   .info-cards>*{min-height:0}
   /* Brand picker: two rows that swipe sideways */
-  .brand-grid{display:grid!important;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:42%;grid-template-columns:none!important;gap:10px!important;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 -20px!important;padding:4px 20px 14px!important}
+  .brand-grid{display:grid!important;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:42%;grid-template-columns:none!important;gap:10px!important;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 -18px!important;padding:4px 18px 14px!important}
   .brand-grid::-webkit-scrollbar{display:none}
   .brand-grid>*{scroll-snap-align:start}
   /* Town lists as compact chips */
@@ -939,7 +939,7 @@ a.text-link:hover:after{transform:translateX(3px)}
   .core-gallery:not(.four) figcaption{padding:9px 10px;font-size:13px}
   .work-gallery{margin-bottom:26px}
 }
-@media(max-width:700px){.work-grid{display:flex!important;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -20px;padding:0 20px 10px}.work-grid::-webkit-scrollbar{display:none}.work-grid>*{flex:0 0 62%;scroll-snap-align:start}}
+@media(max-width:700px){.work-grid{display:flex!important;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -18px;padding:0 18px 10px}.work-grid::-webkit-scrollbar{display:none}.work-grid>*{flex:0 0 62%;scroll-snap-align:start}}
 @media(max-width:700px){
   .pm-quote{display:none}
   .area-list{display:flex!important;flex-wrap:wrap;gap:8px!important;columns:auto!important}
@@ -951,3 +951,6 @@ a.text-link:hover:after{transform:translateX(3px)}
 .price-cta,.sector-cards a>div>strong:last-child,.cards a strong:last-child,.care-card__go,.group-card__cta{display:inline-flex!important;align-items:center;gap:8px;align-self:flex-start;padding:9px 16px!important;border:1.5px solid currentColor!important;border-radius:999px;font-size:13px!important;font-weight:800;text-decoration:none;width:auto!important;margin-top:auto}
 .price-cta:after,.sector-cards a>div>strong:last-child:after,.cards a strong:last-child:after,.care-card__go:after,.group-card__cta:after{content:"→";font-weight:900}
 .price-cta:hover,.sector-cards a:hover strong:last-child,.cards a:hover strong:last-child,.care-card:hover .care-card__go{background:var(--lime);border-color:var(--lime)!important;color:#fff!important}
+
+/* Never let anything push the page sideways on phones (clip keeps the sticky header working) */
+html,body{overflow-x:clip;max-width:100%}
