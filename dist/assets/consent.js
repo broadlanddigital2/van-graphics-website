@@ -25,7 +25,7 @@
   function apply(c) {
     state = c;
     gtag('consent', 'update', { analytics_storage: c.analytics ? 'granted' : 'denied', ad_storage: c.marketing ? 'granted' : 'denied', ad_user_data: c.marketing ? 'granted' : 'denied', ad_personalization: c.marketing ? 'granted' : 'denied' });
-    if (c.analytics) { loadGTM(); loadGA(); }
+    if (c.analytics) loadGA();
     dataLayer.push({ event: 'cookie_consent_update', consent_analytics: !!c.analytics, consent_marketing: !!c.marketing });
     if (!c.analytics) { try { localStorage.removeItem('nvg_source'); } catch (e) {} }
     window.__crmBotTracking = !!c.analytics;
