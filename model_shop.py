@@ -66,7 +66,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
     fp = fam['from_price']
     colour_cards = ''.join(f'<label class="ms-colour"><input type="radio" name="colour" value="{k}"{" checked" if k == "single" else ""}>'
                            f'<span><b>{t}</b><small>{d}</small><em data-price-for="{k}">£{first.get(k, "")}</em></span></label>' for k, t, d in COLOURS)
-    intro = escape(copy[0]) if copy else (f'Graphics, half wraps and full wraps designed on the exact {full} template: choose your year and body style, '
+    intro = escape(copy[0]) if copy else (f'{full} van graphics, half wraps and full wraps designed on the exact template: choose your year and body style, '
                                            f'then pick simple vinyl graphics at a fixed price or ask us to quote a wrap.')
     panels = escape(copy[1]) if copy else (f'Every {full} variant has its own door gaps, handles, swage lines and glazing, so we lay your graphics out on the '
                                            f'matching template rather than a generic van shape. Tell us about roof racks, ladders or bodywork changes and we will allow for them.')
@@ -86,7 +86,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
   <div class="ms-buy">
     <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/vehicles/">Vans</a><span aria-hidden="true">/</span><a href="/vehicles/{brand_key}-van-graphics/">{escape(label)}</a><span aria-hidden="true">/</span><span>{escape(fam["name"])}</span></nav>
     <div class="ms-brand">{brand_logo}<span>{len(variants)} variant{"s" if len(variants) != 1 else ""}</span></div>
-    <h1>{full} graphics &amp; wraps</h1>
+    <h1>{full} van graphics &amp; wraps</h1>
     <p class="ms-rating"><span aria-hidden="true">★★★★★</span> 5.0 on Google · Designed &amp; fitted in Norwich</p>
     <p class="ms-price"><span class="ms-price__label">Graphics from</span><b>£{fp}</b><small>+ VAT</small></p>
     <p class="ms-lede">{intro}</p>
@@ -119,13 +119,13 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
   </div>
 </div></section>
 <section class="section ms-details"><div class="shell ms-details__grid">
-  <div><p class="eyebrow blue">About this model</p><h2>Graphics planned around the {full}.</h2><p>{panels}</p><div class="tip-box"><b>Fitting tip</b><p>{tip}</p></div></div>
-  <div class="ms-included"><h3>What each option includes</h3>
-    <dl><dt>Simple graphics</dt><dd>Your name, logo, services and contact details with stripes or shapes in one, two or full colour, laid out on the {full} template. Fixed price by variant.</dd>
+  <div><p class="eyebrow blue">About this model</p><h2>Signwriting and graphics planned around the {full}.</h2><p>{panels}</p><div class="tip-box"><b>Fitting tip</b><p>{tip}</p></div></div>
+  <div class="ms-included"><h3>{full} graphics in Norwich: what each option includes</h3>
+    <dl><dt>Simple graphics</dt><dd>{full} van graphics with your name, logo, services and contact details with stripes or shapes in one, two or full colour, laid out on the {full} template. Fixed price by variant.</dd>
     <dt>Half wrap</dt><dd>Printed colour over the rear half, lower sides or a sweep, with lettering on the paint. Quoted once we know the coverage. <a href="/partial-van-wraps-norwich/">About partial wraps</a></dd>
     <dt>Full wrap</dt><dd>Printed imagery or a colour change across almost every painted panel. Quoted per van. <a href="/full-van-wraps-norwich/">About full wraps</a></dd></dl></div>
 </div></section>
-<section class="section ms-table tint"><div class="shell"><p class="eyebrow blue">Variants &amp; prices</p><h2>Every {full} we have templates for.</h2>
+<section class="section ms-table tint"><div class="shell"><p class="eyebrow blue">Variants &amp; prices</p><h2>{full} wrap and graphics prices by variant.</h2>
 <div class="table-wrap"><table class="ms-variants"><thead><tr><th>Variant</th><th>Single colour</th><th>Two colour</th><th>Full colour</th><th>Half wrap</th><th>Full wrap</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p class="core-note">Graphics prices + VAT. Wraps are quoted per van. Can’t see your variant? Send the registration and we’ll check.</p></div></section>
 {f'<section class="section ms-related"><div class="shell"><p class="eyebrow blue">More {escape(label)} models</p><h2>Other {escape(label)} vans.</h2><div class="ms-rel-grid">{related}</div></div></section>' if related else ''}'''

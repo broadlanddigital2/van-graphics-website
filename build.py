@@ -550,6 +550,8 @@ def fit_title(t, limit=60):
     """Keep titles inside what Google shows: drop the brand suffix, then shorten the middle part."""
     if len(t) <= limit:
         return t
+    if t.endswith(' | Get It Wrapt') and len(t[:-len(' | Get It Wrapt')] + ' | Wrapt') <= limit:
+        return t[:-len(' | Get It Wrapt')] + ' | Wrapt'
     for suffix in (' | Get It Wrapt', ' | NVG'):
         if t.endswith(suffix) and len(t[:-len(suffix)]) <= limit:
             return t[:-len(suffix)]
@@ -798,8 +800,8 @@ for _bkey, _blabel in VAN_BRANDS:
             (f'Are the graphics prices fitted?', 'The graphics price covers the designed vinyl graphics for your variant. Fitting at our Norwich workshop is added to your written quote.'),
             (f'Can I get a half or full wrap on my {_f["full"]}?', 'Yes. Choose half wrap or full wrap and send your details; wraps are quoted per van once we know the coverage and artwork.')]
         _others = [o for o in _fams if o is not _f]
-        _desc = (f'{_f["full"]} graphics and wraps: choose your variant, then simple vinyl graphics from £{_f["from_price"]} + VAT or a quoted half or full wrap. Designed and fitted in Norwich.'
-                 if _f['from_price'] else f'{_f["full"]} graphics and wraps, designed around your variant and fitted in Norwich.')
+        _desc = (f'{_f["full"]} van graphics and wraps: choose your variant, then simple vinyl graphics from £{_f["from_price"]} + VAT or a quoted half or full wrap. Designed and fitted in Norwich.'
+                 if _f['from_price'] else f'{_f["full"]} van graphics and wraps, designed around your variant and fitted in Norwich.')
         _schema = {'@context':'https://schema.org','@graph':[
             {'@type':'ProductGroup','name':f'{_f["full"]} van graphics','productGroupID':_f['slug'],'brand':{'@type':'Brand','name':'Get It Wrapt'},'variesBy':['Vehicle year','Body style'],
              'hasVariant':[{'@type':'Product','name':f'{_blabel} {v["model"]} graphics','sku':v['sku'],
@@ -807,7 +809,7 @@ for _bkey, _blabel in VAN_BRANDS:
                                       'priceSpecification':{'@type':'UnitPriceSpecification','price':v['prices'].get('single'),'priceCurrency':'GBP','valueAddedTaxIncluded':False}}}
                            for v in _f['variants'] if v['prices'].get('single')]},
             {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in _faqs]}]}
-        page(_f['path'], f'{_f["full"]} Graphics & Wraps | Get It Wrapt', _desc,
+        page(_f['path'], f'{_f["full"]} Van Graphics & Wraps | Get It Wrapt', _desc,
              f'<span hidden data-quote-vehicle="{escape(_f["full"])}"></span>' + _product_page(_f, _blabel, _bkey, _brand_img(_bkey, _blabel, 90), _others, _copy)
              + care_upsell(_f['full']) + repair_block(_f['full']) + faq(_faqs),
              schema=_schema)
@@ -864,7 +866,7 @@ for key,label in VAN_BRANDS:
 support_urls.append('/vehicles/')
 page('/vehicles/', 'Van Graphics by Manufacturer | Get It Wrapt',
      'Choose your van manufacturer to explore graphics and wraps for Ford, Vauxhall, Volkswagen, Citroën, Peugeot, Mercedes-Benz, Renault, Toyota, Nissan, Iveco and more, fitted in Norwich.',
-     '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Van graphics by manufacturer</p><h1>Select your van brand.</h1></div></section>'
+     '<section class="support-hero"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Van manufacturers</span></nav><p class="eyebrow accent">Select your van brand</p><h1>Van graphics by manufacturer.</h1></div></section>'
      + '<section class="section core-section"><div class="shell">' + vehicle_picker()
      + '<div class="core-prose" style="margin-top:36px"><h2>Graphics planned around your model.</h2><p>Every van has its own panel shapes, door gaps, handles and glazing, so we lay out signwriting and wraps on your exact make and model. Choose your manufacturer above to see the models we work with most, from small vans like the Caddy and Berlingo to large vans such as the Sprinter, Transit and Crafter, and Luton box vans.</p>'
      + '<p>Can’t see your van? No problem. Tell us the make, model, year and wheelbase, add a photo of each side and the back, and we’ll draw up a layout with a fitted price.</p></div></div></section>'
