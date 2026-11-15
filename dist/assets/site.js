@@ -488,3 +488,51 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   }).observe(document.body, { childList: true, characterData: true, subtree: true });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
 })();
+
+/* Vehicle search (like Race Car Graphics): make, model or SKU -> the model page (variant pre-selected). Header car
+   button on desktop, top of the burger menu on phones. Index: /assets/vehicle-index.json, loaded on first use. */
+(() => {
+  let index = null, loading = null;
+  const norm = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const load = () => loading || (loading = fetch('/assets/vehicle-index.json').then((r) => r.json()).then((d) => { index = d.map((x) => ({ ...x, h: norm(x.k + ' ' + x.n + ' ' + (x.s || '')), nn: norm(x.n) })); }).catch(() => { loading = null; }));
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  function find(q) {
+    const words = norm(q).split(' ').filter(Boolean); if (!words.length || !index) return [];
+    const sku = norm(q).replace(/ /g, '');
+    const hits = [];
+    for (const x of index) {
+      if (x.s && norm(x.s) === sku) { hits.push([-10, x]); continue; }
+      if (!words.every((w) => x.h.includes(w))) continue;
+      let score = x.t === 'b' ? 0 : x.t === 'm' ? 1 : 3;
+      if (x.nn.startsWith(words[0])) score -= 0.5;
+      if (words.every((w) => x.nn.includes(w))) score -= 0.5;
+      hits.push([score + x.n.length / 200, x]);
+    }
+    return hits.sort((a, b) => a[0] - b[0]).slice(0, 8).map((h) => h[1]);
+  }
+  function render(box, q) {
+    if (norm(q).length < 2) { box.innerHTML = ''; box.hidden = true; return; }
+    const r = find(q); box.hidden = false;
+    box.innerHTML = r.length ? r.map((x) => `<a href="${esc(x.p)}" role="option"><span class="veh-img">${x.i ? `<img src="${esc(x.i)}" alt="" width="82" height="49" loading="lazy">` : ''}</span><span><strong>${esc(x.n)}</strong><small>${esc(x.s ? x.s + ' · ' + x.d : x.d)}</small></span></a>`).join('')
+      : '<p>No matching vehicles. Try a make, model or SKU, or <a href="#quote">ask for a quote</a>.</p>';
+  }
+  document.querySelectorAll('[data-veh-input]').forEach((input) => {
+    const box = input.closest('.veh-pop, .mm-veh').querySelector('.veh-results');
+    input.addEventListener('focus', load);
+    input.addEventListener('input', () => { const q = input.value; (index ? Promise.resolve() : load()).then(() => { if (input.value === q) render(box, q); }); });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { const a = box.querySelector('a[href]'); if (a) { e.preventDefault(); location.href = a.href; } }
+      if (e.key === 'Escape') closePop();
+    });
+  });
+  const wrap = document.querySelector('.veh-find'), btn = wrap && wrap.querySelector('.head-veh'), pop = wrap && wrap.querySelector('.veh-pop');
+  function closePop() { if (!pop) return; pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+  if (btn) {
+    btn.addEventListener('click', () => { const open = pop.hidden; pop.hidden = !open; btn.setAttribute('aria-expanded', String(open)); if (open) { load(); setTimeout(() => pop.querySelector('input').focus(), 0); } });
+    pop.querySelector('.veh-x').addEventListener('click', closePop);
+    document.addEventListener('pointerdown', (e) => { if (!pop.hidden && !wrap.contains(e.target)) closePop(); });
+  }
+  // Model page opened from a variant result: pre-select that variant.
+  const sku = new URLSearchParams(location.search).get('sku'), sel = document.querySelector('.ms [name=variant]');
+  if (sku && sel) { const o = [...sel.options].find((x) => x.dataset.sku === sku); if (o) { sel.value = o.value; sel.dispatchEvent(new Event('change', { bubbles: true })); } }
+})();

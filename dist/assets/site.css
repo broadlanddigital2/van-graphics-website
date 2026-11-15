@@ -1199,3 +1199,29 @@ html[data-vat="inc"] .ms-sum-inc{display:none}
 .ms-rel__logo img,.ms-rel__logo svg{aspect-ratio:auto;object-fit:contain;width:40%!important}
 .ms-rel>span:last-child{flex:1;align-content:start}
 @media(max-width:560px){.ms-rel-grid{grid-template-columns:1fr 1fr;gap:10px}.ms-rel>span:last-child{padding:10px 11px}.ms-rel b{font-size:14px}.ms-rel small{font-size:12px}}
+
+/* Vehicle search (make, model or SKU) */
+.veh-find{position:relative}
+.head-veh{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 13px;border-radius:12px;border:1px solid #ffffff33;background:#ffffff0d;color:#fff;font:inherit;font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap}
+.head-veh svg,.veh-field svg{width:20px;height:20px;flex:0 0 20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.head-veh:hover,.head-veh[aria-expanded="true"]{border-color:var(--lime);color:var(--lime)}
+.main-head.is-stuck .head-veh{height:36px}
+.veh-pop{position:absolute;right:0;top:calc(100% + 10px);width:min(440px,calc(100vw - 32px));background:#fff;color:var(--ink);border-radius:14px;box-shadow:0 24px 60px rgba(8,14,30,.35);padding:10px;z-index:90}
+.veh-pop[hidden]{display:none}
+.veh-field{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 6px 0 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#56607a}
+.veh-field input{flex:1;min-width:0;height:46px;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:16px}
+.veh-x{width:36px;height:36px;border:0;border-radius:8px;background:#eef1f6;color:#4b5570;font-size:22px;line-height:1;cursor:pointer}
+.veh-results{margin-top:8px;max-height:min(60vh,460px);overflow-y:auto}
+.veh-results[hidden],.veh-results:empty{display:none}
+.veh-results a{display:grid;grid-template-columns:82px 1fr;gap:12px;align-items:center;padding:8px;border-radius:10px;color:var(--ink);text-decoration:none}
+.veh-results a:hover,.veh-results a:focus-visible{background:#f3f5fb;outline:none}
+.veh-img{display:block;width:82px;height:49px;border-radius:6px;background:#eceef2;overflow:hidden}
+.veh-img img{width:100%;height:100%;object-fit:cover;display:block}
+.veh-results strong,.veh-results small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.veh-results strong{font-size:14px}.veh-results small{margin-top:2px;font-size:12px;color:#65708a}
+.veh-results p{margin:0;padding:14px 8px;font-size:14px;color:#56607a}.veh-results p a{display:inline;padding:0;color:var(--lime);font-weight:700}
+@media(max-width:1500px){.head-veh span{display:none}.head-veh{width:42px;padding:0;justify-content:center}.main-head.is-stuck .head-veh{width:36px}}
+@media(max-width:850px){.veh-find{display:none}}
+.mm-veh{padding:4px 0 10px}
+.mm-veh .veh-results{background:#fff;border-radius:10px;padding:4px}
+.veh-img img[src*="/brands/"]{object-fit:contain;padding:4px;background:#fff}

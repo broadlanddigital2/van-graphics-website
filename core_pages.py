@@ -286,6 +286,8 @@ def family_image(label, fam):
     (dist/assets/vehicles/families/<brand>-<family>.webp). Thumbnails are made at 720px wide on build."""
     key = FAMILY_PAGES.get((label.lower(), fam.lower())) or FAMILY_IMAGE_ALIAS.get((label.lower(), fam.lower()))
     for src in ([Path(f'dist/assets/vehicles/{key}-side.webp')] if key else []) + [Path(f'dist/assets/vehicles/families/{family_slug(label, fam)}.webp')]:
+        from image_names import resolve as _res
+        src = _res(src)
         if src.exists():
             thumb = Path('dist/assets/vehicles/thumbs') / src.name
             if not thumb.exists() or thumb.stat().st_mtime < src.stat().st_mtime:

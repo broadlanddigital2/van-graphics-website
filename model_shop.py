@@ -5,6 +5,7 @@ import json, re
 from html import escape
 from pathlib import Path
 
+from image_names import resolve
 DATA = json.loads(Path('rcg_vans.json').read_text(encoding='utf-8'))
 KEYMAP = {'mercedes-benz': 'mercedes'}
 RENAME = {('ford', 'custom'): 'Transit Custom', ('ford', 'connect'): 'Transit Connect', ('ford', 'courier'): 'Transit Courier',
@@ -35,10 +36,10 @@ def families(brand_key, label, family_pages, image_for):
         dedicated = family_pages.get((label.lower(), display.lower()))
         path = f'/vehicles/{dedicated}/' if dedicated else f'/vehicles/{f["slug"]}-van-graphics/'
         ours = image_for(label, display)
-        big = [f'/assets/vehicles/{dedicated}-{v}.webp' for v in ('hero', 'side') if dedicated and Path(f'dist/assets/vehicles/{dedicated}-{v}.webp').exists()]
+        big = [f'/assets/vehicles/{dedicated}-{v}.webp' for v in ('hero', 'side') if dedicated and resolve(f'dist/assets/vehicles/{dedicated}-{v}.webp').exists()]
         if not big and ours:
             fam_full = Path('dist' + ours.replace('/thumbs/', '/families/'))
-            big = ['/' + str(fam_full).removeprefix('dist/')] if fam_full.exists() else [ours]
+            big = ['/' + str(resolve(fam_full)).removeprefix('dist/')] if resolve(fam_full).exists() else [ours]
         images = big  # only Get It Wrapt's own photos; Race Car Graphics product images are not used here
         prices = [v['prices'].get('single') for v in f['variants'] if v['prices'].get('single')]
         out.append(dict(name=display, full=f'{label} {display}', slug=f['slug'], path=path, dedicated=dedicated,

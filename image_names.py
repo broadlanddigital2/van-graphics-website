@@ -51,3 +51,25 @@ IMAGE_RENAMES = {
     'signwriting': 'van-signwriting-cut-vinyl-lettering',
     'wraps': 'printed-van-wrap-norwich',
 }
+
+
+# Vehicle images get keyword file names (the model or brand page's search phrase), added by build.py at start-up
+# (vehicle_image_names). Code keeps using the original stems; resolve() finds whichever file is on disk, so an image
+# dropped in under its original name still works; the next build renames it to its keyword name.
+from pathlib import Path as _P
+
+def resolve(path):
+    """Path (str or Path) of an asset under dist/: the file itself, or its renamed file if that is the one on disk."""
+    p = _P(path)
+    if p.exists():
+        return p
+    s = str(p).replace('\\', '/')
+    i = s.find('dist/assets/')
+    if i >= 0 and s.endswith('.webp'):
+        stem = s[i + len('dist/assets/'):-5]
+        new = IMAGE_RENAMES.get(stem)
+        if new:
+            q = _P(s[:i] + 'dist/assets/' + new + '.webp')
+            if q.exists():
+                return q
+    return p

@@ -103,7 +103,7 @@ def mobile_menu(sections):
     return (f'<div class="mm-panel mm-root" id="mm-root"><ul>{top}</ul>'
             f'<div class="mm-cta"><a class="btn" href="/contact/#quote">Get a free quote <span class="arr">→</span></a><a class="btn outline" href="{TEL}">Call {PHONE}</a><a class="btn outline" href="/account/">My account &amp; points</a></div></div>{panels}')
 
-MM_SEARCH = '<div class="mm-search" data-ask-ai-wrap hidden><button type="button" class="mm-search__box" data-site-search><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>Search vans, wraps, prices…</button><button type="button" class="mm-search__ai" data-ask-ai>Ask AI</button></div>'
+MM_SEARCH = '<div class="mm-veh"><label class="veh-field"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16v-3.5l2-4.5a2 2 0 0 1 1.8-1.2h7.6a2 2 0 0 1 1.6.8L19 11h1.5A1.5 1.5 0 0 1 22 12.5V16"/><path d="M3 16h19"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M6 11h13"/></svg><input type="text" data-veh-input placeholder="Your vehicle: make, model or SKU" aria-label="Find graphics for your vehicle" autocomplete="off" enterkeyhint="search"></label><div class="veh-results" role="listbox"></div></div><div class="mm-search" data-ask-ai-wrap hidden><button type="button" class="mm-search__box" data-site-search><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>Search vans, wraps, prices…</button><button type="button" class="mm-search__ai" data-ask-ai>Ask AI</button></div>'
 
 def header():
     services = [('Services', [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/', 'Selected panels'), ('Full wraps', '/full-van-wraps-norwich/', 'The whole van'), ('Vehicle wraps', '/vehicle-wraps-norwich/', 'Wraps overview'), ('Fleet graphics', '/fleet-graphics-norwich/')]),
@@ -128,7 +128,7 @@ def header():
     return f'''<a class="skip" href="#main">Skip to content</a>
     <div class="utility"><div class="shell"><span class="utility-loc"><i class="dot"></i> Norwich workshop<span class="utility-more"> · Serving Norfolk</span></span><span class="utility-right"><span class="vat-toggle" role="group" aria-label="Show prices"><button type="button" data-vat="ex" aria-pressed="true">Ex VAT</button><button type="button" data-vat="inc" aria-pressed="false">Inc VAT</button></span><a href="{TEL}">Call {PHONE}</a></span></div></div>
     <header class="main-head"><div class="shell">{brand()}<nav class="nav" aria-label="Main navigation">{nav}</nav>
-    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile.replace('<div class="mm-panel mm-root" id="mm-root">', '<div class="mm-panel mm-root" id="mm-root">'+MM_SEARCH, 1)}</nav></details><div class="head-actions"><button type="button" class="head-search" data-site-search hidden aria-label="Search the site"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg><span class="head-search__txt">Search vans, wraps…</span><kbd>/</kbd></button><button type="button" class="head-ai" data-ask-ai hidden aria-label="Ask our AI assistant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>Ask AI</span></button><a class="head-account" href="/account/" aria-label="My account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="sr-only" data-account-label>Sign in</span></a><a class="head-basket" href="/checkout/" aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="head-basket__n" data-basket-count hidden>0</span></a><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></div></header>'''
+    <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile.replace('<div class="mm-panel mm-root" id="mm-root">', '<div class="mm-panel mm-root" id="mm-root">'+MM_SEARCH, 1)}</nav></details><div class="head-actions"><div class="veh-find"><button type="button" class="head-veh" aria-expanded="false" aria-controls="veh-pop" aria-label="Find graphics for your vehicle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16v-3.5l2-4.5a2 2 0 0 1 1.8-1.2h7.6a2 2 0 0 1 1.6.8L19 11h1.5A1.5 1.5 0 0 1 22 12.5V16"/><path d="M3 16h19"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M6 11h13"/></svg><span>Your van</span></button><div class="veh-pop" id="veh-pop" hidden><label class="veh-field"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16v-3.5l2-4.5a2 2 0 0 1 1.8-1.2h7.6a2 2 0 0 1 1.6.8L19 11h1.5A1.5 1.5 0 0 1 22 12.5V16"/><path d="M3 16h19"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M6 11h13"/></svg><input type="text" data-veh-input placeholder="Your vehicle: make, model or SKU" aria-label="Find graphics for your vehicle" autocomplete="off" enterkeyhint="search"><button type="button" class="veh-x" aria-label="Close vehicle search">×</button></label><div class="veh-results" role="listbox"></div></div></div><button type="button" class="head-search" data-site-search hidden aria-label="Search the site"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg><span class="head-search__txt">Search vans, wraps…</span><kbd>/</kbd></button><button type="button" class="head-ai" data-ask-ai hidden aria-label="Ask our AI assistant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>Ask AI</span></button><a class="head-account" href="/account/" aria-label="My account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="sr-only" data-account-label>Sign in</span></a><a class="head-basket" href="/checkout/" aria-label="Basket"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg><span class="head-basket__n" data-basket-count hidden>0</span></a><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></div></header>'''
 
 def footer():
     service_links = ''.join(f'<li><a href="{h}">{t}</a></li>' for t, h in [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/'), ('Full wraps', '/full-van-wraps-norwich/'), ('Vehicle wraps', '/vehicle-wraps-norwich/'), ('Fleet graphics', '/fleet-graphics-norwich/')])
@@ -259,14 +259,20 @@ def showcase():
       <a class="text-link" href="/vehicle-wraps-norwich/">Explore vehicle wraps {ARROW}</a></div>
     </div></div></section>'''
 
-from image_names import IMAGE_RENAMES
-_RENAME_RE = re.compile(r'/assets/(' + '|'.join(sorted(map(re.escape, IMAGE_RENAMES), key=len, reverse=True)) + r')\.webp')
+from image_names import IMAGE_RENAMES, resolve as _resolve
+_RENAME_RE = None
+def _rename_re():
+    global _RENAME_RE
+    if _RENAME_RE is None:
+        live = [k for k, v in IMAGE_RENAMES.items() if (OUT / 'assets' / f'{v}.webp').exists()]
+        _RENAME_RE = re.compile(r'/assets/(' + '|'.join(sorted(map(re.escape, live), key=len, reverse=True)) + r')\.webp')
+    return _RENAME_RE
 def rename_images(text):
-    return _RENAME_RE.sub(lambda m: f'/assets/{IMAGE_RENAMES[m.group(1)]}.webp', text)
+    return _rename_re().sub(lambda m: f'/assets/{IMAGE_RENAMES[m.group(1)]}.webp', text)
 
 def generated(name):
     """Path stem of a generated hero (see the Hero images brief) if the file has been added."""
-    return name if (OUT / 'assets' / f'{IMAGE_RENAMES.get(name, name)}.webp').exists() else None
+    return name if (OUT / 'assets' / f'{IMAGE_RENAMES.get(name, name)}.webp').exists() or (OUT / 'assets' / f'{name}.webp').exists() else None
 
 _IMG_SIZES = {'/assets/group/broadland-digital-logo.svg': (178, 108), '/assets/group/auto-opulence-logo-white.svg': (289, 94), '/assets/group/consensus-media-logo.svg': (312, 156)}
 def sized_images(html):
@@ -282,7 +288,7 @@ def sized_images(html):
         size = _IMG_SIZES.get(src.group(1))
         if not size:
             try:
-                with _Im.open('dist' + rename_images(src.group(1))) as im:
+                with _Im.open(_resolve('dist' + src.group(1))) as im:
                     size = im.size
             except Exception:
                 return tag
@@ -426,6 +432,98 @@ def rewrite_urls(text):
         text = text.replace(ORIGIN + old, ORIGIN + new).replace('"' + old, '"' + new).replace("'" + old, "'" + new).replace('(' + old, '(' + new)
     return text
 
+def vehicle_image_names():
+    """Keyword file names for vehicle images: each model's images take its page's address (its search phrase),
+    each brand hero its brand page's main phrase. Only the name changes; resolve() finds old or new on disk."""
+    from model_shop import DATA as _VD, clean_name as _clean
+    from core_pages import FAMILY_PAGES as _FP, FAMILY_IMAGE_ALIAS as _FA, family_slug as _fslug
+    from core_content import brand_logo as _bl
+    m, um = {}, url_map()
+    slug = lambda path: um.get(path, path).strip('/').split('/')[-1]
+    for key in MODELS:
+        kw = page_keywords(f'/vehicles/{key}/')
+        if kw:
+            m[f'vehicles/{key}-hero'] = 'vehicles/' + _slug(kw[0])
+            side = _slug(kw[1][0]) if kw[1] else _slug(kw[0]) + '-side'
+            m[f'vehicles/{key}-side'] = 'vehicles/' + side
+            m[f'vehicles/thumbs/{key}-side'] = 'vehicles/thumbs/' + side
+    labels = dict(VAN_BRANDS)
+    for mk, b in _VD.items():
+        for f in b['families']:
+            disp = _clean(mk, f['name'])
+            for label in {b['make'], mk}:
+                fs = _fslug(label, disp)
+                ded = _FP.get((b['make'].lower(), disp.lower()))
+                target = slug(f'/vehicles/{ded}/') if ded else f'{f["slug"]}-van-graphics'
+                m[f'vehicles/families/{fs}'] = 'vehicles/families/' + target
+                m[f'vehicles/thumbs/{fs}'] = 'vehicles/thumbs/' + target
+    for d in ('families', 'thumbs'):
+        for p in (OUT / 'assets' / 'vehicles' / d).glob('*.webp'):
+            st = f'vehicles/{d}/{p.stem}'
+            if st not in m and st not in m.values() and not p.stem.endswith('-van-graphics') and not p.stem.endswith(('-wrap', '-graphics', '-signwriting')):
+                m[st] = f'{st}-van-graphics'
+    for key, label in VAN_BRANDS:
+        kw = page_keywords(f'/vehicles/{key}/')
+        if kw:
+            m[f'vehicles/brands/{key}-hero'] = 'vehicles/brands/' + _slug(kw[0])
+            m[f'brand-cards/{key}'] = 'brand-cards/' + _slug(kw[0])
+    m = {a: b.replace('-van-van-', '-van-') for a, b in m.items()}
+    return {a: b for a, b in m.items() if a != b}
+
+IMAGE_RENAMES.update(vehicle_image_names())
+
+_IMG_KW = None
+def image_keywords(path):
+    """Search phrases for a page's vehicle images, already in display case: the page's own keywords (dedicated model
+    and brand pages), or for the other model pages '<Brand Model> van graphics' and its variations."""
+    global _IMG_KW
+    if _IMG_KW is None:
+        from model_shop import DATA as _VD, KEYMAP as _KM, clean_name as _clean
+        from core_pages import FAMILY_PAGES as _FP
+        labels = dict(VAN_BRANDS); _IMG_KW = {}
+        for mk, b in _VD.items():
+            label = labels.get(_KM.get(mk, mk), b['make'])
+            for f in b['families']:
+                disp = _clean(mk, f['name'])
+                if _FP.get((label.lower(), disp.lower())):
+                    continue
+                full = f'{label} {disp}'
+                vg = f'{full} graphics' if full.lower().endswith(' van') else f'{full} van graphics'
+                _IMG_KW[f'/vehicles/{f["slug"]}-van-graphics/'] = [vg, f'{full} wrap', f'{full} signwriting', f'{full} graphics Norwich']
+    kw = page_keywords(path)
+    if kw:
+        return [_cap(kw[0])] + [_cap(x) for x in kw[1] if x]
+    return _IMG_KW.get(path)
+
+def vehicle_alts(path, content):
+    """Vehicle images carry keyword phrases: a card linking to another vehicle page takes that page's main phrase;
+    the page's own vehicle images take its phrases in turn (main phrase first)."""
+    def link(m):
+        target = m.group(1)
+        kws = image_keywords(target) if target != path else None
+        body = m.group(0)
+        if not kws:
+            return body
+        return re.sub(r'<img\b([^>]*src="/assets/vehicles/[^"]*"[^>]*?)\salt="[^"]*"', lambda i: f'<img{i.group(1)} data-kwdone alt="{escape(kws[0])}"', body)
+    content = re.sub(r'<a\b[^>]*\bhref="(/vehicles/[^"#?]*)"[^>]*>.*?</a>', link, content, flags=re.S)
+    own = image_keywords(path)
+    if own:
+        n = [0]
+        def mine(i):
+            tag = i.group(0)
+            if 'data-kwdone' in tag or '/assets/vehicles/' not in tag:
+                return tag
+            k = n[0]; n[0] += 1
+            alt = own[k % len(own)] + (f', view {k + 1}' if k >= len(own) else '')
+            return re.sub(r'\salt="[^"]*"', f' alt="{escape(alt)}"', tag, count=1)
+        content = re.sub(r'<img\b[^>]*>', mine, content)
+    return content.replace(' data-kwdone', '')
+# Images dropped in under their original names take their keyword names now (old addresses redirect).
+for _old, _new in IMAGE_RENAMES.items():
+    _o, _n = OUT / 'assets' / f'{_old}.webp', OUT / 'assets' / f'{_new}.webp'
+    if _o.exists() and not _n.exists():
+        _n.parent.mkdir(parents=True, exist_ok=True); _o.rename(_n)
+
 CRUMB_NAMES = {'norfolk': 'Areas we cover', 'sectors': 'Sectors', 'vehicles': 'Van manufacturers', 'guides': 'Guides'}
 def page_schema(path, title, desc, image, schema):
     """Every page gets a WebPage with a picture and breadcrumbs, merged into any schema it already has."""
@@ -489,6 +587,7 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
         content = keyword_alt(content, kw[0])
         if len([t for t in re.findall(r'<img\b[^>]*>', content) if not re.search(r'logo|/assets/brands/|/assets/group/', t)]) < 3 and path.startswith('/vehicles/') and path != '/vehicles/':
             content = content.replace('<section class="section faq"', job_strip(kw[0]) + '<section class="section faq"', 1)
+    content = vehicle_alts(path, content)
     if kw:
         content = content.replace('<h2>Good to know.</h2>', f'<h2>{escape(_cap(kw[0]))}: your questions.</h2>', 1)
     url = ORIGIN + path
@@ -677,8 +776,21 @@ from model_shop import product_page as _product_page
 from core_pages import shop_families as _shop_families, brand_img as _brand_img
 from vehicle_content import MODEL_COPY as _MODEL_COPY
 _shop_done = set()
+VEH_INDEX = []  # header vehicle search (assets/vehicle-index.json): brands, model ranges and every variant with its SKU
+from core_pages import family_image as _family_image
 for _bkey, _blabel in VAN_BRANDS:
     _fams = _shop_families(_bkey, _blabel)
+    from core_content import brand_logo as _brand_logo
+    _blogo = _brand_logo(_bkey) or ''
+    VEH_INDEX.append({'t': 'b', 'n': f'{_blabel} van graphics', 'k': _blabel, 'p': f'/vehicles/{_bkey}/', 'i': _blogo, 'd': f'{len(_fams)} models' if _fams else 'All models'})
+    for _f in _fams:
+        _thumb = _family_image(_blabel, _f['name']) or (_f['images'][0] if _f['images'] else _blogo)
+        VEH_INDEX.append({'t': 'm', 'n': _f['full'], 'k': _blabel + ' ' + _f['name'], 'p': _f['path'], 'i': _thumb,
+                          'd': (f'From £{_f["from_price"]} + VAT' if _f['from_price'] else 'Quoted') + f' · {len(_f["variants"])} variant' + ('s' if len(_f['variants']) != 1 else '')})
+        for _v in _f['variants']:
+            _pr = _v['prices'].get('single')
+            VEH_INDEX.append({'t': 'v', 'n': _f['full'] + ' ' + ' '.join(_w for _i, _w in enumerate(_v['model'].split()) if not (_i < len(_f['name'].split()) and _w.lower() in _f['name'].lower().split())), 'k': f'{_blabel} {_f["name"]} {_v["model"]} {_v.get("body") or ""}', 's': _v['sku'],
+                              'p': _f['path'] + '?sku=' + _v['sku'], 'i': _thumb, 'd': (f'Graphics £{_pr} + VAT' if _pr else 'Quoted')})
     for _f in _fams:
         _copy = _MODEL_COPY.get(_f['dedicated']) if _f['dedicated'] else None
         _faqs = (_copy[3] if _copy else []) + [
@@ -701,6 +813,7 @@ for _bkey, _blabel in VAN_BRANDS:
              schema=_schema)
         support_urls.append(_f['path'])
         if _f['dedicated']: _shop_done.add(_f['dedicated'])
+(OUT / 'assets' / 'vehicle-index.json').write_text(rename_images(rewrite_urls(json.dumps(VEH_INDEX, ensure_ascii=False, separators=(',', ':')))), encoding='utf-8')
 for key,(name,category,description) in MODELS.items():
     if key in _shop_done: continue
     path = f'/vehicles/{key}/'
@@ -716,7 +829,7 @@ for key,(name,category,description) in MODELS.items():
              + f'We check where the sliding door gap, handles, swage lines, rear glazing and any roof racks fall, then place your name and phone number where they stay readable from the pavement and in traffic.</p>'
              + f'<p>If you are not sure what suits your {escape(name)}, try the free <a href="/design-your-van/">Van Designer</a> or email a picture of each side and the back doors, and we’ll come back with a suggested layout and a fitted price.</p></div>')
     from vehicle_content import MODEL_COPY
-    if Path(f'dist/assets/vehicles/{key}-side.webp').exists():
+    if _resolve(f'dist/assets/vehicles/{key}-side.webp').exists():
         extra = extra.replace('<h2>Planning your', f'<figure class="guide-figure"><img src="/assets/vehicles/{key}-side.webp" alt="{escape(name)} graphics and wraps: side view of a branded {escape(name)}" loading="lazy"><figcaption>Side view of a branded {escape(name)}.</figcaption></figure><h2>Planning your', 1)
     if key in MODEL_COPY:
         extra = extra.replace('<h2>Planning your', f'<div class="brand-tip"><b>Our recommendation</b><p>{escape(MODEL_COPY[key][2])}</p></div><h2>Planning your', 1)
@@ -914,7 +1027,7 @@ for old, new in url_map().items():
     stale = OUT / old.strip('/')
     if stale.is_dir() and old.strip('/') != new.strip('/'):
         import shutil; shutil.rmtree(stale)
-(OUT/'redirects.json').write_text(json.dumps({**url_map(), **{f'/assets/{a}.webp': f'/assets/{b}.webp' for a, b in IMAGE_RENAMES.items()}}, ensure_ascii=False))
+(OUT/'redirects.json').write_text(json.dumps({**url_map(), **{f'/assets/{a}.webp': f'/assets/{b}.webp' for a, b in IMAGE_RENAMES.items() if (OUT / 'assets' / f'{b}.webp').exists()}}, ensure_ascii=False))
 def _h1(path):
     f = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
     try:
