@@ -41,6 +41,7 @@ document.querySelectorAll('#service-enquiry, .js-enquiry').forEach((enquiry) => 
       `Email: ${values.get('email')}`,
       values.get('phone') && `Phone: ${values.get('phone')}`,
       values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`,
+      values.get('registration') && `Registration: ${values.get('registration').toUpperCase()}`,
       values.get('postcode') && `Postcode: ${values.get('postcode')}`,
     ].filter(Boolean);
     const body = [...fields, '', values.get('details')].join('\r\n');
@@ -58,8 +59,8 @@ document.querySelectorAll('#service-enquiry, .js-enquiry').forEach((enquiry) => 
           headers: { 'content-type': 'application/json', 'x-rcg-channel-key': crm.crmKey, 'x-rcg-channel-secret': crm.crmSecret },
           body: JSON.stringify({
             name: values.get('name'), email: values.get('email'), phone: values.get('phone') || '',
-            subject, message: [values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`, values.get('postcode') && `Postcode: ${values.get('postcode')}`, `Service: ${values.get('service')}`, '', values.get('details')].filter((x) => x !== null && x !== false).join('\n'),
-            source_url: location.href, utm_source: source.utm_source || '', utm_medium: source.utm_medium || '', utm_campaign: source.utm_campaign || '', gclid: source.gclid || '',
+            subject, message: [values.get('vehicle') && `Vehicle: ${values.get('vehicle')}`, values.get('registration') && `Registration: ${values.get('registration').toUpperCase()}`, values.get('postcode') && `Postcode: ${values.get('postcode')}`, `Service: ${values.get('service')}`, '', values.get('details')].filter((x) => x !== null && x !== false).join('\n'),
+            registration: (values.get('registration') || '').toUpperCase(), source_url: location.href, utm_source: source.utm_source || '', utm_medium: source.utm_medium || '', utm_campaign: source.utm_campaign || '', gclid: source.gclid || '',
           }),
         });
         if (response.ok) {

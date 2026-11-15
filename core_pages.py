@@ -86,6 +86,7 @@ def price_quote_form(service):
     <div class="field-row"><label>Van size<select name="size">{sizes}</select></label><label>Package<select name="package">{packs}</select></label></div>
     <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
     <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label><label>Vehicle make and model<input name="vehicle" maxlength="120" placeholder="e.g. Ford Transit Custom"></label></div>
+    <label>Vehicle registration (optional)<input name="registration" maxlength="10" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. AB12 CDE" class="reg-input"></label>
     <label>Anything else? (optional)<textarea name="details" rows="2" maxlength="800" placeholder="Logo ready, colours, deadline…"></textarea></label>
     <div class="price-quote__foot"><button class="btn" type="submit">Request my quote {ARROW}</button><a class="text-link" href="#quote">Or send full project details {ARROW}</a></div>
     <p class="enquiry-status" role="status" hidden></p></form>''')
@@ -214,10 +215,10 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     <div class="field-row"><label>Name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email<input type="email" name="email" autocomplete="email" required maxlength="150"></label></div>
     <div class="field-row"><label>Phone (optional)<input type="tel" name="phone" autocomplete="tel" maxlength="30"></label>
     <label>Vehicle make and model{'' if service else ' (optional)'}<input name="vehicle"{vehicle_required} maxlength="120" placeholder="e.g. Ford Transit Custom"></label></div>
-    <label>Postcode (optional)<input name="postcode" autocomplete="postal-code" maxlength="10" placeholder="e.g. NR6 6AQ"></label>
+    <div class="field-row"><label>Vehicle registration (optional)<input name="registration" maxlength="10" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="e.g. AB12 CDE" class="reg-input"></label><label>Postcode (optional)<input name="postcode" autocomplete="postal-code" maxlength="10" placeholder="e.g. NR6 6AQ"></label></div>
     <label>{'How can we help?' if contact else 'Project details'}<textarea name="details" rows="4" maxlength="1200" required placeholder="Tell us what you need"></textarea></label>
     <button class="btn dark" type="submit" disabled>Submit request {ARROW}</button><p id="enquiry-status" role="status" hidden></p>
-    <p class="form-privacy"><a href="https://broadlanddigital.co.uk/privacy-policy/">Privacy policy</a></p>
+    <p class="form-privacy"><a href="/privacy-policy/">Privacy policy</a></p>
     <noscript><p><a href="{quote_url}">Use the web enquiry form</a>.</p></noscript>
     </form></div></section>'''
 
