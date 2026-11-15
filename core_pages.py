@@ -261,7 +261,7 @@ def brand_photo(key, label):
     if not _res(f'dist/assets/brand-cards/{key}.webp').exists():
         return None
     logo = brand_logo(key)
-    badge = f'<span class="brand-card__badge"><img src="{logo}" alt="" width="64" height="64" decoding="async"></span>' if logo else ''
+    badge = f'<span class="brand-card__badge"><img src="{logo}" alt="{escape(label)} logo" width="64" height="64" decoding="async"></span>' if logo else ''
     return f'<img class="brand-card__photo" src="/assets/brand-cards/{key}.webp" alt="{escape(label)} van graphics Norwich" width="900" height="540" loading="lazy" decoding="async">{badge}'
 
 
@@ -293,10 +293,10 @@ def family_slug(label, fam):
     return re.sub(r'[^a-z0-9]+', '-', f'{label} {fam}'.lower().replace('ë', 'e')).strip('-')
 
 def family_image(label, fam):
-    """Card thumbnail for a model family: its model page's side view, or a dropped-in family image
-    (dist/assets/vehicles/families/<brand>-<family>.webp). Thumbnails are made at 720px wide on build."""
+    """Card thumbnail for a model family: its white studio image (dist/assets/vehicles/families/<brand>-<family>.webp),
+    or its model page's side view. Thumbnails are made at 720px wide on build."""
     key = FAMILY_PAGES.get((label.lower(), fam.lower())) or FAMILY_IMAGE_ALIAS.get((label.lower(), fam.lower()))
-    for src in ([Path(f'dist/assets/vehicles/{key}-side.webp')] if key else []) + [Path(f'dist/assets/vehicles/families/{family_slug(label, fam)}.webp')]:
+    for src in [Path(f'dist/assets/vehicles/families/{family_slug(label, fam)}.webp')] + ([Path(f'dist/assets/vehicles/{key}-side.webp')] if key else []):
         from image_names import resolve as _res
         src = _res(src)
         if src.exists():
@@ -346,7 +346,7 @@ def brand_page(key):
     families = van_families(label)
     if shop:
         cards = ''.join(f'<a class="shop-card" href="{f["path"]}"><span class="shop-card__media{"" if (f["images"] and "/rcg/" in f["images"][0]) else (" is-photo" if f["images"] else " is-logo")}">'
-                        + (f'<img src="{f["images"][0]}" alt="{escape(f["full"])} van graphics" loading="lazy">' if f['images'] else brand_img(key, label, 120))
+                        + (f'<img src="{f.get("thumb") or f["images"][0]}" alt="{escape(f["full"])} van graphics" loading="lazy">' if (f.get("thumb") or f['images']) else brand_img(key, label, 120))
                         + f'</span><span class="shop-card__body"><b>{escape(f["full"])}</b><small>{len(f["variants"])} variant{"s" if len(f["variants"]) != 1 else ""}</small>'
                         + f'<em>{("Graphics from £" + str(f["from_price"]) + " + VAT") if f["from_price"] else "Quoted"}</em><i>Choose variant</i></span></a>' for f in shop)
         models_block = f'''<div class="section-head"><div><p class="eyebrow blue">Step 1 · Choose your model</p><h2>{escape(label)} models.</h2></div>

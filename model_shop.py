@@ -37,13 +37,17 @@ def families(brand_key, label, family_pages, image_for):
         path = f'/vehicles/{dedicated}/' if dedicated else f'/vehicles/{f["slug"]}-van-graphics/'
         ours = image_for(label, display)
         big = [f'/assets/vehicles/{dedicated}-{v}.webp' for v in ('hero', 'side') if dedicated and resolve(f'dist/assets/vehicles/{dedicated}-{v}.webp').exists()]
-        if not big and ours:
+        if ours:
             fam_full = Path('dist' + ours.replace('/thumbs/', '/families/'))
-            big = ['/' + str(resolve(fam_full)).removeprefix('dist/')] if resolve(fam_full).exists() else [ours]
+            studio = '/' + str(resolve(fam_full)).removeprefix('dist/') if resolve(fam_full).exists() else None
+            if studio and studio not in big:
+                big.append(studio)  # the white studio shot: after the branded photos on dedicated pages, alone on the rest
+            elif not big:
+                big = [ours]
         images = big  # only Get It Wrapt's own photos; Race Car Graphics product images are not used here
         prices = [v['prices'].get('single') for v in f['variants'] if v['prices'].get('single')]
         out.append(dict(name=display, full=f'{label} {display}', slug=f['slug'], path=path, dedicated=dedicated,
-                        images=images, variants=f['variants'], rcg_url=f.get('rcg_url'), from_price=min(prices) if prices else None))
+                        images=images, thumb=ours, variants=f['variants'], rcg_url=f.get('rcg_url'), from_price=min(prices) if prices else None))
     return sorted(out, key=lambda x: (not x['dedicated'], -len(x['variants']), x['name']))
 
 
@@ -72,7 +76,7 @@ def product_page(fam, label, brand_key, brand_logo, others, copy=None, hero=None
                                            f'matching template rather than a generic van shape. Tell us about roof racks, ladders or bodywork changes and we will allow for them.')
     tip = escape(copy[2]) if copy else 'Send a photo of each side and the back with your order, so we can check the template against your actual van before anything is printed.'
     rows = ''.join(f'<tr><td>{escape(variant_label(v))}</td>' + ''.join(f'<td>£{v["prices"].get(k, "–")}</td>' for k, _, _ in COLOURS) + '<td>Quote</td><td>Quote</td></tr>' for v in variants)
-    related = ''.join(f'<a class="ms-rel" href="{o["path"]}">' + (f'<img src="{o["images"][0]}" alt="{escape(label)} {escape(o["name"])} van graphics" loading="lazy">' if o["images"] else f'<span class="ms-rel__logo">{brand_logo}</span>') + f'<span><b>{escape(o["name"])}</b>'
+    related = ''.join(f'<a class="ms-rel" href="{o["path"]}">' + (f'<img src="{o.get("thumb") or o["images"][0]}" alt="{escape(label)} {escape(o["name"])} van graphics" loading="lazy">' if (o.get("thumb") or o["images"]) else f'<span class="ms-rel__logo">{brand_logo}</span>') + f'<span><b>{escape(o["name"])}</b>'
                       f'<small>{("From £" + str(o["from_price"]) + " + VAT") if o["from_price"] else "Quoted"}</small></span></a>' for o in others[:8])
     rcg = ''
     _unused = (f'<p class="ms-diy">Fitting it yourself? Buy the same graphics as a DIY kit from our sister site '
