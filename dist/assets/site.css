@@ -792,3 +792,8 @@ html{scroll-padding-top:96px}
 .btn.small{min-height:36px;padding:6px 14px;font-size:14px}
 @media(max-width:800px){.cookie-banner{left:10px;right:10px;bottom:10px}.cookie-banner__inner{flex-direction:column;align-items:stretch;gap:14px;padding:18px}.cookie-banner__actions .btn{flex:1}}
 .cookie-panel .btn.outline{color:var(--ink);border-color:#c9d1e3;background:#fff}
+.sitemap-grid{columns:3 260px;column-gap:40px;margin-top:10px}
+.sitemap-group{break-inside:avoid;margin:0 0 30px}
+.sitemap-group h2{font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);margin:0 0 10px}
+.sitemap-group ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.sitemap-group a{color:var(--ink);font-size:15px;text-decoration:none}.sitemap-group a:hover{color:var(--lime);text-decoration:underline}

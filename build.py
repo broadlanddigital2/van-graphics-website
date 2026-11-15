@@ -128,7 +128,7 @@ def footer():
     <div><h2>Sectors</h2><ul>{sectors}<li><a href="/sectors/">All sectors</a></li></ul></div>
     <div><h2>Guides</h2><ul>{guides}</ul></div></div>
     <section class="footer-brands" aria-labelledby="footer-brands-title"><h2 id="footer-brands-title">Group brands</h2><div class="footer-brand-grid">{brands}</div></section>
-    <div class="footnote"><span>© 2026 Get It Wrapt, part of Broadland Digital Ltd</span><span class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/cookie-policy/">Cookie policy</a><button type="button" class="link-btn" data-cookie-settings>Cookie settings</button></span></div></div></footer>'''
+    <div class="footnote"><span>© 2026 Get It Wrapt, part of Broadland Digital Ltd</span><span class="footer-legal"><a href="/privacy-policy/">Privacy policy</a><a href="/cookie-policy/">Cookie policy</a><a href="/sitemap/">Sitemap</a><button type="button" class="link-btn" data-cookie-settings>Cookie settings</button></span></div></div></footer>'''
 
 def quote():
     return f'''<section class="quote" id="quote"><div class="shell quote-grid"><div><p class="eyebrow">Get a free quote</p><h2>What are you driving?</h2><p>Tell us the make and model, how many vehicles you have and the look you’re after. If you have photos or artwork, have them handy.</p><div class="actions">{button('Open our enquiry form', '/contact/#quote', 'dark')}</div></div>
@@ -809,7 +809,37 @@ for old, new in url_map().items():
     if stale.is_dir() and old.strip('/') != new.strip('/'):
         import shutil; shutil.rmtree(stale)
 (OUT/'redirects.json').write_text(json.dumps(url_map(), ensure_ascii=False))
-(OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{ORIGIN}{path}</loc></url>' for path in urls) + '</urlset>\n')
+def _h1(path):
+    f = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
+    try:
+        m = re.search(r'<h1[^>]*>(.*?)</h1>', f.read_text(), re.S)
+        return re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', m.group(1))).replace(' .', '.').strip().rstrip('.') if m else path
+    except Exception:
+        return path
+def _group(path):
+    if path in ('/', '/contact/', '/gallery/', '/design-your-van/'): return 'Main pages'
+    if path in ['/' + s['slug'] + '/' for s in SERVICES]: return 'Services'
+    if path.startswith('/vehicles/'): return 'Vans by make and model'
+    if path.startswith(('/norfolk/', '/van-graphics-')): return 'Areas we cover'
+    if path.startswith('/guides/'): return 'Guides'
+    if path in ('/privacy-policy/', '/cookie-policy/', '/sitemap/'): return 'Legal'
+    if path in ('/sectors/', '/chapter-8-chevron-kits/') or path.endswith(('-graphics/', '-wraps/', '-signwriting/', '-livery/')): return 'Sectors'
+    return 'More pages'
+import html as _html
+_order = ['Main pages', 'Services', 'Sectors', 'Areas we cover', 'Vans by make and model', 'Guides', 'More pages', 'Legal']
+_groups = {}
+for _u in urls:
+    _groups.setdefault(_group(_u), []).append(_u)
+_cols = ''.join(f'<div class="sitemap-group"><h2>{g}</h2><ul>' + ''.join(f'<li><a href="{u}">{escape(_html.unescape(_h1(u)))}</a></li>' for u in sorted(_groups[g], key=lambda u: (u.count('/'), _h1(u)))) + '</ul></div>'
+                for g in _order if g in _groups)
+page('/sitemap/', 'Sitemap', 'Every page on the Get It Wrapt website: services, sectors, areas, vans by make and model, and guides to van graphics.',
+     f'<section class="section legal"><div class="shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Sitemap</span></nav><h1>Sitemap</h1><div class="sitemap-grid">{_cols}</div></div></section>', quote_block='')
+urls.append('/sitemap/')
+import datetime as _dt
+def _lastmod(path):
+    f = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
+    return _dt.date.fromtimestamp(f.stat().st_mtime).isoformat() if f.exists() else _dt.date.today().isoformat()
+(OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join(f'<url><loc>{ORIGIN}{path}</loc><lastmod>{_lastmod(path)}</lastmod></url>' for path in urls) + '</urlset>\n')
 # Everyone may crawl; AI search and assistant crawlers are named so it's clear they're welcome (ChatGPT, Claude,
 # Perplexity, Gemini, Apple Intelligence, Bing/Copilot). On the preview host the Worker replaces this with Disallow: /.
 AI_CRAWLERS = ['OAI-SearchBot', 'ChatGPT-User', 'GPTBot', 'Claude-SearchBot', 'Claude-User', 'ClaudeBot',
