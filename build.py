@@ -104,7 +104,7 @@ def mobile_menu(sections):
             f'<div class="mm-cta"><a class="btn" href="/contact/#quote">Get a free quote <span class="arr">→</span></a><a class="btn outline" href="{TEL}">Call {PHONE}</a></div></div>{panels}')
 
 def header():
-    services = [('Services', [(s['label'], f'/{s["slug"]}/') for s in SERVICES]),
+    services = [('Services', [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/', 'Selected panels'), ('Full wraps', '/full-van-wraps-norwich/', 'The whole van'), ('Vehicle wraps', '/vehicle-wraps-norwich/', 'Wraps overview'), ('Fleet graphics', '/fleet-graphics-norwich/')]),
                 ('Plan your project', [('Van Designer', '/design-your-van/', 'Design your van online, free'), ('Van manufacturers', '/vehicles/', '29 makes covered'), ('Contact & directions', '/contact/')])]
     sector_cols = [(SHORT_GROUPS[g], [(s['name'], f'/sectors/{s["key"]}/') for s in SECTOR_LIST if s['group'] == g]) for g, _, _ in GROUPS]
     third = (len(TOWN_LIST) + 2) // 3
@@ -129,7 +129,7 @@ def header():
     <details class="mobile"><summary aria-label="Menu"><span class="mm-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="mm-label">Menu</span></summary><nav class="mm" aria-label="Mobile navigation">{mobile}</nav></details><a class="head-call" href="{TEL}" aria-label="Call {PHONE}"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>{button('Get a quote', '#quote')}</div></header>'''
 
 def footer():
-    service_links = ''.join(f'<li><a href="/{s["slug"]}/">{s["label"]}</a></li>' for s in SERVICES)
+    service_links = ''.join(f'<li><a href="{h}">{t}</a></li>' for t, h in [('Van signwriting', '/van-signwriting-norwich/'), ('Partial wraps', '/partial-van-wraps-norwich/'), ('Full wraps', '/full-van-wraps-norwich/'), ('Vehicle wraps', '/vehicle-wraps-norwich/'), ('Fleet graphics', '/fleet-graphics-norwich/')])
     towns = ''.join(f'<li><a href="/norfolk/{t["key"]}/">{escape(t["name"])}</a></li>' for t in TOWN_LIST[:15])
     sectors = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS_BY_KEY[k]["name"])}</a></li>' for k in FEATURED_SECTORS)
     guides = ''.join(f'<li><a href="/guides/{k}/">{escape(v[0])}</a></li>' for k, v in GUIDES.items())
@@ -602,6 +602,17 @@ for _path, _title, _h, _desc, _body in [
     page(_path, _title, _desc, f'<section class="section legal"><div class="shell legal-shell"><nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{_h}</span></nav><h1>{_h}</h1><div class="legal-body">{_body}</div></div></section>', quote_block='')
     support_urls.append(_path)
 
+from wrap_pages import WRAP_PAGES, wrap_hero, wrap_body
+from core_pages import section as _section, price_matrix as _pm, price_quote_form as _pqf
+for _w in WRAP_PAGES:
+    _path = '/' + _w['slug'] + '/'
+    _schema = {'@context':'https://schema.org','@graph':[
+        {'@type':'Service','name':_w['title'],'url':ORIGIN+_path,'description':_w['meta_desc'],'provider':{'@id':ORIGIN+'/#business'},'areaServed':['Norwich','Norfolk']},
+        {'@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in _w['faq']]}]}
+    page(_path, _w['meta_title'], _w['meta_desc'],
+         wrap_hero(_w, button) + wrap_body(_w, _section, _pm, _pqf, care_upsell, repair_block, faq),
+         schema=_schema, quote_block=enquiry(None, SERVICES, PHONE, TEL, EMAIL, QUOTE, context=_w['label']))
+    support_urls.append(_path)
 for s in SERVICES:
     data = CONTENT[s['slug']]
     title = s['title'].replace(' in Norwich','<span>in Norwich.</span>')
@@ -613,6 +624,11 @@ for s in SERVICES:
     ]}
     page(path,s['title']+' | Get It Wrapt',s['intro'],
          service_hero(s)
+         + (('<section class="section wrap-split"><div class="shell"><div class="section-head"><div><p class="eyebrow blue">Choose your wrap</p><h2>Partial or full?</h2></div></div><div class="wrap-compare">'
+             + ''.join(f'<a class="wrap-compare__card" href="{h}"><img src="/assets/pages/compare-{k}.webp" alt="{t} on a Ford Transit Custom" loading="lazy" width="1200" height="800"><span class="wrap-compare__body"><b>{t}</b><small>{d}</small><em>Quoted per vehicle</em><i>See {t.lower()}s</i></span></a>'
+                       for k, t, d, h in [('partial', 'Partial wrap', 'Printed colour on the rear half, lower sides or a sweep, with your paint as the background.', '/partial-van-wraps-norwich/'),
+                                          ('full', 'Full wrap', 'Printed imagery or a colour change over almost every painted panel.', '/full-van-wraps-norwich/')])
+             + '</div></div></section>') if s['slug'] == 'vehicle-wraps-norwich' else '')
          + ribbon + core_sections(s, lambda rows: repair_block('vehicle') + faq(rows, core=True)),
          s['image'],schema,enquiry(s,SERVICES,PHONE,TEL,EMAIL,QUOTE))
 
@@ -638,7 +654,7 @@ for key,(name,category,description) in MODELS.items():
                  (f'What do you need to quote for my {name}?', 'Its year, wheelbase and roof height, a photo of each side and the back doors, your logo and the words you want on it.')]
     model_desc = f'{name} graphics and wraps: signwriting, partial and full wraps laid out on your exact model and fitted at our Norwich workshop. Free design and quote.'
     page(path,heading+' | Get It Wrapt',model_desc,
-         support_page('Vehicle model · '+category,heading,[MODEL_COPY[key][0] if key in MODEL_COPY else description, MODEL_COPY[key][1] if key in MODEL_COPY else 'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
+         f'<span hidden data-quote-vehicle="{escape(name)}"></span>' + support_page('Vehicle model · '+category,heading,[MODEL_COPY[key][0] if key in MODEL_COPY else description, MODEL_COPY[key][1] if key in MODEL_COPY else 'Send the model year, wheelbase and photos from both sides and the rear. That gives us a starting point for the proof and helps us spot any existing accessories or damage.'],SERVICES, extra=extra) + care_upsell(name) + repair_block(name) + faq(model_faq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in model_faq]},
          hero_image=f'vehicles/{key}-hero')
 
@@ -659,7 +675,7 @@ for key,label in VAN_BRANDS:
             ]
     page(path, f'{label} Van Graphics Norwich | Get It Wrapt',
          f'{label} van graphics Norwich: signwriting, {label} van wraps and fleet graphics designed around your model and fitted at our workshop. Free quote.',
-         brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),
+         f'<span hidden data-quote-vehicle="{escape(label)} "></span>' + brand_page(key) + care_upsell(f'{label} van') + repair_block(f'{label} van') + faq(bfaq),
          schema={'@context':'https://schema.org','@type':'FAQPage','mainEntity':[{'@type':'Question','name':q,'acceptedAnswer':{'@type':'Answer','text':a}} for q,a in bfaq]},
          hero_image=brand_hero(key))
 support_urls.append('/vehicles/')

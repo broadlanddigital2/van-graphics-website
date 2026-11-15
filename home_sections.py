@@ -69,9 +69,9 @@ def comparison_table():
         ('signwriting', 'graphics', 'Van signwriting', 'is-orange', 'From', '£149', 'small van + VAT', 1, 'Clear and professional',
          [('Coverage', 'Cut letters and logos'), ('Lead time', 'Often fitted in a day'), ('Best for', 'Trades, sole traders and tight budgets')], '/van-signwriting-norwich/'),
         ('partial', 'partial', 'Partial wrap', 'is-cobalt', '', 'Quoted', 'per vehicle', 2, 'Bold colour',
-         [('Coverage', 'Selected panels, about a third to two thirds'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Stronger colour without a full wrap')], '/vehicle-wraps-norwich/#comparison'),
+         [('Coverage', 'Selected panels, about a third to two thirds'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Stronger colour without a full wrap')], '/partial-van-wraps-norwich/'),
         ('full', 'full', 'Full wrap', 'is-dark', '', 'Quoted', 'per vehicle', 3, 'Maximum impact',
-         [('Coverage', 'Most exterior panels'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Photo liveries and colour changes')], '/vehicle-wraps-norwich/'),
+         [('Coverage', 'Most exterior panels'), ('Lead time', 'Confirmed with your quote'), ('Best for', 'Photo liveries and colour changes')], '/full-van-wraps-norwich/'),
     ]
     cards = ''
     for key, diagram, name, tone, pre, price, per, impact, impact_label, specs, href in options:

@@ -353,6 +353,11 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
     const card = a.closest('[data-service]');
     open(card ? card.dataset.service : (document.querySelector('#service-enquiry [name=service] option[selected]') || {}).text);
   });
+  // On brand and model pages, pre-fill the vehicle (e.g. "Ford Transit Custom", or "Ford " on a brand page).
+  const pageVehicle = (document.querySelector('[data-quote-vehicle]') || {}).dataset;
+  if (pageVehicle && pageVehicle.quoteVehicle) {
+    document.querySelectorAll('input[name=vehicle]').forEach((input) => { if (!input.value) input.value = pageVehicle.quoteVehicle; });
+  }
   window.openQuoteModal = (service, details) => { open(service); if (details) { const d = modal.querySelector('[name=details]'); if (d && !d.value) d.value = details; } };
   if (location.hash === '#quote-popup') open();
 })();
