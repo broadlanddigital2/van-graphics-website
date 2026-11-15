@@ -27,7 +27,8 @@ export default {
       // Old addresses (before the keyword URLs) redirect permanently to their new pages.
       const map = await redirects(env, url);
       const path = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
-      if (map[path]) return Response.redirect(new URL(map[path] + url.search + url.hash, url.origin).toString(), 301);
+      const to = map[url.pathname] || map[path];
+      if (to) return Response.redirect(new URL(to + url.search + url.hash, url.origin).toString(), 301);
     }
     if (LIVE_HOSTS.includes(url.hostname)) return response;
     const out = new Response(response.body, response);

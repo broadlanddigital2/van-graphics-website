@@ -227,8 +227,8 @@ def showcase():
     <div id="road-compare" class="road-view">
     <div class="road-render">
       <div class="road-images" role="img" aria-label="Ford Transit Custom MS-RT at a 45-degree angle on white, comparing plain paint with a full printed wrap featuring an orange sports car and a Norfolk coastal landscape">
-        <img class="road-plain" src="/assets/transit-custom-msrt-plain.webp" alt="" width="1440" height="810" loading="lazy">
-        <img class="road-wrapped" src="/assets/transit-custom-msrt-printed-wrap.webp" alt="" width="1440" height="810" loading="lazy">
+        <img class="road-plain" src="/assets/transit-custom-msrt-plain.webp" alt="Plain white Ford Transit Custom MS-RT before wrapping" width="1440" height="810" loading="lazy">
+        <img class="road-wrapped" src="/assets/transit-custom-msrt-printed-wrap.webp" alt="Ford Transit Custom MS-RT with a printed full wrap" width="1440" height="810" loading="lazy">
       </div>
       <div class="road-handle" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6.5 4 12l5.5 5.5M14.5 6.5 20 12l-5.5 5.5"/></svg></span></div>
       <label class="sr-only" for="road-reveal">Full vehicle wrap reveal</label>
@@ -259,9 +259,14 @@ def showcase():
       <a class="text-link" href="/vehicle-wraps-norwich/">Explore vehicle wraps {ARROW}</a></div>
     </div></div></section>'''
 
+from image_names import IMAGE_RENAMES
+_RENAME_RE = re.compile(r'/assets/(' + '|'.join(sorted(map(re.escape, IMAGE_RENAMES), key=len, reverse=True)) + r')\.webp')
+def rename_images(text):
+    return _RENAME_RE.sub(lambda m: f'/assets/{IMAGE_RENAMES[m.group(1)]}.webp', text)
+
 def generated(name):
     """Path stem of a generated hero (see the Hero images brief) if the file has been added."""
-    return name if (OUT / 'assets' / f'{name}.webp').exists() else None
+    return name if (OUT / 'assets' / f'{IMAGE_RENAMES.get(name, name)}.webp').exists() else None
 
 _IMG_SIZES = {'/assets/group/broadland-digital-logo.svg': (178, 108), '/assets/group/auto-opulence-logo-white.svg': (289, 94), '/assets/group/consensus-media-logo.svg': (312, 156)}
 def sized_images(html):
@@ -277,7 +282,7 @@ def sized_images(html):
         size = _IMG_SIZES.get(src.group(1))
         if not size:
             try:
-                with _Im.open('dist' + src.group(1)) as im:
+                with _Im.open('dist' + rename_images(src.group(1))) as im:
                     size = im.size
             except Exception:
                 return tag
@@ -503,7 +508,7 @@ def page(path, title, desc, content, image='hero', schema=None, quote_block=None
     {HEAD_TAGS}<link rel="stylesheet" href="/assets/site.css">{structured}</head><body data-ga="{GA_ID}" data-crm-endpoint="{escape(CRM['endpoint'])}" data-crm-key="{escape(CRM['key'])}" data-crm-secret="{escape(CRM['secret'])}">{header()}<main id="main">{content}{quote_block if quote_block is not None else quote()}</main>{footer()}{quote_modal(SERVICES, EMAIL, PHONE, TEL)}<script src="/assets/consent.js"></script><script src="/assets/site.js" defer></script><script src="/assets/shop.js" defer></script><script id="crm-enquiry-bot" src="https://crm.racecargraphics.uk/rcg-enquiry-bot.js" data-bot-key="4c0cec78-ea9a-46ae-a708-d1af0a68ec02" data-auto-open="teaser" data-teaser-title="Need help?" data-teaser="Quotes and advice on van signwriting, wraps and fleet graphics." data-teaser-points="Free, no-obligation quotes|Designed, printed and fitted in Norwich|Try the free Van Designer" data-teaser-cta="Chat with us" data-teaser-phone="01603 407786" defer></script><script src="https://crm.racecargraphics.uk/embed/site-search.js" data-key="07415fd0b7a829987a906948" defer></script></body></html>'''
     target = OUT / url_map().get(path, path).strip('/') / 'index.html'
     target.parent.mkdir(parents=True, exist_ok=True)
-    html = rewrite_urls(sized_images(html))
+    html = rename_images(rewrite_urls(sized_images(html)))
     target.write_text(html, encoding='utf-8')
 
 business = {'@context':'https://schema.org','@type':'LocalBusiness','@id':ORIGIN+'/#business','name':'Get It Wrapt','url':ORIGIN,'telephone':'+44 1603 407786','email':EMAIL,
@@ -896,7 +901,7 @@ if feed.get('llms'):
         lines += ['', '## Key pages', f'- [Van signwriting]({ORIGIN}/van-signwriting-norwich/)', f'- [Vehicle wraps]({ORIGIN}/vehicle-wraps-norwich/)',
                   f'- [Fleet graphics]({ORIGIN}/fleet-graphics-norwich/)', f'- [Free Van Designer]({ORIGIN}/design-your-van/)', f'- [Contact]({ORIGIN}/contact/)']
         text = '\n'.join(lines) + '\n'
-    (OUT / 'llms.txt').write_text(rewrite_urls(text), encoding='utf-8')
+    (OUT / 'llms.txt').write_text(rename_images(rewrite_urls(text)), encoding='utf-8')
 
 page('/404/', 'Page not found | Get It Wrapt', 'This page could not be found.',
      '<section class="support-hero"><div class="shell"><a class="crumb" href="/">← Home</a><p class="eyebrow accent">Error 404</p><h1>We can’t find that page.</h1></div></section>'
@@ -909,7 +914,7 @@ for old, new in url_map().items():
     stale = OUT / old.strip('/')
     if stale.is_dir() and old.strip('/') != new.strip('/'):
         import shutil; shutil.rmtree(stale)
-(OUT/'redirects.json').write_text(json.dumps(url_map(), ensure_ascii=False))
+(OUT/'redirects.json').write_text(json.dumps({**url_map(), **{f'/assets/{a}.webp': f'/assets/{b}.webp' for a, b in IMAGE_RENAMES.items()}}, ensure_ascii=False))
 def _h1(path):
     f = OUT / path.strip('/') / 'index.html' if path != '/' else OUT / 'index.html'
     try:

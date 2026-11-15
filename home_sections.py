@@ -57,7 +57,7 @@ def service_cards():
         ('Full wraps', 'Printed imagery or a full colour change across the body.', '/vehicle-wraps-norwich/', 'service-tidelark', 'Quoted per vehicle'),
         ('Fleet graphics', 'One design adapted to every make and model, fitted in batches.', '/fleet-graphics-norwich/', 'service-juniper', 'Quoted per fleet'),
     ]
-    items = ''.join(f'''<a class="svc-card" href="{href}"><img src="{asset(img)}" alt="" loading="lazy" width="840" height="473">
+    items = ''.join(f'''<a class="svc-card" href="{href}"><img src="{asset(img)}" alt="{title} example on a van, Norwich" loading="lazy" width="840" height="473">
     <div><span class="svc-price">{price}</span><h3>{title}</h3><p>{copy}</p><strong>Explore {ARROW}</strong></div></a>''' for title, copy, href, img, price in cards)
     return f'<div class="svc-grid">{items}</div><p class="core-note">Race car liveries and motorsport graphics are handled by our sister site, <a href="https://racecargraphics.uk/">Race Car Graphics</a>.</p>'
 
