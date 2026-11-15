@@ -16,7 +16,7 @@ MORE_GUIDES = {
                 ['Partial wrap', 'Printed panels over selected areas', 'Quoted per vehicle'],
                 ['Full wrap', 'Printed design or colour over most panels', 'Quoted per vehicle'],
                 ['Fleet graphics', 'One layout adapted across several vehicles', 'Quoted per fleet']])),
-            ('tip', 'Signwriting prices are Broadland Digital’s published fitted packages, so you know the starting point before you call.'),
+            ('tip', 'Signwriting prices are published fixed packages (all + VAT), so you know the starting point before you call.'),
         ]),
         ('The six things that set the price', [
             ('steps', [('Vehicle size and shape', 'A Luton or long-wheelbase van has more panel area than a small van, and deep panel lines take longer to fit.'),

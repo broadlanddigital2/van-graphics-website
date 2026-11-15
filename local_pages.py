@@ -72,7 +72,7 @@ def process_steps(last):
 def town_questions(t):
     name = t['name']
     return t['questions'] + [
-        (f'How far is the workshop from {name}?', f'Our workshop at {ADDRESS} is about {t["miles"]} miles from {name}, roughly {t["time"]} by car outside peak times.'),
+        (f'Where is your workshop?', f'We are at {ADDRESS}, about {t["miles"]} miles from {name}, roughly {t["time"]} by car outside peak times.'),
         (f'Can I start my quote from {name}?', 'Yes. Send photos, the make and model, the coverage you want and your artwork if you have it, or use the free Van Designer. We agree the design before you bring the vehicle in.'),
         ('How much downtime should I plan?', 'Lettering is often done in a day. Partial and full wraps usually take longer, depending on vehicle size and whether old graphics need removing. We confirm timings with your quote.'),
         ('Do you offer fitting at my premises?', 'Standard fitting is at the Norwich workshop, where temperature and lighting are controlled. If you need on-site fitting, tell us your postcode and requirements and we will discuss what is possible.'),
@@ -87,7 +87,7 @@ def town_hero(t, image, alt, phone, tel):
         image, alt = f'towns/{t["key"]}-hero', f'Branded work van in {t["name"]}'
     name = escape(t['name'])
     chips = ''.join(f'<li>{c}</li>' for c in (f'{t["miles"]} miles to our workshop', f'About {t["time"]} drive', f'Via the {escape(t["roads"][0])}'))
-    focus = ''.join(f'<li><a href="/sectors/{k}/">{escape(SECTORS[k][0])}</a></li>' for k in t['focus'])
+    focus = ''.join(f'<li><a href="/sectors/{k}/"><span>{escape(SECTORS[k][0])}</span><i aria-hidden="true">↗</i></a></li>' for k in t['focus'])
     return f'''<section class="sector-hero town-hero{' is-dedicated' if dedicated else ''}">
     <img class="sector-hero__img" src="{asset(image)}" alt="{escape(alt)}" fetchpriority="high" width="2400" height="1100">
     <div class="shell sector-hero__inner"><div class="sector-hero__copy">
@@ -96,7 +96,7 @@ def town_hero(t, image, alt, phone, tel):
     <p class="lede">{escape(t["lede"])}</p>
     <div class="actions"><a class="btn" href="#quote">Get a free quote{ARROW}</a><a class="btn outline" href="{escape(directions(t["name"], t["county"]))}">Directions from {name}{ARROW}</a></div>
     <ul class="sector-hero__chips">{chips}</ul></div></div>
-    <div class="sector-hero__bar"><div class="shell"><p>Popular in {name}</p><ul>{focus}</ul></div></div></section>'''
+    <div class="sector-hero__bar town-popular"><div class="shell"><p>Popular in {name}</p><ul>{focus}</ul></div></div></section>'''
 
 
 def town_page(key, phone, tel, email):
@@ -120,7 +120,7 @@ def town_page(key, phone, tel, email):
         f'<article id="{k}"><h3>{label}</h3><p>{copy}</p><a class="text-link" href="{href}">{label} for {name} {ARROW}</a></article>'
         for k, label, copy, href in tiles) + '</div>'
 
-    prices = price_cards(None) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
+    prices = price_cards(None) + '<p class="core-note">Signwriting prices are fixed fitted packages, all + VAT. <a href="/van-signwriting-norwich/#pricing">See the full price guide</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
 
     designs = []
     for sector in focus:
@@ -242,7 +242,7 @@ def sector_page(key):
     note = ''
     package_title, package_copy = s['package']
     package = f'<p class="core-prose">{escape(package_copy)}</p><p class="core-note"><a href="/vehicle-wraps-norwich/#comparison">Compare coverage options {ARROW}</a></p>'
-    budget = price_cards(s) + '<p class="core-note">Signwriting prices are Broadland Digital’s <a href="/van-signwriting-norwich/#pricing">published fitted packages</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
+    budget = price_cards(s) + '<p class="core-note">Signwriting prices are fixed fitted packages, all + VAT. <a href="/van-signwriting-norwich/#pricing">See the full price guide</a>. Wraps and fleets get a written quote covering your vehicle size, artwork, film, coverage and VAT.</p>'
     tips = info_cards([(f'{i:02}', escape(a), escape(b)) for i, (a, b) in enumerate(s['tips'], 1)])
     html = page_jumps((('challenge', 'The challenge'), ('must-haves', 'What to include'), ('gallery', 'Designs'), ('package', 'Package'), ('pricing', 'Prices'), ('reviews', 'Reviews'), ('faq', 'FAQs'), ('quote', 'Enquire')))
     html += ''.join([

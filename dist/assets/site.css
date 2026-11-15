@@ -842,3 +842,27 @@ html.mm-open,html.mm-open body{overflow:hidden}
 @media(max-width:650px){.quote-grid{grid-template-columns:minmax(0,1fr)}.quote-grid>*,.quote-card,.quote-contacts>*{min-width:0}.quote-contacts a,.quote-contacts b{overflow-wrap:anywhere}}
 @media(max-width:650px){.repair-card{grid-template-columns:minmax(0,1fr);padding:24px 20px}.repair-card>*{min-width:0}.repair-card__cta .btn{white-space:normal}}
 @media(max-width:480px){.utility .shell{justify-content:center}.utility .shell>a{display:none}}
+/* Town hero: popular sectors as pill buttons */
+.town-popular p{font:800 11px/1.2 inherit;font-family:inherit;letter-spacing:.16em;display:flex;align-items:center;gap:8px}
+.town-popular p:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px #ff0a7833}
+.town-popular ul{gap:8px}
+.town-popular li:before{content:none}
+.town-popular a{display:inline-flex;align-items:center;gap:10px;padding:9px 14px 9px 16px;border-radius:999px;background:#ffffff14;border:1px solid #ffffff2e;color:#fff;font-size:14px;font-weight:800;text-decoration:none;transition:background .15s,border-color .15s,transform .15s;white-space:nowrap}
+.town-popular a i{font-style:normal;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--lime);color:#fff;font-size:12px}
+.town-popular a:hover{background:#ff0a7826;border-color:var(--lime);color:#fff;transform:translateY(-1px)}
+@media(max-width:700px){.town-popular ul{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}.town-popular ul::-webkit-scrollbar{display:none}.town-popular li{flex:none;scroll-snap-align:start}}
+/* On-this-page links: scrolling pill buttons */
+.page-jumps{position:relative}
+.page-jumps .shell{flex-wrap:nowrap;gap:8px;overflow-x:auto;padding:12px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+.page-jumps .shell::-webkit-scrollbar{display:none}
+.page-jumps a{flex:none;scroll-snap-align:start;display:inline-flex;align-items:center;padding:9px 16px;border-radius:999px;background:#fff;border:1.5px solid #d6dcea;color:var(--ink);font-size:14px;font-weight:800;text-decoration:none!important;white-space:nowrap;box-shadow:0 2px 6px #111b310d;transition:border-color .15s,color .15s,background .15s}
+.page-jumps a:hover,.page-jumps a:focus-visible{border-color:var(--lime);color:var(--lime);outline:0}
+.page-jumps a:last-child{background:var(--lime);border-color:var(--lime);color:#fff}
+.page-jumps:after{content:"";position:absolute;right:0;top:0;bottom:1px;width:40px;background:linear-gradient(90deg,#edf1fb00,#edf1fb);pointer-events:none}
+@media(min-width:1000px){.page-jumps:after{display:none}}
+/* Mobile tidy-up */
+@media(max-width:560px){
+  .info-cards,.timeline,.quote-contacts,.field-row,.price-quote .field-row{grid-template-columns:1fr!important}
+  .info-cards article{padding:18px}
+  .quote-contacts a{word-break:break-word}
+}

@@ -208,7 +208,7 @@ def enquiry(service, services, phone, tel, email, quote_url, *, context='', cont
     <p>Send us a few details and we’ll come back with design ideas and a fitted price. Prefer to talk? Call the Norwich team.</p>
     <ul class="quote-ticks"><li>Free design visual on your exact vehicle</li><li>Fitted price in writing, VAT shown</li><li>Every job drawn, printed and fitted at our NR6 workshop</li></ul>
     <div class="quote-contacts"><a href="{tel}"><small>Call</small><b>{phone}</b></a><a href="mailto:{email}"><small>Email</small><b>{email}</b></a></div>
-    <p class="quote-alt"><a class="text-link" href="{quote_url}">Or use the Broadland Digital web form {ARROW}</a></p></div>
+    </div>
     <form id="service-enquiry" class="quote-card" data-recipient="{email}" data-context="{escape(context)}">
     <div class="quote-card__head"><b>Quote request</b><span>Takes about a minute</span></div>
     <label>Service<select name="service">{options}</select></label>
