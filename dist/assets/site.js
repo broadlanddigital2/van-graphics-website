@@ -514,22 +514,25 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
     if (norm(q).length < 2) { box.innerHTML = ''; box.hidden = true; return; }
     const r = find(q); box.hidden = false;
     box.innerHTML = r.length ? r.map((x) => `<a href="${esc(x.p)}" role="option"><span class="veh-img">${x.i ? `<img src="${esc(x.i)}" alt="" width="82" height="49" loading="lazy">` : ''}</span><span><strong>${esc(x.n)}</strong><small>${esc(x.s ? x.s + ' · ' + x.d : x.d)}</small></span></a>`).join('')
-      : '<p>No matching vehicles. Try a make, model or SKU, or <a href="#quote">ask for a quote</a>.</p>';
+      : (window.SiteSearch ? '<p>No vehicles match. Search the whole site or ask our assistant below.</p>' : '<p>No matching vehicles. Try a make, model or SKU, or <a href="#quote">ask for a quote</a>.</p>');
   }
   document.querySelectorAll('[data-veh-input]').forEach((input) => {
     const box = input.closest('.veh-pop, .mm-veh').querySelector('.veh-results');
     input.addEventListener('focus', load);
     input.addEventListener('input', () => { const q = input.value; (index ? Promise.resolve() : load()).then(() => { if (input.value === q) render(box, q); }); });
     input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') { const a = box.querySelector('a[href]'); if (a) { e.preventDefault(); location.href = a.href; } }
+      if (e.key === 'Enter') { e.preventDefault(); const a = box.querySelector('a[role=option]'); if (a) location.href = a.href; else if (window.SiteSearch && input.value.trim()) { closePop(); window.SiteSearch.open(input.value.trim()); } }
       if (e.key === 'Escape') closePop();
     });
   });
-  const wrap = document.querySelector('.veh-find'), btn = wrap && wrap.querySelector('.head-veh'), pop = wrap && wrap.querySelector('.veh-pop');
+  const wrap = document.querySelector('.veh-find'), btn = wrap && wrap.querySelector('.head-find'), pop = wrap && wrap.querySelector('.veh-pop');
   function closePop() { if (!pop) return; pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
   if (btn) {
     btn.addEventListener('click', () => { const open = pop.hidden; pop.hidden = !open; btn.setAttribute('aria-expanded', String(open)); if (open) { load(); setTimeout(() => pop.querySelector('input').focus(), 0); } });
     pop.querySelector('.veh-x').addEventListener('click', closePop);
+    const q = () => pop.querySelector('[data-veh-input]').value.trim();
+    pop.querySelector('[data-q-site]').addEventListener('click', () => { if (!window.SiteSearch) return; const v = q(); closePop(); window.SiteSearch.open(v); });
+    pop.querySelector('[data-q-ai]').addEventListener('click', () => { if (!window.SiteSearch) return; const v = q(); closePop(); window.SiteSearch.ask(v); });
     document.addEventListener('pointerdown', (e) => { if (!pop.hidden && !wrap.contains(e.target)) closePop(); });
   }
   // Model page opened from a variant result: pre-select that variant.

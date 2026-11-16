@@ -1235,3 +1235,34 @@ html[data-vat="inc"] .ms-sum-inc{display:none}
 @media(max-width:560px){.brand-card__badge{width:36px;height:36px;left:7px;top:7px}.brand-card__badge img{width:26px!important;height:26px!important}}
 @media(max-width:850px){.brand-card__badge{width:28px;height:28px;left:4px;top:4px;border-radius:7px}.brand-card__badge img{width:21px!important;height:21px!important}}
 .shop-card__media{aspect-ratio:5/3;background:#e4e6ea}.shop-card__media.is-photo img{object-fit:cover;object-position:center}.ms-rel img{aspect-ratio:5/3}
+
+/* Header clean-up: one search (vans, models, SKUs, then whole-site search / Ask AI), basket, Get a quote.
+   Sign in and Call live in the top bar. */
+.main-head .head-actions{gap:10px}
+.head-find{display:inline-flex;align-items:center;gap:10px;height:44px;min-width:250px;padding:0 16px 0 14px;border-radius:999px;border:1px solid #ffffff2e;background:#ffffff0f;color:#c9d3ee;font:inherit;font-size:14px;font-weight:600;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.head-find svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.head-find:hover,.head-find[aria-expanded="true"]{border-color:var(--lime);background:#ffffff17;color:#fff}
+.main-head.is-stuck .head-find{height:38px}
+.main-head .head-actions>.head-search{display:none!important}
+.main-head .head-actions .btn{color:#fff!important;margin-left:2px}
+.veh-pop{width:min(460px,calc(100vw - 32px))}
+.veh-more{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;padding-top:10px;border-top:1px solid var(--line)}
+.veh-more[hidden]{display:none}
+.veh-more button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:#f6f7fb;color:var(--ink);font:inherit;font-size:13px;font-weight:800;cursor:pointer}
+.veh-more button svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.veh-more [data-q-ai]{border-color:var(--lime);background:#fff0f7;color:#c40a5e}.veh-more [data-q-ai] svg{fill:var(--lime);stroke:none}
+.veh-more button:hover{border-color:var(--lime)}
+.utility-right .utility-account{color:inherit;text-decoration:none}
+.utility-right .utility-account:hover{color:#fff}
+@media(max-width:1400px){.head-find{min-width:0}.head-find__txt{display:none}.head-find{width:44px;padding:0;justify-content:center}.main-head.is-stuck .head-find{width:38px}}
+@media(max-width:850px){.main-head .head-actions>.head-search:not([hidden]){display:grid!important}}
+@media(max-width:650px){.utility-right .utility-account{display:none}}
+/* Phones: the same combined search from a search icon; panel spans the screen under the header */
+@media(max-width:850px){
+  .veh-find{display:block!important;position:static}
+  .main-head .head-actions>.head-search{display:none!important}
+  .head-find{width:38px;height:38px;padding:0;justify-content:center;border-radius:10px}
+  .veh-pop{position:absolute;left:12px;right:12px;width:auto;top:calc(100% + 6px)}
+  .main-head .shell{position:relative}
+  .veh-more{grid-template-columns:1fr}
+}
