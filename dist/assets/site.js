@@ -539,3 +539,14 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   const sku = new URLSearchParams(location.search).get('sku'), sel = document.querySelector('.ms [name=variant]');
   if (sku && sel) { const o = [...sel.options].find((x) => x.dataset.sku === sku); if (o) { sel.value = o.value; sel.dispatchEvent(new Event('change', { bubbles: true })); } }
 })();
+
+/* Desktop menus: moving to another top item drops focus from the previous one so only one panel is open;
+   Escape closes. */
+(() => {
+  const items = document.querySelectorAll('.main-head .nav-item');
+  items.forEach((it) => it.addEventListener('pointerenter', () => {
+    const a = document.activeElement;
+    if (a && a !== document.body && !it.contains(a) && a.closest('.nav-item')) a.blur();
+  }));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.activeElement?.closest('.nav-item')) document.activeElement.blur(); });
+})();
