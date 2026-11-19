@@ -718,6 +718,7 @@ page('/checkout/', 'Checkout', 'Secure checkout for Get It Wrapt van graphics.',
 <fieldset class="co-box"><legend>2. Your details</legend>
 <div class="field-row"><label>First name<input name="first_name" autocomplete="given-name" required maxlength="120"></label><label>Last name<input name="last_name" autocomplete="family-name" required maxlength="120"></label></div>
 <div class="field-row"><label>Email<input type="email" name="email" autocomplete="email" required maxlength="200"></label><label>Mobile<input type="tel" name="mobile" autocomplete="tel" required maxlength="30"></label></div>
+<div class="pc-lookup" data-postcode-lookup><label for="pc-find">Find your address</label><div class="pc-row"><input id="pc-find" type="text" data-pc-input placeholder="Postcode, e.g. NR6 7BW" autocomplete="off" maxlength="10" autocapitalize="characters" enterkeyhint="search"><button type="button" class="btn" data-pc-find>Find address</button></div><select data-pc-select aria-label="Choose your address" hidden></select><p class="pc-msg" data-pc-msg role="status"></p></div>
 <label>Address<input name="address_line_1" autocomplete="address-line1" required maxlength="200"></label>
 <label>Address line 2 (optional)<input name="address_line_2" autocomplete="address-line2" maxlength="200"></label>
 <div class="field-row"><label>Town or city<input name="city" autocomplete="address-level2" required maxlength="120"></label><label>Postcode<input name="postcode" autocomplete="postal-code" required maxlength="10"></label></div>

@@ -550,3 +550,38 @@ document.querySelectorAll('.pm-pick').forEach((btn) => {
   }));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.activeElement?.closest('.nav-item')) document.activeElement.blur(); });
 })();
+
+/* Postcode lookup (the CRM's Royal Mail address data). Browser key: public, works only on getitwrapt.co.uk
+   and the preview. Fills the address fields of the form it sits in; the fields stay editable. */
+(() => {
+  const URL_ = 'https://dipjypzrfigkzuarlsov.supabase.co/functions/v1/postcode-lookup', KEY = 'pk_6n26gr5fcsz3sx4htqitzkeh';
+  const norm = (v) => { const c = String(v || '').toUpperCase().replace(/\s/g, ''); return /^(GIR0AA|[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2})$/.test(c) ? c.slice(0, -3) + ' ' + c.slice(-3) : null; };
+  document.querySelectorAll('[data-postcode-lookup]').forEach((box) => {
+    const form = box.closest('form'), input = box.querySelector('[data-pc-input]'), btn = box.querySelector('[data-pc-find]');
+    const sel = box.querySelector('[data-pc-select]'), msg = box.querySelector('[data-pc-msg]');
+    let list = [];
+    const set = (name, v) => { const f = form && form.querySelector(`[name="${name}"]`); if (f) { f.value = v || ''; f.dispatchEvent(new Event('input', { bubbles: true })); } };
+    async function find() {
+      const pc = norm(input.value);
+      if (!pc) { msg.textContent = 'Enter a full UK postcode, for example NR6 7BW.'; return; }
+      btn.disabled = true; msg.textContent = 'Looking up addresses…'; sel.hidden = true;
+      try {
+        const r = await fetch(`${URL_}?postcode=${encodeURIComponent(pc)}&key=${KEY}`, { headers: { Accept: 'application/json' } });
+        const d = await r.json().catch(() => ({}));
+        if (!r.ok || !d.success) throw new Error(d.error || 'Address lookup is unavailable right now.');
+        list = d.addresses || [];
+        if (!list.length) { msg.textContent = `No addresses found for ${pc}. Please type your address below.`; set('postcode', pc); return; }
+        sel.innerHTML = `<option value="">Select your address (${list.length} found)</option>` + list.map((a, i) => `<option value="${i}">${String(a.label).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))}</option>`).join('');
+        sel.hidden = false; sel.focus(); msg.textContent = '';
+      } catch (e) { msg.textContent = (e && e.message) || 'Address lookup is unavailable right now. Please type your address below.'; }
+      finally { btn.disabled = false; }
+    }
+    btn.addEventListener('click', find);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); find(); } });
+    sel.addEventListener('change', () => {
+      const a = list[Number(sel.value)]; if (!a || sel.value === '') return;
+      set('address_line_1', a.address1); set('address_line_2', a.address2); set('city', a.city); set('postcode', a.postcode);
+      msg.textContent = 'Address added. Check it below and change anything if you need to.';
+    });
+  });
+})();

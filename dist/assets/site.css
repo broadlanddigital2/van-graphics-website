@@ -1272,3 +1272,15 @@ html[data-vat="inc"] .ms-sum-inc{display:none}
 .nav:hover .nav-item:not(:hover) .mega{visibility:hidden;opacity:0;transition:none}
 .mega:before{pointer-events:none}
 .nav-item:hover .mega:before{pointer-events:auto}
+
+/* Postcode lookup */
+.pc-lookup{display:grid;gap:8px;margin:4px 0 14px;padding:14px;border:1px dashed var(--line);border-radius:12px;background:#f8f9fc}
+.pc-lookup>label{font-weight:800;font-size:14px}
+.pc-row{display:flex;gap:8px}
+.pc-row input{flex:1;min-width:0;text-transform:uppercase}
+.pc-row input::placeholder{text-transform:none}
+.pc-row .btn{white-space:nowrap;padding:10px 16px}
+.pc-lookup select{width:100%;min-height:46px}
+.pc-lookup select[hidden]{display:none}
+.pc-msg{margin:0;font-size:13px;color:#56607a}.pc-msg:empty{display:none}
+@media(max-width:460px){.pc-row{flex-direction:column}}
